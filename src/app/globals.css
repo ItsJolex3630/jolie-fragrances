@@ -1,0 +1,293 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  --font-display: var(--font-cormorant);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-gold: #d4af37;
+  --color-gold-light: #e8cc6e;
+  --color-gold-dark: #b8941e;
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --card: #111111;
+  --card-foreground: #ffffff;
+  --popover: #111111;
+  --popover-foreground: #ffffff;
+  --primary: #d4af37;
+  --primary-foreground: #0a0a0a;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #ffffff;
+  --muted: #1a1a1a;
+  --muted-foreground: #888888;
+  --accent: #d4af37;
+  --accent-foreground: #0a0a0a;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: rgba(212, 175, 55, 0.15);
+  --input: rgba(212, 175, 55, 0.2);
+  --ring: #d4af37;
+  --chart-1: #d4af37;
+  --chart-2: #e8cc6e;
+  --chart-3: #b8941e;
+  --chart-4: #9a7c17;
+  --chart-5: #f0dc8e;
+  --sidebar: #0a0a0a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #d4af37;
+  --sidebar-primary-foreground: #0a0a0a;
+  --sidebar-accent: #1a1a1a;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(212, 175, 55, 0.15);
+  --sidebar-ring: #d4af37;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --card: #111111;
+  --card-foreground: #ffffff;
+  --popover: #111111;
+  --popover-foreground: #ffffff;
+  --primary: #d4af37;
+  --primary-foreground: #0a0a0a;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #ffffff;
+  --muted: #1a1a1a;
+  --muted-foreground: #888888;
+  --accent: #d4af37;
+  --accent-foreground: #0a0a0a;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: rgba(212, 175, 55, 0.15);
+  --input: rgba(212, 175, 55, 0.2);
+  --ring: #d4af37;
+  --chart-1: #d4af37;
+  --chart-2: #e8cc6e;
+  --chart-3: #b8941e;
+  --chart-4: #9a7c17;
+  --chart-5: #f0dc8e;
+  --sidebar: #0a0a0a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #d4af37;
+  --sidebar-primary-foreground: #0a0a0a;
+  --sidebar-accent: #1a1a1a;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(212, 175, 55, 0.15);
+  --sidebar-ring: #d4af37;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-[#0a0a0a] text-white;
+  }
+}
+
+/* ─── Shimmer animation for hero section ─── */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #d4af37 0%, #f0dc8e 25%, #ffffff 50%, #f0dc8e 75%, #d4af37 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+.shimmer-line {
+  background: linear-gradient(
+    90deg, transparent 0%, rgba(212, 175, 55, 0.4) 50%, transparent 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ─── Gold border glow (GPU-accelerated) ─── */
+.gold-glow {
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15),
+    0 0 30px rgba(212, 175, 55, 0.05);
+}
+
+.gold-glow-hover:hover {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3),
+    0 0 40px rgba(212, 175, 55, 0.1);
+}
+
+/* ─── Custom scrollbar ─── */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #111111;
+  border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.5);
+}
+
+/* ─── Perfume card hover effect (GPU-composited) ─── */
+.perfume-card {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.perfume-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.2),
+    0 0 1px rgba(212, 175, 55, 0.4);
+}
+
+/* ─── Floating particles (optimized) ─── */
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(-10vh) scale(1);
+    opacity: 0;
+  }
+}
+
+.floating-particle {
+  animation: float-up linear infinite;
+}
+
+/* Disable heavy animations on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  .floating-particle,
+  .shimmer-text,
+  .shimmer-line,
+  .skeleton-pulse,
+  .card-fade-in {
+    animation: none !important;
+  }
+  .card-fade-in {
+    opacity: 1 !important;
+  }
+  .perfume-card:hover {
+    transform: none;
+  }
+}
+
+/* ─── WhatsApp button pulse ─── */
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-pulse {
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+/* ─── Filter pill styles ─── */
+.filter-pill {
+  transition: all 0.3s ease;
+}
+
+.filter-pill.active {
+  background: linear-gradient(135deg, #d4af37, #b8941e);
+  color: #0a0a0a;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+/* ─── Image placeholder ─── */
+.perfume-img-placeholder {
+  background: linear-gradient(135deg, #111111 0%, #1a1a1a 50%, #111111 100%);
+}
+
+/* ─── Hero background gradient (simplified) ─── */
+.hero-gradient {
+  background: radial-gradient(
+    ellipse at 30% 40%,
+    rgba(212, 175, 55, 0.06) 0%,
+    transparent 60%
+  );
+}
+
+/* ─── Search autocomplete ─── */
+.autocomplete-item:hover {
+  background: rgba(212, 175, 55, 0.1);
+}
+
+/* ─── Card fade-in animation (replaces Framer Motion cardVariants) ─── */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-fade-in {
+  opacity: 0;
+  animation: cardFadeIn 0.4s ease-out forwards;
+}
+
+/* ─── Skeleton pulse animation (replaces Framer Motion infinite opacity) ─── */
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.5; }
+}
+
+.skeleton-pulse {
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+}
