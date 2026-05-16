@@ -5,17 +5,17 @@ import { motion } from "framer-motion";
 import {
   X,
   Heart,
-  ExternalLink,
   Gem,
   Sparkles,
   Wind,
   Flower2,
   TreePine,
   Star,
+  Instagram,
+  Clock,
 } from "lucide-react";
 import {
   getImageUrl,
-  getFragranticaUrl,
   type Perfume,
 } from "@/lib/perfumes";
 
@@ -32,18 +32,37 @@ const genderIcons: Record<string, string> = {
   Unisex: "⚥",
 };
 
-// ─── Detailed note pyramid data ───
-interface NotePyramid {
-  top: string[];
-  heart: string[];
-  base: string[];
+// ─── Detailed note pyramid data with percentages ───
+interface NoteWithPercentage {
+  name: string;
+  percentage: number;
 }
 
-const NOTE_PYRAMIDS: Record<number, NotePyramid> = {
+interface NotePyramidDetailed {
+  top: NoteWithPercentage[];
+  heart: NoteWithPercentage[];
+  base: NoteWithPercentage[];
+}
+
+const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
   1: {
-    top: ["Limón", "Piña", "Bergamota", "Mandarina"],
-    heart: ["Abedul", "Jazmín", "Rosa"],
-    base: ["Vainilla", "Almizcle", "Ámbar", "Pachulí"],
+    top: [
+      { name: "Limón", percentage: 90 },
+      { name: "Piña", percentage: 80 },
+      { name: "Bergamota", percentage: 70 },
+      { name: "Mandarina", percentage: 60 },
+    ],
+    heart: [
+      { name: "Abedul", percentage: 88 },
+      { name: "Jazmín", percentage: 65 },
+      { name: "Rosa", percentage: 55 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 92 },
+      { name: "Almizcle", percentage: 78 },
+      { name: "Ámbar", percentage: 70 },
+      { name: "Pachulí", percentage: 60 },
+    ],
   },
 };
 
@@ -63,40 +82,40 @@ const PERFUME_RATINGS: Record<number, number> = {
   1: 4,
 };
 
-// ─── Note tier metadata for timeline ───
-const noteTiers = [
+// ─── Architecture tier metadata ───
+const archTiers = [
   {
     key: "top" as const,
-    title: "Primer Encuentro",
-    subtitle: "La explosión inicial que cautiva los sentidos",
+    title: "Salida",
+    subtitle: "0 – 15 min",
     icon: Wind,
     iconBg: "bg-[#f0c934]/20",
     iconBorder: "border-[#f0c934]/40",
     iconColor: "text-[#f0c934]",
-    titleColor: "text-[#f0c934]",
-    dotColor: "bg-[#f0c934]",
+    barColor: "#f0c934",
+    barBg: "rgba(240, 201, 52, 0.15)",
   },
   {
     key: "heart" as const,
-    title: "Revelación",
-    subtitle: "El corazón que define la esencia",
+    title: "Corazón",
+    subtitle: "15 min – 3 h",
     icon: Flower2,
     iconBg: "bg-[#e75a8d]/20",
     iconBorder: "border-[#e75a8d]/40",
     iconColor: "text-[#e75a8d]",
-    titleColor: "text-[#e75a8d]",
-    dotColor: "bg-[#e75a8d]",
+    barColor: "#e75a8d",
+    barBg: "rgba(231, 90, 141, 0.15)",
   },
   {
     key: "base" as const,
-    title: "Legado",
-    subtitle: "La memoria que perdura en la piel",
+    title: "Base",
+    subtitle: "3 h+",
     icon: TreePine,
     iconBg: "bg-emerald-500/20",
     iconBorder: "border-emerald-500/40",
     iconColor: "text-emerald-400",
-    titleColor: "text-emerald-400",
-    dotColor: "bg-emerald-400",
+    barColor: "#34d399",
+    barBg: "rgba(52, 211, 153, 0.15)",
   },
 ];
 
@@ -134,6 +153,48 @@ function AccordBar({
           transition={{ delay: delay + 0.2, duration: 0.8, ease: "easeOut" }}
           className="h-full rounded-full"
           style={{ backgroundColor: color }}
+        />
+      </div>
+    </motion.div>
+  );
+}
+
+// ─── Architecture note progress bar ───
+function ArchNoteBar({
+  name,
+  percentage,
+  barColor,
+  barBg,
+  delay,
+}: {
+  name: string;
+  percentage: number;
+  barColor: string;
+  barBg: string;
+  delay: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay, duration: 0.35 }}
+      className="space-y-1"
+    >
+      <div className="flex items-center justify-between">
+        <span className="text-[11px] text-white/70 font-[family-name:var(--font-inter)]">
+          {name}
+        </span>
+        <span className="text-[10px] text-white/35 font-[family-name:var(--font-inter)]">
+          {percentage}%
+        </span>
+      </div>
+      <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: barBg }}>
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: `${percentage}%` }}
+          transition={{ delay: delay + 0.15, duration: 0.7, ease: "easeOut" }}
+          className="h-full rounded-full"
+          style={{ backgroundColor: barColor }}
         />
       </div>
     </motion.div>
@@ -217,7 +278,7 @@ export default function PerfumeDetail({
         exit={{ opacity: 0, scale: 0.92, y: 20 }}
         transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl border border-[rgba(212,175,55,0.2)] bg-[#0e0e0e] shadow-2xl shadow-black/60"
+        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto custom-scrollbar rounded-2xl border border-[rgba(212,175,55,0.2)] bg-[#0e0e0e] shadow-2xl shadow-black/60"
       >
         {/* Close button */}
         <motion.button
@@ -259,7 +320,7 @@ export default function PerfumeDetail({
         )}
 
         {/* Gold accent line top */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent z-10" />
 
         <div className="flex flex-col md:flex-row">
           {/* ─── LEFT: Image Section ─── */}
@@ -342,11 +403,11 @@ export default function PerfumeDetail({
               </span>
             </div>
 
-            {/* ─── ACUERDOS PRINCIPALES ─── */}
+            {/* ─── ACORDES PRINCIPALES ─── */}
             {accords && (
               <div className="mb-6">
                 <h3 className="text-[10px] text-[#d4af37] tracking-[0.2em] uppercase font-semibold font-[family-name:var(--font-inter)] mb-4">
-                  Acuerdos Principales
+                  Acordes Principales
                 </h3>
                 <div className="space-y-3">
                   {accords.map((accord, i) => (
@@ -362,75 +423,61 @@ export default function PerfumeDetail({
               </div>
             )}
 
-            {/* ─── TRAYECTO OLFATIVO ─── */}
+            {/* ─── ARQUITECTURA DE LA FRAGANCIA ─── */}
             {pyramid && (
               <div className="mb-6">
-                <h3 className="text-[10px] text-[#d4af37] tracking-[0.2em] uppercase font-semibold font-[family-name:var(--font-inter)] mb-1">
-                  Trayecto Olfativo
+                <h3 className="text-[10px] text-[#d4af37] tracking-[0.2em] uppercase font-semibold font-[family-name:var(--font-inter)] mb-4">
+                  Arquitectura de la Fragancia
                 </h3>
-                <p className="text-[10px] text-white/30 font-[family-name:var(--font-inter)] mb-5">
-                  Explora la arquitectura olfativa de esta fragancia...
-                </p>
 
-                <div className="relative">
-                  {/* Vertical dashed line connecting icons */}
-                  <div className="absolute left-[19px] top-6 bottom-6 w-px border-l border-dashed border-white/10" />
-
-                  <div className="space-y-6">
-                    {noteTiers.map((tier, tierIndex) => {
-                      const Icon = tier.icon;
-                      const notes = pyramid[tier.key];
-                      return (
-                        <motion.div
-                          key={tier.key}
-                          initial={{ opacity: 0, x: -15 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: tierIndex * 0.15 + 0.3, duration: 0.5 }}
-                          className="flex gap-4"
+                <div className="grid grid-cols-3 gap-3">
+                  {archTiers.map((tier, tierIndex) => {
+                    const Icon = tier.icon;
+                    const notes = pyramid[tier.key];
+                    return (
+                      <motion.div
+                        key={tier.key}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: tierIndex * 0.12 + 0.2, duration: 0.45 }}
+                        className="flex flex-col items-center text-center p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]"
+                      >
+                        {/* Icon circle */}
+                        <div
+                          className={`w-10 h-10 rounded-full ${tier.iconBg} border ${tier.iconBorder} flex items-center justify-center mb-2`}
                         >
-                          {/* Icon column */}
-                          <div className="relative flex-shrink-0 flex flex-col items-center">
-                            <div
-                              className={`w-10 h-10 rounded-full ${tier.iconBg} border ${tier.iconBorder} flex items-center justify-center z-10`}
-                            >
-                              <Icon className={`w-4 h-4 ${tier.iconColor}`} />
-                            </div>
-                          </div>
+                          <Icon className={`w-4 h-4 ${tier.iconColor}`} />
+                        </div>
 
-                          {/* Content column */}
-                          <div className="flex-1 pt-0.5">
-                            <h4
-                              className={`text-sm font-semibold ${tier.titleColor} font-[family-name:var(--font-inter)] mb-0.5`}
-                            >
-                              {tier.title}
-                            </h4>
-                            <p className="text-[10px] text-white/40 font-[family-name:var(--font-inter)] mb-3">
-                              {tier.subtitle}
-                            </p>
-                            <div className="flex flex-wrap gap-2">
-                              {notes.map((note, noteIndex) => (
-                                <motion.span
-                                  key={note}
-                                  initial={{ opacity: 0, scale: 0.85 }}
-                                  animate={{ opacity: 1, scale: 1 }}
-                                  transition={{
-                                    delay: tierIndex * 0.15 + noteIndex * 0.05 + 0.5,
-                                    duration: 0.3,
-                                  }}
-                                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/5 border border-white/10 text-white/70 font-[family-name:var(--font-inter)]"
-                                >
-                                  <span
-                                    className={`w-1.5 h-1.5 rounded-full ${tier.dotColor}`}
-                                  />
-                                  {note}
-                                </motion.span>
-                              ))}
-                            </div>
-                          </div>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
+                        {/* Title */}
+                        <h4 className={`text-sm font-semibold ${tier.iconColor} font-[family-name:var(--font-inter)] mb-0.5`}>
+                          {tier.title}
+                        </h4>
+
+                        {/* Subtitle with clock */}
+                        <div className="flex items-center gap-1 mb-3">
+                          <Clock className="w-2.5 h-2.5 text-white/25" />
+                          <span className="text-[9px] text-white/30 font-[family-name:var(--font-inter)]">
+                            {tier.subtitle}
+                          </span>
+                        </div>
+
+                        {/* Notes with progress bars */}
+                        <div className="w-full space-y-2">
+                          {notes.map((note, noteIndex) => (
+                            <ArchNoteBar
+                              key={note.name}
+                              name={note.name}
+                              percentage={note.percentage}
+                              barColor={tier.barColor}
+                              barBg={tier.barBg}
+                              delay={tierIndex * 0.12 + noteIndex * 0.06 + 0.35}
+                            />
+                          ))}
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -453,37 +500,20 @@ export default function PerfumeDetail({
                 Consultar Disponibilidad
               </a>
 
-              {/* WhatsApp button */}
+              {/* Instagram button */}
               <a
-                href={`https://wa.me/584244055386?text=${encodeURIComponent(`Hola Jolie Fragances! Me interesa ${perfume.name} - ${perfume.brand}`)}`}
+                href="https://www.instagram.com/jolie.fragrances.vnzl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#25D366]/15 border border-[#25D366]/25 text-[#25D366] hover:bg-[#25D366]/25 hover:border-[#25D366]/40 transition-all duration-200 font-[family-name:var(--font-inter)] text-sm font-medium"
-                title="WhatsApp"
+                className="group flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#E1306C]/15 via-[#F77737]/15 to-[#FCAF45]/15 border border-[#E1306C]/25 text-[#E1306C] hover:from-[#E1306C]/25 hover:via-[#F77737]/25 hover:to-[#FCAF45]/25 hover:border-[#E1306C]/40 transition-all duration-200 font-[family-name:var(--font-inter)] text-sm font-medium"
+                title="Visitar Instagram"
               >
-                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                <span className="text-xs font-semibold">WhatsApp</span>
-              </a>
-
-              {/* Fragrantica link */}
-              <a
-                href={getFragranticaUrl(perfume)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 bg-white/5 text-white/40 hover:text-white/70 hover:border-white/20 transition-all duration-200 font-[family-name:var(--font-inter)] text-sm"
-                title="Ver en Fragrantica"
-              >
-                <ExternalLink className="w-4 h-4" />
-                <span className="text-xs font-medium">Fragrantica</span>
+                <Instagram className="w-4 h-4" />
+                <span className="text-xs font-semibold">Instagram</span>
               </a>
             </div>
           </div>
         </div>
-
-        {/* Gold accent line bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
       </motion.div>
     </motion.div>
   );
