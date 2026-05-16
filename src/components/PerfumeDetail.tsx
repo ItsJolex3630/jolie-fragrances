@@ -45,6 +45,7 @@ interface NotePyramidDetailed {
 }
 
 const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
+  // 1. Club de Nuit Intense Man
   1: {
     top: [
       { name: "Limón", percentage: 90 },
@@ -64,16 +65,540 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Pachulí", percentage: 60 },
     ],
   },
+  // 2. Club de Nuit Intense Man Limited Edition
+  2: {
+    top: [
+      { name: "Limón", percentage: 95 },
+      { name: "Piña", percentage: 85 },
+      { name: "Lima", percentage: 75 },
+      { name: "Bergamota", percentage: 70 },
+      { name: "Pimienta Negra", percentage: 60 },
+    ],
+    heart: [
+      { name: "Abedul", percentage: 90 },
+      { name: "Jazmín", percentage: 70 },
+      { name: "Rosa", percentage: 65 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 85 },
+      { name: "Ámbar Gris", percentage: 80 },
+      { name: "Pachulí", percentage: 75 },
+      { name: "Vainilla", percentage: 60 },
+    ],
+  },
+  // 3. Club de Nuit Woman
+  3: {
+    top: [
+      { name: "Naranja", percentage: 90 },
+      { name: "Bergamota", percentage: 85 },
+      { name: "Toronja", percentage: 75 },
+      { name: "Melocotón", percentage: 65 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 85 },
+      { name: "Jazmín", percentage: 75 },
+      { name: "Geranio", percentage: 60 },
+      { name: "Lichi", percentage: 55 },
+    ],
+    base: [
+      { name: "Pachulí", percentage: 90 },
+      { name: "Almizcle", percentage: 80 },
+      { name: "Vainilla", percentage: 75 },
+      { name: "Vetiver", percentage: 60 },
+    ],
+  },
+  // 4. Club de Nuit White Imperiale
+  4: {
+    top: [
+      { name: "Lichi", percentage: 90 },
+      { name: "Bergamota", percentage: 80 },
+      { name: "Nuez Moscada", percentage: 60 },
+    ],
+    heart: [
+      { name: "Rosa Turca", percentage: 95 },
+      { name: "Peonía", percentage: 80 },
+      { name: "Almizcle", percentage: 70 },
+      { name: "Vainilla", percentage: 65 },
+    ],
+    base: [
+      { name: "Cachemira", percentage: 85 },
+      { name: "Incienso", percentage: 70 },
+      { name: "Cedro", percentage: 65 },
+      { name: "Vetiver", percentage: 50 },
+    ],
+  },
+  // 5 (115). Club de Nuit Iconic
+  115: {
+    top: [
+      { name: "Toronja", percentage: 95 },
+      { name: "Limón", percentage: 90 },
+      { name: "Menta", percentage: 85 },
+      { name: "Pimienta Rosa", percentage: 70 },
+      { name: "Cilantro", percentage: 60 },
+    ],
+    heart: [
+      { name: "Jengibre", percentage: 88 },
+      { name: "Nuez Moscada", percentage: 75 },
+      { name: "Jazmín", percentage: 65 },
+      { name: "Melón", percentage: 60 },
+    ],
+    base: [
+      { name: "Incienso", percentage: 85 },
+      { name: "Ámbar", percentage: 80 },
+      { name: "Cedro", percentage: 75 },
+      { name: "Sándalo", percentage: 70 },
+      { name: "Pachulí", percentage: 65 },
+    ],
+  },
+  // 6 (116). Club de Nuit Sillage
+  116: {
+    top: [
+      { name: "Bergamota", percentage: 95 },
+      { name: "Grosellas Negras", percentage: 85 },
+      { name: "Limón", percentage: 80 },
+      { name: "Lima", percentage: 75 },
+      { name: "Violeta", percentage: 65 },
+      { name: "Jengibre", percentage: 60 },
+    ],
+    heart: [
+      { name: "Iris", percentage: 85 },
+      { name: "Jazmín", percentage: 70 },
+      { name: "Rosa", percentage: 65 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 95 },
+      { name: "Ámbar Gris", percentage: 85 },
+      { name: "Sándalo", percentage: 70 },
+      { name: "Cedro", percentage: 65 },
+    ],
+  },
+  // 7 (117). Club de Nuit Urban Man Elixir
+  117: {
+    top: [
+      { name: "Bergamota", percentage: 90 },
+      { name: "Pimienta Rosa", percentage: 80 },
+      { name: "Jazmín", percentage: 65 },
+      { name: "Flor de Azahar", percentage: 60 },
+    ],
+    heart: [
+      { name: "Lavanda", percentage: 85 },
+      { name: "Geranio", percentage: 75 },
+      { name: "Azafrán", percentage: 70 },
+      { name: "Elemí", percentage: 65 },
+      { name: "Vetiver", percentage: 60 },
+    ],
+    base: [
+      { name: "Ambroxan", percentage: 90 },
+      { name: "Ámbar", percentage: 80 },
+      { name: "Pachulí", percentage: 75 },
+      { name: "Cedro", percentage: 70 },
+      { name: "Ládano", percentage: 55 },
+    ],
+  },
+  // 8 (118). Club de Nuit Urban Man
+  118: {
+    top: [
+      { name: "Bergamota", percentage: 90 },
+      { name: "Toronja", percentage: 85 },
+      { name: "Menta", percentage: 80 },
+      { name: "Cardamomo", percentage: 70 },
+    ],
+    heart: [
+      { name: "Nuez Moscada", percentage: 80 },
+      { name: "Jengibre", percentage: 75 },
+      { name: "Cedro", percentage: 70 },
+      { name: "Lavanda", percentage: 65 },
+    ],
+    base: [
+      { name: "Pachulí", percentage: 85 },
+      { name: "Vetiver", percentage: 75 },
+      { name: "Sándalo", percentage: 70 },
+      { name: "Musgo de Roble", percentage: 60 },
+    ],
+  },
+  // 9 (119). Club de Nuit Maleka
+  119: {
+    top: [
+      { name: "Notas Florales", percentage: 85 },
+      { name: "Frutas Silvestres", percentage: 80 },
+      { name: "Pera", percentage: 75 },
+    ],
+    heart: [
+      { name: "Jazmín", percentage: 80 },
+      { name: "Nardos", percentage: 75 },
+      { name: "Notas Especiadas", percentage: 60 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 90 },
+      { name: "Almizcle", percentage: 80 },
+      { name: "Sándalo", percentage: 70 },
+      { name: "Caramelo", percentage: 65 },
+    ],
+  },
+  // 10 (120). Club de Nuit Untold
+  120: {
+    top: [
+      { name: "Azafrán", percentage: 95 },
+      { name: "Jazmín", percentage: 80 },
+    ],
+    heart: [
+      { name: "Amberwood", percentage: 90 },
+      { name: "Ámbar Gris", percentage: 85 },
+    ],
+    base: [
+      { name: "Resina de Abeto", percentage: 85 },
+      { name: "Cedro", percentage: 75 },
+    ],
+  },
+  // 11 (121). Club de Nuit Precieux I
+  121: {
+    top: [
+      { name: "Bergamota", percentage: 85 },
+      { name: "Limón", percentage: 80 },
+      { name: "Pimienta Rosa", percentage: 75 },
+      { name: "Piña", percentage: 70 },
+      { name: "Caramelo", percentage: 65 },
+    ],
+    heart: [
+      { name: "Madera de Gaïac", percentage: 80 },
+      { name: "Jazmín", percentage: 70 },
+      { name: "Anís Estrellado", percentage: 65 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 90 },
+      { name: "Almizcle", percentage: 80 },
+      { name: "Vainilla", percentage: 75 },
+      { name: "Cuero", percentage: 70 },
+      { name: "Pachulí", percentage: 60 },
+    ],
+  },
+  // 12 (5). Odyssey Homme White Edition
+  5: {
+    top: [
+      { name: "Toronja", percentage: 90 },
+      { name: "Bergamota", percentage: 85 },
+      { name: "Notas Verdes", percentage: 80 },
+      { name: "Pimienta Rosa", percentage: 65 },
+    ],
+    heart: [
+      { name: "Jengibre", percentage: 80 },
+      { name: "Menta", percentage: 75 },
+      { name: "Nuez Moscada", percentage: 65 },
+    ],
+    base: [
+      { name: "Cedro", percentage: 85 },
+      { name: "Vetiver", percentage: 75 },
+      { name: "Almizcle", percentage: 70 },
+      { name: "Pachulí", percentage: 60 },
+    ],
+  },
+  // 13 (91). Odyssey Aoud
+  91: {
+    top: [
+      { name: "Azafrán", percentage: 90 },
+      { name: "Nuez Moscada", percentage: 80 },
+      { name: "Lavanda", percentage: 70 },
+    ],
+    heart: [
+      { name: "Madera de Oud", percentage: 95 },
+      { name: "Notas Terrosas", percentage: 65 },
+    ],
+    base: [
+      { name: "Pachulí", percentage: 85 },
+      { name: "Almizcle", percentage: 75 },
+      { name: "Ámbar", percentage: 70 },
+    ],
+  },
+  // 14 (104). Odyssey Mandarine Sky
+  104: {
+    top: [
+      { name: "Mandarina", percentage: 95 },
+      { name: "Naranja", percentage: 85 },
+      { name: "Azafrán", percentage: 70 },
+    ],
+    heart: [
+      { name: "Caramelo", percentage: 90 },
+      { name: "Tonka", percentage: 80 },
+      { name: "Coco", percentage: 65 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 85 },
+      { name: "Cedro", percentage: 70 },
+      { name: "Pachulí", percentage: 60 },
+    ],
+  },
+  // 15 (105). Odyssey Artisto
+  105: {
+    top: [
+      { name: "Limón", percentage: 90 },
+      { name: "Bergamota", percentage: 85 },
+      { name: "Notas Verdes", percentage: 75 },
+    ],
+    heart: [
+      { name: "Jengibre", percentage: 85 },
+      { name: "Notas Marinas", percentage: 80 },
+      { name: "Menta", percentage: 75 },
+    ],
+    base: [
+      { name: "Cedro", percentage: 85 },
+      { name: "Ámbar Gris", percentage: 75 },
+      { name: "Vetiver", percentage: 70 },
+    ],
+  },
+  // 16 (106). Odyssey Bahamas
+  106: {
+    top: [
+      { name: "Piña", percentage: 90 },
+      { name: "Coco", percentage: 85 },
+      { name: "Mandarina", percentage: 80 },
+      { name: "Bergamota", percentage: 70 },
+    ],
+    heart: [
+      { name: "Fruta de la Pasión", percentage: 85 },
+      { name: "Jengibre", percentage: 70 },
+      { name: "Jazmín", percentage: 60 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 85 },
+      { name: "Almizcle", percentage: 75 },
+      { name: "Madera de Deriva", percentage: 65 },
+    ],
+  },
+  // 17 (107). Odyssey Toffee Coffee
+  107: {
+    top: [
+      { name: "Grano de Café", percentage: 95 },
+      { name: "Toffee / Caramelo", percentage: 90 },
+      { name: "Avellana", percentage: 75 },
+    ],
+    heart: [
+      { name: "Leche Condensada", percentage: 85 },
+      { name: "Canela", percentage: 75 },
+      { name: "Jengibre", percentage: 60 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 90 },
+      { name: "Haba Tonka", percentage: 85 },
+      { name: "Sándalo", percentage: 70 },
+    ],
+  },
+  // 18 (108). Odyssey Spectra
+  108: {
+    top: [
+      { name: "Pimienta Rosa", percentage: 85 },
+      { name: "Mandarina", percentage: 80 },
+      { name: "Cardamomo", percentage: 75 },
+    ],
+    heart: [
+      { name: "Iris", percentage: 90 },
+      { name: "Hojas de Violeta", percentage: 75 },
+      { name: "Especias", percentage: 65 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 80 },
+      { name: "Cedro", percentage: 75 },
+      { name: "Pachulí", percentage: 70 },
+      { name: "Cuero", percentage: 60 },
+    ],
+  },
+  // 19 (109). Odyssey Aqua
+  109: {
+    top: [
+      { name: "Pomelo", percentage: 90 },
+      { name: "Notas Marinas", percentage: 85 },
+      { name: "Yuzu", percentage: 80 },
+      { name: "Pimienta Rosa", percentage: 65 },
+    ],
+    heart: [
+      { name: "Hierbabuena", percentage: 85 },
+      { name: "Hojas de Violeta", percentage: 70 },
+      { name: "Lavanda", percentage: 65 },
+    ],
+    base: [
+      { name: "Ámbar Gris", percentage: 85 },
+      { name: "Madera de Gaïac", percentage: 75 },
+      { name: "Madera de Ámbar", percentage: 70 },
+    ],
+  },
+  // 20 (110). Odyssey Homme
+  110: {
+    top: [
+      { name: "Mandarina", percentage: 85 },
+      { name: "Pimienta Rosa", percentage: 75 },
+    ],
+    heart: [
+      { name: "Iris", percentage: 90 },
+      { name: "Cuero", percentage: 80 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 90 },
+      { name: "Ámbar", percentage: 85 },
+      { name: "Haba Tonka", percentage: 75 },
+    ],
+  },
 };
 
 // ─── Accords data ───
 const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color: string }[]> = {
+  // 1. Club de Nuit Intense Man
   1: [
     { label: "Cítrico", percentage: 90, color: "#f0c934" },
     { label: "Amaderado", percentage: 75, color: "#c17b2a" },
     { label: "Dulce", percentage: 65, color: "#e75a8d" },
     { label: "Ámbar", percentage: 50, color: "#f0a830" },
     { label: "Almizclado", percentage: 40, color: "#a0a0a0" },
+  ],
+  // 2. Club de Nuit Intense Man Limited Edition
+  2: [
+    { label: "Cítrico", percentage: 85, color: "#f0c934" },
+    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
+    { label: "Ahumado", percentage: 75, color: "#7a6b5d" },
+    { label: "Afrutado", percentage: 70, color: "#e75a8d" },
+    { label: "Cuero", percentage: 50, color: "#8b5e3c" },
+  ],
+  // 3. Club de Nuit Woman
+  3: [
+    { label: "Cítrico", percentage: 85, color: "#f0c934" },
+    { label: "Pachulí", percentage: 80, color: "#6b8e4e" },
+    { label: "Rosado", percentage: 75, color: "#e75a8d" },
+    { label: "Fresco Especiado", percentage: 60, color: "#a0c4e8" },
+    { label: "Afrutado", percentage: 55, color: "#f0a830" },
+  ],
+  // 4. Club de Nuit White Imperiale
+  4: [
+    { label: "Rosado", percentage: 90, color: "#e75a8d" },
+    { label: "Dulce", percentage: 85, color: "#f0a830" },
+    { label: "Afrutado", percentage: 80, color: "#e75a8d" },
+    { label: "Tropical", percentage: 70, color: "#f0c934" },
+    { label: "Vainilla", percentage: 65, color: "#c9a033" },
+  ],
+  // 5 (115). Club de Nuit Iconic
+  115: [
+    { label: "Cítrico", percentage: 90, color: "#f0c934" },
+    { label: "Fresco Especiado", percentage: 80, color: "#a0c4e8" },
+    { label: "Ámbar", percentage: 75, color: "#f0a830" },
+    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Ahumado", percentage: 60, color: "#7a6b5d" },
+  ],
+  // 6 (116). Club de Nuit Sillage
+  116: [
+    { label: "Cítrico", percentage: 90, color: "#f0c934" },
+    { label: "Almizclado", percentage: 85, color: "#a0a0a0" },
+    { label: "Atalcado", percentage: 70, color: "#d4c5a9" },
+    { label: "Amaderado", percentage: 65, color: "#c17b2a" },
+    { label: "Fresco", percentage: 60, color: "#a0c4e8" },
+  ],
+  // 7 (117). Club de Nuit Urban Man Elixir
+  117: [
+    { label: "Fresco Especiado", percentage: 85, color: "#a0c4e8" },
+    { label: "Cítrico", percentage: 80, color: "#f0c934" },
+    { label: "Ámbar", percentage: 75, color: "#f0a830" },
+    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Lavanda", percentage: 65, color: "#9b8ec4" },
+  ],
+  // 8 (118). Club de Nuit Urban Man
+  118: [
+    { label: "Cítrico", percentage: 85, color: "#f0c934" },
+    { label: "Fresco Especiado", percentage: 80, color: "#a0c4e8" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Herbal", percentage: 65, color: "#6b8e4e" },
+    { label: "Pachulí", percentage: 60, color: "#4a7a3a" },
+  ],
+  // 9 (119). Club de Nuit Maleka
+  119: [
+    { label: "Dulce", percentage: 90, color: "#f0a830" },
+    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
+    { label: "Atalcado", percentage: 75, color: "#d4c5a9" },
+    { label: "Floral Blanco", percentage: 70, color: "#f0e6f6" },
+    { label: "Amaderado", percentage: 60, color: "#c17b2a" },
+  ],
+  // 10 (120). Club de Nuit Untold
+  120: [
+    { label: "Ámbar", percentage: 95, color: "#f0a830" },
+    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
+    { label: "Especiado Cálido", percentage: 80, color: "#c45a3a" },
+    { label: "Azafrán", percentage: 75, color: "#e8a030" },
+    { label: "Coníferas", percentage: 65, color: "#4a7a3a" },
+  ],
+  // 11 (121). Club de Nuit Precieux I
+  121: [
+    { label: "Ámbar", percentage: 90, color: "#f0a830" },
+    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
+    { label: "Cítrico", percentage: 80, color: "#f0c934" },
+    { label: "Especiado", percentage: 70, color: "#c45a3a" },
+    { label: "Cuero", percentage: 65, color: "#8b5e3c" },
+  ],
+  // 12 (5). Odyssey Homme White Edition
+  5: [
+    { label: "Cítrico", percentage: 85, color: "#f0c934" },
+    { label: "Verde", percentage: 80, color: "#6b8e4e" },
+    { label: "Fresco Especiado", percentage: 75, color: "#a0c4e8" },
+    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Almizclado", percentage: 60, color: "#a0a0a0" },
+  ],
+  // 13 (91). Odyssey Aoud
+  91: [
+    { label: "Oud", percentage: 90, color: "#5a3a2a" },
+    { label: "Especiado Cálido", percentage: 85, color: "#c45a3a" },
+    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
+    { label: "Ámbar", percentage: 75, color: "#f0a830" },
+    { label: "Balsámico", percentage: 65, color: "#8b6e4e" },
+  ],
+  // 14 (104). Odyssey Mandarine Sky
+  104: [
+    { label: "Dulce", percentage: 90, color: "#f0a830" },
+    { label: "Cítrico", percentage: 85, color: "#f0c934" },
+    { label: "Caramelo", percentage: 80, color: "#c98030" },
+    { label: "Ámbar", percentage: 75, color: "#f0a830" },
+    { label: "Especiado Suave", percentage: 60, color: "#c45a3a" },
+  ],
+  // 15 (105). Odyssey Artisto
+  105: [
+    { label: "Aromático", percentage: 90, color: "#6b8e4e" },
+    { label: "Fresco Especiado", percentage: 85, color: "#a0c4e8" },
+    { label: "Cítrico", percentage: 80, color: "#f0c934" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Marino", percentage: 65, color: "#4a8eb8" },
+  ],
+  // 16 (106). Odyssey Bahamas
+  106: [
+    { label: "Tropical", percentage: 90, color: "#f0c934" },
+    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
+    { label: "Dulce", percentage: 80, color: "#f0a830" },
+    { label: "Cítrico", percentage: 75, color: "#f0c934" },
+    { label: "Coco", percentage: 70, color: "#d4c5a9" },
+  ],
+  // 17 (107). Odyssey Toffee Coffee
+  107: [
+    { label: "Gourmand", percentage: 95, color: "#8b5e3c" },
+    { label: "Café", percentage: 90, color: "#5a3a2a" },
+    { label: "Dulce", percentage: 85, color: "#f0a830" },
+    { label: "Caramelo", percentage: 80, color: "#c98030" },
+    { label: "Cálido Especiado", percentage: 70, color: "#c45a3a" },
+  ],
+  // 18 (108). Odyssey Spectra
+  108: [
+    { label: "Atalcado", percentage: 85, color: "#d4c5a9" },
+    { label: "Especiado Cálido", percentage: 80, color: "#c45a3a" },
+    { label: "Iris", percentage: 75, color: "#9b8ec4" },
+    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Ambarado", percentage: 65, color: "#f0a830" },
+  ],
+  // 19 (109). Odyssey Aqua
+  109: [
+    { label: "Cítrico", percentage: 90, color: "#f0c934" },
+    { label: "Marino", percentage: 85, color: "#4a8eb8" },
+    { label: "Fresco Especiado", percentage: 80, color: "#a0c4e8" },
+    { label: "Aromático", percentage: 75, color: "#6b8e4e" },
+    { label: "Amaderado", percentage: 65, color: "#c17b2a" },
+  ],
+  // 20 (110). Odyssey Homme
+  110: [
+    { label: "Ámbar", percentage: 90, color: "#f0a830" },
+    { label: "Vainilla", percentage: 85, color: "#c9a033" },
+    { label: "Atalcado", percentage: 80, color: "#d4c5a9" },
+    { label: "Iris", percentage: 75, color: "#9b8ec4" },
+    { label: "Especiado Cálido", percentage: 70, color: "#c45a3a" },
   ],
 };
 
