@@ -82,6 +82,43 @@ const PERFUME_RATINGS: Record<number, number> = {
   1: 4,
 };
 
+// ─── Timeline tier metadata (Trayecto Olfativo) ───
+const noteTiers = [
+  {
+    key: "top" as const,
+    title: "Primer Encuentro",
+    subtitle: "La explosión inicial que cautiva los sentidos",
+    icon: Wind,
+    iconBg: "bg-[#f0c934]/20",
+    iconBorder: "border-[#f0c934]/40",
+    iconColor: "text-[#f0c934]",
+    titleColor: "text-[#f0c934]",
+    dotColor: "bg-[#f0c934]",
+  },
+  {
+    key: "heart" as const,
+    title: "Revelación",
+    subtitle: "El corazón que define la esencia",
+    icon: Flower2,
+    iconBg: "bg-[#e75a8d]/20",
+    iconBorder: "border-[#e75a8d]/40",
+    iconColor: "text-[#e75a8d]",
+    titleColor: "text-[#e75a8d]",
+    dotColor: "bg-[#e75a8d]",
+  },
+  {
+    key: "base" as const,
+    title: "Legado",
+    subtitle: "La memoria que perdura en la piel",
+    icon: TreePine,
+    iconBg: "bg-emerald-500/20",
+    iconBorder: "border-emerald-500/40",
+    iconColor: "text-emerald-400",
+    titleColor: "text-emerald-400",
+    dotColor: "bg-emerald-400",
+  },
+];
+
 // ─── Architecture tier metadata ───
 const archTiers = [
   {
@@ -478,6 +515,79 @@ export default function PerfumeDetail({
                       </motion.div>
                     );
                   })}
+                </div>
+              </div>
+            )}
+
+            {/* ─── TRAYECTO OLFATIVO ─── */}
+            {pyramid && (
+              <div className="mb-6">
+                <h3 className="text-[10px] text-[#d4af37] tracking-[0.2em] uppercase font-semibold font-[family-name:var(--font-inter)] mb-1">
+                  Trayecto Olfativo
+                </h3>
+                <p className="text-[10px] text-white/30 font-[family-name:var(--font-inter)] mb-5">
+                  Explora la arquitectura olfativa de esta fragancia...
+                </p>
+
+                <div className="relative">
+                  {/* Vertical dashed line connecting icons */}
+                  <div className="absolute left-[19px] top-6 bottom-6 w-px border-l border-dashed border-white/10" />
+
+                  <div className="space-y-6">
+                    {noteTiers.map((tier, tierIndex) => {
+                      const Icon = tier.icon;
+                      const notes = pyramid[tier.key];
+                      return (
+                        <motion.div
+                          key={tier.key}
+                          initial={{ opacity: 0, x: -15 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: tierIndex * 0.15 + 0.3, duration: 0.5 }}
+                          className="flex gap-4"
+                        >
+                          {/* Icon column */}
+                          <div className="relative flex-shrink-0 flex flex-col items-center">
+                            <div
+                              className={`w-10 h-10 rounded-full ${tier.iconBg} border ${tier.iconBorder} flex items-center justify-center z-10`}
+                            >
+                              <Icon className={`w-4 h-4 ${tier.iconColor}`} />
+                            </div>
+                          </div>
+
+                          {/* Content column */}
+                          <div className="flex-1 pt-0.5">
+                            <h4
+                              className={`text-sm font-semibold ${tier.titleColor} font-[family-name:var(--font-inter)] mb-0.5`}
+                            >
+                              {tier.title}
+                            </h4>
+                            <p className="text-[10px] text-white/40 font-[family-name:var(--font-inter)] mb-3">
+                              {tier.subtitle}
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {notes.map((note, noteIndex) => (
+                                <motion.span
+                                  key={note.name}
+                                  initial={{ opacity: 0, scale: 0.85 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{
+                                    delay: tierIndex * 0.15 + noteIndex * 0.05 + 0.5,
+                                    duration: 0.3,
+                                  }}
+                                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/5 border border-white/10 text-white/70 font-[family-name:var(--font-inter)]"
+                                >
+                                  <span
+                                    className={`w-1.5 h-1.5 rounded-full ${tier.dotColor}`}
+                                  />
+                                  {note.name}
+                                </motion.span>
+                              ))}
+                            </div>
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             )}
