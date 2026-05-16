@@ -216,23 +216,20 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Musgo de Roble", percentage: 60 },
     ],
   },
-  // 9 (119). Club de Nuit Maleka
+  // 9 (119). Club de Nuit Maleka — CORREGIDO: notas de Fragrantica (Olivier Cresp)
   119: {
     top: [
-      { name: "Notas Florales", percentage: 85 },
-      { name: "Frutas Silvestres", percentage: 80 },
-      { name: "Pera", percentage: 75 },
+      { name: "Lichi", percentage: 95 },
+      { name: "Bergamota", percentage: 85 },
+      { name: "Pimienta Rosa", percentage: 75 },
     ],
     heart: [
-      { name: "Jazmín", percentage: 80 },
-      { name: "Nardos", percentage: 75 },
-      { name: "Notas Especiadas", percentage: 60 },
+      { name: "Iris", percentage: 95 },
     ],
     base: [
-      { name: "Vainilla", percentage: 90 },
-      { name: "Almizcle", percentage: 80 },
-      { name: "Sándalo", percentage: 70 },
-      { name: "Caramelo", percentage: 65 },
+      { name: "Praliné", percentage: 90 },
+      { name: "Ambroxan", percentage: 80 },
+      { name: "Sándalo", percentage: 75 },
     ],
   },
   // 10 (120). Club de Nuit Untold
@@ -250,49 +247,53 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Cedro", percentage: 75 },
     ],
   },
-  // 11 (121). Club de Nuit Precieux I
+  // 11 (121). Club de Nuit Precieux I — CORREGIDO: notas de Fragrantica
   121: {
     top: [
-      { name: "Bergamota", percentage: 85 },
-      { name: "Limón", percentage: 80 },
-      { name: "Pimienta Rosa", percentage: 75 },
-      { name: "Piña", percentage: 70 },
-      { name: "Caramelo", percentage: 65 },
+      { name: "Piña", percentage: 90 },
+      { name: "Limón", percentage: 85 },
+      { name: "Bergamota", percentage: 80 },
+      { name: "Caramelo", percentage: 75 },
+      { name: "Pimienta Rosa", percentage: 70 },
+      { name: "Pera", percentage: 65 },
+      { name: "Pimienta Negra", percentage: 60 },
     ],
     heart: [
-      { name: "Madera de Gaïac", percentage: 80 },
-      { name: "Jazmín", percentage: 70 },
-      { name: "Anís Estrellado", percentage: 65 },
+      { name: "Musgo de Roble", percentage: 85 },
+      { name: "Madera Blanca", percentage: 80 },
+      { name: "Jazmín", percentage: 75 },
+      { name: "Lirio del Valle", percentage: 65 },
+      { name: "Anís Estrellado", percentage: 60 },
     ],
     base: [
-      { name: "Ámbar", percentage: 90 },
-      { name: "Almizcle", percentage: 80 },
-      { name: "Vainilla", percentage: 75 },
-      { name: "Cuero", percentage: 70 },
-      { name: "Pachulí", percentage: 60 },
+      { name: "Ambroxan", percentage: 90 },
+      { name: "Almizcle Blanco", percentage: 85 },
+      { name: "Cedro", percentage: 80 },
+      { name: "Pachulí", percentage: 75 },
+      { name: "Ámbar", percentage: 70 },
+      { name: "Cuero", percentage: 65 },
+      { name: "Vainilla", percentage: 60 },
     ],
   },
-  // 12 (5). Odyssey Homme White Edition
+  // 12 (5). Odyssey Homme White Edition — CORREGIDO: notas de Fragrantica
   5: {
     top: [
-      { name: "Toronja", percentage: 90 },
-      { name: "Bergamota", percentage: 85 },
-      { name: "Notas Verdes", percentage: 80 },
-      { name: "Pimienta Rosa", percentage: 65 },
+      { name: "Pimienta Rosa", percentage: 90 },
+      { name: "Cardamomo", percentage: 85 },
+      { name: "Menta", percentage: 80 },
     ],
     heart: [
-      { name: "Jengibre", percentage: 80 },
-      { name: "Menta", percentage: 75 },
-      { name: "Nuez Moscada", percentage: 65 },
+      { name: "Piña", percentage: 90 },
+      { name: "Notas Acuáticas", percentage: 80 },
+      { name: "Salvia", percentage: 70 },
     ],
     base: [
-      { name: "Cedro", percentage: 85 },
-      { name: "Vetiver", percentage: 75 },
-      { name: "Almizcle", percentage: 70 },
-      { name: "Pachulí", percentage: 60 },
+      { name: "Amberwood", percentage: 90 },
+      { name: "Vainilla", percentage: 80 },
+      { name: "Cedro", percentage: 70 },
     ],
   },
-  // 13 (91). Odyssey Aoud
+  // 13 (91). Odyssey Aoud — CORREGIDO: notas de Fragrantica (Ambroxan en base)
   91: {
     top: [
       { name: "Azafrán", percentage: 90 },
@@ -301,12 +302,12 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
     ],
     heart: [
       { name: "Madera de Oud", percentage: 95 },
-      { name: "Notas Terrosas", percentage: 65 },
+      { name: "Notas Amaderadas", percentage: 65 },
     ],
     base: [
-      { name: "Pachulí", percentage: 85 },
+      { name: "Ambroxan", percentage: 85 },
       { name: "Almizcle", percentage: 75 },
-      { name: "Ámbar", percentage: 70 },
+      { name: "Pachulí", percentage: 70 },
     ],
   },
   // 14 (104). Odyssey Mandarine Sky
@@ -345,79 +346,90 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Ámbar", percentage: 75 },
     ],
   },
-  // 16 (106). Odyssey Bahamas
+  // 16 (106). Odyssey Bahamas — CORREGIDO: notas de Fragrantica (aquático, no tropical)
   106: {
     top: [
-      { name: "Piña", percentage: 90 },
-      { name: "Coco", percentage: 85 },
-      { name: "Mandarina", percentage: 80 },
+      { name: "Melón", percentage: 90 },
+      { name: "Cantalupo", percentage: 85 },
+      { name: "Pera", percentage: 80 },
+      { name: "Manzana Granny Smith", percentage: 75 },
+      { name: "Ciruela", percentage: 70 },
+      { name: "Algas", percentage: 65 },
+      { name: "Sal", percentage: 60 },
+    ],
+    heart: [
+      { name: "Notas Acuáticas", percentage: 90 },
+      { name: "Lirio de Agua", percentage: 80 },
+      { name: "Musgo de Roble", percentage: 75 },
+      { name: "Incienso", percentage: 65 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 90 },
+      { name: "Azúcar", percentage: 80 },
+      { name: "Ámbar", percentage: 75 },
+      { name: "Cedro", percentage: 70 },
+    ],
+  },
+  // 17 (107). Odyssey Toffee Coffee — CORREGIDO: notas de Fragrantica
+  107: {
+    top: [
+      { name: "Café", percentage: 95 },
+      { name: "Dulce de Leche", percentage: 90 },
+      { name: "Azafrán", percentage: 80 },
+      { name: "Miel", percentage: 75 },
       { name: "Bergamota", percentage: 70 },
     ],
     heart: [
-      { name: "Fruta de la Pasión", percentage: 85 },
-      { name: "Jengibre", percentage: 70 },
-      { name: "Jazmín", percentage: 60 },
-    ],
-    base: [
-      { name: "Vainilla", percentage: 85 },
-      { name: "Almizcle", percentage: 75 },
-      { name: "Madera de Deriva", percentage: 65 },
-    ],
-  },
-  // 17 (107). Odyssey Toffee Coffee
-  107: {
-    top: [
-      { name: "Grano de Café", percentage: 95 },
-      { name: "Toffee / Caramelo", percentage: 90 },
-      { name: "Avellana", percentage: 75 },
-    ],
-    heart: [
-      { name: "Leche Condensada", percentage: 85 },
-      { name: "Canela", percentage: 75 },
-      { name: "Jengibre", percentage: 60 },
+      { name: "Toffee", percentage: 90 },
+      { name: "Lactonas", percentage: 80 },
+      { name: "Musgo de Roble", percentage: 75 },
+      { name: "Flor Blanca", percentage: 70 },
+      { name: "Rosa Búlgara", percentage: 65 },
     ],
     base: [
       { name: "Vainilla", percentage: 90 },
-      { name: "Haba Tonka", percentage: 85 },
-      { name: "Sándalo", percentage: 70 },
+      { name: "Caña de Azúcar", percentage: 85 },
+      { name: "Ámbar", percentage: 80 },
+      { name: "Notas Amaderadas", percentage: 75 },
+      { name: "Almizcle Blanco", percentage: 65 },
     ],
   },
-  // 18 (108). Odyssey Spectra
+  // 18 (108). Odyssey Spectra — CORREGIDO: notas de Fragrantica (cálido especiado, no iris)
   108: {
     top: [
-      { name: "Pimienta Rosa", percentage: 85 },
-      { name: "Mandarina", percentage: 80 },
-      { name: "Cardamomo", percentage: 75 },
+      { name: "Canela", percentage: 90 },
+      { name: "Manzana", percentage: 85 },
+      { name: "Bergamota", percentage: 75 },
     ],
     heart: [
-      { name: "Iris", percentage: 90 },
-      { name: "Hojas de Violeta", percentage: 75 },
-      { name: "Especias", percentage: 65 },
+      { name: "Canela", percentage: 90 },
+      { name: "Lavanda", percentage: 80 },
+      { name: "Flor de Azahar", percentage: 75 },
+      { name: "Lirio del Valle", percentage: 65 },
     ],
     base: [
-      { name: "Ámbar", percentage: 80 },
-      { name: "Cedro", percentage: 75 },
-      { name: "Pachulí", percentage: 70 },
-      { name: "Cuero", percentage: 60 },
+      { name: "Vainilla", percentage: 90 },
+      { name: "Tabaco", percentage: 85 },
+      { name: "Haba Tonka", percentage: 80 },
+      { name: "Ámbar", percentage: 75 },
+      { name: "Pachulí", percentage: 65 },
     ],
   },
-  // 19 (109). Odyssey Aqua
+  // 19 (109). Odyssey Aqua — CORREGIDO: notas de Fragrantica (Aquatic Edition)
   109: {
     top: [
-      { name: "Pomelo", percentage: 90 },
-      { name: "Notas Marinas", percentage: 85 },
-      { name: "Yuzu", percentage: 80 },
-      { name: "Pimienta Rosa", percentage: 65 },
+      { name: "Naranja", percentage: 90 },
+      { name: "Toronja", percentage: 85 },
+      { name: "Artemisa", percentage: 75 },
     ],
     heart: [
-      { name: "Hierbabuena", percentage: 85 },
-      { name: "Hojas de Violeta", percentage: 70 },
-      { name: "Lavanda", percentage: 65 },
+      { name: "Menta", percentage: 90 },
+      { name: "Lavanda", percentage: 80 },
     ],
     base: [
-      { name: "Ámbar Gris", percentage: 85 },
-      { name: "Madera de Gaïac", percentage: 75 },
-      { name: "Madera de Ámbar", percentage: 70 },
+      { name: "Ambroxan", percentage: 90 },
+      { name: "Ciprés", percentage: 80 },
+      { name: "Pachulí", percentage: 70 },
     ],
   },
   // 20 (110). Odyssey Homme
@@ -456,60 +468,65 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Pachulí", percentage: 60 },
     ],
   },
-  // 22 (112). Odyssey Mandarin Sky Elixir
+  // 22 (112). Odyssey Mandarin Sky Elixir — CORREGIDO: notas de Fragrantica
   112: {
     top: [
       { name: "Mandarina", percentage: 95 },
       { name: "Naranja", percentage: 85 },
-      { name: "Azafrán", percentage: 70 },
+      { name: "Lavanda", percentage: 75 },
+      { name: "Cardamomo", percentage: 70 },
+      { name: "Pimienta Negra", percentage: 65 },
     ],
     heart: [
       { name: "Caramelo", percentage: 90 },
-      { name: "Tonka", percentage: 80 },
-      { name: "Coco", percentage: 65 },
+      { name: "Haba Tonka", percentage: 85 },
+      { name: "Pachulí", percentage: 75 },
+      { name: "Incienso", percentage: 65 },
     ],
     base: [
-      { name: "Ámbar", percentage: 85 },
-      { name: "Cedro", percentage: 70 },
-      { name: "Pachulí", percentage: 60 },
+      { name: "Vainilla", percentage: 90 },
+      { name: "Vetiver", percentage: 80 },
     ],
   },
-  // 23 (113). Odyssey Mega
+  // 23 (113). Odyssey Mega — CORREGIDO: notas de Fragrantica (Mega Man)
   113: {
     top: [
-      { name: "Bergamota", percentage: 90 },
-      { name: "Naranja", percentage: 80 },
+      { name: "Naranja", percentage: 90 },
+      { name: "Bergamota", percentage: 85 },
+      { name: "Limón", percentage: 80 },
       { name: "Jengibre", percentage: 75 },
       { name: "Menta", percentage: 70 },
     ],
     heart: [
-      { name: "Salvia", percentage: 85 },
-      { name: "Enebro de Virginia", percentage: 75 },
+      { name: "Piña", percentage: 85 },
+      { name: "Salvia", percentage: 80 },
+      { name: "Enebro", percentage: 75 },
       { name: "Geranio", percentage: 70 },
     ],
     base: [
-      { name: "Vetiver", percentage: 85 },
+      { name: "Almizcle", percentage: 85 },
       { name: "Cedro", percentage: 80 },
       { name: "Haba Tonka", percentage: 75 },
-      { name: "Almizcle", percentage: 65 },
+      { name: "Vetiver", percentage: 65 },
     ],
   },
-  // 24 (114). Odyssey Limoni Fresh
+  // 24 (114). Odyssey Limoni Fresh — CORREGIDO: notas de Fragrantica
   114: {
     top: [
-      { name: "Limón Amarillo", percentage: 95 },
-      { name: "Lima Ácida", percentage: 90 },
-      { name: "Mandarina", percentage: 75 },
+      { name: "Limón", percentage: 95 },
+      { name: "Naranja Dulce", percentage: 85 },
+      { name: "Mandarina", percentage: 80 },
+      { name: "Bergamota", percentage: 75 },
     ],
     heart: [
-      { name: "Menta", percentage: 85 },
-      { name: "Jengibre", percentage: 70 },
-      { name: "Notas Verdes", percentage: 65 },
+      { name: "Flor de Azahar", percentage: 85 },
+      { name: "Notas Marinas", percentage: 75 },
+      { name: "Jengibre", percentage: 65 },
     ],
     base: [
-      { name: "Almizcle Blanco", percentage: 85 },
-      { name: "Maderas Blancas", percentage: 70 },
-      { name: "Ámbar", percentage: 55 },
+      { name: "Té", percentage: 85 },
+      { name: "Almizcle", percentage: 80 },
+      { name: "Ámbar", percentage: 70 },
     ],
   },
   // 25 (141). Yum Yum — CORREGIDO: notas de Fragrantica/Basenotes
@@ -635,7 +652,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Notas Amaderadas", percentage: 70 },
     ],
   },
-  // 32 (8). Al Haramain Amber Oud Carbon Edition — CORREGIDO: notas de Fragrantica
+  // 32 (8). Al Haramain Amber Oud Carbon Edition — CORREGIDO: notas de Fragrantica (musgo en base)
   8: {
     top: [
       { name: "Bergamota", percentage: 90 },
@@ -648,10 +665,10 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Salvia", percentage: 70 },
     ],
     base: [
-      { name: "Cedro", percentage: 85 },
-      { name: "Musgo de Roble", percentage: 80 },
-      { name: "Vetiver", percentage: 75 },
-      { name: "Ámbar", percentage: 70 },
+      { name: "Musgo", percentage: 85 },
+      { name: "Vetiver", percentage: 80 },
+      { name: "Ámbar", percentage: 75 },
+      { name: "Cedro", percentage: 70 },
     ],
   },
   // 33 (9). Al Haramain Amber Oud White Edition — CORREGIDO: notas de Fragrantica
@@ -2631,7 +2648,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Haba Tonka", percentage: 70 },
     ],
   },
-  // 140 (99). Dumont Nitro Blue — CORREGIDO: notas de Fragrantica
+  // 140 (99). Dumont Nitro Blue — CORREGIDO: notas de Fragrantica (base diferente)
   99: {
     top: [
       { name: "Canela", percentage: 90 },
@@ -2647,10 +2664,10 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Cardamomo Negro", percentage: 75 },
     ],
     base: [
-      { name: "Vainilla", percentage: 95 },
-      { name: "Ámbar", percentage: 85 },
-      { name: "Almendra", percentage: 80 },
-      { name: "Notas Dulces", percentage: 75 },
+      { name: "Notas Dulces", percentage: 90 },
+      { name: "Pachulí", percentage: 85 },
+      { name: "Ámbar Negro", percentage: 80 },
+      { name: "Palo de Rosa Brasileño", percentage: 70 },
     ],
   },
   // 141 (100). Dumont Nitro Red — CORREGIDO: notas de Fragrantica
@@ -2901,11 +2918,11 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
   ],
   // 9 (119). Club de Nuit Maleka
   119: [
-    { label: "Dulce", percentage: 90, color: "#f0a830" },
+    { label: "Atalcado", percentage: 95, color: "#d4c5a9" },
     { label: "Afrutado", percentage: 85, color: "#e75a8d" },
-    { label: "Atalcado", percentage: 75, color: "#d4c5a9" },
-    { label: "Floral Blanco", percentage: 70, color: "#f0e6f6" },
-    { label: "Amaderado", percentage: 60, color: "#c17b2a" },
+    { label: "Dulce", percentage: 80, color: "#f0a830" },
+    { label: "Iris", percentage: 75, color: "#9b8ec4" },
+    { label: "Almizclado", percentage: 65, color: "#a0a0a0" },
   ],
   // 10 (120). Club de Nuit Untold
   120: [
@@ -2917,27 +2934,27 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
   ],
   // 11 (121). Club de Nuit Precieux I
   121: [
-    { label: "Ámbar", percentage: 90, color: "#f0a830" },
-    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
-    { label: "Cítrico", percentage: 80, color: "#f0c934" },
-    { label: "Especiado", percentage: 70, color: "#c45a3a" },
+    { label: "Cítrico", percentage: 90, color: "#f0c934" },
+    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
+    { label: "Ámbar", percentage: 80, color: "#f0a830" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
     { label: "Cuero", percentage: 65, color: "#8b5e3c" },
   ],
   // 12 (5). Odyssey Homme White Edition
   5: [
-    { label: "Cítrico", percentage: 85, color: "#f0c934" },
-    { label: "Verde", percentage: 80, color: "#6b8e4e" },
-    { label: "Fresco Especiado", percentage: 75, color: "#a0c4e8" },
-    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
-    { label: "Almizclado", percentage: 60, color: "#a0a0a0" },
+    { label: "Fresco Especiado", percentage: 90, color: "#a0c4e8" },
+    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
+    { label: "Acuático", percentage: 80, color: "#4a8eb8" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Dulce", percentage: 65, color: "#f0a830" },
   ],
   // 13 (91). Odyssey Aoud
   91: [
     { label: "Oud", percentage: 90, color: "#5a3a2a" },
     { label: "Especiado Cálido", percentage: 85, color: "#c45a3a" },
     { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Ámbar", percentage: 75, color: "#f0a830" },
-    { label: "Balsámico", percentage: 65, color: "#8b6e4e" },
+    { label: "Almizclado", percentage: 75, color: "#a0a0a0" },
+    { label: "Pachulí", percentage: 65, color: "#4a7a3a" },
   ],
   // 14 (104). Odyssey Mandarine Sky
   104: [
@@ -2957,11 +2974,11 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
   ],
   // 16 (106). Odyssey Bahamas
   106: [
-    { label: "Tropical", percentage: 90, color: "#f0c934" },
-    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
-    { label: "Dulce", percentage: 80, color: "#f0a830" },
-    { label: "Cítrico", percentage: 75, color: "#f0c934" },
-    { label: "Coco", percentage: 70, color: "#d4c5a9" },
+    { label: "Acuático", percentage: 95, color: "#4a8eb8" },
+    { label: "Fresco", percentage: 90, color: "#a0c4e8" },
+    { label: "Afrutado", percentage: 80, color: "#e75a8d" },
+    { label: "Almizclado", percentage: 75, color: "#a0a0a0" },
+    { label: "Ámbar", percentage: 65, color: "#f0a830" },
   ],
   // 17 (107). Odyssey Toffee Coffee
   107: [
@@ -2969,23 +2986,23 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
     { label: "Café", percentage: 90, color: "#5a3a2a" },
     { label: "Dulce", percentage: 85, color: "#f0a830" },
     { label: "Caramelo", percentage: 80, color: "#c98030" },
-    { label: "Cálido Especiado", percentage: 70, color: "#c45a3a" },
+    { label: "Ámbar", percentage: 70, color: "#f0a830" },
   ],
   // 18 (108). Odyssey Spectra
   108: [
-    { label: "Atalcado", percentage: 85, color: "#d4c5a9" },
-    { label: "Especiado Cálido", percentage: 80, color: "#c45a3a" },
-    { label: "Iris", percentage: 75, color: "#9b8ec4" },
-    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
-    { label: "Ambarado", percentage: 65, color: "#f0a830" },
+    { label: "Cálido Especiado", percentage: 95, color: "#c45a3a" },
+    { label: "Dulce", percentage: 85, color: "#f0a830" },
+    { label: "Tabaco", percentage: 80, color: "#5a3a2a" },
+    { label: "Vainilla", percentage: 75, color: "#c9a033" },
+    { label: "Ámbar", percentage: 65, color: "#f0a830" },
   ],
   // 19 (109). Odyssey Aqua
   109: [
     { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Marino", percentage: 85, color: "#4a8eb8" },
-    { label: "Fresco Especiado", percentage: 80, color: "#a0c4e8" },
-    { label: "Aromático", percentage: 75, color: "#6b8e4e" },
-    { label: "Amaderado", percentage: 65, color: "#c17b2a" },
+    { label: "Aromático", percentage: 85, color: "#6b8e4e" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Fresco", percentage: 70, color: "#a0c4e8" },
+    { label: "Almizclado", percentage: 60, color: "#a0a0a0" },
   ],
   // 20 (110). Odyssey Homme
   110: [
@@ -3009,24 +3026,24 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
     { label: "Cítrico", percentage: 90, color: "#f0c934" },
     { label: "Dulce", percentage: 85, color: "#f0a830" },
     { label: "Caramelo", percentage: 80, color: "#c98030" },
-    { label: "Ámbar", percentage: 75, color: "#f0a830" },
-    { label: "Especiado Suave", percentage: 60, color: "#c45a3a" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Especiado", percentage: 65, color: "#c45a3a" },
   ],
   // 23 (113). Odyssey Mega
   113: [
-    { label: "Fresco Especiado", percentage: 90, color: "#a0c4e8" },
+    { label: "Cítrico", percentage: 90, color: "#f0c934" },
     { label: "Aromático", percentage: 85, color: "#6b8e4e" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Cítrico", percentage: 75, color: "#f0c934" },
-    { label: "Ámbar", percentage: 60, color: "#f0a830" },
+    { label: "Fresco Especiado", percentage: 80, color: "#a0c4e8" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Almizclado", percentage: 60, color: "#a0a0a0" },
   ],
   // 24 (114). Odyssey Limoni Fresh
   114: [
     { label: "Cítrico", percentage: 95, color: "#f0c934" },
     { label: "Fresco", percentage: 85, color: "#a0c4e8" },
-    { label: "Herbal", percentage: 70, color: "#6b8e4e" },
-    { label: "Almizclado", percentage: 60, color: "#a0a0a0" },
-    { label: "Amaderado", percentage: 50, color: "#c17b2a" },
+    { label: "Floral", percentage: 75, color: "#e75a8d" },
+    { label: "Almizclado", percentage: 65, color: "#a0a0a0" },
+    { label: "Marino", percentage: 55, color: "#4a8eb8" },
   ],
   // 25 (141). Yum Yum — CORREGIDO
   141: [
