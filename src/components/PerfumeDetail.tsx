@@ -2269,6 +2269,568 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Sándalo", percentage: 70 },
     ],
   },
+
+  // ─── Páginas 7-8: Afnan, Rave, Maison Alhambra, Dumont, Rasasi ───
+
+  // 121 (85). Afnan Supremacy In Heaven — CORREGIDO: notas de Fragrantica
+  85: {
+    top: [
+      { name: "Bergamota", percentage: 90 },
+      { name: "Mandarina", percentage: 85 },
+    ],
+    heart: [
+      { name: "Té Verde", percentage: 85 },
+      { name: "Grosellas Negras", percentage: 80 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 90 },
+      { name: "Notas Amaderadas", percentage: 80 },
+      { name: "Sándalo", percentage: 75 },
+    ],
+  },
+  // 122 (86). Afnan 9PM Rebel — CORREGIDO: notas de Fragrantica
+  86: {
+    top: [
+      { name: "Manzana Granny Smith", percentage: 90 },
+      { name: "Piña", percentage: 85 },
+      { name: "Mandarina", percentage: 80 },
+    ],
+    heart: [
+      { name: "Cedro", percentage: 85 },
+      { name: "Vainilla", percentage: 80 },
+      { name: "Musgo de Roble", percentage: 75 },
+    ],
+    base: [
+      { name: "Ámbar Gris", percentage: 90 },
+      { name: "Caramelo", percentage: 85 },
+      { name: "Almizcle", percentage: 80 },
+      { name: "Madera Seca", percentage: 70 },
+    ],
+  },
+  // 123 (87). Afnan 9PM Pour Femme — CORREGIDO: notas de Fragrantica
+  87: {
+    top: [
+      { name: "Frambuesa", percentage: 90 },
+      { name: "Violeta", percentage: 85 },
+      { name: "Manzana", percentage: 80 },
+      { name: "Naranja", percentage: 75 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 90 },
+      { name: "Peonía", percentage: 85 },
+      { name: "Iris", percentage: 80 },
+      { name: "Jazmín", percentage: 75 },
+    ],
+    base: [
+      { name: "Ciprés", percentage: 85 },
+      { name: "Pino", percentage: 80 },
+      { name: "Ámbar", percentage: 75 },
+      { name: "Cedro", percentage: 70 },
+    ],
+  },
+  // 124 (137). Afnan 9PM — CORREGIDO: notas de Fragrantica
+  137: {
+    top: [
+      { name: "Manzana", percentage: 95 },
+      { name: "Canela", percentage: 90 },
+      { name: "Lavanda Silvestre", percentage: 80 },
+      { name: "Bergamota", percentage: 75 },
+    ],
+    heart: [
+      { name: "Flor de Azahar", percentage: 90 },
+      { name: "Lirio del Valle", percentage: 85 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 95 },
+      { name: "Haba Tonka", percentage: 90 },
+      { name: "Ámbar", percentage: 85 },
+      { name: "Pachulí", percentage: 75 },
+    ],
+  },
+  // 125 (138). Afnan 9PM Nite Out — CORREGIDO: notas de Fragrantica
+  138: {
+    top: [
+      { name: "Pitahaya", percentage: 90 },
+      { name: "Lavanda", percentage: 85 },
+      { name: "Coñac", percentage: 80 },
+      { name: "Manzana", percentage: 75 },
+      { name: "Bergamota", percentage: 65 },
+    ],
+    heart: [
+      { name: "Toffee", percentage: 90 },
+      { name: "Ante / Gamuza", percentage: 85 },
+      { name: "Cardamomo", percentage: 80 },
+      { name: "Cedro", percentage: 75 },
+      { name: "Mahonial", percentage: 65 },
+    ],
+    base: [
+      { name: "Haba Tonka", percentage: 90 },
+      { name: "Akigalawood", percentage: 85 },
+      { name: "Ambrofix", percentage: 80 },
+      { name: "Pachulí", percentage: 75 },
+    ],
+  },
+  // 126 (139). Afnan 9PM Elixir — CORREGIDO: notas de Fragrantica
+  139: {
+    top: [
+      { name: "Cardamomo", percentage: 95 },
+      { name: "Nuez Moscada", percentage: 85 },
+      { name: "Elemí", percentage: 75 },
+    ],
+    heart: [
+      { name: "Pimiento", percentage: 90 },
+      { name: "Cuero", percentage: 85 },
+      { name: "Lavanda", percentage: 80 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 95 },
+      { name: "Pachulí", percentage: 85 },
+      { name: "Ládano", percentage: 80 },
+      { name: "Rosa de Roca", percentage: 70 },
+    ],
+  },
+  // 127 (140). Afnan 9AM Dive — CORREGIDO: notas de Fragrantica
+  140: {
+    top: [
+      { name: "Limón", percentage: 95 },
+      { name: "Menta", percentage: 90 },
+      { name: "Grosellas Negras", percentage: 80 },
+      { name: "Pimienta Rosa", percentage: 75 },
+    ],
+    heart: [
+      { name: "Manzana", percentage: 85 },
+      { name: "Cedro", percentage: 80 },
+      { name: "Incienso", percentage: 75 },
+    ],
+    base: [
+      { name: "Jengibre", percentage: 85 },
+      { name: "Sándalo", percentage: 80 },
+      { name: "Pachulí", percentage: 75 },
+      { name: "Jazmín", percentage: 65 },
+    ],
+  },
+  // 128 (152). Afnan Turathi Electric — CORREGIDO: notas de Fragrantica
+  152: {
+    top: [
+      { name: "Pera", percentage: 95 },
+      { name: "Toronja Rosa", percentage: 90 },
+      { name: "Mandarina", percentage: 80 },
+      { name: "Bergamota", percentage: 75 },
+    ],
+    heart: [
+      { name: "Flor de Azahar", percentage: 90 },
+      { name: "Manzana", percentage: 80 },
+      { name: "Cedro", percentage: 75 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 90 },
+      { name: "Ámbar", percentage: 85 },
+      { name: "Vainilla", percentage: 80 },
+    ],
+  },
+  // 129 (153). Afnan Turathi Blue — CORREGIDO: notas de Fragrantica
+  153: {
+    top: [
+      { name: "Bergamota", percentage: 95 },
+      { name: "Mandarina", percentage: 85 },
+    ],
+    heart: [
+      { name: "Ámbar", percentage: 90 },
+      { name: "Notas Amaderadas", percentage: 85 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 90 },
+      { name: "Pachulí", percentage: 85 },
+      { name: "Especias", percentage: 75 },
+    ],
+  },
+
+  // ─── Rave ───
+
+  // 130 (88). Rave Now — CORREGIDO: notas de Fragrantica
+  88: {
+    top: [
+      { name: "Piña", percentage: 95 },
+      { name: "Bergamota", percentage: 85 },
+      { name: "Manzana", percentage: 80 },
+      { name: "Grosellas Negras", percentage: 75 },
+    ],
+    heart: [
+      { name: "Abedul", percentage: 90 },
+      { name: "Pachulí", percentage: 85 },
+      { name: "Jazmín Marroquí", percentage: 80 },
+      { name: "Rosa", percentage: 70 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 90 },
+      { name: "Vainilla", percentage: 85 },
+      { name: "Musgo de Roble", percentage: 80 },
+      { name: "Ámbar Gris", percentage: 75 },
+    ],
+  },
+  // 131 (89). Rave Now Women — CORREGIDO: notas de Fragrantica
+  89: {
+    top: [
+      { name: "Frutos Rojos", percentage: 90 },
+      { name: "Naranja", percentage: 85 },
+    ],
+    heart: [
+      { name: "Malvavisco", percentage: 95 },
+      { name: "Jazmín", percentage: 80 },
+      { name: "Lirio del Valle", percentage: 75 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 90 },
+      { name: "Almizcle", percentage: 85 },
+      { name: "Musgo", percentage: 70 },
+    ],
+  },
+  // 132 (90). Rave Rage — CORREGIDO: notas de Fragrantica
+  90: {
+    top: [
+      { name: "Manzana", percentage: 90 },
+      { name: "Menta", percentage: 85 },
+    ],
+    heart: [
+      { name: "Cilantro", percentage: 80 },
+      { name: "Fresia", percentage: 75 },
+      { name: "Albahaca", percentage: 70 },
+    ],
+    base: [
+      { name: "Pachulí", percentage: 85 },
+      { name: "Cachemira", percentage: 80 },
+      { name: "Ládano", percentage: 75 },
+      { name: "Incienso", percentage: 65 },
+    ],
+  },
+
+  // ─── Maison Alhambra ───
+
+  // 133 (92). Maison Alhambra Baroque Rouge 540 — CORREGIDO: notas de Fragrantica
+  92: {
+    top: [
+      { name: "Azafrán", percentage: 95 },
+      { name: "Pera", percentage: 85 },
+      { name: "Mandarina", percentage: 80 },
+    ],
+    heart: [
+      { name: "Jazmín", percentage: 90 },
+      { name: "Ylang-Ylang", percentage: 85 },
+      { name: "Lirio", percentage: 75 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 90 },
+      { name: "Madera de Cachemira", percentage: 85 },
+      { name: "Almizcle", percentage: 80 },
+    ],
+  },
+  // 134 (93). Maison Alhambra Cassius — CORREGIDO: notas de Fragrantica
+  93: {
+    top: [
+      { name: "Nuez Moscada", percentage: 90 },
+      { name: "Manzana Verde", percentage: 85 },
+    ],
+    heart: [
+      { name: "Haba Tonka", percentage: 85 },
+      { name: "Rosa", percentage: 80 },
+    ],
+    base: [
+      { name: "Pachulí", percentage: 90 },
+      { name: "Vainilla", percentage: 85 },
+    ],
+  },
+  // 135 (94). Maison Alhambra The Tux — CORREGIDO: notas de Fragrantica
+  94: {
+    top: [
+      { name: "Notas Especiadas", percentage: 90 },
+      { name: "Notas Florales", percentage: 80 },
+    ],
+    heart: [
+      { name: "Pachulí", percentage: 95 },
+      { name: "Ámbar", percentage: 80 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 90 },
+      { name: "Ámbar Gris", percentage: 85 },
+    ],
+  },
+  // 136 (95). Maison Alhambra Glacier Le Noir — CORREGIDO: notas de Fragrantica
+  95: {
+    top: [
+      { name: "Cardamomo", percentage: 95 },
+      { name: "Pimienta Negra", percentage: 85 },
+    ],
+    heart: [
+      { name: "Lavanda", percentage: 90 },
+      { name: "Iris", percentage: 80 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 95 },
+      { name: "Notas Orientales", percentage: 85 },
+      { name: "Notas Amaderadas", percentage: 75 },
+    ],
+  },
+  // 137 (96). Maison Alhambra Céleste — CORREGIDO: notas de Fragrantica
+  96: {
+    top: [
+      { name: "Limón", percentage: 90 },
+      { name: "Bergamota", percentage: 85 },
+    ],
+    heart: [
+      { name: "Jazmín", percentage: 90 },
+      { name: "Lirio del Valle", percentage: 85 },
+      { name: "Rosa", percentage: 80 },
+    ],
+    base: [
+      { name: "Ylang-Ylang", percentage: 85 },
+      { name: "Sándalo", percentage: 80 },
+      { name: "Almizcle", percentage: 75 },
+      { name: "Musgo", percentage: 65 },
+    ],
+  },
+  // 138 (97). Maison Alhambra Tobacco Touch — CORREGIDO: notas de Fragrantica
+  97: {
+    top: [
+      { name: "Tabaco", percentage: 95 },
+      { name: "Notas Especiadas", percentage: 85 },
+    ],
+    heart: [
+      { name: "Tabaco", percentage: 90 },
+      { name: "Vainilla", percentage: 85 },
+      { name: "Haba Tonka", percentage: 80 },
+      { name: "Cacao", percentage: 75 },
+    ],
+    base: [
+      { name: "Frutas Secas", percentage: 85 },
+      { name: "Notas Amaderadas", percentage: 80 },
+    ],
+  },
+
+  // ─── Dumont ───
+
+  // 139 (98). Dumont Nitro Pour Homme — CORREGIDO: notas de Fragrantica
+  98: {
+    top: [
+      { name: "Mandarina", percentage: 90 },
+      { name: "Toronja", percentage: 85 },
+      { name: "Cardamomo", percentage: 80 },
+      { name: "Bergamota", percentage: 75 },
+      { name: "Limón", percentage: 70 },
+      { name: "Nuez Moscada", percentage: 65 },
+    ],
+    heart: [
+      { name: "Flor de Azahar", percentage: 90 },
+      { name: "Jazmín", percentage: 85 },
+      { name: "Cedro", percentage: 75 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 90 },
+      { name: "Cedro", percentage: 85 },
+      { name: "Sándalo", percentage: 80 },
+      { name: "Madera de Guayaco", percentage: 75 },
+      { name: "Haba Tonka", percentage: 70 },
+    ],
+  },
+  // 140 (99). Dumont Nitro Blue — CORREGIDO: notas de Fragrantica
+  99: {
+    top: [
+      { name: "Canela", percentage: 90 },
+      { name: "Flor de Azahar", percentage: 85 },
+      { name: "Limón", percentage: 80 },
+      { name: "Salvia", percentage: 75 },
+      { name: "Albahaca", percentage: 70 },
+    ],
+    heart: [
+      { name: "Praliné", percentage: 90 },
+      { name: "Bálsamo de Tolú", percentage: 85 },
+      { name: "Notas Amaderadas", percentage: 80 },
+      { name: "Cardamomo Negro", percentage: 75 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 95 },
+      { name: "Ámbar", percentage: 85 },
+      { name: "Almendra", percentage: 80 },
+      { name: "Notas Dulces", percentage: 75 },
+    ],
+  },
+  // 141 (100). Dumont Nitro Red — CORREGIDO: notas de Fragrantica
+  100: {
+    top: [
+      { name: "Manzana", percentage: 90 },
+      { name: "Lavanda", percentage: 85 },
+      { name: "Bergamota", percentage: 80 },
+    ],
+    heart: [
+      { name: "Sandía", percentage: 90 },
+      { name: "Cedro", percentage: 80 },
+      { name: "Cálamo", percentage: 70 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 90 },
+      { name: "Sándalo", percentage: 85 },
+      { name: "Pachulí", percentage: 75 },
+    ],
+  },
+  // 142 (101). Dumont Nitro White — CORREGIDO: notas de Fragrantica
+  101: {
+    top: [
+      { name: "Bayas de Enebro", percentage: 90 },
+      { name: "Iris", percentage: 85 },
+      { name: "Ciprés", percentage: 80 },
+    ],
+    heart: [
+      { name: "Mirra", percentage: 90 },
+      { name: "Pachulí", percentage: 80 },
+    ],
+    base: [
+      { name: "Miel", percentage: 90 },
+      { name: "Vainilla", percentage: 85 },
+      { name: "Ámbar", percentage: 80 },
+      { name: "Almizcle", percentage: 75 },
+      { name: "Cuero", percentage: 65 },
+    ],
+  },
+  // 143 (102). Dumont Nitro Platinum — CORREGIDO: notas de Fragrantica
+  102: {
+    top: [
+      { name: "Grosellas Negras", percentage: 90 },
+      { name: "Naranja", percentage: 85 },
+      { name: "Manzana", percentage: 80 },
+      { name: "Bergamota", percentage: 75 },
+      { name: "Pimienta Rosa", percentage: 70 },
+      { name: "Cardamomo", percentage: 65 },
+    ],
+    heart: [
+      { name: "Vainilla", percentage: 90 },
+      { name: "Azúcar", percentage: 85 },
+      { name: "Ámbar", percentage: 80 },
+      { name: "Madera Seca", percentage: 75 },
+      { name: "Azafrán", percentage: 70 },
+      { name: "Lirio del Valle", percentage: 60 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 95 },
+      { name: "Ámbar", percentage: 90 },
+      { name: "Cedro", percentage: 80 },
+      { name: "Musgo", percentage: 75 },
+      { name: "Almizcle", percentage: 70 },
+      { name: "Madera de Guayaco", percentage: 65 },
+    ],
+  },
+
+  // ─── Rasasi ───
+
+  // 144 (122). Rasasi Hawas For Him — CORREGIDO: notas de Fragrantica
+  122: {
+    top: [
+      { name: "Manzana", percentage: 95 },
+      { name: "Bergamota", percentage: 90 },
+      { name: "Limón", percentage: 85 },
+      { name: "Canela", percentage: 75 },
+    ],
+    heart: [
+      { name: "Notas Acuáticas", percentage: 90 },
+      { name: "Ciruela", percentage: 85 },
+      { name: "Flor de Azahar", percentage: 80 },
+      { name: "Cardamomo", percentage: 70 },
+    ],
+    base: [
+      { name: "Ámbar Gris", percentage: 95 },
+      { name: "Almizcle", percentage: 85 },
+      { name: "Pachulí", percentage: 80 },
+      { name: "Madera de Deriva", percentage: 70 },
+    ],
+  },
+  // 145 (123). Rasasi Hawas Tropical — CORREGIDO: notas de Fragrantica
+  123: {
+    top: [
+      { name: "Agua de Coco", percentage: 95 },
+      { name: "Hoja de Higo", percentage: 85 },
+      { name: "Jengibre", percentage: 80 },
+    ],
+    heart: [
+      { name: "Coco", percentage: 95 },
+      { name: "Higo", percentage: 85 },
+      { name: "Menta", percentage: 75 },
+    ],
+    base: [
+      { name: "Sándalo", percentage: 90 },
+      { name: "Haba Tonka", percentage: 85 },
+      { name: "Almizcle", percentage: 75 },
+    ],
+  },
+  // 146 (124). Rasasi Hawas Fire — CORREGIDO: notas de Fragrantica
+  124: {
+    top: [
+      { name: "Salvia Esclarea", percentage: 95 },
+    ],
+    heart: [
+      { name: "Notas Marinas", percentage: 95 },
+      { name: "Jazmín Egipcio", percentage: 85 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 90 },
+      { name: "Notas Minerales", percentage: 85 },
+      { name: "Ámbar Gris", percentage: 80 },
+    ],
+  },
+  // 147 (125). Rasasi Hawas Malibu — CORREGIDO: notas de Fragrantica
+  125: {
+    top: [
+      { name: "Piña", percentage: 95 },
+      { name: "Naranja", percentage: 85 },
+      { name: "Toronja", percentage: 80 },
+    ],
+    heart: [
+      { name: "Ámbar", percentage: 85 },
+      { name: "Iris", percentage: 80 },
+      { name: "Lavanda", percentage: 75 },
+    ],
+    base: [
+      { name: "Haba Tonka", percentage: 90 },
+      { name: "Almizcle", percentage: 85 },
+      { name: "Cachemira", percentage: 80 },
+      { name: "Pachulí", percentage: 70 },
+    ],
+  },
+  // 148 (126). Rasasi Hawas Ice — CORREGIDO: notas de Fragrantica
+  126: {
+    top: [
+      { name: "Manzana", percentage: 95 },
+      { name: "Limón Italiano", percentage: 90 },
+      { name: "Bergamota Siciliana", percentage: 85 },
+      { name: "Anís Estrellado", percentage: 75 },
+    ],
+    heart: [
+      { name: "Ciruela", percentage: 85 },
+      { name: "Flor de Azahar", percentage: 80 },
+      { name: "Cardamomo", percentage: 75 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 90 },
+      { name: "Ámbar", percentage: 85 },
+      { name: "Madera de Deriva", percentage: 80 },
+      { name: "Musgo", percentage: 70 },
+    ],
+  },
+  // 149 (127). Rasasi Hawas Elixir — CORREGIDO: notas de Fragrantica
+  127: {
+    top: [
+      { name: "Menta", percentage: 95 },
+      { name: "Bergamota", percentage: 85 },
+      { name: "Artemisa", percentage: 75 },
+    ],
+    heart: [
+      { name: "Chocolate Oscuro", percentage: 95 },
+      { name: "Lavanda", percentage: 85 },
+      { name: "Benjuí", percentage: 80 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 95 },
+      { name: "Haba Tonka", percentage: 85 },
+      { name: "Almizcle Blanco", percentage: 80 },
+    ],
+  },
 };
 
 // ─── Accords data ───
@@ -3239,6 +3801,253 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
     { label: "Ámbar", percentage: 90, color: "#f0a830" },
     { label: "Amaderado", percentage: 85, color: "#c17b2a" },
     { label: "Balsámico", percentage: 80, color: "#8b6e4e" },
+  ],
+
+  // ─── Páginas 7-8: Afnan, Rave, Maison Alhambra, Dumont, Rasasi ───
+
+  // 121 (85). Afnan Supremacy In Heaven — CORREGIDO
+  85: [
+    { label: "Cítrico", percentage: 90, color: "#f0c934" },
+    { label: "Fresco", percentage: 85, color: "#a0c4e8" },
+    { label: "Almizclado", percentage: 80, color: "#a0a0a0" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Afrutado", percentage: 65, color: "#e75a8d" },
+  ],
+  // 122 (86). Afnan 9PM Rebel — CORREGIDO
+  86: [
+    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
+    { label: "Ámbar", percentage: 80, color: "#f0a830" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Vainilla", percentage: 70, color: "#c9a033" },
+  ],
+  // 123 (87). Afnan 9PM Pour Femme — CORREGIDO
+  87: [
+    { label: "Floral", percentage: 95, color: "#e75a8d" },
+    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
+    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
+    { label: "Ámbar", percentage: 75, color: "#f0a830" },
+    { label: "Violeta", percentage: 65, color: "#9b8ec4" },
+  ],
+  // 124 (137). Afnan 9PM — CORREGIDO
+  137: [
+    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Especiado Cálido", percentage: 90, color: "#c45a3a" },
+    { label: "Vainilla", percentage: 85, color: "#c9a033" },
+    { label: "Afrutado", percentage: 80, color: "#e75a8d" },
+    { label: "Ámbar", percentage: 75, color: "#f0a830" },
+  ],
+  // 125 (138). Afnan 9PM Nite Out — CORREGIDO
+  138: [
+    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
+    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
+    { label: "Especiado Cálido", percentage: 80, color: "#c45a3a" },
+    { label: "Gourmand", percentage: 75, color: "#8b5e3c" },
+  ],
+  // 126 (139). Afnan 9PM Elixir — CORREGIDO
+  139: [
+    { label: "Especiado Cálido", percentage: 95, color: "#c45a3a" },
+    { label: "Cuero", percentage: 90, color: "#8b5e3c" },
+    { label: "Vainilla", percentage: 85, color: "#c9a033" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Balsámico", percentage: 70, color: "#8b6e4e" },
+  ],
+  // 127 (140). Afnan 9AM Dive — CORREGIDO
+  140: [
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Fresco Especiado", percentage: 90, color: "#a0c4e8" },
+    { label: "Aromático", percentage: 85, color: "#6b8e4e" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Verde", percentage: 65, color: "#4a7a3a" },
+  ],
+  // 128 (152). Afnan Turathi Electric — CORREGIDO
+  152: [
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
+    { label: "Floral", percentage: 80, color: "#e75a8d" },
+    { label: "Dulce", percentage: 75, color: "#f0a830" },
+    { label: "Almizclado", percentage: 65, color: "#a0a0a0" },
+  ],
+  // 129 (153). Afnan Turathi Blue — CORREGIDO
+  153: [
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
+    { label: "Ámbar", percentage: 80, color: "#f0a830" },
+    { label: "Almizclado", percentage: 75, color: "#a0a0a0" },
+    { label: "Especiado", percentage: 65, color: "#c45a3a" },
+  ],
+
+  // ─── Rave ───
+
+  // 130 (88). Rave Now — CORREGIDO
+  88: [
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
+    { label: "Ahumado", percentage: 85, color: "#7a6b5d" },
+    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
+    { label: "Dulce", percentage: 70, color: "#f0a830" },
+  ],
+  // 131 (89). Rave Now Women — CORREGIDO
+  89: [
+    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
+    { label: "Floral", percentage: 85, color: "#e75a8d" },
+    { label: "Vainilla", percentage: 80, color: "#c9a033" },
+    { label: "Almizclado", percentage: 70, color: "#a0a0a0" },
+  ],
+  // 132 (90). Rave Rage — CORREGIDO
+  90: [
+    { label: "Aromático", percentage: 95, color: "#6b8e4e" },
+    { label: "Fresco Especiado", percentage: 85, color: "#a0c4e8" },
+    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
+    { label: "Incienso", percentage: 75, color: "#7a6b5d" },
+    { label: "Verde", percentage: 65, color: "#4a7a3a" },
+  ],
+
+  // ─── Maison Alhambra ───
+
+  // 133 (92). Maison Alhambra Baroque Rouge 540 — CORREGIDO
+  92: [
+    { label: "Ámbar", percentage: 95, color: "#f0a830" },
+    { label: "Azafrán", percentage: 90, color: "#e8a030" },
+    { label: "Floral", percentage: 85, color: "#e75a8d" },
+    { label: "Afrutado", percentage: 80, color: "#e75a8d" },
+    { label: "Almizclado", percentage: 70, color: "#a0a0a0" },
+  ],
+  // 134 (93). Maison Alhambra Cassius — CORREGIDO
+  93: [
+    { label: "Pachulí", percentage: 95, color: "#4a7a3a" },
+    { label: "Vainilla", percentage: 90, color: "#c9a033" },
+    { label: "Especiado Cálido", percentage: 85, color: "#c45a3a" },
+    { label: "Rosado", percentage: 75, color: "#e75a8d" },
+    { label: "Afrutado", percentage: 65, color: "#e75a8d" },
+  ],
+  // 135 (94). Maison Alhambra The Tux — CORREGIDO
+  94: [
+    { label: "Pachulí", percentage: 95, color: "#4a7a3a" },
+    { label: "Oriental", percentage: 90, color: "#8b6e4e" },
+    { label: "Especiado", percentage: 85, color: "#c45a3a" },
+    { label: "Vainilla", percentage: 80, color: "#c9a033" },
+    { label: "Ámbar", percentage: 70, color: "#f0a830" },
+  ],
+  // 136 (95). Maison Alhambra Glacier Le Noir — CORREGIDO
+  95: [
+    { label: "Especiado Cálido", percentage: 95, color: "#c45a3a" },
+    { label: "Vainilla", percentage: 90, color: "#c9a033" },
+    { label: "Atalcado", percentage: 85, color: "#d4c5a9" },
+    { label: "Lavanda", percentage: 80, color: "#9b8ec4" },
+    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+  ],
+  // 137 (96). Maison Alhambra Céleste — CORREGIDO
+  96: [
+    { label: "Floral Blanco", percentage: 95, color: "#f0e6f6" },
+    { label: "Cítrico", percentage: 90, color: "#f0c934" },
+    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
+    { label: "Almizclado", percentage: 75, color: "#a0a0a0" },
+    { label: "Dulce", percentage: 65, color: "#f0a830" },
+  ],
+  // 138 (97). Maison Alhambra Tobacco Touch — CORREGIDO
+  97: [
+    { label: "Tabaco", percentage: 98, color: "#5a3a2a" },
+    { label: "Dulce", percentage: 90, color: "#f0a830" },
+    { label: "Especiado Cálido", percentage: 85, color: "#c45a3a" },
+    { label: "Gourmand", percentage: 80, color: "#8b5e3c" },
+    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+  ],
+
+  // ─── Dumont ───
+
+  // 139 (98). Dumont Nitro Pour Homme — CORREGIDO
+  98: [
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Especiado", percentage: 85, color: "#c45a3a" },
+    { label: "Floral Blanco", percentage: 80, color: "#f0e6f6" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Almizclado", percentage: 65, color: "#a0a0a0" },
+  ],
+  // 140 (99). Dumont Nitro Blue — CORREGIDO
+  99: [
+    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Especiado Cálido", percentage: 90, color: "#c45a3a" },
+    { label: "Floral", percentage: 85, color: "#e75a8d" },
+    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
+    { label: "Balsámico", percentage: 70, color: "#8b6e4e" },
+  ],
+  // 141 (100). Dumont Nitro Red — CORREGIDO
+  100: [
+    { label: "Cítrico", percentage: 90, color: "#f0c934" },
+    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
+    { label: "Ámbar", percentage: 80, color: "#f0a830" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Acuático", percentage: 70, color: "#4a8eb8" },
+  ],
+  // 142 (101). Dumont Nitro White — CORREGIDO
+  101: [
+    { label: "Amaderado", percentage: 95, color: "#c17b2a" },
+    { label: "Dulce", percentage: 85, color: "#f0a830" },
+    { label: "Balsámico", percentage: 80, color: "#8b6e4e" },
+    { label: "Cuero", percentage: 75, color: "#8b5e3c" },
+    { label: "Iris", percentage: 65, color: "#9b8ec4" },
+  ],
+  // 143 (102). Dumont Nitro Platinum — CORREGIDO
+  102: [
+    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Vainilla", percentage: 90, color: "#c9a033" },
+    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
+    { label: "Ámbar", percentage: 80, color: "#f0a830" },
+    { label: "Especiado", percentage: 70, color: "#c45a3a" },
+  ],
+
+  // ─── Rasasi ───
+
+  // 144 (122). Rasasi Hawas For Him — CORREGIDO
+  122: [
+    { label: "Afrutado", percentage: 95, color: "#e75a8d" },
+    { label: "Cítrico", percentage: 90, color: "#f0c934" },
+    { label: "Acuático", percentage: 85, color: "#4a8eb8" },
+    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
+    { label: "Almizclado", percentage: 70, color: "#a0a0a0" },
+  ],
+  // 145 (123). Rasasi Hawas Tropical — CORREGIDO
+  123: [
+    { label: "Tropical", percentage: 98, color: "#f0c934" },
+    { label: "Coco", percentage: 95, color: "#d4c5a9" },
+    { label: "Verde", percentage: 85, color: "#4a7a3a" },
+    { label: "Dulce", percentage: 80, color: "#f0a830" },
+    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+  ],
+  // 146 (124). Rasasi Hawas Fire — CORREGIDO
+  124: [
+    { label: "Marino", percentage: 95, color: "#4a8eb8" },
+    { label: "Ámbar", percentage: 90, color: "#f0a830" },
+    { label: "Herbal", percentage: 85, color: "#6b8e4e" },
+    { label: "Floral", percentage: 80, color: "#e75a8d" },
+    { label: "Mineral", percentage: 75, color: "#7a6b5d" },
+  ],
+  // 147 (125). Rasasi Hawas Malibu — CORREGIDO
+  125: [
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
+    { label: "Ámbar", percentage: 85, color: "#f0a830" },
+    { label: "Atalcado", percentage: 80, color: "#d4c5a9" },
+    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+  ],
+  // 148 (126). Rasasi Hawas Ice — CORREGIDO
+  126: [
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Fresco", percentage: 90, color: "#a0c4e8" },
+    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Especiado", percentage: 65, color: "#c45a3a" },
+  ],
+  // 149 (127). Rasasi Hawas Elixir — CORREGIDO
+  127: [
+    { label: "Gourmand", percentage: 95, color: "#8b5e3c" },
+    { label: "Vainilla", percentage: 90, color: "#c9a033" },
+    { label: "Lavanda", percentage: 85, color: "#9b8ec4" },
+    { label: "Chocolate", percentage: 80, color: "#5a3a2a" },
+    { label: "Dulce", percentage: 75, color: "#f0a830" },
   ],
 };
 
