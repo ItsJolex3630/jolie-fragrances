@@ -436,6 +436,371 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Haba Tonka", percentage: 75 },
     ],
   },
+  // ─── Página 2 ───
+  // 21 (111). Odyssey Mandarin Sky Vintage Edition
+  111: {
+    top: [
+      { name: "Mandarina", percentage: 95 },
+      { name: "Naranja", percentage: 85 },
+      { name: "Azafrán", percentage: 70 },
+    ],
+    heart: [
+      { name: "Caramelo", percentage: 90 },
+      { name: "Haba Tonka", percentage: 80 },
+      { name: "Coco", percentage: 65 },
+      { name: "Notas Florales Suaves", percentage: 50 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 85 },
+      { name: "Cedro", percentage: 75 },
+      { name: "Pachulí", percentage: 60 },
+    ],
+  },
+  // 22 (112). Odyssey Mandarin Sky Elixir
+  112: {
+    top: [
+      { name: "Mandarina", percentage: 95 },
+      { name: "Naranja", percentage: 85 },
+      { name: "Azafrán", percentage: 70 },
+    ],
+    heart: [
+      { name: "Caramelo", percentage: 90 },
+      { name: "Tonka", percentage: 80 },
+      { name: "Coco", percentage: 65 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 85 },
+      { name: "Cedro", percentage: 70 },
+      { name: "Pachulí", percentage: 60 },
+    ],
+  },
+  // 23 (113). Odyssey Mega
+  113: {
+    top: [
+      { name: "Bergamota", percentage: 90 },
+      { name: "Naranja", percentage: 80 },
+      { name: "Jengibre", percentage: 75 },
+      { name: "Menta", percentage: 70 },
+    ],
+    heart: [
+      { name: "Salvia", percentage: 85 },
+      { name: "Enebro de Virginia", percentage: 75 },
+      { name: "Geranio", percentage: 70 },
+    ],
+    base: [
+      { name: "Vetiver", percentage: 85 },
+      { name: "Cedro", percentage: 80 },
+      { name: "Haba Tonka", percentage: 75 },
+      { name: "Almizcle", percentage: 65 },
+    ],
+  },
+  // 24 (114). Odyssey Limoni Fresh
+  114: {
+    top: [
+      { name: "Limón Amarillo", percentage: 95 },
+      { name: "Lima Ácida", percentage: 90 },
+      { name: "Mandarina", percentage: 75 },
+    ],
+    heart: [
+      { name: "Menta", percentage: 85 },
+      { name: "Jengibre", percentage: 70 },
+      { name: "Notas Verdes", percentage: 65 },
+    ],
+    base: [
+      { name: "Almizcle Blanco", percentage: 85 },
+      { name: "Maderas Blancas", percentage: 70 },
+      { name: "Ámbar", percentage: 55 },
+    ],
+  },
+  // 25 (141). Yum Yum — CORREGIDO: notas de Fragrantica/Basenotes
+  141: {
+    top: [
+      { name: "Bergamota", percentage: 85 },
+      { name: "Naranja", percentage: 80 },
+      { name: "Cereza", percentage: 90 },
+      { name: "Bayas Silvestres", percentage: 75 },
+    ],
+    heart: [
+      { name: "Vainilla", percentage: 85 },
+      { name: "Rosa", percentage: 75 },
+      { name: "Flores Blancas", percentage: 70 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 90 },
+      { name: "Almizcle", percentage: 80 },
+      { name: "Notas Atalcadas", percentage: 65 },
+    ],
+  },
+  // 26 (143). Bon Bon — CORREGIDO: notas de Fragrantica/Parfumo
+  143: {
+    top: [
+      { name: "Bergamota", percentage: 85 },
+      { name: "Manzana Granny Smith", percentage: 80 },
+      { name: "Mandarina", percentage: 75 },
+      { name: "Papaya", percentage: 70 },
+    ],
+    heart: [
+      { name: "Flor de Té", percentage: 85 },
+      { name: "Lirio de Madagascar", percentage: 75 },
+      { name: "Peonía", percentage: 70 },
+      { name: "Albaricoque", percentage: 65 },
+    ],
+    base: [
+      { name: "Notas Marinas", percentage: 80 },
+      { name: "Almizcle", percentage: 75 },
+      { name: "Maderas", percentage: 70 },
+    ],
+  },
+  // 27 (144). Island Bliss — CORREGIDO: notas de Fragrantica
+  144: {
+    top: [
+      { name: "Bayas Silvestres", percentage: 90 },
+      { name: "Notas Verdes", percentage: 80 },
+    ],
+    heart: [
+      { name: "Coco", percentage: 90 },
+      { name: "Flor de Azahar", percentage: 80 },
+      { name: "Lactonas", percentage: 75 },
+      { name: "Lirio de Agua", percentage: 70 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 90 },
+      { name: "Haba Tonka", percentage: 80 },
+      { name: "Almizcle", percentage: 70 },
+    ],
+  },
+  // 28 (145). Island Breeze — CORREGIDO: notas de Fragrantica
+  145: {
+    top: [
+      { name: "Melocotón", percentage: 90 },
+      { name: "Bayas Silvestres", percentage: 85 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 85 },
+    ],
+    base: [
+      { name: "Almizcle Blanco", percentage: 90 },
+    ],
+  },
+  // 29 (151). Eter Arabian — CORREGIDO: notas de Amazon/Armaf oficial
+  151: {
+    top: [
+      { name: "Pimienta", percentage: 80 },
+      { name: "Limón", percentage: 85 },
+      { name: "Bergamota", percentage: 90 },
+      { name: "Toronja", percentage: 75 },
+      { name: "Piña", percentage: 70 },
+    ],
+    heart: [
+      { name: "Lavanda", percentage: 85 },
+      { name: "Geranio", percentage: 80 },
+      { name: "Ylang-Ylang", percentage: 70 },
+      { name: "Caramelo", percentage: 65 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 85 },
+      { name: "Almizcle", percentage: 75 },
+      { name: "Cuero", percentage: 70 },
+    ],
+  },
+  // 30 (6). Al Haramain Amber Oud Rouge Edition — CORREGIDO: notas de Fragrantica
+  6: {
+    top: [
+      { name: "Azafrán", percentage: 95 },
+    ],
+    heart: [
+      { name: "Jazmín", percentage: 90 },
+    ],
+    base: [
+      { name: "Ámbar Gris", percentage: 95 },
+      { name: "Almizcle", percentage: 80 },
+      { name: "Cedro Blanco", percentage: 70 },
+    ],
+  },
+  // 31 (7). Al Haramain Amber Oud Gold Edition — CORREGIDO: notas de Fragrantica/Basenotes
+  7: {
+    top: [
+      { name: "Bergamota", percentage: 80 },
+      { name: "Notas Verdes", percentage: 75 },
+    ],
+    heart: [
+      { name: "Melón", percentage: 95 },
+      { name: "Piña", percentage: 90 },
+      { name: "Notas Dulces", percentage: 85 },
+      { name: "Ámbar", percentage: 80 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 95 },
+      { name: "Almizcle", percentage: 85 },
+      { name: "Notas Amaderadas", percentage: 70 },
+    ],
+  },
+  // 32 (8). Al Haramain Amber Oud Carbon Edition — CORREGIDO: notas de Fragrantica
+  8: {
+    top: [
+      { name: "Bergamota", percentage: 90 },
+      { name: "Lavanda", percentage: 85 },
+      { name: "Romero", percentage: 80 },
+    ],
+    heart: [
+      { name: "Notas Marinas", percentage: 90 },
+      { name: "Geranio", percentage: 75 },
+      { name: "Salvia", percentage: 70 },
+    ],
+    base: [
+      { name: "Cedro", percentage: 85 },
+      { name: "Musgo de Roble", percentage: 80 },
+      { name: "Vetiver", percentage: 75 },
+      { name: "Ámbar", percentage: 70 },
+    ],
+  },
+  // 33 (9). Al Haramain Amber Oud White Edition — CORREGIDO: notas de Fragrantica
+  9: {
+    top: [
+      { name: "Bergamota", percentage: 90 },
+      { name: "Naranja", percentage: 80 },
+    ],
+    heart: [
+      { name: "Jazmín", percentage: 85 },
+      { name: "Rosa", percentage: 75 },
+      { name: "Fresia", percentage: 70 },
+      { name: "Ciclamen", percentage: 65 },
+    ],
+    base: [
+      { name: "Pachulí", percentage: 85 },
+      { name: "Almizcle", percentage: 80 },
+      { name: "Vetiver", percentage: 75 },
+      { name: "Vainilla", percentage: 70 },
+    ],
+  },
+  // 34 (10). Al Haramain L'Aventure — CORREGIDO: notas de Fragrantica
+  10: {
+    top: [
+      { name: "Limón", percentage: 95 },
+      { name: "Bergamota", percentage: 90 },
+      { name: "Elemí", percentage: 75 },
+    ],
+    heart: [
+      { name: "Notas Amaderadas", percentage: 85 },
+      { name: "Jazmín", percentage: 70 },
+      { name: "Lirio de los Valles", percentage: 60 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 80 },
+      { name: "Pachulí", percentage: 75 },
+      { name: "Ámbar", percentage: 65 },
+    ],
+  },
+  // 35 (11). Al Haramain L'Aventure Woman — CORREGIDO: notas de Fragrantica
+  11: {
+    top: [
+      { name: "Piña", percentage: 90 },
+      { name: "Grosellas Negras", percentage: 85 },
+      { name: "Bergamota", percentage: 80 },
+      { name: "Bayas Silvestres", percentage: 75 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 80 },
+      { name: "Fresia", percentage: 75 },
+      { name: "Cedro", percentage: 65 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 85 },
+      { name: "Sándalo", percentage: 75 },
+      { name: "Ámbar", percentage: 70 },
+      { name: "Vainilla", percentage: 65 },
+    ],
+  },
+  // 36 (154). Al Haramain Amber Oud Aqua Dubai — CORREGIDO: notas de Basenotes
+  154: {
+    top: [
+      { name: "Bergamota", percentage: 95 },
+      { name: "Notas Verdes", percentage: 85 },
+      { name: "Mandarina", percentage: 80 },
+    ],
+    heart: [
+      { name: "Melón", percentage: 90 },
+      { name: "Piña", percentage: 85 },
+      { name: "Grosellas Negras", percentage: 75 },
+      { name: "Ámbar", percentage: 80 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 85 },
+      { name: "Vainilla", percentage: 80 },
+      { name: "Galbano", percentage: 70 },
+      { name: "Petitgrain", percentage: 65 },
+    ],
+  },
+  // 37 (14). Lattafa Bade'e Al Oud Amethyst — CORREGIDO: notas de Fragrantica
+  14: {
+    top: [
+      { name: "Pimienta Rosa", percentage: 85 },
+      { name: "Bergamota", percentage: 80 },
+    ],
+    heart: [
+      { name: "Rosa Turca", percentage: 95 },
+      { name: "Rosa de Bulgaria", percentage: 90 },
+      { name: "Jazmín", percentage: 70 },
+    ],
+    base: [
+      { name: "Madera de Oud", percentage: 90 },
+      { name: "Ámbar", percentage: 85 },
+      { name: "Vainilla", percentage: 80 },
+    ],
+  },
+  // 38 (15). Lattafa Bade'e Al Oud Oud for Glory — CORREGIDO: notas de Fragrantica
+  15: {
+    top: [
+      { name: "Azafrán", percentage: 95 },
+      { name: "Nuez Moscada", percentage: 85 },
+      { name: "Lavanda", percentage: 75 },
+    ],
+    heart: [
+      { name: "Madera de Oud", percentage: 95 },
+      { name: "Pachulí", percentage: 80 },
+    ],
+    base: [
+      { name: "Madera de Oud", percentage: 90 },
+      { name: "Pachulí", percentage: 75 },
+      { name: "Almizcle", percentage: 70 },
+    ],
+  },
+  // 39 (16). Lattafa Bade'e Al Oud Honor & Glory — CORREGIDO: notas de Fragrantica
+  16: {
+    top: [
+      { name: "Piña", percentage: 95 },
+      { name: "Crème Brûlée", percentage: 90 },
+    ],
+    heart: [
+      { name: "Canela", percentage: 85 },
+      { name: "Benjuí", percentage: 75 },
+      { name: "Cúrcuma", percentage: 65 },
+      { name: "Pimienta Negra", percentage: 60 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 95 },
+      { name: "Sándalo", percentage: 80 },
+      { name: "Cachemira", percentage: 75 },
+      { name: "Musgo", percentage: 60 },
+    ],
+  },
+  // 40 (18). Lattafa Eclaire Pistache — CORREGIDO: notas de Fragrantica
+  18: {
+    top: [
+      { name: "Crema de Pistacho", percentage: 95 },
+      { name: "Pistacho Tostado", percentage: 85 },
+    ],
+    heart: [
+      { name: "Cacao", percentage: 90 },
+      { name: "Crema Batida", percentage: 80 },
+      { name: "Coco", percentage: 75 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 95 },
+      { name: "Leche", percentage: 85 },
+      { name: "Almizcle", percentage: 65 },
+    ],
+  },
 };
 
 // ─── Accords data ───
@@ -599,6 +964,167 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
     { label: "Atalcado", percentage: 80, color: "#d4c5a9" },
     { label: "Iris", percentage: 75, color: "#9b8ec4" },
     { label: "Especiado Cálido", percentage: 70, color: "#c45a3a" },
+  ],
+  // ─── Página 2 ───
+  // 21 (111). Odyssey Mandarin Sky Vintage Edition
+  111: [
+    { label: "Cítrico", percentage: 90, color: "#f0c934" },
+    { label: "Dulce", percentage: 85, color: "#f0a830" },
+    { label: "Ámbar", percentage: 75, color: "#f0a830" },
+    { label: "Caramelo", percentage: 70, color: "#c98030" },
+    { label: "Especiado Cálido", percentage: 65, color: "#c45a3a" },
+  ],
+  // 22 (112). Odyssey Mandarin Sky Elixir
+  112: [
+    { label: "Cítrico", percentage: 90, color: "#f0c934" },
+    { label: "Dulce", percentage: 85, color: "#f0a830" },
+    { label: "Caramelo", percentage: 80, color: "#c98030" },
+    { label: "Ámbar", percentage: 75, color: "#f0a830" },
+    { label: "Especiado Suave", percentage: 60, color: "#c45a3a" },
+  ],
+  // 23 (113). Odyssey Mega
+  113: [
+    { label: "Fresco Especiado", percentage: 90, color: "#a0c4e8" },
+    { label: "Aromático", percentage: 85, color: "#6b8e4e" },
+    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
+    { label: "Cítrico", percentage: 75, color: "#f0c934" },
+    { label: "Ámbar", percentage: 60, color: "#f0a830" },
+  ],
+  // 24 (114). Odyssey Limoni Fresh
+  114: [
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Fresco", percentage: 85, color: "#a0c4e8" },
+    { label: "Herbal", percentage: 70, color: "#6b8e4e" },
+    { label: "Almizclado", percentage: 60, color: "#a0a0a0" },
+    { label: "Amaderado", percentage: 50, color: "#c17b2a" },
+  ],
+  // 25 (141). Yum Yum — CORREGIDO
+  141: [
+    { label: "Dulce / Gourmand", percentage: 95, color: "#f0a830" },
+    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
+    { label: "Cereza", percentage: 85, color: "#c4385a" },
+    { label: "Atalcado", percentage: 75, color: "#d4c5a9" },
+    { label: "Ámbar", percentage: 65, color: "#f0a830" },
+  ],
+  // 26 (143). Bon Bon — CORREGIDO
+  143: [
+    { label: "Floral", percentage: 95, color: "#e75a8d" },
+    { label: "Fresco", percentage: 90, color: "#a0c4e8" },
+    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
+    { label: "Cítrico", percentage: 80, color: "#f0c934" },
+    { label: "Marino", percentage: 70, color: "#4a8eb8" },
+  ],
+  // 27 (144). Island Bliss — CORREGIDO
+  144: [
+    { label: "Tropical", percentage: 95, color: "#f0c934" },
+    { label: "Coco", percentage: 90, color: "#d4c5a9" },
+    { label: "Dulce", percentage: 85, color: "#f0a830" },
+    { label: "Floral Blanco", percentage: 75, color: "#f0e6f6" },
+    { label: "Afrutado", percentage: 65, color: "#e75a8d" },
+  ],
+  // 28 (145). Island Breeze — CORREGIDO
+  145: [
+    { label: "Fresco", percentage: 95, color: "#a0c4e8" },
+    { label: "Floral", percentage: 85, color: "#e75a8d" },
+    { label: "Afrutado", percentage: 80, color: "#e75a8d" },
+    { label: "Almizclado", percentage: 75, color: "#a0a0a0" },
+    { label: "Tropical", percentage: 65, color: "#f0c934" },
+  ],
+  // 29 (151). Eter Arabian — CORREGIDO
+  151: [
+    { label: "Cítrico", percentage: 90, color: "#f0c934" },
+    { label: "Especiado Cálido", percentage: 85, color: "#c45a3a" },
+    { label: "Afrutado", percentage: 80, color: "#e75a8d" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Ámbar", percentage: 65, color: "#f0a830" },
+  ],
+  // 30 (6). Al Haramain Amber Oud Rouge Edition — CORREGIDO
+  6: [
+    { label: "Ámbar", percentage: 95, color: "#f0a830" },
+    { label: "Azafrán", percentage: 90, color: "#e8a030" },
+    { label: "Floral", percentage: 85, color: "#e75a8d" },
+    { label: "Almizclado", percentage: 75, color: "#a0a0a0" },
+    { label: "Amaderado", percentage: 65, color: "#c17b2a" },
+  ],
+  // 31 (7). Al Haramain Amber Oud Gold Edition — CORREGIDO
+  7: [
+    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
+    { label: "Tropical", percentage: 85, color: "#f0c934" },
+    { label: "Ámbar", percentage: 80, color: "#f0a830" },
+    { label: "Vainilla", percentage: 75, color: "#c9a033" },
+  ],
+  // 32 (8). Al Haramain Amber Oud Carbon Edition — CORREGIDO
+  8: [
+    { label: "Aromático", percentage: 90, color: "#6b8e4e" },
+    { label: "Fresco Especiado", percentage: 85, color: "#a0c4e8" },
+    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
+    { label: "Cítrico", percentage: 75, color: "#f0c934" },
+    { label: "Marino", percentage: 70, color: "#4a8eb8" },
+  ],
+  // 33 (9). Al Haramain Amber Oud White Edition — CORREGIDO
+  9: [
+    { label: "Floral Blanco", percentage: 90, color: "#f0e6f6" },
+    { label: "Cítrico", percentage: 85, color: "#f0c934" },
+    { label: "Atalcado", percentage: 80, color: "#d4c5a9" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Especiado Suave", percentage: 65, color: "#c45a3a" },
+  ],
+  // 34 (10). Al Haramain L'Aventure — CORREGIDO
+  10: [
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
+    { label: "Afrutado", percentage: 80, color: "#e75a8d" },
+    { label: "Atalcado", percentage: 65, color: "#d4c5a9" },
+    { label: "Fresco", percentage: 60, color: "#a0c4e8" },
+  ],
+  // 35 (11). Al Haramain L'Aventure Woman — CORREGIDO
+  11: [
+    { label: "Cítrico", percentage: 90, color: "#f0c934" },
+    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
+    { label: "Floral Blanco", percentage: 80, color: "#f0e6f6" },
+    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Almizclado", percentage: 65, color: "#a0a0a0" },
+  ],
+  // 36 (154). Al Haramain Amber Oud Aqua Dubai — CORREGIDO
+  154: [
+    { label: "Marino", percentage: 95, color: "#4a8eb8" },
+    { label: "Cítrico", percentage: 90, color: "#f0c934" },
+    { label: "Fresco", percentage: 85, color: "#a0c4e8" },
+    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Ámbar", percentage: 65, color: "#f0a830" },
+  ],
+  // 37 (14). Lattafa Bade'e Al Oud Amethyst — CORREGIDO
+  14: [
+    { label: "Rosado", percentage: 95, color: "#e75a8d" },
+    { label: "Oud", percentage: 85, color: "#5a3a2a" },
+    { label: "Ámbar", percentage: 80, color: "#f0a830" },
+    { label: "Especiado Cálido", percentage: 75, color: "#c45a3a" },
+    { label: "Afrutado", percentage: 65, color: "#e75a8d" },
+  ],
+  // 38 (15). Lattafa Bade'e Al Oud Oud for Glory — CORREGIDO
+  15: [
+    { label: "Oud", percentage: 95, color: "#5a3a2a" },
+    { label: "Especiado Cálido", percentage: 90, color: "#c45a3a" },
+    { label: "Azafrán", percentage: 85, color: "#e8a030" },
+    { label: "Pachulí", percentage: 75, color: "#4a7a3a" },
+    { label: "Atalcado", percentage: 60, color: "#d4c5a9" },
+  ],
+  // 39 (16). Lattafa Bade'e Al Oud Honor & Glory — CORREGIDO
+  16: [
+    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Tropical / Piña", percentage: 90, color: "#f0c934" },
+    { label: "Gourmand", percentage: 85, color: "#8b5e3c" },
+    { label: "Especiado Cálido", percentage: 75, color: "#c45a3a" },
+    { label: "Amaderado", percentage: 65, color: "#c17b2a" },
+  ],
+  // 40 (18). Lattafa Eclaire Pistache — CORREGIDO
+  18: [
+    { label: "Gourmand", percentage: 95, color: "#8b5e3c" },
+    { label: "Dulce", percentage: 90, color: "#f0a830" },
+    { label: "Pistacho", percentage: 85, color: "#a0b84e" },
+    { label: "Lácteo", percentage: 80, color: "#f5f0e0" },
+    { label: "Vainilla", percentage: 75, color: "#c9a033" },
   ],
 };
 
