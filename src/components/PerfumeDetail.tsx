@@ -330,19 +330,19 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
   // 15 (105). Odyssey Artisto
   105: {
     top: [
-      { name: "Limón", percentage: 90 },
-      { name: "Bergamota", percentage: 85 },
-      { name: "Notas Verdes", percentage: 75 },
+      { name: "Bergamota", percentage: 90 },
+      { name: "Notas Avellanadas", percentage: 80 },
+      { name: "Salvia", percentage: 70 },
     ],
     heart: [
-      { name: "Jengibre", percentage: 85 },
-      { name: "Notas Marinas", percentage: 80 },
-      { name: "Menta", percentage: 75 },
+      { name: "Canela", percentage: 85 },
+      { name: "Coco", percentage: 80 },
+      { name: "Notas Tropicales", percentage: 75 },
     ],
     base: [
-      { name: "Cedro", percentage: 85 },
-      { name: "Ámbar Gris", percentage: 75 },
-      { name: "Vetiver", percentage: 70 },
+      { name: "Vainilla", percentage: 90 },
+      { name: "Haba Tonka", percentage: 80 },
+      { name: "Ámbar", percentage: 75 },
     ],
   },
   // 16 (106). Odyssey Bahamas
@@ -554,11 +554,11 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
   ],
   // 15 (105). Odyssey Artisto
   105: [
-    { label: "Aromático", percentage: 90, color: "#6b8e4e" },
-    { label: "Fresco Especiado", percentage: 85, color: "#a0c4e8" },
-    { label: "Cítrico", percentage: 80, color: "#f0c934" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Marino", percentage: 65, color: "#4a8eb8" },
+    { label: "Cálido Especiado", percentage: 90, color: "#c45a3a" },
+    { label: "Tropical", percentage: 85, color: "#f0c934" },
+    { label: "Dulce", percentage: 80, color: "#f0a830" },
+    { label: "Coco", percentage: 75, color: "#d4c5a9" },
+    { label: "Ámbar", percentage: 65, color: "#f0a830" },
   ],
   // 16 (106). Odyssey Bahamas
   106: [
