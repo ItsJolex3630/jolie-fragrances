@@ -1,63 +1,69 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { checkRateLimit, RATE_LIMITS, getClientIp } from "@/lib/rate-limit";
+import { verifyToken, COOKIE_NAME, verifyAdminFromDB } from "@/lib/auth";
+import { checkRateLimit, ADMIN_RATE_LIMIT, sanitizeString, getClientIp } from "@/lib/security";
 import { verifyOrigin } from "@/lib/csrf";
+import { addSecurityHeaders } from "@/lib/security-headers";
 
-// Input sanitization
-function sanitizeInput(input: string): string {
-  return input.replace(/<[^>]*>/g, "").trim();
+// ─── Helper: verify admin from DB (not JWT) ───
+async function verifyAdmin(req: NextRequest) {
+  const token = req.cookies.get(COOKIE_NAME)?.value;
+  if (!token) return null;
+  const payload = await verifyToken(token);
+  if (!payload) return null;
+  // Verify role from DB
+  const isAdmin = await verifyAdminFromDB(payload.userId);
+  if (!isAdmin) return null;
+  return payload;
 }
-
-// Valid values for gender
-const VALID_GENDERS = ["Dama", "Caballero", "Unisex"];
-// Valid brands
-const VALID_BRANDS = [
-  "Armaf", "Al Haramain", "Lattafa", "French Avenue",
-  "Afnan", "Rave", "Maison Alhambra", "Dumont", "Rasasi",
-];
 
 // PUT update perfume (admin only)
 export async function PUT(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const admin = await verifyAdmin(req);
+  if (!admin) {
+    return addSecurityHeaders(NextResponse.json(
+      { error: "No autorizado — se requieren permisos de administrador" },
+      { status: 403 }
+    ));
+  }
+
+  // CSRF Protection
+  const csrfError = verifyOrigin(req);
+  if (csrfError) {
+    return addSecurityHeaders(NextResponse.json({ error: csrfError }, { status: 403 }));
+  }
+
+  // Rate limiting
+  const clientIp = getClientIp(req);
+  const rateLimit = await checkRateLimit(`admin:${clientIp}`, ADMIN_RATE_LIMIT);
+  if (!rateLimit.allowed) {
+    return addSecurityHeaders(NextResponse.json(
+      { error: `Demasiadas solicitudes. Intenta en ${rateLimit.retryAfter}s.` },
+      { status: 429 }
+    ));
+  }
+
   try {
-    // ─── CSRF Protection ───
-    const csrfError = verifyOrigin(req);
-    if (csrfError) {
-      return NextResponse.json({ error: csrfError }, { status: 403 });
-    }
-
-    const session = await getServerSession(authOptions);
-
-    if (!session || (session.user as { role: string })?.role !== "admin") {
-      return NextResponse.json(
-        { error: "No autorizado — se requieren permisos de administrador" },
-        { status: 403 }
-      );
-    }
-
-    // ─── Rate limiting ───
-    const clientIp = getClientIp(req);
-    const rateLimitResult = checkRateLimit(clientIp, RATE_LIMITS.admin);
-    if (rateLimitResult.limited) {
-      return NextResponse.json(
-        { error: "Demasiadas solicitudes. Intenta de nuevo más tarde." },
-        { status: 429 }
-      );
-    }
-
     const { id } = await params;
 
     // Validate ID
     const numericId = Number(id);
     if (!Number.isInteger(numericId) || numericId < 1) {
-      return NextResponse.json(
+      return addSecurityHeaders(NextResponse.json(
         { error: "ID inválido" },
         { status: 400 }
-      );
+      ));
+    }
+
+    const existing = await db.perfume.findUnique({ where: { id: numericId } });
+    if (!existing) {
+      return addSecurityHeaders(NextResponse.json(
+        { error: `No existe un perfume con ID ${numericId}` },
+        { status: 404 }
+      ));
     }
 
     const body = await req.json();
@@ -66,88 +72,76 @@ export async function PUT(
 
     // Validate and sanitize each field if provided
     if (body.name !== undefined) {
-      const name = sanitizeInput(String(body.name));
-      if (name.length < 2 || name.length > 200) {
-        return NextResponse.json(
-          { error: "El nombre debe tener entre 2 y 200 caracteres" },
+      const name = sanitizeString(String(body.name), 200);
+      if (name.length < 2) {
+        return addSecurityHeaders(NextResponse.json(
+          { error: "El nombre debe tener al menos 2 caracteres" },
           { status: 400 }
-        );
+        ));
       }
       updateData.name = name;
     }
 
     if (body.brand !== undefined) {
-      if (!VALID_BRANDS.includes(body.brand)) {
-        return NextResponse.json(
-          { error: "Marca inválida" },
-          { status: 400 }
-        );
-      }
-      updateData.brand = body.brand;
+      updateData.brand = sanitizeString(String(body.brand), 100);
     }
 
     if (body.gender !== undefined) {
-      if (!VALID_GENDERS.includes(body.gender)) {
-        return NextResponse.json(
-          { error: "Género inválido" },
-          { status: 400 }
-        );
-      }
       updateData.gender = body.gender;
     }
 
     if (body.size !== undefined) {
-      updateData.size = sanitizeInput(String(body.size));
+      updateData.size = sanitizeString(String(body.size), 50);
     }
 
     if (body.fragranticaId !== undefined) {
       const fid = Number(body.fragranticaId);
       if (!Number.isInteger(fid) || fid < 1) {
-        return NextResponse.json(
+        return addSecurityHeaders(NextResponse.json(
           { error: "Fragrantica ID inválido" },
           { status: 400 }
-        );
+        ));
       }
       updateData.fragranticaId = fid;
     }
 
     if (body.brandSlug !== undefined) {
-      updateData.brandSlug = sanitizeInput(String(body.brandSlug));
+      updateData.brandSlug = sanitizeString(String(body.brandSlug), 100);
     }
 
     if (body.perfumeSlug !== undefined) {
-      updateData.perfumeSlug = sanitizeInput(String(body.perfumeSlug));
+      updateData.perfumeSlug = sanitizeString(String(body.perfumeSlug), 200);
     }
 
     if (body.fragranticaSearchUrl !== undefined) {
-      updateData.fragranticaSearchUrl = body.fragranticaSearchUrl ? sanitizeInput(String(body.fragranticaSearchUrl)) : null;
+      updateData.fragranticaSearchUrl = body.fragranticaSearchUrl
+        ? sanitizeString(String(body.fragranticaSearchUrl), 500)
+        : null;
     }
 
     if (body.notes !== undefined) {
-      updateData.notes = Array.isArray(body.notes) ? body.notes.join(",") : sanitizeInput(String(body.notes));
+      updateData.notes = Array.isArray(body.notes)
+        ? body.notes.join(",").slice(0, 500)
+        : (body.notes ? sanitizeString(String(body.notes), 500) : null);
     }
 
     if (body.price !== undefined) {
-      if (body.price !== null && body.price !== "") {
-        const p = Number(body.price);
-        if (isNaN(p) || p < 0 || p > 999999) {
-          return NextResponse.json(
-            { error: "Precio inválido" },
-            { status: 400 }
-          );
-        }
-        updateData.price = p;
-      } else {
-        updateData.price = null;
+      const p = Number(body.price);
+      if (isNaN(p) || p < 0) {
+        return addSecurityHeaders(NextResponse.json(
+          { error: "Precio inválido" },
+          { status: 400 }
+        ));
       }
+      updateData.price = p;
     }
 
     // Ensure at least one field is being updated
     if (Object.keys(updateData).length === 0) {
-      return NextResponse.json(
+      return addSecurityHeaders(NextResponse.json(
         { error: "No se proporcionaron campos para actualizar" },
         { status: 400 }
-      );
+      ));
     }
 
     const perfume = await db.perfume.update({
@@ -155,13 +149,16 @@ export async function PUT(
       data: updateData,
     });
 
-    return NextResponse.json(perfume);
+    return addSecurityHeaders(NextResponse.json({
+      message: "Perfume actualizado correctamente",
+      perfume,
+    }));
   } catch (error) {
     console.error("Error updating perfume:", error);
-    return NextResponse.json(
+    return addSecurityHeaders(NextResponse.json(
       { error: "Error al actualizar perfume" },
       { status: 500 }
-    );
+    ));
   }
 }
 
@@ -170,58 +167,63 @@ export async function DELETE(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const admin = await verifyAdmin(req);
+  if (!admin) {
+    return addSecurityHeaders(NextResponse.json(
+      { error: "No autorizado — se requieren permisos de administrador" },
+      { status: 403 }
+    ));
+  }
+
+  // CSRF Protection
+  const csrfError = verifyOrigin(req);
+  if (csrfError) {
+    return addSecurityHeaders(NextResponse.json({ error: csrfError }, { status: 403 }));
+  }
+
+  // Rate limiting
+  const clientIp = getClientIp(req);
+  const rateLimit = await checkRateLimit(`admin:${clientIp}`, ADMIN_RATE_LIMIT);
+  if (!rateLimit.allowed) {
+    return addSecurityHeaders(NextResponse.json(
+      { error: `Demasiadas solicitudes. Intenta en ${rateLimit.retryAfter}s.` },
+      { status: 429 }
+    ));
+  }
+
   try {
-    // ─── CSRF Protection ───
-    const csrfError = verifyOrigin(req);
-    if (csrfError) {
-      return NextResponse.json({ error: csrfError }, { status: 403 });
-    }
-
-    const session = await getServerSession(authOptions);
-
-    if (!session || (session.user as { role: string })?.role !== "admin") {
-      return NextResponse.json(
-        { error: "No autorizado — se requieren permisos de administrador" },
-        { status: 403 }
-      );
-    }
-
-    // ─── Rate limiting ───
-    const clientIp = getClientIp(req);
-    const rateLimitResult = checkRateLimit(clientIp, RATE_LIMITS.admin);
-    if (rateLimitResult.limited) {
-      return NextResponse.json(
-        { error: "Demasiadas solicitudes. Intenta de nuevo más tarde." },
-        { status: 429 }
-      );
-    }
-
     const { id } = await params;
 
     // Validate ID
     const numericId = Number(id);
     if (!Number.isInteger(numericId) || numericId < 1) {
-      return NextResponse.json(
+      return addSecurityHeaders(NextResponse.json(
         { error: "ID inválido" },
         { status: 400 }
-      );
+      ));
     }
 
-    // Delete favorites first
-    await db.favorite.deleteMany({
-      where: { perfumeId: numericId },
-    });
+    const existing = await db.perfume.findUnique({ where: { id: numericId } });
+    if (!existing) {
+      return addSecurityHeaders(NextResponse.json(
+        { error: `No existe un perfume con ID ${numericId}` },
+        { status: 404 }
+      ));
+    }
 
-    await db.perfume.delete({
-      where: { id: numericId },
-    });
+    // Delete favorites first, then the perfume
+    await db.favorite.deleteMany({ where: { perfumeId: numericId } });
+    await db.perfume.delete({ where: { id: numericId } });
 
-    return NextResponse.json({ success: true });
+    return addSecurityHeaders(NextResponse.json({
+      message: "Perfume eliminado correctamente",
+      deleted: { id: numericId, name: existing.name },
+    }));
   } catch (error) {
     console.error("Error deleting perfume:", error);
-    return NextResponse.json(
+    return addSecurityHeaders(NextResponse.json(
       { error: "Error al eliminar perfume" },
       { status: 500 }
-    );
+    ));
   }
 }

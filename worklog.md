@@ -47,3 +47,31 @@ Stage Summary:
 
 - **Admin user seeded:** jolie@fragrances.com / Jolie$Frag2024!Secure
 - **All API endpoints tested and working**
+
+---
+Task ID: 2
+Agent: Super Z (Main)
+Task: Fix publishing/deployment link failure - Build was failing due to broken API route
+
+Work Log:
+- Explored project structure and identified Next.js 16 + Tailwind + Prisma stack
+- Attempted `bun run build` and found 2 critical build errors in `src/app/api/perfumes/[id]/route.ts`
+- Error 1: Module not found - `@/lib/rate-limit` does not exist (correct module is `@/lib/security`)
+- Error 2: Export `authOptions` does not exist in `@/lib/auth` (project uses custom JWT, not next-auth)
+- File was importing `getServerSession` from `next-auth` which is incompatible with the custom auth system
+- Completely rewrote `src/app/api/perfumes/[id]/route.ts` to use correct imports matching the rest of the codebase:
+  - Replaced `getServerSession(authOptions)` with custom JWT verification (`verifyToken`, `COOKIE_NAME`, `verifyAdminFromDB` from `@/lib/auth`)
+  - Replaced `checkRateLimit, RATE_LIMITS` from `@/lib/rate-limit` with `checkRateLimit, ADMIN_RATE_LIMIT` from `@/lib/security`
+  - Added `addSecurityHeaders` wrapper to all responses (consistent with other API routes)
+  - Fixed rate limit response format from `rateLimitResult.limited` to `!rateLimit.allowed`
+- Build succeeded after fix: `Compiled successfully in 7.5s`
+- Started production server and verified all endpoints work:
+  - GET / returns HTTP 200
+  - GET /api/perfumes returns 149 perfumes correctly
+  - POST /api/auth/login works with admin credentials
+  - GET /api/auth/session properly returns auth state
+
+Stage Summary:
+- **Root cause:** `src/app/api/perfumes/[id]/route.ts` had wrong imports from `next-auth` and non-existent `@/lib/rate-limit` module, causing the entire build to fail
+- **Fix:** Rewrote the file to use the project's custom JWT auth and rate limiting from `@/lib/security`
+- **Result:** Build now compiles successfully and the application is ready for publishing/deployment
