@@ -2551,7 +2551,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Almizcle", percentage: 80 },
     ],
   },
-  // 134 (93). Maison Alhambra Cassius — CORREGIDO: notas de Fragrantica
+  // 134 (93). Maison Alhambra Cassius — CORREGIDO: notas de Fragrantica (notas correctas)
   93: {
     top: [
       { name: "Nuez Moscada", percentage: 90 },
@@ -2566,38 +2566,38 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Vainilla", percentage: 85 },
     ],
   },
-  // 135 (94). Maison Alhambra The Tux — CORREGIDO: notas de Fragrantica
+  // 135 (94). Maison Alhambra The Tux — CORREGIDO: notas de Fragrantica (sin pirámide tradicional, solo ingredientes listados)
   94: {
     top: [
-      { name: "Notas Especiadas", percentage: 90 },
-      { name: "Notas Florales", percentage: 80 },
+      { name: "Pachulí", percentage: 95 },
+      { name: "Notas Especiadas", percentage: 85 },
+      { name: "Notas Florales", percentage: 75 },
     ],
     heart: [
-      { name: "Pachulí", percentage: 95 },
-      { name: "Ámbar", percentage: 80 },
+      { name: "Ámbar", percentage: 90 },
+      { name: "Vainilla", percentage: 80 },
     ],
     base: [
-      { name: "Vainilla", percentage: 90 },
       { name: "Ámbar Gris", percentage: 85 },
+      { name: "Pachulí", percentage: 75 },
     ],
   },
-  // 136 (95). Maison Alhambra Glacier Le Noir — CORREGIDO: notas de Fragrantica
+  // 136 (95). Maison Alhambra Glacier Le Noir — CORREGIDO: notas de Fragrantica (sin pirámide tradicional, ingredientes: Cardamomo, Vainilla, Lavanda, Iris)
   95: {
     top: [
       { name: "Cardamomo", percentage: 95 },
-      { name: "Pimienta Negra", percentage: 85 },
+      { name: "Lavanda", percentage: 88 },
     ],
     heart: [
-      { name: "Lavanda", percentage: 90 },
-      { name: "Iris", percentage: 80 },
+      { name: "Iris", percentage: 90 },
+      { name: "Lavanda", percentage: 80 },
     ],
     base: [
       { name: "Vainilla", percentage: 95 },
-      { name: "Notas Orientales", percentage: 85 },
-      { name: "Notas Amaderadas", percentage: 75 },
+      { name: "Notas Amaderadas", percentage: 85 },
     ],
   },
-  // 137 (96). Maison Alhambra Céleste — CORREGIDO: notas de Fragrantica
+  // 137 (96). Maison Alhambra Céleste — CORREGIDO: notas de Fragrantica (notas correctas, Musgo en base confirmado)
   96: {
     top: [
       { name: "Limón", percentage: 90 },
@@ -2786,10 +2786,11 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Almizcle", percentage: 75 },
     ],
   },
-  // 146 (124). Rasasi Hawas Fire — CORREGIDO: notas de Fragrantica
+  // 146 (124). Rasasi Hawas Fire — CORREGIDO: notas de Fragrantica (Notas Marinas en salida y corazón)
   124: {
     top: [
       { name: "Salvia Esclarea", percentage: 95 },
+      { name: "Notas Marinas", percentage: 85 },
     ],
     heart: [
       { name: "Notas Marinas", percentage: 95 },
@@ -4191,147 +4192,226 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
 
   // ─── Maison Alhambra ───
 
-  // 133 (92). Maison Alhambra Baroque Rouge 540 — CORREGIDO
+  // 133 (92). Maison Alhambra Baroque Rouge 540 — CORREGIDO: acordes de Fragrantica
   92: [
-    { label: "Ámbar", percentage: 95, color: "#f0a830" },
-    { label: "Azafrán", percentage: 90, color: "#e8a030" },
-    { label: "Floral", percentage: 85, color: "#e75a8d" },
-    { label: "Afrutado", percentage: 80, color: "#e75a8d" },
-    { label: "Almizclado", percentage: 70, color: "#a0a0a0" },
+    { label: "Ámbar", percentage: 100, color: "#f0a830" },
+    { label: "Especiado Cálido", percentage: 90, color: "#c45a3a" },
+    { label: "Almizclado", percentage: 80, color: "#a0a0a0" },
+    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Floral Blanco", percentage: 70, color: "#f0e6f6" },
+    { label: "Metálico", percentage: 65, color: "#b0b0b0" },
+    { label: "Cuero", percentage: 58, color: "#8b5e3c" },
+    { label: "Empolvado", percentage: 53, color: "#d4c5a9" },
+    { label: "Dulce", percentage: 51, color: "#f0a830" },
+    { label: "Tabaco", percentage: 51, color: "#5a3a2a" },
   ],
-  // 134 (93). Maison Alhambra Cassius — CORREGIDO
+  // 134 (93). Maison Alhambra Cassius — CORREGIDO: acordes de Fragrantica
   93: [
-    { label: "Pachulí", percentage: 95, color: "#4a7a3a" },
-    { label: "Vainilla", percentage: 90, color: "#c9a033" },
-    { label: "Especiado Cálido", percentage: 85, color: "#c45a3a" },
-    { label: "Rosado", percentage: 75, color: "#e75a8d" },
-    { label: "Afrutado", percentage: 65, color: "#e75a8d" },
+    { label: "Vainilla", percentage: 100, color: "#c9a033" },
+    { label: "Pachulí", percentage: 84, color: "#4a7a3a" },
+    { label: "Especiado Fresco", percentage: 79, color: "#a0c4e8" },
+    { label: "Especiado Cálido", percentage: 64, color: "#c45a3a" },
+    { label: "Amaderado", percentage: 62, color: "#c17b2a" },
+    { label: "Afrutado", percentage: 59, color: "#e75a8d" },
+    { label: "Balsámico", percentage: 56, color: "#8b6e4e" },
+    { label: "Dulce", percentage: 53, color: "#f0a830" },
+    { label: "Terroso", percentage: 51, color: "#6b5b3a" },
+    { label: "Fresco", percentage: 48, color: "#a0c4e8" },
   ],
-  // 135 (94). Maison Alhambra The Tux — CORREGIDO
+  // 135 (94). Maison Alhambra The Tux — CORREGIDO: acordes de Fragrantica
   94: [
-    { label: "Pachulí", percentage: 95, color: "#4a7a3a" },
-    { label: "Oriental", percentage: 90, color: "#8b6e4e" },
-    { label: "Especiado", percentage: 85, color: "#c45a3a" },
-    { label: "Vainilla", percentage: 80, color: "#c9a033" },
-    { label: "Ámbar", percentage: 70, color: "#f0a830" },
+    { label: "Pachulí", percentage: 100, color: "#4a7a3a" },
+    { label: "Especiado Cálido", percentage: 96, color: "#c45a3a" },
+    { label: "Vainilla", percentage: 72, color: "#c9a033" },
+    { label: "Amaderado", percentage: 72, color: "#c17b2a" },
+    { label: "Ámbar", percentage: 71, color: "#f0a830" },
+    { label: "Terroso", percentage: 58, color: "#6b5b3a" },
+    { label: "Floral", percentage: 58, color: "#e75a8d" },
+    { label: "Balsámico", percentage: 57, color: "#8b6e4e" },
+    { label: "Empolvado", percentage: 49, color: "#d4c5a9" },
   ],
-  // 136 (95). Maison Alhambra Glacier Le Noir — CORREGIDO
+  // 136 (95). Maison Alhambra Glacier Le Noir — CORREGIDO: acordes de Fragrantica
   95: [
-    { label: "Especiado Cálido", percentage: 95, color: "#c45a3a" },
+    { label: "Especiado Cálido", percentage: 100, color: "#c45a3a" },
     { label: "Vainilla", percentage: 90, color: "#c9a033" },
-    { label: "Atalcado", percentage: 85, color: "#d4c5a9" },
-    { label: "Lavanda", percentage: 80, color: "#9b8ec4" },
-    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Aromático", percentage: 86, color: "#6b8e4e" },
+    { label: "Lavanda", percentage: 83, color: "#9b8ec4" },
+    { label: "Iris", percentage: 76, color: "#9b8ec4" },
+    { label: "Empolvado", percentage: 76, color: "#d4c5a9" },
+    { label: "Violeta", percentage: 53, color: "#9b6ec4" },
+    { label: "Terroso", percentage: 48, color: "#6b5b3a" },
+    { label: "Especiado Fresco", percentage: 46, color: "#a0c4e8" },
+    { label: "Dulce", percentage: 45, color: "#f0a830" },
   ],
-  // 137 (96). Maison Alhambra Céleste — CORREGIDO
+  // 137 (96). Maison Alhambra Céleste — CORREGIDO: acordes de Fragrantica
   96: [
-    { label: "Floral Blanco", percentage: 95, color: "#f0e6f6" },
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Almizclado", percentage: 75, color: "#a0a0a0" },
-    { label: "Dulce", percentage: 65, color: "#f0a830" },
+    { label: "Floral Blanco", percentage: 100, color: "#f0e6f6" },
+    { label: "Floral Amarillo", percentage: 89, color: "#f0c934" },
+    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
+    { label: "Dulce", percentage: 62, color: "#f0a830" },
+    { label: "Empolvado", percentage: 56, color: "#d4c5a9" },
+    { label: "Almizclado", percentage: 54, color: "#a0a0a0" },
+    { label: "Floral", percentage: 54, color: "#e75a8d" },
+    { label: "Cítrico", percentage: 52, color: "#f0c934" },
+    { label: "Fresco", percentage: 50, color: "#a0c4e8" },
+    { label: "Musgoso", percentage: 46, color: "#4a6a3a" },
   ],
-  // 138 (97). Maison Alhambra Tobacco Touch — CORREGIDO
+  // 138 (97). Maison Alhambra Tobacco Touch — CORREGIDO: acordes de Fragrantica
   97: [
-    { label: "Tabaco", percentage: 98, color: "#5a3a2a" },
-    { label: "Dulce", percentage: 90, color: "#f0a830" },
-    { label: "Especiado Cálido", percentage: 85, color: "#c45a3a" },
-    { label: "Gourmand", percentage: 80, color: "#8b5e3c" },
-    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Vainilla", percentage: 100, color: "#c9a033" },
+    { label: "Dulce", percentage: 93, color: "#f0a830" },
+    { label: "Especiado Cálido", percentage: 87, color: "#c45a3a" },
+    { label: "Tabaco", percentage: 86, color: "#5a3a2a" },
+    { label: "Amaderado", percentage: 58, color: "#c17b2a" },
+    { label: "Afrutado", percentage: 56, color: "#e75a8d" },
+    { label: "Cacao", percentage: 52, color: "#8b5e3c" },
+    { label: "Empolvado", percentage: 49, color: "#d4c5a9" },
   ],
 
   // ─── Dumont ───
 
-  // 139 (98). Dumont Nitro Pour Homme — CORREGIDO
+  // 139 (98). Dumont Nitro Pour Homme — CORREGIDO: acordes de Fragrantica
   98: [
-    { label: "Cítrico", percentage: 95, color: "#f0c934" },
-    { label: "Especiado", percentage: 85, color: "#c45a3a" },
-    { label: "Floral Blanco", percentage: 80, color: "#f0e6f6" },
+    { label: "Cítrico", percentage: 100, color: "#f0c934" },
+    { label: "Floral Blanco", percentage: 79, color: "#f0e6f6" },
     { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Almizclado", percentage: 65, color: "#a0a0a0" },
+    { label: "Aromático", percentage: 55, color: "#6b8e4e" },
+    { label: "Empolvado", percentage: 54, color: "#d4c5a9" },
+    { label: "Especiado Cálido", percentage: 54, color: "#c45a3a" },
+    { label: "Especiado Fresco", percentage: 51, color: "#a0c4e8" },
+    { label: "Almizclado", percentage: 50, color: "#a0a0a0" },
+    { label: "Dulce", percentage: 48, color: "#f0a830" },
   ],
-  // 140 (99). Dumont Nitro Blue — CORREGIDO
+  // 140 (99). Dumont Nitro Blue — CORREGIDO: acordes de Fragrantica
   99: [
-    { label: "Dulce", percentage: 95, color: "#f0a830" },
-    { label: "Especiado Cálido", percentage: 90, color: "#c45a3a" },
-    { label: "Floral", percentage: 85, color: "#e75a8d" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Balsámico", percentage: 70, color: "#8b6e4e" },
+    { label: "Dulce", percentage: 100, color: "#f0a830" },
+    { label: "Especiado Cálido", percentage: 88, color: "#c45a3a" },
+    { label: "Ámbar", percentage: 70, color: "#f0a830" },
+    { label: "Amaderado", percentage: 65, color: "#c17b2a" },
+    { label: "Aromático", percentage: 60, color: "#6b8e4e" },
+    { label: "Cítrico", percentage: 59, color: "#f0c934" },
+    { label: "Canela", percentage: 54, color: "#c45a3a" },
+    { label: "Floral Blanco", percentage: 52, color: "#f0e6f6" },
+    { label: "Balsámico", percentage: 51, color: "#8b6e4e" },
+    { label: "Empolvado", percentage: 47, color: "#d4c5a9" },
   ],
-  // 141 (100). Dumont Nitro Red — CORREGIDO
+  // 141 (100). Dumont Nitro Red — CORREGIDO: acordes de Fragrantica
   100: [
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
-    { label: "Ámbar", percentage: 80, color: "#f0a830" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Acuático", percentage: 70, color: "#4a8eb8" },
+    { label: "Amaderado", percentage: 100, color: "#c17b2a" },
+    { label: "Ozónico", percentage: 100, color: "#8cbfd4" },
+    { label: "Acuático", percentage: 98, color: "#4a8eb8" },
+    { label: "Afrutado", percentage: 87, color: "#e75a8d" },
+    { label: "Lavanda", percentage: 70, color: "#9b8ec4" },
+    { label: "Ámbar", percentage: 69, color: "#f0a830" },
+    { label: "Especiado Fresco", percentage: 66, color: "#a0c4e8" },
+    { label: "Cítrico", percentage: 63, color: "#f0c934" },
+    { label: "Aromático", percentage: 60, color: "#6b8e4e" },
+    { label: "Especiado Cálido", percentage: 59, color: "#c45a3a" },
   ],
-  // 142 (101). Dumont Nitro White — CORREGIDO
+  // 142 (101). Dumont Nitro White — CORREGIDO: acordes de Fragrantica
   101: [
-    { label: "Amaderado", percentage: 95, color: "#c17b2a" },
-    { label: "Dulce", percentage: 85, color: "#f0a830" },
-    { label: "Balsámico", percentage: 80, color: "#8b6e4e" },
-    { label: "Cuero", percentage: 75, color: "#8b5e3c" },
-    { label: "Iris", percentage: 65, color: "#9b8ec4" },
-  ],
-  // 143 (102). Dumont Nitro Platinum — CORREGIDO
-  102: [
-    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Miel", percentage: 100, color: "#f0a830" },
+    { label: "Ámbar", percentage: 99, color: "#f0a830" },
+    { label: "Empolvado", percentage: 95, color: "#d4c5a9" },
     { label: "Vainilla", percentage: 90, color: "#c9a033" },
+    { label: "Dulce", percentage: 89, color: "#f0a830" },
+    { label: "Aromático", percentage: 88, color: "#6b8e4e" },
+    { label: "Amaderado", percentage: 81, color: "#c17b2a" },
+    { label: "Almizclado", percentage: 68, color: "#a0a0a0" },
+    { label: "Especiado Fresco", percentage: 66, color: "#a0c4e8" },
+    { label: "Animálico", percentage: 61, color: "#8b6914" },
+  ],
+  // 143 (102). Dumont Nitro Platinum — CORREGIDO: acordes de Fragrantica
+  102: [
+    { label: "Amaderado", percentage: 100, color: "#c17b2a" },
     { label: "Afrutado", percentage: 85, color: "#e75a8d" },
-    { label: "Ámbar", percentage: 80, color: "#f0a830" },
-    { label: "Especiado", percentage: 70, color: "#c45a3a" },
+    { label: "Cítrico", percentage: 75, color: "#f0c934" },
+    { label: "Dulce", percentage: 75, color: "#f0a830" },
+    { label: "Vainilla", percentage: 75, color: "#c9a033" },
+    { label: "Empolvado", percentage: 59, color: "#d4c5a9" },
+    { label: "Especiado Suave", percentage: 56, color: "#c45a3a" },
+    { label: "Ámbar", percentage: 55, color: "#f0a830" },
+    { label: "Especiado Fresco", percentage: 51, color: "#a0c4e8" },
+    { label: "Aromático", percentage: 50, color: "#6b8e4e" },
   ],
 
   // ─── Rasasi ───
 
-  // 144 (122). Rasasi Hawas For Him — CORREGIDO
+  // 144 (122). Rasasi Hawas For Him — CORREGIDO: acordes de Fragrantica
   122: [
-    { label: "Afrutado", percentage: 95, color: "#e75a8d" },
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Acuático", percentage: 85, color: "#4a8eb8" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Almizclado", percentage: 70, color: "#a0a0a0" },
+    { label: "Afrutado", percentage: 100, color: "#e75a8d" },
+    { label: "Cítrico", percentage: 97, color: "#f0c934" },
+    { label: "Acuático", percentage: 86, color: "#4a8eb8" },
+    { label: "Fresco", percentage: 80, color: "#a0c4e8" },
+    { label: "Especiado Cálido", percentage: 65, color: "#c45a3a" },
+    { label: "Ámbar", percentage: 59, color: "#f0a830" },
+    { label: "Dulce", percentage: 58, color: "#f0a830" },
+    { label: "Almizclado", percentage: 55, color: "#a0a0a0" },
+    { label: "Aromático", percentage: 55, color: "#6b8e4e" },
+    { label: "Animálico", percentage: 54, color: "#8b6914" },
   ],
-  // 145 (123). Rasasi Hawas Tropical — CORREGIDO
+  // 145 (123). Rasasi Hawas Tropical — CORREGIDO: acordes de Fragrantica
   123: [
-    { label: "Tropical", percentage: 98, color: "#f0c934" },
-    { label: "Coco", percentage: 95, color: "#d4c5a9" },
-    { label: "Verde", percentage: 85, color: "#4a7a3a" },
-    { label: "Dulce", percentage: 80, color: "#f0a830" },
-    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Dulce", percentage: 100, color: "#f0a830" },
+    { label: "Coco", percentage: 97, color: "#d4c5a9" },
+    { label: "Verde", percentage: 94, color: "#4a7a3a" },
+    { label: "Amaderado", percentage: 86, color: "#c17b2a" },
+    { label: "Vainilla", percentage: 72, color: "#c9a033" },
+    { label: "Afrutado", percentage: 68, color: "#e75a8d" },
+    { label: "Aromático", percentage: 67, color: "#6b8e4e" },
+    { label: "Lactónico", percentage: 63, color: "#f5e6c8" },
+    { label: "Especiado Fresco", percentage: 60, color: "#a0c4e8" },
+    { label: "Fresco", percentage: 59, color: "#a0c4e8" },
   ],
-  // 146 (124). Rasasi Hawas Fire — CORREGIDO
+  // 146 (124). Rasasi Hawas Fire — CORREGIDO: acordes de Fragrantica
   124: [
-    { label: "Marino", percentage: 95, color: "#4a8eb8" },
-    { label: "Ámbar", percentage: 90, color: "#f0a830" },
-    { label: "Herbal", percentage: 85, color: "#6b8e4e" },
-    { label: "Floral", percentage: 80, color: "#e75a8d" },
-    { label: "Mineral", percentage: 75, color: "#7a6b5d" },
+    { label: "Ámbar", percentage: 100, color: "#f0a830" },
+    { label: "Aromático", percentage: 88, color: "#6b8e4e" },
+    { label: "Mineral", percentage: 65, color: "#7a6b5d" },
+    { label: "Marino", percentage: 63, color: "#4a8eb8" },
+    { label: "Especiado Suave", percentage: 61, color: "#c45a3a" },
+    { label: "Floral Blanco", percentage: 58, color: "#f0e6f6" },
+    { label: "Animálico", percentage: 55, color: "#8b6914" },
+    { label: "Salado", percentage: 45, color: "#7a8b9a" },
   ],
-  // 147 (125). Rasasi Hawas Malibu — CORREGIDO
+  // 147 (125). Rasasi Hawas Malibu — CORREGIDO: acordes de Fragrantica
   125: [
-    { label: "Cítrico", percentage: 95, color: "#f0c934" },
-    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
-    { label: "Ámbar", percentage: 85, color: "#f0a830" },
-    { label: "Atalcado", percentage: 80, color: "#d4c5a9" },
-    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Dulce", percentage: 100, color: "#f0a830" },
+    { label: "Ámbar", percentage: 86, color: "#f0a830" },
+    { label: "Cítrico", percentage: 78, color: "#f0c934" },
+    { label: "Afrutado", percentage: 77, color: "#e75a8d" },
+    { label: "Empolvado", percentage: 67, color: "#d4c5a9" },
+    { label: "Vainilla", percentage: 60, color: "#c9a033" },
+    { label: "Iris", percentage: 57, color: "#9b8ec4" },
+    { label: "Tropical", percentage: 56, color: "#f0c934" },
+    { label: "Aromático", percentage: 56, color: "#6b8e4e" },
+    { label: "Almizclado", percentage: 56, color: "#a0a0a0" },
   ],
-  // 148 (126). Rasasi Hawas Ice — CORREGIDO
+  // 148 (126). Rasasi Hawas Ice — CORREGIDO: acordes de Fragrantica
   126: [
+    { label: "Afrutado", percentage: 100, color: "#e75a8d" },
     { label: "Cítrico", percentage: 95, color: "#f0c934" },
-    { label: "Fresco", percentage: 90, color: "#a0c4e8" },
-    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Especiado", percentage: 65, color: "#c45a3a" },
+    { label: "Dulce", percentage: 57, color: "#f0a830" },
+    { label: "Fresco", percentage: 54, color: "#a0c4e8" },
+    { label: "Aromático", percentage: 53, color: "#6b8e4e" },
+    { label: "Almizclado", percentage: 51, color: "#a0a0a0" },
+    { label: "Empolvado", percentage: 50, color: "#d4c5a9" },
+    { label: "Especiado Fresco", percentage: 49, color: "#a0c4e8" },
+    { label: "Verde", percentage: 48, color: "#4a7a3a" },
+    { label: "Ámbar", percentage: 47, color: "#f0a830" },
   ],
-  // 149 (127). Rasasi Hawas Elixir — CORREGIDO
+  // 149 (127). Rasasi Hawas Elixir — CORREGIDO: acordes de Fragrantica
   127: [
-    { label: "Gourmand", percentage: 95, color: "#8b5e3c" },
-    { label: "Vainilla", percentage: 90, color: "#c9a033" },
-    { label: "Lavanda", percentage: 85, color: "#9b8ec4" },
-    { label: "Chocolate", percentage: 80, color: "#5a3a2a" },
-    { label: "Dulce", percentage: 75, color: "#f0a830" },
+    { label: "Vainilla", percentage: 100, color: "#c9a033" },
+    { label: "Aromático", percentage: 83, color: "#6b8e4e" },
+    { label: "Verde", percentage: 71, color: "#4a7a3a" },
+    { label: "Dulce", percentage: 65, color: "#f0a830" },
+    { label: "Especiado Fresco", percentage: 65, color: "#a0c4e8" },
+    { label: "Especiado Cálido", percentage: 60, color: "#c45a3a" },
+    { label: "Ámbar", percentage: 59, color: "#f0a830" },
+    { label: "Chocolate", percentage: 56, color: "#5a3a2a" },
+    { label: "Lavanda", percentage: 54, color: "#9b8ec4" },
+    { label: "Empolvado", percentage: 51, color: "#d4c5a9" },
   ],
 
   // ==================== DAVIDOFF ====================

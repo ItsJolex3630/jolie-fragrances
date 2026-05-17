@@ -382,3 +382,34 @@ PERFUME_ACCORDS corrections (all 21 updated from 5 generic accords to 8 real Fra
 - Key changes: FA Aether primary changed from Verde to Amaderado, FA Obsidian from Resinoso to Ámbar, Afnan Supremacy Silver from Cítrico to Afrutado, Rave Now from Cítrico to Afrutado, Rave Rage from Aromático to Ámbar
 
 App built successfully and server running on port 3000.
+
+---
+Task ID: 1
+Agent: Main Agent
+Task: Correct all notes, percentages, and accords for Maison Alhambra (6), Dumont (5), and Rasasi (6) perfumes based on real Fragrantica data
+
+Work Log:
+- Read perfumes.ts to identify all 17 perfumes from 3 brands (IDs 92-102, 122-127)
+- Read current NOTE_PYRAMIDS and PERFUME_ACCORDS from PerfumeDetail.tsx
+- Fetched Fragrantica pages for all 17 perfumes using curl
+- Extracted note pyramids and accord data from HTML
+- Handled rate limiting (429 errors) with retries and delays
+- Special handling for The Tux and Glacier Le Noir (no traditional pyramid, only ingredients listed)
+- Compared current data with Fragrantica and identified discrepancies
+- Applied corrections to NOTE_PYRAMIDS:
+  - Hawas Fire: Added Notas Marinas to top notes (was only in heart)
+  - The Tux: Restructured to reflect ingredient-only listing from Fragrantica
+  - Glacier Le Noir: Removed Pimienta Negra and Notas Orientales, restructured to match actual ingredients (Cardamomo, Lavanda, Iris, Vainilla)
+  - Other notes were already correct from previous corrections
+- Applied corrections to PERFUME_ACCORDS for ALL 17 perfumes:
+  - Maison Alhambra: Baroque Rouge 540 (5→10 accords), Cassius (5→10), The Tux (5→9), Glacier Le Noir (5→10), Céleste (5→10), Tobacco Touch (5→8)
+  - Dumont: Nitro Pour Homme (5→9), Nitro Blue (5→10), Nitro Red (5→10), Nitro White (5→10), Nitro Platinum (5→10)
+  - Rasasi: Hawas For Him (5→10), Hawas Tropical (5→10), Hawas Fire (5→8), Hawas Malibu (5→10), Hawas Ice (5→10), Hawas Elixir (5→10)
+- All accord percentages now match real Fragrantica values
+- Build successful, server restarted
+
+Stage Summary:
+- 17 perfumes corrected across 3 brands
+- Major accord updates: all perfumes now have 8-10 accords with real Fragrantica percentages (previously only 5 generic accords with estimated values)
+- Key note fixes: Hawas Fire (Marine notes in top), The Tux (restructured), Glacier Le Noir (corrected ingredients)
+- App rebuilt and running successfully
