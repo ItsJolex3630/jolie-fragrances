@@ -2946,6 +2946,129 @@ export const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Ámbar", percentage: 95 },
     ],
   },
+
+  // ─── JEAN PAUL GAULTIER ───
+  // 159. Le Male Le Parfum — NOTAS DE FRAGRANTICA
+  159: {
+    top: [
+      { name: "Cardamomo", percentage: 95 },
+    ],
+    heart: [
+      { name: "Lavanda", percentage: 92 },
+      { name: "Iris", percentage: 78 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 95 },
+      { name: "Notas Orientales", percentage: 80 },
+      { name: "Notas Amaderadas", percentage: 68 },
+    ],
+  },
+  // 160. Le Beau Le Parfum — NOTAS DE FRAGRANTICA
+  160: {
+    top: [
+      { name: "Piña", percentage: 90 },
+      { name: "Iris", percentage: 82 },
+      { name: "Jengibre", percentage: 75 },
+      { name: "Ciprés", percentage: 65 },
+    ],
+    heart: [
+      { name: "Coco", percentage: 92 },
+      { name: "Notas Amaderadas", percentage: 72 },
+    ],
+    base: [
+      { name: "Haba Tonka", percentage: 90 },
+      { name: "Sándalo", percentage: 82 },
+      { name: "Ámbar", percentage: 75 },
+      { name: "Ámbar Gris", percentage: 68 },
+    ],
+  },
+  // 161. Le Male Elixir — NOTAS DE FRAGRANTICA
+  161: {
+    top: [
+      { name: "Lavanda", percentage: 92 },
+      { name: "Menta", percentage: 85 },
+    ],
+    heart: [
+      { name: "Vainilla", percentage: 95 },
+      { name: "Benjuí", percentage: 78 },
+    ],
+    base: [
+      { name: "Miel", percentage: 92 },
+      { name: "Haba Tonka", percentage: 85 },
+      { name: "Tabaco", percentage: 80 },
+    ],
+  },
+  // 162. Scandal Pour Homme — NOTAS DE FRAGRANTICA
+  162: {
+    top: [
+      { name: "Mandarina", percentage: 92 },
+      { name: "Salvia Esclarea", percentage: 78 },
+    ],
+    heart: [
+      { name: "Caramelo", percentage: 95 },
+      { name: "Haba Tonka", percentage: 82 },
+    ],
+    base: [
+      { name: "Vetiver", percentage: 88 },
+    ],
+  },
+  // 163. Le Beau — NOTAS DE FRAGRANTICA
+  163: {
+    top: [
+      { name: "Bergamota", percentage: 92 },
+    ],
+    heart: [
+      { name: "Coco", percentage: 95 },
+    ],
+    base: [
+      { name: "Haba Tonka", percentage: 95 },
+    ],
+  },
+  // 164. Scandal (Mujer) — NOTAS DE FRAGRANTICA
+  164: {
+    top: [
+      { name: "Naranja Sangre", percentage: 92 },
+      { name: "Mandarina", percentage: 85 },
+    ],
+    heart: [
+      { name: "Miel", percentage: 95 },
+      { name: "Gardenia", percentage: 82 },
+      { name: "Flor de Azahar", percentage: 75 },
+      { name: "Jazmín", percentage: 68 },
+      { name: "Melocotón", percentage: 60 },
+    ],
+    base: [
+      { name: "Cera de Abeja", percentage: 88 },
+      { name: "Caramelo", percentage: 82 },
+      { name: "Pachulí", percentage: 72 },
+      { name: "Regaliz", percentage: 62 },
+    ],
+  },
+  // 165. Scandal Pour Homme Le Parfum — NOTAS DE FRAGRANTICA
+  165: {
+    top: [
+      { name: "Geranio", percentage: 92 },
+    ],
+    heart: [
+      { name: "Haba Tonka", percentage: 95 },
+    ],
+    base: [
+      { name: "Sándalo", percentage: 95 },
+    ],
+  },
+  // 166. Scandal Le Parfum (Mujer) — NOTAS DE FRAGRANTICA
+  166: {
+    top: [
+      { name: "Jazmín", percentage: 95 },
+    ],
+    heart: [
+      { name: "Caramelo", percentage: 90 },
+      { name: "Sal", percentage: 72 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 95 },
+    ],
+  },
 };
 
 // ─── Accords data ───
@@ -4715,6 +4838,105 @@ export const PERFUME_ACCORDS: Record<number, { label: string; percentage: number
     { label: "Tropical", percentage: 22, color: "#e8a040" },
     { label: "Vainilla", percentage: 22, color: "#c9a033" },
     { label: "Animálico", percentage: 20, color: "#8b6914" },
+  ],
+
+  // ─── JEAN PAUL GAULTIER ───
+  // 159. Le Male Le Parfum — ACUERDOS DE FRAGRANTICA
+  159: [
+    { label: "Cálido Especiado", percentage: 100, color: "#c45a3a" },
+    { label: "Avainillado", percentage: 88, color: "#c9a033" },
+    { label: "Lavanda", percentage: 82, color: "#9b8ec4" },
+    { label: "Aromático", percentage: 75, color: "#6b8e4e" },
+    { label: "Atalcado", percentage: 68, color: "#d4c5a9" },
+    { label: "Iris", percentage: 62, color: "#9b8ec4" },
+    { label: "Amaderado", percentage: 55, color: "#c17b2a" },
+    { label: "Ámbar", percentage: 50, color: "#f0a830" },
+    { label: "Violeta", percentage: 42, color: "#9b6ec4" },
+  ],
+  // 160. Le Beau Le Parfum — ACUERDOS DE FRAGRANTICA
+  160: [
+    { label: "Dulce", percentage: 100, color: "#f0a830" },
+    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
+    { label: "Coco", percentage: 82, color: "#f5e6c8" },
+    { label: "Ámbar", percentage: 75, color: "#f0a830" },
+    { label: "Avainillado", percentage: 72, color: "#c9a033" },
+    { label: "Tropical", percentage: 65, color: "#e8a040" },
+    { label: "Afrutado", percentage: 58, color: "#e75a8d" },
+    { label: "Atalcado", percentage: 52, color: "#d4c5a9" },
+    { label: "Iris", percentage: 48, color: "#9b8ec4" },
+    { label: "Lactónico", percentage: 42, color: "#f5e6c8" },
+  ],
+  // 161. Le Male Elixir — ACUERDOS DE FRAGRANTICA
+  161: [
+    { label: "Avainillado", percentage: 100, color: "#c9a033" },
+    { label: "Dulce", percentage: 92, color: "#f0a830" },
+    { label: "Miel", percentage: 88, color: "#e8a040" },
+    { label: "Aromático", percentage: 78, color: "#6b8e4e" },
+    { label: "Ámbar", percentage: 72, color: "#f0a830" },
+    { label: "Lavanda", percentage: 65, color: "#9b8ec4" },
+    { label: "Tabaco", percentage: 58, color: "#8b6e4e" },
+    { label: "Verde", percentage: 52, color: "#6b8e4e" },
+    { label: "Fresco Especiado", percentage: 48, color: "#a0c4e8" },
+    { label: "Atalcado", percentage: 42, color: "#d4c5a9" },
+  ],
+  // 162. Scandal Pour Homme — ACUERDOS DE FRAGRANTICA
+  162: [
+    { label: "Caramelo", percentage: 100, color: "#c9a033" },
+    { label: "Aromático", percentage: 82, color: "#6b8e4e" },
+    { label: "Dulce", percentage: 78, color: "#f0a830" },
+    { label: "Cítrico", percentage: 72, color: "#f0c934" },
+    { label: "Avainillado", percentage: 65, color: "#c9a033" },
+    { label: "Ámbar", percentage: 58, color: "#f0a830" },
+    { label: "Especiado Suave", percentage: 52, color: "#c45a3a" },
+    { label: "Amaderado", percentage: 45, color: "#c17b2a" },
+  ],
+  // 163. Le Beau — ACUERDOS DE FRAGRANTICA
+  163: [
+    { label: "Coco", percentage: 100, color: "#f5e6c8" },
+    { label: "Avainillado", percentage: 82, color: "#c9a033" },
+    { label: "Dulce", percentage: 78, color: "#f0a830" },
+    { label: "Cítrico", percentage: 65, color: "#f0c934" },
+    { label: "Lactónico", percentage: 58, color: "#f5e6c8" },
+    { label: "Aromático", percentage: 52, color: "#6b8e4e" },
+    { label: "Ámbar", percentage: 48, color: "#f0a830" },
+    { label: "Tropical", percentage: 42, color: "#e8a040" },
+    { label: "Fresco Especiado", percentage: 38, color: "#a0c4e8" },
+  ],
+  // 164. Scandal (Mujer) — ACUERDOS DE FRAGRANTICA
+  164: [
+    { label: "Miel", percentage: 100, color: "#e8a040" },
+    { label: "Dulce", percentage: 88, color: "#f0a830" },
+    { label: "Floral Blanco", percentage: 78, color: "#e75a8d" },
+    { label: "Cítrico", percentage: 72, color: "#f0c934" },
+    { label: "Caramelo", percentage: 68, color: "#c9a033" },
+    { label: "Animálico", percentage: 58, color: "#8b6914" },
+    { label: "Cera de Abeja", percentage: 52, color: "#e8c840" },
+    { label: "Pachulí", percentage: 48, color: "#6b8e4e" },
+    { label: "Floral", percentage: 42, color: "#e75a8d" },
+    { label: "Amaderado", percentage: 35, color: "#c17b2a" },
+  ],
+  // 165. Scandal Pour Homme Le Parfum — ACUERDOS DE FRAGRANTICA
+  165: [
+    { label: "Aromático", percentage: 100, color: "#6b8e4e" },
+    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
+    { label: "Avainillado", percentage: 78, color: "#c9a033" },
+    { label: "Cálido Especiado", percentage: 72, color: "#c45a3a" },
+    { label: "Fresco Especiado", percentage: 65, color: "#a0c4e8" },
+    { label: "Ámbar", percentage: 58, color: "#f0a830" },
+    { label: "Dulce", percentage: 52, color: "#f0a830" },
+    { label: "Atalcado", percentage: 48, color: "#d4c5a9" },
+    { label: "Rosado", percentage: 42, color: "#e75a8d" },
+    { label: "Herbal", percentage: 38, color: "#6b8e4e" },
+  ],
+  // 166. Scandal Le Parfum (Mujer) — ACUERDOS DE FRAGRANTICA
+  166: [
+    { label: "Caramelo", percentage: 100, color: "#c9a033" },
+    { label: "Avainillado", percentage: 88, color: "#c9a033" },
+    { label: "Floral Blanco", percentage: 78, color: "#e75a8d" },
+    { label: "Dulce", percentage: 72, color: "#f0a830" },
+    { label: "Salado", percentage: 65, color: "#a0c4e8" },
+    { label: "Atalcado", percentage: 55, color: "#d4c5a9" },
+    { label: "Balsámico", percentage: 45, color: "#8b6e4e" },
   ],
 };
 

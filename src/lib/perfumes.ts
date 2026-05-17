@@ -257,6 +257,16 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   155: ["Acuático", "Amaderado"], // Cool Water
   156: ["Floral", "Acuático"], // Cool Water Woman
   157: ["Ámbar", "Cítrico"], // Cool Water Intense
+
+  // ==================== JEAN PAUL GAULTIER ====================
+  159: ["Dulce", "Especiado"], // Le Male Le Parfum
+  160: ["Dulce", "Amaderado"], // Le Beau Le Parfum
+  161: ["Dulce", "Ámbar"], // Le Male Elixir
+  162: ["Dulce", "Cítrico"], // Scandal Pour Homme
+  163: ["Dulce", "Amaderado"], // Le Beau
+  164: ["Dulce", "Floral"], // Scandal
+  165: ["Amaderado", "Dulce"], // Scandal Pour Homme Le Parfum
+  166: ["Dulce", "Floral"], // Scandal Le Parfum
 };
 
 export type Brand =
@@ -269,7 +279,8 @@ export type Brand =
   | "Maison Alhambra"
   | "Dumont"
   | "Rasasi"
-  | "Davidoff";
+  | "Davidoff"
+  | "Jean Paul Gaultier";
 
 export interface Perfume {
   id: number;
@@ -296,6 +307,7 @@ export const BRANDS: Brand[] = [
   "Dumont",
   "Rasasi",
   "Davidoff",
+  "Jean Paul Gaultier",
 ];
 
 export const GENDERS: Gender[] = ["Dama", "Caballero", "Unisex"];
@@ -311,6 +323,7 @@ export const BRAND_SLUGS: Record<Brand, string> = {
   Dumont: "Dumont",
   Rasasi: "Rasasi",
   Davidoff: "Davidoff",
+  "Jean Paul Gaultier": "Jean-Paul-Gaultier",
 };
 
 export function getImageUrl(fragranticaId: number): string {
@@ -1902,5 +1915,87 @@ export const perfumes: Perfume[] = [
     fragranticaId: 55266,
     brandSlug: "Davidoff",
     perfumeSlug: "Cool-Water-Intense",
+  },
+
+  // ==================== JEAN PAUL GAULTIER ====================
+  {
+    id: 159,
+    name: "Le Male Le Parfum",
+    brand: "Jean Paul Gaultier",
+    gender: "Caballero",
+    size: "125ml",
+    fragranticaId: 61856,
+    brandSlug: "Jean-Paul-Gaultier",
+    perfumeSlug: "Le-Male-Le-Parfum",
+  },
+  {
+    id: 160,
+    name: "Le Beau Le Parfum",
+    brand: "Jean Paul Gaultier",
+    gender: "Caballero",
+    size: "125ml",
+    fragranticaId: 72158,
+    brandSlug: "Jean-Paul-Gaultier",
+    perfumeSlug: "Le-Beau-Le-Parfum",
+  },
+  {
+    id: 161,
+    name: "Le Male Elixir",
+    brand: "Jean Paul Gaultier",
+    gender: "Caballero",
+    size: "125ml",
+    fragranticaId: 81642,
+    brandSlug: "Jean-Paul-Gaultier",
+    perfumeSlug: "Le-Male-Elixir",
+  },
+  {
+    id: 162,
+    name: "Scandal Pour Homme",
+    brand: "Jean Paul Gaultier",
+    gender: "Caballero",
+    size: "100ml",
+    fragranticaId: 68074,
+    brandSlug: "Jean-Paul-Gaultier",
+    perfumeSlug: "Scandal-Pour-Homme",
+  },
+  {
+    id: 163,
+    name: "Le Beau",
+    brand: "Jean Paul Gaultier",
+    gender: "Caballero",
+    size: "125ml",
+    fragranticaId: 55785,
+    brandSlug: "Jean-Paul-Gaultier",
+    perfumeSlug: "Le-Beau",
+  },
+  {
+    id: 164,
+    name: "Scandal",
+    brand: "Jean Paul Gaultier",
+    gender: "Dama",
+    size: "80ml",
+    fragranticaId: 45651,
+    brandSlug: "Jean-Paul-Gaultier",
+    perfumeSlug: "Scandal",
+  },
+  {
+    id: 165,
+    name: "Scandal Pour Homme Le Parfum",
+    brand: "Jean Paul Gaultier",
+    gender: "Caballero",
+    size: "100ml",
+    fragranticaId: 74915,
+    brandSlug: "Jean-Paul-Gaultier",
+    perfumeSlug: "Scandal-Pour-Homme-Le-Parfum",
+  },
+  {
+    id: 166,
+    name: "Scandal Le Parfum",
+    brand: "Jean Paul Gaultier",
+    gender: "Dama",
+    size: "80ml",
+    fragranticaId: 74914,
+    brandSlug: "Jean-Paul-Gaultier",
+    perfumeSlug: "Scandal-Le-Parfum",
   },
 ];
