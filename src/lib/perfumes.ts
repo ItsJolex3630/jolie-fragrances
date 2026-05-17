@@ -251,6 +251,11 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   125: ["Acuático", "Frutal"], // Hawas Malibu
   126: ["Acuático", "Cítrico"], // Hawas Ice
   127: ["Ámbar", "Amaderado"], // Hawas Elixir
+
+  // ==================== DAVIDOFF ====================
+  155: ["Acuático", "Amaderado"], // Cool Water
+  156: ["Floral", "Acuático"], // Cool Water Woman
+  157: ["Cítrico", "Amaderado"], // Cool Water Intense
 };
 
 export type Brand =
@@ -262,7 +267,8 @@ export type Brand =
   | "Rave"
   | "Maison Alhambra"
   | "Dumont"
-  | "Rasasi";
+  | "Rasasi"
+  | "Davidoff";
 
 export interface Perfume {
   id: number;
@@ -288,6 +294,7 @@ export const BRANDS: Brand[] = [
   "Maison Alhambra",
   "Dumont",
   "Rasasi",
+  "Davidoff",
 ];
 
 export const GENDERS: Gender[] = ["Dama", "Caballero", "Unisex"];
@@ -302,6 +309,7 @@ export const BRAND_SLUGS: Record<Brand, string> = {
   "Maison Alhambra": "Maison-Alhambra",
   Dumont: "Dumont",
   Rasasi: "Rasasi",
+  Davidoff: "Davidoff",
 };
 
 export function getImageUrl(fragranticaId: number): string {
@@ -1851,5 +1859,37 @@ export const perfumes: Perfume[] = [
     fragranticaId: 110808,
     brandSlug: "Rasasi",
     perfumeSlug: "Hawas-Elixir",
+  },
+
+  // ==================== DAVIDOFF ====================
+  {
+    id: 155,
+    name: "Cool Water",
+    brand: "Davidoff",
+    gender: "Caballero",
+    size: "125ml",
+    fragranticaId: 536,
+    brandSlug: "Davidoff",
+    perfumeSlug: "Cool-Water",
+  },
+  {
+    id: 156,
+    name: "Cool Water Woman",
+    brand: "Davidoff",
+    gender: "Dama",
+    size: "100ml",
+    fragranticaId: 363,
+    brandSlug: "Davidoff",
+    perfumeSlug: "Cool-Water-for-Women",
+  },
+  {
+    id: 157,
+    name: "Cool Water Intense",
+    brand: "Davidoff",
+    gender: "Caballero",
+    size: "125ml",
+    fragranticaId: 44788,
+    brandSlug: "Davidoff",
+    perfumeSlug: "Cool-Water-Intense",
   },
 ];

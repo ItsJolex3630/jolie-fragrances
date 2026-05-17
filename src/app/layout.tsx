@@ -37,6 +37,7 @@ export const metadata: Metadata = {
     "Venezuela",
     "perfumes árabes",
     "niche perfumes",
+    "Davidoff",
   ],
   authors: [{ name: "Jolie Fragrances" }],
   icons: {

@@ -241,3 +241,24 @@ Stage Summary:
 - Server PID 14902 running stable, 739MB memory usage
 - Both direct (0.0.0.0:3000) and Caddy proxy (0.0.0.0:81) return HTTP 200
 - Updated daemon.sh with improved auto-restart logic
+
+---
+Task ID: 2
+Agent: Main Agent
+Task: Add Davidoff brand with Cool Water, Cool Water Woman, and Cool Water Intense perfumes
+
+Work Log:
+- Searched Fragrantica for Davidoff Cool Water perfume IDs using image URL verification
+- Verified image URLs return HTTP 200 for IDs: 536 (Cool Water Men), 363 (Cool Water Women), 44788 (Cool Water Intense)
+- Added "Davidoff" to Brand type, BRANDS array, and BRAND_SLUGS in perfumes.ts
+- Added 3 new perfume entries with proper IDs, slugs, genders, and sizes
+- Added olfactive notes: Cool Water (Acuático/Amaderado), Cool Water Woman (Floral/Acuático), Cool Water Intense (Cítrico/Amaderado)
+- Updated layout.tsx keywords to include Davidoff
+- Verified API returns 152 total perfumes with all 3 Davidoff entries
+- Verified all 3 Davidoff image URLs work on Fragrantica CDN
+
+Stage Summary:
+- Davidoff brand successfully added as 10th brand
+- 3 perfumes added: Cool Water (Caballero, 125ml), Cool Water Woman (Dama, 100ml), Cool Water Intense (Caballero, 125ml)
+- Total perfume count increased from 149 to 152
+- All images verified working on Fragrantica CDN
