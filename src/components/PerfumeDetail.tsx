@@ -16,8 +16,11 @@ import {
 } from "lucide-react";
 import {
   getImageUrl,
+  perfumes as allPerfumesData,
   type Perfume,
 } from "@/lib/perfumes";
+import dynamic from "next/dynamic";
+const SimilarPerfumes = dynamic(() => import("./SimilarPerfumes"), { ssr: false });
 
 // ─── Gender badge styles ───
 const genderStyles: Record<string, string> = {
@@ -44,7 +47,7 @@ interface NotePyramidDetailed {
   base: NoteWithPercentage[];
 }
 
-const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
+export const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
   // 1. Club de Nuit Intense Man — CORREGIDO: notas de Fragrantica (Grosellas Negras y Manzana en salida, Ámbar Gris en base)
   1: {
     top: [
@@ -2946,7 +2949,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
 };
 
 // ─── Accords data ───
-const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color: string }[]> = {
+export const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color: string }[]> = {
   // 1. Club de Nuit Intense Man — CORREGIDO: acordes de Fragrantica
   1: [
     { label: "Cítrico", percentage: 100, color: "#f0c934" },
@@ -5229,6 +5232,16 @@ export default function PerfumeDetail({
                 </div>
               </div>
             )}
+
+            {/* ─── Similar Perfumes ─── */}
+            <SimilarPerfumes
+              targetPerfume={perfume}
+              allPerfumes={allPerfumesData}
+              onSelectPerfume={(p) => {
+                // Close current and let parent handle new selection
+                onClose();
+              }}
+            />
 
             {/* Spacer */}
             <div className="flex-1" />

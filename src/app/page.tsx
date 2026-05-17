@@ -20,6 +20,7 @@ import {
   Heart,
   Gem,
   Clock,
+  ArrowLeftRight,
 } from "lucide-react";
 import dynamic from "next/dynamic";
 import {
@@ -36,6 +37,7 @@ import {
 
 // ─── Dynamic imports for heavy modal components (only loaded when needed) ───
 const PerfumeDetail = dynamic(() => import("@/components/PerfumeDetail"), { ssr: false });
+const CompareModal = dynamic(() => import("@/components/CompareModal"), { ssr: false });
 
 // ─── Gender badge colors ───
 const genderStyles: Record<Gender, string> = {
@@ -245,6 +247,7 @@ export default function Home() {
   const catalogRef = useRef<HTMLDivElement>(null);
 
   const [selectedPerfume, setSelectedPerfume] = useState<Perfume | null>(null);
+  const [showCompare, setShowCompare] = useState(false);
 
   // ─── Perfume list (fetched from API) ───
   const [allPerfumes, setAllPerfumes] = useState<Perfume[]>([]);
@@ -681,6 +684,14 @@ export default function Home() {
                   <X className="w-4 h-4" />
                 </button>
               )}
+              <button
+                onClick={() => setShowCompare(true)}
+                className="flex items-center gap-1.5 text-[10px] px-2.5 py-1.5 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/20 text-[#d4af37] hover:bg-[#d4af37]/20 transition-all font-[family-name:var(--font-inter)]"
+                title="Comparar perfumes"
+              >
+                <ArrowLeftRight className="w-3 h-3" />
+                <span className="hidden sm:inline">Comparar</span>
+              </button>
               {activeFilterCount > 0 && (
                 <button
                   onClick={clearAllFilters}
@@ -1278,6 +1289,14 @@ export default function Home() {
           />
         )}
       </AnimatePresence>
+
+      {/* ─── COMPARE MODAL ─── */}
+      <CompareModal
+        isOpen={showCompare}
+        onClose={() => setShowCompare(false)}
+        perfumes={allPerfumes}
+        initialPerfume1={null}
+      />
     </div>
   );
 }

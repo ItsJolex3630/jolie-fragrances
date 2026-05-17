@@ -1,0 +1,503 @@
+"use client";
+
+import { useState, useMemo, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  X,
+  Search,
+  GitCompareArrows,
+  Sparkles,
+  ChevronDown,
+  ArrowRight,
+  ArrowLeftRight,
+  Check,
+} from "lucide-react";
+import {
+  type Perfume,
+  getImageUrl,
+} from "@/lib/perfumes";
+import {
+  NOTE_PYRAMIDS,
+  PERFUME_ACCORDS,
+} from "@/components/PerfumeDetail";
+import { computeSimilarity } from "@/lib/similarity";
+
+// ─── Gender badge styles ───
+const genderStyles: Record<string, string> = {
+  Dama: "bg-pink-500/20 text-pink-300 border-pink-500/30",
+  Caballero: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+  Unisex: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+};
+const genderIcons: Record<string, string> = {
+  Dama: "♀",
+  Caballero: "♂",
+  Unisex: "⚥",
+};
+
+// ─── Note layer colors ───
+const layerColors = {
+  top: { bg: "bg-cyan-500/15", border: "border-cyan-500/30", text: "text-cyan-300", bar: "bg-cyan-400", label: "Salida" },
+  heart: { bg: "bg-rose-500/15", border: "border-rose-500/30", text: "text-rose-300", bar: "bg-rose-400", label: "Corazón" },
+  base: { bg: "bg-amber-500/15", border: "border-amber-500/30", text: "text-amber-300", bar: "bg-amber-400", label: "Base" },
+};
+
+// ─── Perfume Search Dropdown ───
+function PerfumeSearchDropdown({
+  perfumes,
+  selected,
+  onSelect,
+  placeholder,
+  excludeId,
+}: {
+  perfumes: Perfume[];
+  selected: Perfume | null;
+  onSelect: (p: Perfume) => void;
+  placeholder: string;
+  excludeId?: number;
+}) {
+  const [query, setQuery] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  const filtered = useMemo(() => {
+    const q = query.toLowerCase().trim();
+    return perfumes
+      .filter(p => p.id !== excludeId)
+      .filter(p => {
+        if (!q) return true;
+        return p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q);
+      })
+      .slice(0, 12);
+  }, [perfumes, query, excludeId]);
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => { setIsOpen(!isOpen); setQuery(""); }}
+        className="w-full flex items-center gap-3 p-3 rounded-xl border border-[rgba(212,175,55,0.15)] bg-[#111111] hover:border-[#d4af37]/30 transition-all"
+      >
+        {selected ? (
+          <>
+            <div className="w-10 h-10 rounded-lg overflow-hidden bg-[#0a0a0a] flex-shrink-0 border border-[rgba(212,175,55,0.1)]">
+              <img
+                src={getImageUrl(selected.fragranticaId)}
+                alt=""
+                className="w-full h-full object-contain"
+                onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+              />
+            </div>
+            <div className="text-left min-w-0 flex-1">
+              <p className="text-xs text-[#d4af37]/60 font-[family-name:var(--font-inter)]">{selected.brand}</p>
+              <p className="text-sm text-white truncate font-[family-name:var(--font-playfair)]">{selected.name}</p>
+            </div>
+            <Check className="w-4 h-4 text-[#d4af37]" />
+          </>
+        ) : (
+          <>
+            <Sparkles className="w-4 h-4 text-[#d4af37]/40" />
+            <span className="text-sm text-white/30 font-[family-name:var(--font-inter)]">{placeholder}</span>
+          </>
+        )}
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              className="absolute top-full left-0 right-0 mt-2 bg-[#111111] border border-[rgba(212,175,55,0.15)] rounded-xl overflow-hidden z-50 shadow-2xl shadow-black/50"
+            >
+              <div className="p-2">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#d4af37]/40" />
+                  <input
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Buscar perfume..."
+                    autoFocus
+                    className="w-full pl-9 pr-3 py-2.5 bg-[#0a0a0a] border border-[rgba(212,175,55,0.1)] rounded-lg text-sm text-white placeholder:text-white/20 outline-none focus:border-[#d4af37]/30 font-[family-name:var(--font-inter)]"
+                  />
+                </div>
+              </div>
+              <div className="max-h-64 overflow-y-auto">
+                {filtered.map(p => (
+                  <button
+                    key={p.id}
+                    onClick={() => { onSelect(p); setIsOpen(false); setQuery(""); }}
+                    className="w-full px-3 py-2.5 flex items-center gap-3 text-left hover:bg-[rgba(212,175,55,0.05)] transition-colors"
+                  >
+                    <div className="w-9 h-9 rounded-lg overflow-hidden bg-[#0a0a0a] flex-shrink-0 border border-[rgba(212,175,55,0.1)]">
+                      <img
+                        src={getImageUrl(p.fragranticaId)}
+                        alt=""
+                        className="w-full h-full object-contain"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm text-white truncate font-[family-name:var(--font-inter)]">{p.name}</p>
+                      <p className="text-xs text-[#d4af37]/50 font-[family-name:var(--font-inter)]">{p.brand} · {p.gender}</p>
+                    </div>
+                  </button>
+                ))}
+                {filtered.length === 0 && (
+                  <p className="px-3 py-4 text-sm text-white/20 text-center font-[family-name:var(--font-inter)]">
+                    No se encontraron perfumes
+                  </p>
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// ─── Note Pyramid Column ───
+function NotePyramidColumn({ perfumeId }: { perfumeId: number }) {
+  const pyramid = NOTE_PYRAMIDS[perfumeId];
+  if (!pyramid) {
+    return (
+      <p className="text-sm text-white/20 text-center py-8 font-[family-name:var(--font-inter)]">
+        Pirámide de notas no disponible
+      </p>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      {(["top", "heart", "base"] as const).map(layer => {
+        const style = layerColors[layer];
+        const notes = pyramid[layer];
+        if (!notes || notes.length === 0) return null;
+        return (
+          <div key={layer}>
+            <p className={`text-[10px] tracking-[0.15em] uppercase mb-2 font-[family-name:var(--font-inter)] ${style.text}`}>
+              {style.label}
+            </p>
+            <div className="space-y-1.5">
+              {notes.map((note, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between mb-0.5">
+                      <span className="text-xs text-white/70 truncate font-[family-name:var(--font-inter)]">{note.name}</span>
+                      <span className="text-[10px] text-white/30 font-[family-name:var(--font-inter)] ml-1">{note.percentage}%</span>
+                    </div>
+                    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full rounded-full ${style.bar} transition-all duration-500`}
+                        style={{ width: `${note.percentage}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ─── Accords Row ───
+function AccordsColumn({ perfumeId }: { perfumeId: number }) {
+  const accords = PERFUME_ACCORDS[perfumeId];
+  if (!accords || accords.length === 0) {
+    return (
+      <p className="text-sm text-white/20 text-center py-4 font-[family-name:var(--font-inter)]">
+        Acordes no disponibles
+      </p>
+    );
+  }
+
+  return (
+    <div className="flex flex-wrap gap-1.5">
+      {accords.slice(0, 6).map((a, i) => (
+        <div
+          key={i}
+          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-white/5 bg-white/[0.03]"
+        >
+          <div
+            className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+            style={{ backgroundColor: a.color }}
+          />
+          <span className="text-[11px] text-white/60 font-[family-name:var(--font-inter)]">{a.label}</span>
+          <span className="text-[9px] text-white/25 font-[family-name:var(--font-inter)]">{a.percentage}%</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ─── Similarity Gauge ───
+function SimilarityGauge({ score }: { score: number }) {
+  const color =
+    score >= 70 ? "from-emerald-400 to-emerald-600" :
+    score >= 45 ? "from-yellow-400 to-amber-500" :
+    "from-red-400 to-rose-500";
+
+  const label =
+    score >= 80 ? "Muy Similar" :
+    score >= 60 ? "Similar" :
+    score >= 40 ? "Algo Similar" :
+    score >= 20 ? "Poco Similar" :
+    "Muy Diferente";
+
+  return (
+    <div className="text-center">
+      <div className="relative w-28 h-28 mx-auto mb-3">
+        <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="8" />
+          <circle
+            cx="50" cy="50" r="42" fill="none"
+            stroke="url(#simGrad)"
+            strokeWidth="8"
+            strokeLinecap="round"
+            strokeDasharray={`${score * 2.64} 264`}
+            className="transition-all duration-1000"
+          />
+          <defs>
+            <linearGradient id="simGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor={score >= 70 ? "#34d399" : score >= 45 ? "#fbbf24" : "#f87171"} />
+              <stop offset="100%" stopColor={score >= 70 ? "#059669" : score >= 45 ? "#d97706" : "#dc2626"} />
+            </linearGradient>
+          </defs>
+        </svg>
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <span className="text-2xl font-bold text-white font-[family-name:var(--font-playfair)]">{score}%</span>
+          <span className="text-[9px] text-white/40 font-[family-name:var(--font-inter)] tracking-wider uppercase">Similitud</span>
+        </div>
+      </div>
+      <span className={`text-xs font-semibold font-[family-name:var(--font-inter)] px-3 py-1 rounded-full bg-gradient-to-r ${color} text-[#0a0a0a]`}>
+        {label}
+      </span>
+    </div>
+  );
+}
+
+// ─── Main Compare Modal ───
+export default function CompareModal({
+  isOpen,
+  onClose,
+  perfumes,
+  initialPerfume1,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  perfumes: Perfume[];
+  initialPerfume1?: Perfume | null;
+}) {
+  const [perfume1, setPerfume1] = useState<Perfume | null>(initialPerfume1 ?? null);
+  const [perfume2, setPerfume2] = useState<Perfume | null>(null);
+
+  // Update perfume1 when initialPerfume1 changes
+  const handleSetPerfume1 = useCallback((p: Perfume) => {
+    setPerfume1(p);
+  }, []);
+  const handleSetPerfume2 = useCallback((p: Perfume) => {
+    setPerfume2(p);
+  }, []);
+
+  // Compute similarity
+  const similarity = useMemo(() => {
+    if (!perfume1 || !perfume2) return null;
+    return computeSimilarity(perfume1, perfume2);
+  }, [perfume1, perfume2]);
+
+  // Find common individual notes for highlighting
+  const commonNoteNames = useMemo(() => {
+    if (!similarity) return new Set<string>();
+    return new Set(similarity.commonNotes);
+  }, [similarity]);
+
+  if (!isOpen) return null;
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/80 backdrop-blur-sm p-4 pt-8 pb-20"
+        onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 30, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 20, scale: 0.97 }}
+          transition={{ type: "spring", stiffness: 200, damping: 25 }}
+          className="relative w-full max-w-6xl rounded-2xl border border-[rgba(212,175,55,0.15)] bg-[#0a0a0a] shadow-2xl shadow-black/50 overflow-hidden"
+        >
+          {/* Header */}
+          <div className="sticky top-0 z-10 bg-[#0a0a0a]/95 backdrop-blur-sm border-b border-[rgba(212,175,55,0.08)] px-4 sm:px-6 py-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-[#d4af37]/10 border border-[#d4af37]/20 flex items-center justify-center">
+                <ArrowLeftRight className="w-4 h-4 text-[#d4af37]" />
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-white font-[family-name:var(--font-playfair)]">Comparar Perfumes</h2>
+                <p className="text-xs text-white/30 font-[family-name:var(--font-inter)]">Selecciona dos perfumes para ver su similitud</p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="w-9 h-9 rounded-xl border border-[rgba(212,175,55,0.15)] bg-[#111111] flex items-center justify-center text-white/40 hover:text-white hover:border-[#d4af37]/30 transition-all"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Selection Row */}
+          <div className="px-4 sm:px-6 py-4 border-b border-[rgba(212,175,55,0.05)]">
+            <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-3 sm:gap-4 items-center">
+              <PerfumeSearchDropdown
+                perfumes={perfumes}
+                selected={perfume1}
+                onSelect={handleSetPerfume1}
+                placeholder="Seleccionar perfume 1"
+                excludeId={perfume2?.id}
+              />
+              <div className="hidden sm:flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full border border-[#d4af37]/20 bg-[#d4af37]/5 flex items-center justify-center">
+                  <GitCompareArrows className="w-4 h-4 text-[#d4af37]/60" />
+                </div>
+              </div>
+              <PerfumeSearchDropdown
+                perfumes={perfumes}
+                selected={perfume2}
+                onSelect={handleSetPerfume2}
+                placeholder="Seleccionar perfume 2"
+                excludeId={perfume1?.id}
+              />
+            </div>
+          </div>
+
+          {/* Comparison Content */}
+          {!perfume1 || !perfume2 ? (
+            <div className="px-6 py-16 text-center">
+              <ArrowLeftRight className="w-12 h-12 text-[#d4af37]/15 mx-auto mb-4" />
+              <p className="text-white/20 font-[family-name:var(--font-inter)] text-sm">
+                Selecciona dos perfumes para comenzar la comparación
+              </p>
+            </div>
+          ) : similarity ? (
+            <div className="p-4 sm:p-6 space-y-6">
+              {/* Similarity Score */}
+              <div className="flex justify-center">
+                <SimilarityGauge score={similarity.score} />
+              </div>
+
+              {/* Breakdown bars */}
+              <div className="grid grid-cols-3 gap-3 max-w-md mx-auto">
+                {[
+                  { label: "Notas", value: similarity.noteOverlap, weight: "45%" },
+                  { label: "Acordes", value: similarity.accordOverlap, weight: "35%" },
+                  { label: "Categorías", value: similarity.categoryOverlap, weight: "20%" },
+                ].map(item => (
+                  <div key={item.label} className="text-center">
+                    <div className="h-1.5 bg-white/5 rounded-full mb-2 overflow-hidden">
+                      <div
+                        className="h-full rounded-full bg-[#d4af37]/60 transition-all duration-500"
+                        style={{ width: `${item.value}%` }}
+                      />
+                    </div>
+                    <p className="text-xs text-white/50 font-[family-name:var(--font-inter)]">{item.label}</p>
+                    <p className="text-[10px] text-white/25 font-[family-name:var(--font-inter)]">({item.weight}) {item.value}%</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Common notes chips */}
+              {similarity.commonNotes.length > 0 && (
+                <div className="text-center">
+                  <p className="text-[10px] text-[#d4af37]/50 tracking-[0.15em] uppercase mb-2 font-[family-name:var(--font-inter)]">
+                    Notas en común ({similarity.commonNotes.length})
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-1.5">
+                    {similarity.commonNotes.map(note => (
+                      <span
+                        key={note}
+                        className="px-2.5 py-1 rounded-full text-[11px] bg-[#d4af37]/10 text-[#d4af37]/70 border border-[#d4af37]/15 font-[family-name:var(--font-inter)]"
+                      >
+                        {note}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Side-by-side comparison */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                {/* Perfume 1 */}
+                <div className="rounded-xl border border-[rgba(212,175,55,0.08)] bg-[#0d0d0d] p-4">
+                  {/* Image + Info */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-16 h-20 rounded-lg overflow-hidden bg-[#080808] flex-shrink-0 border border-[rgba(212,175,55,0.1)]">
+                      <img
+                        src={getImageUrl(perfume1.fragranticaId)}
+                        alt={perfume1.name}
+                        className="w-full h-full object-contain"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10px] text-[#d4af37]/60 tracking-[0.1em] uppercase font-[family-name:var(--font-inter)]">{perfume1.brand}</p>
+                      <p className="text-sm font-semibold text-white font-[family-name:var(--font-playfair)] leading-snug">{perfume1.name}</p>
+                      <span className={`inline-flex items-center gap-1 text-[9px] px-2 py-0.5 rounded-full border mt-1 ${genderStyles[perfume1.gender]}`}>
+                        <span>{genderIcons[perfume1.gender]}</span>
+                        {perfume1.gender}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Note Pyramid */}
+                  <NotePyramidColumn perfumeId={perfume1.id} />
+
+                  {/* Accords */}
+                  <div className="mt-4 pt-3 border-t border-white/5">
+                    <p className="text-[10px] text-white/30 tracking-[0.1em] uppercase mb-2 font-[family-name:var(--font-inter)]">Acordes</p>
+                    <AccordsColumn perfumeId={perfume1.id} />
+                  </div>
+                </div>
+
+                {/* Perfume 2 */}
+                <div className="rounded-xl border border-[rgba(212,175,55,0.08)] bg-[#0d0d0d] p-4">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-16 h-20 rounded-lg overflow-hidden bg-[#080808] flex-shrink-0 border border-[rgba(212,175,55,0.1)]">
+                      <img
+                        src={getImageUrl(perfume2.fragranticaId)}
+                        alt={perfume2.name}
+                        className="w-full h-full object-contain"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10px] text-[#d4af37]/60 tracking-[0.1em] uppercase font-[family-name:var(--font-inter)]">{perfume2.brand}</p>
+                      <p className="text-sm font-semibold text-white font-[family-name:var(--font-playfair)] leading-snug">{perfume2.name}</p>
+                      <span className={`inline-flex items-center gap-1 text-[9px] px-2 py-0.5 rounded-full border mt-1 ${genderStyles[perfume2.gender]}`}>
+                        <span>{genderIcons[perfume2.gender]}</span>
+                        {perfume2.gender}
+                      </span>
+                    </div>
+                  </div>
+
+                  <NotePyramidColumn perfumeId={perfume2.id} />
+
+                  <div className="mt-4 pt-3 border-t border-white/5">
+                    <p className="text-[10px] text-white/30 tracking-[0.1em] uppercase mb-2 font-[family-name:var(--font-inter)]">Acordes</p>
+                    <AccordsColumn perfumeId={perfume2.id} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : null}
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
