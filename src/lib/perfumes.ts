@@ -236,6 +236,7 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   95: ["Cítrico", "Amaderado"], // Glacier Le Noir
   96: ["Cítrico", "Floral"], // Céleste
   97: ["Ahumado", "Dulce"], // Tobacco Touch
+  158: ["Dulce", "Cítrico"], // Glacier Bella
 
   // ==================== DUMONT ====================
   98: ["Cítrico", "Amaderado"], // Nitro Pour Homme
@@ -1745,6 +1746,16 @@ export const perfumes: Perfume[] = [
     fragranticaId: 79943,
     brandSlug: "Maison-Alhambra",
     perfumeSlug: "Tobacco-Touch",
+  },
+  {
+    id: 158,
+    name: "Glacier Bella",
+    brand: "Maison Alhambra",
+    gender: "Unisex",
+    size: "100ml",
+    fragranticaId: 93644,
+    brandSlug: "Maison-Alhambra",
+    perfumeSlug: "Glacier-Bella",
   },
 
   // ==================== DUMONT ====================

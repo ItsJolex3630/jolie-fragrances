@@ -2632,6 +2632,19 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Notas Amaderadas", percentage: 80 },
     ],
   },
+  // 159 (158). Maison Alhambra Glacier Bella — VERIFICADO: notas de Fragrantica (pirámide plana: Pera Verde, Vainilla, Bergamota)
+  158: {
+    top: [
+      { name: "Pera Verde", percentage: 90 },
+      { name: "Bergamota", percentage: 70 },
+    ],
+    heart: [
+      { name: "Vainilla", percentage: 88 },
+    ],
+    base: [
+      { name: "Almizcle Blanco", percentage: 85 },
+    ],
+  },
 
   // ─── Dumont ───
 
@@ -4511,6 +4524,14 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
     { label: "Afrutado", percentage: 56, color: "#e75a8d" },
     { label: "Cacao", percentage: 52, color: "#8b5e3c" },
     { label: "Empolvado", percentage: 49, color: "#d4c5a9" },
+  ],
+  // 159 (158). Maison Alhambra Glacier Bella — VERIFICADO: acordes de Fragrantica
+  158: [
+    { label: "Vainilla", percentage: 100, color: "#c9a033" },
+    { label: "Empolvado", percentage: 53, color: "#d4c5a9" },
+    { label: "Cítrico", percentage: 51, color: "#f0c934" },
+    { label: "Dulce", percentage: 44, color: "#f0a830" },
+    { label: "Especiado Fresco", percentage: 41, color: "#7ab648" },
   ],
 
   // ─── Dumont ───
