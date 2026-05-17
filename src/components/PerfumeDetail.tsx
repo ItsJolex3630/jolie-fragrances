@@ -45,13 +45,14 @@ interface NotePyramidDetailed {
 }
 
 const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
-  // 1. Club de Nuit Intense Man
+  // 1. Club de Nuit Intense Man — CORREGIDO: notas de Fragrantica (Grosellas Negras y Manzana en salida, Ámbar Gris en base)
   1: {
     top: [
-      { name: "Limón", percentage: 90 },
-      { name: "Piña", percentage: 80 },
-      { name: "Bergamota", percentage: 70 },
-      { name: "Mandarina", percentage: 60 },
+      { name: "Limón", percentage: 95 },
+      { name: "Piña", percentage: 88 },
+      { name: "Bergamota", percentage: 80 },
+      { name: "Grosellas Negras", percentage: 70 },
+      { name: "Manzana", percentage: 60 },
     ],
     heart: [
       { name: "Abedul", percentage: 88 },
@@ -59,161 +60,168 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Rosa", percentage: 55 },
     ],
     base: [
-      { name: "Vainilla", percentage: 92 },
-      { name: "Almizcle", percentage: 78 },
-      { name: "Ámbar", percentage: 70 },
-      { name: "Pachulí", percentage: 60 },
+      { name: "Almizcle", percentage: 90 },
+      { name: "Ámbar Gris", percentage: 82 },
+      { name: "Pachulí", percentage: 72 },
+      { name: "Vainilla", percentage: 65 },
     ],
   },
-  // 2. Club de Nuit Intense Man Limited Edition
+  // 2. Club de Nuit Intense Man Limited Edition — CORREGIDO: notas de Fragrantica (Pimienta Rosa en salida, sin Abedul, Lirio del Valle y Fresia en corazón, Ambroxan+Cuero+Cedro en base)
   2: {
     top: [
       { name: "Limón", percentage: 95 },
       { name: "Piña", percentage: 85 },
       { name: "Lima", percentage: 75 },
-      { name: "Bergamota", percentage: 70 },
-      { name: "Pimienta Negra", percentage: 60 },
+      { name: "Pimienta Negra", percentage: 70 },
+      { name: "Bergamota", percentage: 65 },
+      { name: "Pimienta Rosa", percentage: 60 },
     ],
     heart: [
-      { name: "Abedul", percentage: 90 },
-      { name: "Jazmín", percentage: 70 },
-      { name: "Rosa", percentage: 65 },
+      { name: "Jazmín", percentage: 90 },
+      { name: "Lirio del Valle", percentage: 75 },
+      { name: "Rosa", percentage: 70 },
+      { name: "Fresia", percentage: 60 },
     ],
     base: [
-      { name: "Almizcle", percentage: 85 },
-      { name: "Ámbar Gris", percentage: 80 },
-      { name: "Pachulí", percentage: 75 },
-      { name: "Vainilla", percentage: 60 },
+      { name: "Almizcle Blanco", percentage: 90 },
+      { name: "Ambroxan", percentage: 82 },
+      { name: "Ámbar Gris", percentage: 78 },
+      { name: "Cedro", percentage: 72 },
+      { name: "Cuero", percentage: 68 },
+      { name: "Pachulí", percentage: 62 },
     ],
   },
-  // 3. Club de Nuit Woman
+  // 3. Club de Nuit Woman — CORREGIDO: notas de Fragrantica (Lichi antes de Geranio en corazón)
   3: {
     top: [
-      { name: "Naranja", percentage: 90 },
-      { name: "Bergamota", percentage: 85 },
-      { name: "Toronja", percentage: 75 },
-      { name: "Melocotón", percentage: 65 },
+      { name: "Naranja", percentage: 95 },
+      { name: "Bergamota", percentage: 88 },
+      { name: "Toronja", percentage: 80 },
+      { name: "Melocotón", percentage: 70 },
     ],
     heart: [
-      { name: "Rosa", percentage: 85 },
-      { name: "Jazmín", percentage: 75 },
-      { name: "Geranio", percentage: 60 },
-      { name: "Lichi", percentage: 55 },
+      { name: "Rosa", percentage: 95 },
+      { name: "Jazmín", percentage: 82 },
+      { name: "Lichi", percentage: 72 },
+      { name: "Geranio", percentage: 65 },
     ],
     base: [
-      { name: "Pachulí", percentage: 90 },
-      { name: "Almizcle", percentage: 80 },
-      { name: "Vainilla", percentage: 75 },
-      { name: "Vetiver", percentage: 60 },
+      { name: "Pachulí", percentage: 95 },
+      { name: "Almizcle", percentage: 85 },
+      { name: "Vainilla", percentage: 78 },
+      { name: "Vetiver", percentage: 68 },
     ],
   },
-  // 4. Club de Nuit White Imperiale
+  // 4. Club de Nuit White Imperiale — CORREGIDO: notas de Fragrantica (Vainilla en corazón y base, sin Vetiver en base)
   4: {
     top: [
-      { name: "Lichi", percentage: 90 },
-      { name: "Bergamota", percentage: 80 },
-      { name: "Nuez Moscada", percentage: 60 },
+      { name: "Lichi", percentage: 95 },
+      { name: "Bergamota", percentage: 82 },
+      { name: "Nuez Moscada", percentage: 72 },
     ],
     heart: [
       { name: "Rosa Turca", percentage: 95 },
-      { name: "Peonía", percentage: 80 },
-      { name: "Almizcle", percentage: 70 },
-      { name: "Vainilla", percentage: 65 },
+      { name: "Vainilla", percentage: 88 },
+      { name: "Almizcle", percentage: 80 },
+      { name: "Peonía", percentage: 72 },
     ],
     base: [
-      { name: "Cachemira", percentage: 85 },
-      { name: "Incienso", percentage: 70 },
+      { name: "Vainilla", percentage: 88 },
+      { name: "Incienso", percentage: 78 },
+      { name: "Cachemira", percentage: 72 },
       { name: "Cedro", percentage: 65 },
-      { name: "Vetiver", percentage: 50 },
     ],
   },
-  // 5 (115). Club de Nuit Iconic
+  // 5 (115). Club de Nuit Iconic — CORREGIDO: notas de Fragrantica (Melón antes de Jazmín en corazón, Notas Amaderadas y Ládano en base)
   115: {
     top: [
       { name: "Toronja", percentage: 95 },
-      { name: "Limón", percentage: 90 },
-      { name: "Menta", percentage: 85 },
+      { name: "Limón", percentage: 88 },
+      { name: "Menta", percentage: 82 },
       { name: "Pimienta Rosa", percentage: 70 },
-      { name: "Cilantro", percentage: 60 },
+      { name: "Cilantro", percentage: 62 },
     ],
     heart: [
       { name: "Jengibre", percentage: 88 },
-      { name: "Nuez Moscada", percentage: 75 },
-      { name: "Jazmín", percentage: 65 },
-      { name: "Melón", percentage: 60 },
+      { name: "Melón", percentage: 78 },
+      { name: "Jazmín", percentage: 68 },
+      { name: "Nuez Moscada", percentage: 60 },
     ],
     base: [
-      { name: "Incienso", percentage: 85 },
-      { name: "Ámbar", percentage: 80 },
-      { name: "Cedro", percentage: 75 },
-      { name: "Sándalo", percentage: 70 },
-      { name: "Pachulí", percentage: 65 },
-    ],
-  },
-  // 6 (116). Club de Nuit Sillage
-  116: {
-    top: [
-      { name: "Bergamota", percentage: 95 },
-      { name: "Grosellas Negras", percentage: 85 },
-      { name: "Limón", percentage: 80 },
-      { name: "Lima", percentage: 75 },
-      { name: "Violeta", percentage: 65 },
-      { name: "Jengibre", percentage: 60 },
-    ],
-    heart: [
-      { name: "Iris", percentage: 85 },
-      { name: "Jazmín", percentage: 70 },
-      { name: "Rosa", percentage: 65 },
-    ],
-    base: [
-      { name: "Almizcle", percentage: 95 },
-      { name: "Ámbar Gris", percentage: 85 },
-      { name: "Sándalo", percentage: 70 },
+      { name: "Notas Amaderadas", percentage: 90 },
+      { name: "Incienso", percentage: 82 },
+      { name: "Sándalo", percentage: 75 },
+      { name: "Ámbar", percentage: 70 },
       { name: "Cedro", percentage: 65 },
-    ],
-  },
-  // 7 (117). Club de Nuit Urban Man Elixir
-  117: {
-    top: [
-      { name: "Bergamota", percentage: 90 },
-      { name: "Pimienta Rosa", percentage: 80 },
-      { name: "Jazmín", percentage: 65 },
-      { name: "Flor de Azahar", percentage: 60 },
-    ],
-    heart: [
-      { name: "Lavanda", percentage: 85 },
-      { name: "Geranio", percentage: 75 },
-      { name: "Azafrán", percentage: 70 },
-      { name: "Elemí", percentage: 65 },
-      { name: "Vetiver", percentage: 60 },
-    ],
-    base: [
-      { name: "Ambroxan", percentage: 90 },
-      { name: "Ámbar", percentage: 80 },
-      { name: "Pachulí", percentage: 75 },
-      { name: "Cedro", percentage: 70 },
+      { name: "Pachulí", percentage: 60 },
       { name: "Ládano", percentage: 55 },
     ],
   },
-  // 8 (118). Club de Nuit Urban Man
-  118: {
+  // 6 (116). Club de Nuit Sillage — CORREGIDO: notas de Fragrantica (Hojas de Violeta, Rosa antes de Iris en corazón, Ambroxan en base)
+  116: {
+    top: [
+      { name: "Bergamota", percentage: 95 },
+      { name: "Limón", percentage: 85 },
+      { name: "Lima", percentage: 80 },
+      { name: "Grosellas Negras", percentage: 75 },
+      { name: "Hojas de Violeta", percentage: 65 },
+      { name: "Jengibre", percentage: 60 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 88 },
+      { name: "Iris", percentage: 82 },
+      { name: "Jazmín", percentage: 70 },
+    ],
+    base: [
+      { name: "Ambroxan", percentage: 92 },
+      { name: "Almizcle", percentage: 85 },
+      { name: "Sándalo", percentage: 72 },
+      { name: "Cedro", percentage: 65 },
+    ],
+  },
+  // 7 (117). Club de Nuit Urban Man Elixir — CORREGIDO: notas de Fragrantica (Clavelón/Tagetes en corazón)
+  117: {
     top: [
       { name: "Bergamota", percentage: 90 },
-      { name: "Toronja", percentage: 85 },
-      { name: "Menta", percentage: 80 },
+      { name: "Pimienta Rosa", percentage: 82 },
+      { name: "Jazmín", percentage: 68 },
+      { name: "Flor de Azahar", percentage: 62 },
+    ],
+    heart: [
+      { name: "Lavanda", percentage: 85 },
+      { name: "Elemí", percentage: 75 },
+      { name: "Geranio", percentage: 72 },
+      { name: "Vetiver", percentage: 68 },
+      { name: "Azafrán", percentage: 65 },
+      { name: "Clavelón / Tagetes", percentage: 58 },
+    ],
+    base: [
+      { name: "Ambroxan", percentage: 90 },
+      { name: "Ámbar", percentage: 82 },
+      { name: "Cedro", percentage: 72 },
+      { name: "Pachulí", percentage: 68 },
+      { name: "Ládano", percentage: 55 },
+    ],
+  },
+  // 8 (118). Club de Nuit Urban Man — CORREGIDO: notas de Fragrantica (Menta antes de Toronja en salida, Lavanda antes de Nuez Moscada en corazón, Vetiver antes de Pachulí en base)
+  118: {
+    top: [
+      { name: "Bergamota", percentage: 92 },
+      { name: "Menta", percentage: 85 },
+      { name: "Toronja", percentage: 78 },
       { name: "Cardamomo", percentage: 70 },
     ],
     heart: [
-      { name: "Nuez Moscada", percentage: 80 },
+      { name: "Lavanda", percentage: 82 },
       { name: "Jengibre", percentage: 75 },
       { name: "Cedro", percentage: 70 },
-      { name: "Lavanda", percentage: 65 },
+      { name: "Nuez Moscada", percentage: 65 },
     ],
     base: [
-      { name: "Pachulí", percentage: 85 },
-      { name: "Vetiver", percentage: 75 },
-      { name: "Sándalo", percentage: 70 },
-      { name: "Musgo de Roble", percentage: 60 },
+      { name: "Vetiver", percentage: 88 },
+      { name: "Pachulí", percentage: 80 },
+      { name: "Sándalo", percentage: 72 },
+      { name: "Musgo de Roble", percentage: 65 },
     ],
   },
   // 9 (119). Club de Nuit Maleka — CORREGIDO: notas de Fragrantica (Olivier Cresp)
@@ -247,7 +255,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Cedro", percentage: 75 },
     ],
   },
-  // 11 (121). Club de Nuit Precieux I — CORREGIDO: notas de Fragrantica
+  // 11 (121). Club de Nuit Precieux I — CORREGIDO: notas de Fragrantica (Anís en corazón, no Anís Estrellado)
   121: {
     top: [
       { name: "Piña", percentage: 90 },
@@ -263,7 +271,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Madera Blanca", percentage: 80 },
       { name: "Jazmín", percentage: 75 },
       { name: "Lirio del Valle", percentage: 65 },
-      { name: "Anís Estrellado", percentage: 60 },
+      { name: "Anís", percentage: 60 },
     ],
     base: [
       { name: "Ambroxan", percentage: 90 },
@@ -2922,93 +2930,141 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
 
 // ─── Accords data ───
 const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color: string }[]> = {
-  // 1. Club de Nuit Intense Man
+  // 1. Club de Nuit Intense Man — CORREGIDO: acordes de Fragrantica
   1: [
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Dulce", percentage: 65, color: "#e75a8d" },
-    { label: "Ámbar", percentage: 50, color: "#f0a830" },
-    { label: "Almizclado", percentage: 40, color: "#a0a0a0" },
+    { label: "Cítrico", percentage: 100, color: "#f0c934" },
+    { label: "Afrutado", percentage: 71, color: "#e75a8d" },
+    { label: "Ahumado", percentage: 56, color: "#7a6b5d" },
+    { label: "Amaderado", percentage: 55, color: "#c17b2a" },
+    { label: "Aromático", percentage: 54, color: "#6b8e4e" },
+    { label: "Dulce", percentage: 52, color: "#f0a830" },
+    { label: "Fresco", percentage: 51, color: "#a0c4e8" },
+    { label: "Almizclado", percentage: 46, color: "#a0a0a0" },
   ],
-  // 2. Club de Nuit Intense Man Limited Edition
+  // 2. Club de Nuit Intense Man Limited Edition — CORREGIDO: acordes de Fragrantica
   2: [
-    { label: "Cítrico", percentage: 85, color: "#f0c934" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Ahumado", percentage: 75, color: "#7a6b5d" },
-    { label: "Afrutado", percentage: 70, color: "#e75a8d" },
-    { label: "Cuero", percentage: 50, color: "#8b5e3c" },
+    { label: "Cítrico", percentage: 100, color: "#f0c934" },
+    { label: "Almizclado", percentage: 73, color: "#a0a0a0" },
+    { label: "Ámbar", percentage: 72, color: "#f0a830" },
+    { label: "Dulce", percentage: 67, color: "#e75a8d" },
+    { label: "Fresco Especiado", percentage: 66, color: "#a0c4e8" },
+    { label: "Afrutado", percentage: 61, color: "#e75a8d" },
+    { label: "Amaderado", percentage: 61, color: "#c17b2a" },
+    { label: "Aromático", percentage: 57, color: "#6b8e4e" },
+    { label: "Animalico", percentage: 56, color: "#8b6e4e" },
+    { label: "Fresco", percentage: 55, color: "#a0c4e8" },
   ],
-  // 3. Club de Nuit Woman
+  // 3. Club de Nuit Woman — CORREGIDO: acordes de Fragrantica
   3: [
-    { label: "Cítrico", percentage: 85, color: "#f0c934" },
-    { label: "Pachulí", percentage: 80, color: "#6b8e4e" },
-    { label: "Rosado", percentage: 75, color: "#e75a8d" },
-    { label: "Fresco Especiado", percentage: 60, color: "#a0c4e8" },
-    { label: "Afrutado", percentage: 55, color: "#f0a830" },
+    { label: "Cítrico", percentage: 100, color: "#f0c934" },
+    { label: "Pachulí", percentage: 50, color: "#6b8e4e" },
+    { label: "Rosado", percentage: 48, color: "#e75a8d" },
+    { label: "Amaderado", percentage: 47, color: "#c17b2a" },
+    { label: "Fresco Especiado", percentage: 47, color: "#a0c4e8" },
+    { label: "Aromático", percentage: 42, color: "#6b8e4e" },
+    { label: "Terroso", percentage: 32, color: "#7a6b5d" },
+    { label: "Atalcado", percentage: 30, color: "#d4c5a9" },
+    { label: "Almizclado", percentage: 28, color: "#a0a0a0" },
+    { label: "Cálido Especiado", percentage: 27, color: "#c45a3a" },
   ],
-  // 4. Club de Nuit White Imperiale
+  // 4. Club de Nuit White Imperiale — CORREGIDO: acordes de Fragrantica
   4: [
-    { label: "Rosado", percentage: 90, color: "#e75a8d" },
-    { label: "Dulce", percentage: 85, color: "#f0a830" },
-    { label: "Afrutado", percentage: 80, color: "#e75a8d" },
-    { label: "Tropical", percentage: 70, color: "#f0c934" },
-    { label: "Vainilla", percentage: 65, color: "#c9a033" },
-  ],
-  // 5 (115). Club de Nuit Iconic
-  115: [
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Fresco Especiado", percentage: 80, color: "#a0c4e8" },
-    { label: "Ámbar", percentage: 75, color: "#f0a830" },
-    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
-    { label: "Ahumado", percentage: 60, color: "#7a6b5d" },
-  ],
-  // 6 (116). Club de Nuit Sillage
-  116: [
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Almizclado", percentage: 85, color: "#a0a0a0" },
-    { label: "Atalcado", percentage: 70, color: "#d4c5a9" },
+    { label: "Rosado", percentage: 100, color: "#e75a8d" },
+    { label: "Floral", percentage: 80, color: "#e75a8d" },
+    { label: "Almizclado", percentage: 77, color: "#a0a0a0" },
+    { label: "Atalcado", percentage: 77, color: "#d4c5a9" },
+    { label: "Avainillado", percentage: 72, color: "#c9a033" },
+    { label: "Fresco", percentage: 69, color: "#a0c4e8" },
     { label: "Amaderado", percentage: 65, color: "#c17b2a" },
-    { label: "Fresco", percentage: 60, color: "#a0c4e8" },
+    { label: "Afrutado", percentage: 64, color: "#e75a8d" },
+    { label: "Fresco Especiado", percentage: 62, color: "#a0c4e8" },
+    { label: "Ámbar", percentage: 61, color: "#f0a830" },
   ],
-  // 7 (117). Club de Nuit Urban Man Elixir
+  // 5 (115). Club de Nuit Iconic — CORREGIDO: acordes de Fragrantica
+  115: [
+    { label: "Cítrico", percentage: 100, color: "#f0c934" },
+    { label: "Amaderado", percentage: 91, color: "#c17b2a" },
+    { label: "Fresco Especiado", percentage: 60, color: "#a0c4e8" },
+    { label: "Ámbar", percentage: 53, color: "#f0a830" },
+    { label: "Aromático", percentage: 50, color: "#6b8e4e" },
+    { label: "Fresco", percentage: 30, color: "#a0c4e8" },
+    { label: "Cálido Especiado", percentage: 27, color: "#c45a3a" },
+    { label: "Balsámico", percentage: 24, color: "#8b6e4e" },
+  ],
+  // 6 (116). Club de Nuit Sillage — CORREGIDO: acordes de Fragrantica
+  116: [
+    { label: "Cítrico", percentage: 100, color: "#f0c934" },
+    { label: "Almizclado", percentage: 44, color: "#a0a0a0" },
+    { label: "Amaderado", percentage: 43, color: "#c17b2a" },
+    { label: "Fresco Especiado", percentage: 36, color: "#a0c4e8" },
+    { label: "Atalcado", percentage: 36, color: "#d4c5a9" },
+    { label: "Aromático", percentage: 31, color: "#6b8e4e" },
+    { label: "Ámbar", percentage: 28, color: "#f0a830" },
+    { label: "Afrutado", percentage: 27, color: "#e75a8d" },
+  ],
+  // 7 (117). Club de Nuit Urban Man Elixir — CORREGIDO: acordes de Fragrantica
   117: [
-    { label: "Fresco Especiado", percentage: 85, color: "#a0c4e8" },
-    { label: "Cítrico", percentage: 80, color: "#f0c934" },
-    { label: "Ámbar", percentage: 75, color: "#f0a830" },
-    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
-    { label: "Lavanda", percentage: 65, color: "#9b8ec4" },
+    { label: "Ámbar", percentage: 100, color: "#f0a830" },
+    { label: "Aromático", percentage: 82, color: "#6b8e4e" },
+    { label: "Cítrico", percentage: 74, color: "#f0c934" },
+    { label: "Fresco Especiado", percentage: 73, color: "#a0c4e8" },
+    { label: "Almizclado", percentage: 67, color: "#a0a0a0" },
+    { label: "Amaderado", percentage: 66, color: "#c17b2a" },
+    { label: "Lavanda", percentage: 57, color: "#9b8ec4" },
+    { label: "Especiado Suave", percentage: 53, color: "#d4855a" },
+    { label: "Cálido Especiado", percentage: 47, color: "#c45a3a" },
+    { label: "Herbal", percentage: 46, color: "#6b8e4e" },
   ],
-  // 8 (118). Club de Nuit Urban Man
+  // 8 (118). Club de Nuit Urban Man — CORREGIDO: acordes de Fragrantica
   118: [
-    { label: "Cítrico", percentage: 85, color: "#f0c934" },
-    { label: "Fresco Especiado", percentage: 80, color: "#a0c4e8" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Herbal", percentage: 65, color: "#6b8e4e" },
-    { label: "Pachulí", percentage: 60, color: "#4a7a3a" },
+    { label: "Amaderado", percentage: 100, color: "#c17b2a" },
+    { label: "Fresco Especiado", percentage: 95, color: "#a0c4e8" },
+    { label: "Aromático", percentage: 91, color: "#6b8e4e" },
+    { label: "Cítrico", percentage: 78, color: "#f0c934" },
+    { label: "Cálido Especiado", percentage: 62, color: "#c45a3a" },
+    { label: "Terroso", percentage: 62, color: "#7a6b5d" },
+    { label: "Verde", percentage: 60, color: "#4a7a3a" },
+    { label: "Pachulí", percentage: 51, color: "#4a7a3a" },
+    { label: "Lavanda", percentage: 49, color: "#9b8ec4" },
+    { label: "Atalcado", percentage: 46, color: "#d4c5a9" },
   ],
-  // 9 (119). Club de Nuit Maleka
+  // 9 (119). Club de Nuit Maleka — CORREGIDO: acordes de Fragrantica
   119: [
+    { label: "Iris", percentage: 100, color: "#9b8ec4" },
     { label: "Atalcado", percentage: 95, color: "#d4c5a9" },
-    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
-    { label: "Dulce", percentage: 80, color: "#f0a830" },
-    { label: "Iris", percentage: 75, color: "#9b8ec4" },
-    { label: "Almizclado", percentage: 65, color: "#a0a0a0" },
+    { label: "Afrutado", percentage: 91, color: "#e75a8d" },
+    { label: "Dulce", percentage: 87, color: "#f0a830" },
+    { label: "Amaderado", percentage: 87, color: "#c17b2a" },
+    { label: "Tropical", percentage: 84, color: "#f0c934" },
+    { label: "Cítrico", percentage: 82, color: "#f0c934" },
+    { label: "Ámbar", percentage: 78, color: "#f0a830" },
+    { label: "Almizclado", percentage: 69, color: "#a0a0a0" },
+    { label: "Fresco", percentage: 69, color: "#a0c4e8" },
   ],
-  // 10 (120). Club de Nuit Untold
+  // 10 (120). Club de Nuit Untold — CORREGIDO: acordes de Fragrantica
   120: [
-    { label: "Ámbar", percentage: 95, color: "#f0a830" },
-    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
-    { label: "Especiado Cálido", percentage: 80, color: "#c45a3a" },
-    { label: "Azafrán", percentage: 75, color: "#e8a030" },
-    { label: "Coníferas", percentage: 65, color: "#4a7a3a" },
+    { label: "Amaderado", percentage: 100, color: "#c17b2a" },
+    { label: "Ámbar", percentage: 97, color: "#f0a830" },
+    { label: "Cálido Especiado", percentage: 80, color: "#c45a3a" },
+    { label: "Metálico", percentage: 57, color: "#b0b0b0" },
+    { label: "Floral Blanco", percentage: 56, color: "#f0e6f6" },
+    { label: "Animalico", percentage: 55, color: "#8b6e4e" },
+    { label: "Cuero", percentage: 54, color: "#8b5e3c" },
+    { label: "Fresco Especiado", percentage: 53, color: "#a0c4e8" },
+    { label: "Aromático", percentage: 53, color: "#6b8e4e" },
   ],
-  // 11 (121). Club de Nuit Precieux I
+  // 11 (121). Club de Nuit Precieux I — CORREGIDO: acordes de Fragrantica
   121: [
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
-    { label: "Ámbar", percentage: 80, color: "#f0a830" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Cuero", percentage: 65, color: "#8b5e3c" },
+    { label: "Dulce", percentage: 100, color: "#f0a830" },
+    { label: "Cítrico", percentage: 97, color: "#f0c934" },
+    { label: "Amaderado", percentage: 97, color: "#c17b2a" },
+    { label: "Afrutado", percentage: 89, color: "#e75a8d" },
+    { label: "Ámbar", percentage: 83, color: "#f0a830" },
+    { label: "Almizclado", percentage: 79, color: "#a0a0a0" },
+    { label: "Fresco Especiado", percentage: 68, color: "#a0c4e8" },
+    { label: "Fresco", percentage: 68, color: "#a0c4e8" },
+    { label: "Musgoso", percentage: 68, color: "#4a7a3a" },
+    { label: "Terroso", percentage: 65, color: "#7a6b5d" },
   ],
   // 12 (5). Odyssey Homme White Edition — CORREGIDO: acordes de Fragrantica
   5: [

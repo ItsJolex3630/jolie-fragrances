@@ -262,3 +262,34 @@ Stage Summary:
 - 3 perfumes added: Cool Water (Caballero, 125ml), Cool Water Woman (Dama, 100ml), Cool Water Intense (Caballero, 125ml)
 - Total perfume count increased from 149 to 152
 - All images verified working on Fragrantica CDN
+---
+Task ID: club-de-nuit-corrections
+Agent: Main Agent
+Task: Correct all notes, percentages, and accords for the Club de Nuit perfume line based on real Fragrantica data
+
+Work Log:
+- Identified 11 Club de Nuit perfumes: IDs 1, 2, 3, 4, 115, 116, 117, 118, 119, 120, 121
+- Read current NOTE_PYRAMIDS and PERFUME_ACCORDS from PerfumeDetail.tsx
+- Launched parallel Task agents to look up real Fragrantica data for each perfume
+- Successfully extracted note pyramids and accord data from Fragrantica pages via web search and page reading
+
+Key Corrections Made:
+
+1. CDN Intense Man (id:1): Replaced Mandarina with Grosellas Negras + Manzana in top; Changed Ámbar to Ámbar Gris in base; Updated all accords (added Afrutado, Ahumado, Aromático, Fresco)
+2. CDN Intense Man LE (id:2): Added Pimienta Rosa in top; Removed Abedul from heart; Added Lirio del Valle + Fresia in heart; Added Ambroxan, Cedro, Cuero in base; Removed Vainilla from base; Complete accord overhaul
+3. CDN Woman (id:3): Reordered heart (Lichi before Geranio); Updated accords with 10 real accords from Fragrantica
+4. CDN White Imperiale (id:4): Moved Vainilla to both heart and base; Removed Vetiver from base; Updated accords with 10 real accords
+5. CDN Iconic (id:115): Reordered heart (Melón above Jazmín); Added Notas Amaderadas + Ládano in base; Updated accords
+6. CDN Sillage (id:116): Changed Violeta to Hojas de Violeta; Changed Ámbar Gris to Ambroxan in base; Reordered heart (Rosa before Iris); Updated accords
+7. CDN Urban Man Elixir (id:117): Added Clavelón/Tagetes in heart; Reordered heart notes; Updated accords (Ámbar now dominant at 100%)
+8. CDN Urban Man (id:118): Reordered top (Menta before Toronja); Reordered heart (Lavanda first); Reordered base (Vetiver first); Updated accords (Amaderado dominant at 100%)
+9. CDN Maleka (id:119): Notes already correct; Updated accords to 10 real accords from Fragrantica (Iris dominant at 100%)
+10. CDN Untold (id:120): Notes already correct; Updated accords to 9 real accords (Amaderado dominant, added Metálico, Floral Blanco, Animalico, Cuero)
+11. CDN Precieux I (id:121): Changed Anís Estrellado to Anís; Updated accords to 10 real accords (Dulce dominant at 100%)
+
+Stage Summary:
+- All 11 Club de Nuit perfumes corrected with real Fragrantica data
+- NOTE_PYRAMIDS updated with correct notes, order, and percentages
+- PERFUME_ACCORDS updated with accurate accord categories and percentages
+- Build verified successfully
+- Server restarted and responding on port 3000
