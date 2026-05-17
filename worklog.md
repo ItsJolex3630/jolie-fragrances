@@ -350,3 +350,35 @@ PERFUME_ACCORDS corrections (all 5 perfumes updated from 5 generic accords to 8 
 - Eter Arabian: Cítrico 95%, Fresco Especiado 70%, Aromático 60%, Dulce 58%, Amaderado 53%, Afrutado 29%, Caramelo 25%, Lavanda 23%
 
 App built successfully and server restarted on port 3000.
+
+---
+Task ID: 3
+Agent: Main Agent
+Task: Correct all perfumes from Rave, Afnan, and French Avenue brands based on real Fragrantica data
+
+Work Log:
+- Identified 21 perfumes: French Avenue (76-81, 6 perfumes), Afnan (82-87, 137-140, 152-153, 12 perfumes), Rave (88-90, 3 perfumes)
+- Downloaded and parsed all 21 Fragrantica pages using curl
+- Extracted note pyramids from pyramid-note-link HTML elements
+- Extracted accord data from /accords-search/ URLs
+
+NOTE_PYRAMIDS corrections (key changes):
+- FA Liquid Brun (76): "Flor de Azahar" → "Flor de Azahar del Naranjo", "Madera de Guayaco" → "Madera de Gaiac"
+- FA Aether (77): "Bergamota de Calabria" → "Bergamota", Cedro reordered before Petitgrain
+- FA Luscious (78): "Pistacho" → "Pistacho (Pistache)", "Cacahuete" → "Cacahuates"
+- Afnan Supremacy Silver (83): "Jazmín" → "Jazmín de Marruecos"
+- Afnan Supremacy Incense (84): "Pimiento" → "Especias", added "Notas Herbales" in top, restructured heart/base
+- Afnan 9PM Rebel (86): Piña reordered first in top
+- Afnan 9PM (137): "Flor de Azahar" → "Flor de Azahar del Naranjo", "Lirio del Valle" → "Lirio de los Valles (Muguete)"
+- Afnan 9PM Elixir (139): "Pimiento" → "Pimienta de Jamaica", "Rosa de Roca" → "Heliántemo"
+- Afnan 9AM Dive (140): "Limón" → "Limón (Lima Ácida)", Jengibre moved to heart, base restructured
+- Afnan Turathi Electric (152): "Toronja Rosa" → "Toronja (Pomelo) Rosada", "Flor de Azahar" → "Flor de Azahar del Naranjo"
+- Afnan Turathi Blue (153): Top completely changed (Bergamota+Mandarina → Cítricos), Especias moved from heart to base
+- Rave Now (88): "Jazmín Marroquí" → "Jazmín de Marruecos"
+- Rave Now Women (89): "Frutos Rojos" → "Frutas Rojas", "Malvavisco" → "Malvavisco (Bombón)", "Lirio del Valle" → "Lirio de los Valles (Muguete)"
+
+PERFUME_ACCORDS corrections (all 21 updated from 5 generic accords to 8 real Fragrantica accords):
+- All accords now based on real Fragrantica voting data with accurate percentages
+- Key changes: FA Aether primary changed from Verde to Amaderado, FA Obsidian from Resinoso to Ámbar, Afnan Supremacy Silver from Cítrico to Afrutado, Rave Now from Cítrico to Afrutado, Rave Rage from Aromático to Ámbar
+
+App built successfully and server running on port 3000.

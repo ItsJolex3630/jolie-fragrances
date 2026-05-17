@@ -2128,11 +2128,11 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Musgo de Roble", percentage: 70 },
     ],
   },
-  // 112 (76). French Avenue Liquid Brun — CORREGIDO: corazón/base intercambiados, añadido Elemí/Bergamota
+  // 112 (76). French Avenue Liquid Brun — CORREGIDO: notas de Fragrantica
   76: {
     top: [
       { name: "Canela", percentage: 95 },
-      { name: "Flor de Azahar", percentage: 85 },
+      { name: "Flor de Azahar del Naranjo", percentage: 85 },
       { name: "Cardamomo", percentage: 80 },
       { name: "Bergamota", percentage: 75 },
     ],
@@ -2143,22 +2143,22 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
     base: [
       { name: "Praliné", percentage: 90 },
       { name: "Ambroxan", percentage: 85 },
-      { name: "Madera de Guayaco", percentage: 80 },
+      { name: "Madera de Gaiac", percentage: 80 },
       { name: "Almizcle", percentage: 70 },
     ],
   },
-  // 113 (77). French Avenue Aether — CORREGIDO: Pomarose→Violeta
+  // 113 (77). French Avenue Aether — CORREGIDO: notas de Fragrantica (Cedro antes de Petitgrain en corazón)
   77: {
     top: [
       { name: "Manzana Verde", percentage: 95 },
-      { name: "Bergamota de Calabria", percentage: 90 },
+      { name: "Bergamota", percentage: 90 },
       { name: "Mandarina", percentage: 80 },
     ],
     heart: [
-      { name: "Petitgrain", percentage: 85 },
-      { name: "Cachemira", percentage: 75 },
-      { name: "Cedro", percentage: 70 },
-      { name: "Violeta", percentage: 60 },
+      { name: "Cedro", percentage: 85 },
+      { name: "Petitgrain", percentage: 78 },
+      { name: "Cachemira", percentage: 72 },
+      { name: "Violeta", percentage: 62 },
     ],
     base: [
       { name: "Musgo de Roble", percentage: 85 },
@@ -2166,15 +2166,15 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Amberwood", percentage: 75 },
     ],
   },
-  // 114 (78). French Avenue Luscious — CORREGIDO: notas completamente revisadas
+  // 114 (78). French Avenue Luscious — CORREGIDO: notas de Fragrantica
   78: {
     top: [
-      { name: "Pistacho", percentage: 95 },
+      { name: "Pistacho (Pistache)", percentage: 95 },
       { name: "Cardamomo", percentage: 85 },
       { name: "Bergamota", percentage: 80 },
     ],
     heart: [
-      { name: "Cacahuete", percentage: 90 },
+      { name: "Cacahuates", percentage: 90 },
       { name: "Azafrán", percentage: 85 },
     ],
     base: [
@@ -2256,7 +2256,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Azafrán", percentage: 70 },
     ],
   },
-  // 119 (83). Afnan Supremacy Silver — CORREGIDO: notas de Fragrantica
+  // 119 (83). Afnan Supremacy Silver — CORREGIDO: notas de Fragrantica (Jazmín de Marruecos)
   83: {
     top: [
       { name: "Piña", percentage: 95 },
@@ -2267,7 +2267,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
     heart: [
       { name: "Abedul", percentage: 90 },
       { name: "Pachulí", percentage: 80 },
-      { name: "Jazmín", percentage: 70 },
+      { name: "Jazmín de Marruecos", percentage: 70 },
       { name: "Rosa", percentage: 60 },
     ],
     base: [
@@ -2277,25 +2277,24 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Vainilla", percentage: 65 },
     ],
   },
-  // 120 (84). Afnan Supremacy Incense — CORREGIDO: añadido Humo en base
+  // 120 (84). Afnan Supremacy Incense — CORREGIDO: notas de Fragrantica (Especias y Notas Herbales en salida, Opopónaco antes de Ámbar en corazón)
   84: {
     top: [
       { name: "Orégano", percentage: 95 },
-      { name: "Pimiento", percentage: 85 },
-      { name: "Bergamota", percentage: 75 },
+      { name: "Especias", percentage: 85 },
+      { name: "Notas Herbales", percentage: 78 },
+      { name: "Bergamota", percentage: 72 },
     ],
     heart: [
-      { name: "Incienso", percentage: 98 },
+      { name: "Opopónaco", percentage: 90 },
       { name: "Ámbar", percentage: 85 },
       { name: "Ládano", percentage: 80 },
-      { name: "Opopónaco", percentage: 75 },
     ],
     base: [
-      { name: "Cuero", percentage: 90 },
-      { name: "Madera de Agar / Oud", percentage: 85 },
-      { name: "Humo", percentage: 82 },
-      { name: "Pachulí", percentage: 80 },
-      { name: "Sándalo", percentage: 70 },
+      { name: "Humo", percentage: 92 },
+      { name: "Madera de Oud", percentage: 88 },
+      { name: "Cuero", percentage: 82 },
+      { name: "Pachulí", percentage: 78 },
     ],
   },
 
@@ -2317,11 +2316,11 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Sándalo", percentage: 75 },
     ],
   },
-  // 122 (86). Afnan 9PM Rebel — CORREGIDO: notas de Fragrantica
+  // 122 (86). Afnan 9PM Rebel — CORREGIDO: notas de Fragrantica (Piña primero en salida)
   86: {
     top: [
-      { name: "Manzana Granny Smith", percentage: 90 },
-      { name: "Piña", percentage: 85 },
+      { name: "Piña", percentage: 92 },
+      { name: "Manzana Granny Smith", percentage: 88 },
       { name: "Mandarina", percentage: 80 },
     ],
     heart: [
@@ -2357,7 +2356,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Cedro", percentage: 70 },
     ],
   },
-  // 124 (137). Afnan 9PM — CORREGIDO: notas de Fragrantica
+  // 124 (137). Afnan 9PM — CORREGIDO: notas de Fragrantica (Flor de Azahar del Naranjo, Lirio de los Valles)
   137: {
     top: [
       { name: "Manzana", percentage: 95 },
@@ -2366,8 +2365,8 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Bergamota", percentage: 75 },
     ],
     heart: [
-      { name: "Flor de Azahar", percentage: 90 },
-      { name: "Lirio del Valle", percentage: 85 },
+      { name: "Flor de Azahar del Naranjo", percentage: 90 },
+      { name: "Lirio de los Valles (Muguete)", percentage: 85 },
     ],
     base: [
       { name: "Vainilla", percentage: 95 },
@@ -2399,7 +2398,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Pachulí", percentage: 75 },
     ],
   },
-  // 126 (139). Afnan 9PM Elixir — CORREGIDO: notas de Fragrantica
+  // 126 (139). Afnan 9PM Elixir — CORREGIDO: notas de Fragrantica (Pimienta de Jamaica en corazón, Heliántemo en base)
   139: {
     top: [
       { name: "Cardamomo", percentage: 95 },
@@ -2407,7 +2406,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Elemí", percentage: 75 },
     ],
     heart: [
-      { name: "Pimiento", percentage: 90 },
+      { name: "Pimienta de Jamaica", percentage: 90 },
       { name: "Cuero", percentage: 85 },
       { name: "Lavanda", percentage: 80 },
     ],
@@ -2415,39 +2414,39 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Vainilla", percentage: 95 },
       { name: "Pachulí", percentage: 85 },
       { name: "Ládano", percentage: 80 },
-      { name: "Rosa de Roca", percentage: 70 },
+      { name: "Heliántemo", percentage: 70 },
     ],
   },
-  // 127 (140). Afnan 9AM Dive — CORREGIDO: notas de Fragrantica
+  // 127 (140). Afnan 9AM Dive — CORREGIDO: notas de Fragrantica (Jengibre e Incienso en corazón, Sándalo/Jazmín/Pachulí en base)
   140: {
     top: [
-      { name: "Limón", percentage: 95 },
+      { name: "Limón (Lima Ácida)", percentage: 95 },
       { name: "Menta", percentage: 90 },
-      { name: "Grosellas Negras", percentage: 80 },
+      { name: "Grosellas Negras", percentage: 82 },
       { name: "Pimienta Rosa", percentage: 75 },
     ],
     heart: [
       { name: "Manzana", percentage: 85 },
       { name: "Cedro", percentage: 80 },
       { name: "Incienso", percentage: 75 },
+      { name: "Jengibre", percentage: 72 },
     ],
     base: [
-      { name: "Jengibre", percentage: 85 },
-      { name: "Sándalo", percentage: 80 },
-      { name: "Pachulí", percentage: 75 },
-      { name: "Jazmín", percentage: 65 },
+      { name: "Sándalo", percentage: 85 },
+      { name: "Pachulí", percentage: 78 },
+      { name: "Jazmín", percentage: 68 },
     ],
   },
-  // 128 (152). Afnan Turathi Electric — CORREGIDO: notas de Fragrantica
+  // 128 (152). Afnan Turathi Electric — CORREGIDO: notas de Fragrantica (Toronja Rosada, Flor de Azahar del Naranjo)
   152: {
     top: [
       { name: "Pera", percentage: 95 },
-      { name: "Toronja Rosa", percentage: 90 },
+      { name: "Toronja (Pomelo) Rosada", percentage: 90 },
       { name: "Mandarina", percentage: 80 },
       { name: "Bergamota", percentage: 75 },
     ],
     heart: [
-      { name: "Flor de Azahar", percentage: 90 },
+      { name: "Flor de Azahar del Naranjo", percentage: 90 },
       { name: "Manzana", percentage: 80 },
       { name: "Cedro", percentage: 75 },
     ],
@@ -2457,11 +2456,10 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Vainilla", percentage: 80 },
     ],
   },
-  // 129 (153). Afnan Turathi Blue — CORREGIDO: notas de Fragrantica
+  // 129 (153). Afnan Turathi Blue — CORREGIDO: notas de Fragrantica (Cítricos en salida, Especias en base)
   153: {
     top: [
-      { name: "Bergamota", percentage: 95 },
-      { name: "Mandarina", percentage: 85 },
+      { name: "Cítricos", percentage: 95 },
     ],
     heart: [
       { name: "Ámbar", percentage: 90 },
@@ -2469,14 +2467,14 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
     ],
     base: [
       { name: "Almizcle", percentage: 90 },
-      { name: "Pachulí", percentage: 85 },
-      { name: "Especias", percentage: 75 },
+      { name: "Especias", percentage: 82 },
+      { name: "Pachulí", percentage: 78 },
     ],
   },
 
   // ─── Rave ───
 
-  // 130 (88). Rave Now — CORREGIDO: notas de Fragrantica
+  // 130 (88). Rave Now — CORREGIDO: notas de Fragrantica (Jazmín de Marruecos)
   88: {
     top: [
       { name: "Piña", percentage: 95 },
@@ -2487,7 +2485,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
     heart: [
       { name: "Abedul", percentage: 90 },
       { name: "Pachulí", percentage: 85 },
-      { name: "Jazmín Marroquí", percentage: 80 },
+      { name: "Jazmín de Marruecos", percentage: 80 },
       { name: "Rosa", percentage: 70 },
     ],
     base: [
@@ -2497,16 +2495,16 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Ámbar Gris", percentage: 75 },
     ],
   },
-  // 131 (89). Rave Now Women — CORREGIDO: notas de Fragrantica
+  // 131 (89). Rave Now Women — CORREGIDO: notas de Fragrantica (Frutas Rojas, Malvavisco/Bombón, Lirio de los Valles)
   89: {
     top: [
-      { name: "Frutos Rojos", percentage: 90 },
+      { name: "Frutas Rojas", percentage: 90 },
       { name: "Naranja", percentage: 85 },
     ],
     heart: [
-      { name: "Malvavisco", percentage: 95 },
+      { name: "Malvavisco (Bombón)", percentage: 95 },
       { name: "Jazmín", percentage: 80 },
-      { name: "Lirio del Valle", percentage: 75 },
+      { name: "Lirio de los Valles (Muguete)", percentage: 75 },
     ],
     base: [
       { name: "Vainilla", percentage: 90 },
@@ -3953,179 +3951,242 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
     { label: "Ámbar", percentage: 75, color: "#f0a830" },
     { label: "Musgoso", percentage: 65, color: "#4a7a3a" },
   ],
-  // 112 (76). French Avenue Liquid Brun — CORREGIDO
+  // 112 (76). French Avenue Liquid Brun — CORREGIDO: accords de Fragrantica
   76: [
-    { label: "Vainilla", percentage: 98, color: "#c9a033" },
-    { label: "Especiado Cálido", percentage: 95, color: "#c45a3a" },
-    { label: "Dulce", percentage: 90, color: "#f0a830" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Ámbar", percentage: 75, color: "#f0a830" },
+    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Especiado Cálido", percentage: 93, color: "#c45a3a" },
+    { label: "Vainilla", percentage: 90, color: "#c9a033" },
+    { label: "Canela", percentage: 67, color: "#c45a3a" },
+    { label: "Floral Blanco", percentage: 44, color: "#f0e6f6" },
+    { label: "Atalcado", percentage: 42, color: "#d4c5a9" },
+    { label: "Cítrico", percentage: 40, color: "#f0c934" },
+    { label: "Aromático", percentage: 38, color: "#6b8e4e" },
   ],
-  // 113 (77). French Avenue Aether — CORREGIDO
+  // 113 (77). French Avenue Aether — CORREGIDO: accords de Fragrantica
   77: [
-    { label: "Verde", percentage: 95, color: "#4a7a3a" },
-    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
-    { label: "Cítrico", percentage: 85, color: "#f0c934" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Fresco", percentage: 75, color: "#a0c4e8" },
+    { label: "Amaderado", percentage: 95, color: "#c17b2a" },
+    { label: "Cítrico", percentage: 84, color: "#f0c934" },
+    { label: "Afrutado", percentage: 62, color: "#e75a8d" },
+    { label: "Almizclado", percentage: 50, color: "#a0a0a0" },
+    { label: "Atalcado", percentage: 50, color: "#d4c5a9" },
+    { label: "Verde", percentage: 48, color: "#4a7a3a" },
+    { label: "Fresco Especiado", percentage: 39, color: "#a0c4e8" },
+    { label: "Fresco", percentage: 38, color: "#a0c4e8" },
   ],
-  // 114 (78). French Avenue Luscious — CORREGIDO
+  // 114 (78). French Avenue Luscious — CORREGIDO: accords de Fragrantica
   78: [
-    { label: "Dulce", percentage: 95, color: "#f0a830" },
-    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
-    { label: "Vainilla", percentage: 80, color: "#c9a033" },
-    { label: "Gourmand", percentage: 75, color: "#8b5e3c" },
-    { label: "Especiado", percentage: 70, color: "#c45a3a" },
+    { label: "Vainilla", percentage: 95, color: "#c9a033" },
+    { label: "Frutos Secos", percentage: 72, color: "#8b6b4a" },
+    { label: "Especiado Cálido", percentage: 68, color: "#c45a3a" },
+    { label: "Dulce", percentage: 62, color: "#f0a830" },
+    { label: "Miel", percentage: 52, color: "#e8b830" },
+    { label: "Almizclado", percentage: 46, color: "#a0a0a0" },
+    { label: "Amaderado", percentage: 46, color: "#c17b2a" },
+    { label: "Atalcado", percentage: 46, color: "#d4c5a9" },
   ],
-  // 115 (79). French Avenue Intense Addiction — CORREGIDO
+  // 115 (79). French Avenue Intense Addiction — CORREGIDO: accords de Fragrantica
   79: [
-    { label: "Dulce", percentage: 95, color: "#f0a830" },
-    { label: "Miel", percentage: 90, color: "#e8b830" },
-    { label: "Floral", percentage: 85, color: "#e75a8d" },
-    { label: "Atalcado", percentage: 75, color: "#d4c5a9" },
-    { label: "Amaderado", percentage: 60, color: "#c17b2a" },
+    { label: "Floral", percentage: 95, color: "#e75a8d" },
+    { label: "Miel", percentage: 82, color: "#e8b830" },
+    { label: "Dulce", percentage: 81, color: "#f0a830" },
+    { label: "Almizclado", percentage: 55, color: "#a0a0a0" },
+    { label: "Atalcado", percentage: 54, color: "#d4c5a9" },
+    { label: "Cítrico", percentage: 34, color: "#f0c934" },
+    { label: "Vainilla", percentage: 33, color: "#c9a033" },
+    { label: "Animal", percentage: 16, color: "#8b4513" },
   ],
-  // 116 (80). French Avenue Obsidian — CORREGIDO
+  // 116 (80). French Avenue Obsidian — CORREGIDO: accords de Fragrantica
   80: [
-    { label: "Resinoso", percentage: 95, color: "#8b6e4e" },
+    { label: "Ámbar", percentage: 95, color: "#f0a830" },
     { label: "Cítrico", percentage: 85, color: "#f0c934" },
-    { label: "Ámbar", percentage: 80, color: "#f0a830" },
-    { label: "Balsámico", percentage: 75, color: "#8b6e4e" },
-    { label: "Aldehídico", percentage: 70, color: "#d4c5a9" },
+    { label: "Vainilla", percentage: 59, color: "#c9a033" },
+    { label: "Aldehídico", percentage: 46, color: "#d4c5a9" },
+    { label: "Aromático", percentage: 37, color: "#6b8e4e" },
+    { label: "Fresco Especiado", percentage: 32, color: "#a0c4e8" },
+    { label: "Dulce", percentage: 31, color: "#f0a830" },
+    { label: "Fresco", percentage: 27, color: "#a0c4e8" },
   ],
-  // 117 (81). French Avenue Vulcan Feu — CORREGIDO
+  // 117 (81). French Avenue Vulcan Feu — CORREGIDO: accords de Fragrantica
   81: [
-    { label: "Afrutado", percentage: 95, color: "#e75a8d" },
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Dulce", percentage: 85, color: "#f0a830" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Ámbar Gris", percentage: 75, color: "#f0a830" },
+    { label: "Tropical", percentage: 95, color: "#f0c934" },
+    { label: "Afrutado", percentage: 93, color: "#e75a8d" },
+    { label: "Dulce", percentage: 87, color: "#f0a830" },
+    { label: "Cítrico", percentage: 59, color: "#f0c934" },
+    { label: "Amaderado", percentage: 37, color: "#c17b2a" },
+    { label: "Fresco", percentage: 36, color: "#a0c4e8" },
+    { label: "Fresco Especiado", percentage: 34, color: "#a0c4e8" },
+    { label: "Aromático", percentage: 34, color: "#6b8e4e" },
   ],
-  // 118 (82). Afnan Supremacy Not Only Intense — CORREGIDO
+  // 118 (82). Afnan Supremacy Not Only Intense — CORREGIDO: accords de Fragrantica
   82: [
     { label: "Afrutado", percentage: 95, color: "#e75a8d" },
-    { label: "Musgoso", percentage: 90, color: "#4a7a3a" },
-    { label: "Cítrico", percentage: 85, color: "#f0c934" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Cuero", percentage: 70, color: "#8b5e3c" },
+    { label: "Musgoso", percentage: 77, color: "#4a7a3a" },
+    { label: "Amaderado", percentage: 69, color: "#c17b2a" },
+    { label: "Terroso", percentage: 68, color: "#8b6b4a" },
+    { label: "Cítrico", percentage: 57, color: "#f0c934" },
+    { label: "Fresco Especiado", percentage: 46, color: "#a0c4e8" },
+    { label: "Ámbar", percentage: 41, color: "#f0a830" },
+    { label: "Animal", percentage: 40, color: "#8b4513" },
   ],
-  // 119 (83). Afnan Supremacy Silver — CORREGIDO
+  // 119 (83). Afnan Supremacy Silver — CORREGIDO: accords de Fragrantica
   83: [
-    { label: "Cítrico", percentage: 95, color: "#f0c934" },
-    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
-    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
-    { label: "Ahumado", percentage: 75, color: "#7a6b5d" },
-    { label: "Dulce", percentage: 60, color: "#f0a830" },
+    { label: "Afrutado", percentage: 95, color: "#e75a8d" },
+    { label: "Cuero", percentage: 51, color: "#8b5e3c" },
+    { label: "Amaderado", percentage: 50, color: "#c17b2a" },
+    { label: "Dulce", percentage: 46, color: "#f0a830" },
+    { label: "Ahumado", percentage: 41, color: "#7a6b5d" },
+    { label: "Cítrico", percentage: 33, color: "#f0c934" },
+    { label: "Almizclado", percentage: 29, color: "#a0a0a0" },
+    { label: "Musgoso", percentage: 27, color: "#4a7a3a" },
   ],
-  // 120 (84). Afnan Supremacy Incense — CORREGIDO
+  // 120 (84). Afnan Supremacy Incense — CORREGIDO: accords de Fragrantica
   84: [
-    { label: "Incienso", percentage: 98, color: "#7a6b5d" },
-    { label: "Especiado Herbal", percentage: 95, color: "#6b8e4e" },
-    { label: "Ámbar", percentage: 90, color: "#f0a830" },
-    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
-    { label: "Balsámico", percentage: 80, color: "#8b6e4e" },
+    { label: "Ámbar", percentage: 95, color: "#f0a830" },
+    { label: "Ahumado", percentage: 81, color: "#7a6b5d" },
+    { label: "Fresco Especiado", percentage: 52, color: "#a0c4e8" },
+    { label: "Amaderado", percentage: 46, color: "#c17b2a" },
+    { label: "Especiado Cálido", percentage: 44, color: "#c45a3a" },
+    { label: "Oud", percentage: 41, color: "#5a3a2a" },
+    { label: "Balsámico", percentage: 37, color: "#8b6e4e" },
+    { label: "Aromático", percentage: 32, color: "#6b8e4e" },
   ],
 
   // ─── Páginas 7-8: Afnan, Rave, Maison Alhambra, Dumont, Rasasi ───
 
-  // 121 (85). Afnan Supremacy In Heaven — CORREGIDO
+  // 121 (85). Afnan Supremacy In Heaven — CORREGIDO: accords de Fragrantica
   85: [
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Fresco", percentage: 85, color: "#a0c4e8" },
-    { label: "Almizclado", percentage: 80, color: "#a0a0a0" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Afrutado", percentage: 65, color: "#e75a8d" },
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Amaderado", percentage: 88, color: "#c17b2a" },
+    { label: "Afrutado", percentage: 64, color: "#e75a8d" },
+    { label: "Verde", percentage: 56, color: "#4a7a3a" },
+    { label: "Almizclado", percentage: 46, color: "#a0a0a0" },
+    { label: "Atalcado", percentage: 44, color: "#d4c5a9" },
+    { label: "Fresco Especiado", percentage: 40, color: "#a0c4e8" },
+    { label: "Aromático", percentage: 31, color: "#6b8e4e" },
   ],
-  // 122 (86). Afnan 9PM Rebel — CORREGIDO
+  // 122 (86). Afnan 9PM Rebel — CORREGIDO: accords de Fragrantica
   86: [
-    { label: "Dulce", percentage: 95, color: "#f0a830" },
-    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
-    { label: "Ámbar", percentage: 80, color: "#f0a830" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Vainilla", percentage: 70, color: "#c9a033" },
+    { label: "Afrutado", percentage: 95, color: "#e75a8d" },
+    { label: "Dulce", percentage: 83, color: "#f0a830" },
+    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Tropical", percentage: 40, color: "#f0c934" },
+    { label: "Fresco", percentage: 36, color: "#a0c4e8" },
+    { label: "Ámbar", percentage: 29, color: "#f0a830" },
+    { label: "Musgoso", percentage: 29, color: "#4a7a3a" },
+    { label: "Caramelo", percentage: 27, color: "#d4a030" },
   ],
-  // 123 (87). Afnan 9PM Pour Femme — CORREGIDO
+  // 123 (87). Afnan 9PM Pour Femme — CORREGIDO: accords de Fragrantica
   87: [
-    { label: "Floral", percentage: 95, color: "#e75a8d" },
-    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Ámbar", percentage: 75, color: "#f0a830" },
-    { label: "Violeta", percentage: 65, color: "#9b8ec4" },
+    { label: "Amaderado", percentage: 95, color: "#c17b2a" },
+    { label: "Afrutado", percentage: 59, color: "#e75a8d" },
+    { label: "Rosado", percentage: 58, color: "#e75a8d" },
+    { label: "Floral", percentage: 52, color: "#e75a8d" },
+    { label: "Aromático", percentage: 47, color: "#6b8e4e" },
+    { label: "Atalcado", percentage: 46, color: "#d4c5a9" },
+    { label: "Violeta", percentage: 45, color: "#9b8ec4" },
+    { label: "Fresco", percentage: 40, color: "#a0c4e8" },
   ],
-  // 124 (137). Afnan 9PM — CORREGIDO
+  // 124 (137). Afnan 9PM — CORREGIDO: accords de Fragrantica
   137: [
-    { label: "Dulce", percentage: 95, color: "#f0a830" },
-    { label: "Especiado Cálido", percentage: 90, color: "#c45a3a" },
-    { label: "Vainilla", percentage: 85, color: "#c9a033" },
-    { label: "Afrutado", percentage: 80, color: "#e75a8d" },
-    { label: "Ámbar", percentage: 75, color: "#f0a830" },
+    { label: "Vainilla", percentage: 95, color: "#c9a033" },
+    { label: "Ámbar", percentage: 45, color: "#f0a830" },
+    { label: "Especiado Cálido", percentage: 41, color: "#c45a3a" },
+    { label: "Afrutado", percentage: 37, color: "#e75a8d" },
+    { label: "Canela", percentage: 34, color: "#c45a3a" },
+    { label: "Dulce", percentage: 34, color: "#f0a830" },
+    { label: "Lavanda", percentage: 32, color: "#9b7ec8" },
+    { label: "Aromático", percentage: 28, color: "#6b8e4e" },
   ],
-  // 125 (138). Afnan 9PM Nite Out — CORREGIDO
+  // 125 (138). Afnan 9PM Nite Out — CORREGIDO: accords de Fragrantica
   138: [
-    { label: "Dulce", percentage: 95, color: "#f0a830" },
-    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
-    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
-    { label: "Especiado Cálido", percentage: 80, color: "#c45a3a" },
-    { label: "Gourmand", percentage: 75, color: "#8b5e3c" },
+    { label: "Amaderado", percentage: 95, color: "#c17b2a" },
+    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
+    { label: "Especiado Cálido", percentage: 82, color: "#c45a3a" },
+    { label: "Dulce", percentage: 68, color: "#f0a830" },
+    { label: "Tropical", percentage: 66, color: "#f0c934" },
+    { label: "Aromático", percentage: 60, color: "#6b8e4e" },
+    { label: "Lavanda", percentage: 47, color: "#9b7ec8" },
+    { label: "Floral", percentage: 44, color: "#e75a8d" },
   ],
-  // 126 (139). Afnan 9PM Elixir — CORREGIDO
+  // 126 (139). Afnan 9PM Elixir — CORREGIDO: accords de Fragrantica
   139: [
     { label: "Especiado Cálido", percentage: 95, color: "#c45a3a" },
-    { label: "Cuero", percentage: 90, color: "#8b5e3c" },
-    { label: "Vainilla", percentage: 85, color: "#c9a033" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Balsámico", percentage: 70, color: "#8b6e4e" },
+    { label: "Vainilla", percentage: 57, color: "#c9a033" },
+    { label: "Aromático", percentage: 52, color: "#6b8e4e" },
+    { label: "Fresco Especiado", percentage: 47, color: "#a0c4e8" },
+    { label: "Cuero", percentage: 33, color: "#8b5e3c" },
+    { label: "Lavanda", percentage: 31, color: "#9b7ec8" },
+    { label: "Balsámico", percentage: 29, color: "#8b6e4e" },
+    { label: "Pachulí", percentage: 26, color: "#4a7a3a" },
   ],
-  // 127 (140). Afnan 9AM Dive — CORREGIDO
+  // 127 (140). Afnan 9AM Dive — CORREGIDO: accords de Fragrantica
   140: [
-    { label: "Cítrico", percentage: 95, color: "#f0c934" },
-    { label: "Fresco Especiado", percentage: 90, color: "#a0c4e8" },
-    { label: "Aromático", percentage: 85, color: "#6b8e4e" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Verde", percentage: 65, color: "#4a7a3a" },
+    { label: "Afrutado", percentage: 95, color: "#e75a8d" },
+    { label: "Verde", percentage: 91, color: "#4a7a3a" },
+    { label: "Amaderado", percentage: 88, color: "#c17b2a" },
+    { label: "Fresco Especiado", percentage: 76, color: "#a0c4e8" },
+    { label: "Cítrico", percentage: 75, color: "#f0c934" },
+    { label: "Aromático", percentage: 75, color: "#6b8e4e" },
+    { label: "Fresco", percentage: 69, color: "#a0c4e8" },
+    { label: "Especiado Suave", percentage: 34, color: "#c45a3a" },
   ],
-  // 128 (152). Afnan Turathi Electric — CORREGIDO
+  // 128 (152). Afnan Turathi Electric — CORREGIDO: accords de Fragrantica
   152: [
     { label: "Cítrico", percentage: 95, color: "#f0c934" },
-    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
-    { label: "Floral", percentage: 80, color: "#e75a8d" },
-    { label: "Dulce", percentage: 75, color: "#f0a830" },
-    { label: "Almizclado", percentage: 65, color: "#a0a0a0" },
+    { label: "Afrutado", percentage: 60, color: "#e75a8d" },
+    { label: "Dulce", percentage: 40, color: "#f0a830" },
+    { label: "Almizclado", percentage: 35, color: "#a0a0a0" },
+    { label: "Atalcado", percentage: 29, color: "#d4c5a9" },
+    { label: "Fresco", percentage: 26, color: "#a0c4e8" },
+    { label: "Floral Blanco", percentage: 26, color: "#f0e6f6" },
+    { label: "Fresco Especiado", percentage: 25, color: "#a0c4e8" },
   ],
-  // 129 (153). Afnan Turathi Blue — CORREGIDO
+  // 129 (153). Afnan Turathi Blue — CORREGIDO: accords de Fragrantica
   153: [
     { label: "Cítrico", percentage: 95, color: "#f0c934" },
-    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
-    { label: "Ámbar", percentage: 80, color: "#f0a830" },
-    { label: "Almizclado", percentage: 75, color: "#a0a0a0" },
-    { label: "Especiado", percentage: 65, color: "#c45a3a" },
+    { label: "Almizclado", percentage: 58, color: "#a0a0a0" },
+    { label: "Amaderado", percentage: 49, color: "#c17b2a" },
+    { label: "Fresco", percentage: 47, color: "#a0c4e8" },
+    { label: "Ámbar", percentage: 36, color: "#f0a830" },
+    { label: "Atalcado", percentage: 34, color: "#d4c5a9" },
+    { label: "Especiado Cálido", percentage: 30, color: "#c45a3a" },
+    { label: "Pachulí", percentage: 23, color: "#4a7a3a" },
   ],
 
   // ─── Rave ───
 
-  // 130 (88). Rave Now — CORREGIDO
+  // 130 (88). Rave Now — CORREGIDO: accords de Fragrantica
   88: [
-    { label: "Cítrico", percentage: 95, color: "#f0c934" },
-    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
-    { label: "Ahumado", percentage: 85, color: "#7a6b5d" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Dulce", percentage: 70, color: "#f0a830" },
+    { label: "Afrutado", percentage: 95, color: "#e75a8d" },
+    { label: "Dulce", percentage: 65, color: "#f0a830" },
+    { label: "Tropical", percentage: 37, color: "#f0c934" },
+    { label: "Fresco", percentage: 31, color: "#a0c4e8" },
+    { label: "Almizclado", percentage: 25, color: "#a0a0a0" },
+    { label: "Amaderado", percentage: 21, color: "#c17b2a" },
+    { label: "Atalcado", percentage: 20, color: "#d4c5a9" },
+    { label: "Cítrico", percentage: 19, color: "#f0c934" },
   ],
-  // 131 (89). Rave Now Women — CORREGIDO
+  // 131 (89). Rave Now Women — CORREGIDO: accords de Fragrantica
   89: [
     { label: "Dulce", percentage: 95, color: "#f0a830" },
-    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
-    { label: "Floral", percentage: 85, color: "#e75a8d" },
-    { label: "Vainilla", percentage: 80, color: "#c9a033" },
-    { label: "Almizclado", percentage: 70, color: "#a0a0a0" },
+    { label: "Atalcado", percentage: 67, color: "#d4c5a9" },
+    { label: "Afrutado", percentage: 63, color: "#e75a8d" },
+    { label: "Vainilla", percentage: 50, color: "#c9a033" },
+    { label: "Floral Blanco", percentage: 48, color: "#f0e6f6" },
+    { label: "Almizclado", percentage: 39, color: "#a0a0a0" },
+    { label: "Fresco", percentage: 38, color: "#a0c4e8" },
+    { label: "Cítrico", percentage: 31, color: "#f0c934" },
   ],
-  // 132 (90). Rave Rage — CORREGIDO
+  // 132 (90). Rave Rage — CORREGIDO: accords de Fragrantica
   90: [
-    { label: "Aromático", percentage: 95, color: "#6b8e4e" },
-    { label: "Fresco Especiado", percentage: 85, color: "#a0c4e8" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Incienso", percentage: 75, color: "#7a6b5d" },
-    { label: "Verde", percentage: 65, color: "#4a7a3a" },
+    { label: "Ámbar", percentage: 95, color: "#f0a830" },
+    { label: "Aromático", percentage: 91, color: "#6b8e4e" },
+    { label: "Verde", percentage: 85, color: "#4a7a3a" },
+    { label: "Amaderado", percentage: 74, color: "#c17b2a" },
+    { label: "Fresco Especiado", percentage: 68, color: "#a0c4e8" },
+    { label: "Almizclado", percentage: 46, color: "#a0a0a0" },
+    { label: "Balsámico", percentage: 41, color: "#8b6e4e" },
+    { label: "Floral", percentage: 41, color: "#e75a8d" },
   ],
 
   // ─── Maison Alhambra ───
