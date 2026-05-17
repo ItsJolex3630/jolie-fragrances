@@ -310,22 +310,23 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Pachulí", percentage: 70 },
     ],
   },
-  // 14 (104). Odyssey Mandarine Sky
+  // 14 (104). Odyssey Mandarine Sky — CORREGIDO: notas de Fragrantica (Salvia en salida, Clavelón en corazón, Ambroxan+Vetiver en base)
   104: {
     top: [
       { name: "Mandarina", percentage: 95 },
       { name: "Naranja", percentage: 85 },
-      { name: "Azafrán", percentage: 70 },
+      { name: "Azafrán", percentage: 75 },
+      { name: "Salvia", percentage: 65 },
     ],
     heart: [
       { name: "Caramelo", percentage: 90 },
-      { name: "Tonka", percentage: 80 },
-      { name: "Coco", percentage: 65 },
+      { name: "Haba Tonka", percentage: 80 },
+      { name: "Clavelón / Tagetes", percentage: 65 },
     ],
     base: [
-      { name: "Ámbar", percentage: 85 },
-      { name: "Cedro", percentage: 70 },
-      { name: "Pachulí", percentage: 60 },
+      { name: "Ambroxan", percentage: 85 },
+      { name: "Cedro", percentage: 75 },
+      { name: "Vetiver", percentage: 65 },
     ],
   },
   // 15 (105). Odyssey Artisto
@@ -432,40 +433,38 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Pachulí", percentage: 70 },
     ],
   },
-  // 20 (110). Odyssey Homme
+  // 20 (110). Odyssey Homme — CORREGIDO: notas de Fragrantica (Cardamomo+Mandarina+Neroli en salida, Flor de Azahar+Rosa en corazón)
   110: {
     top: [
+      { name: "Cardamomo", percentage: 90 },
       { name: "Mandarina", percentage: 85 },
-      { name: "Pimienta Rosa", percentage: 75 },
+      { name: "Neroli", percentage: 75 },
     ],
     heart: [
-      { name: "Iris", percentage: 90 },
-      { name: "Cuero", percentage: 80 },
+      { name: "Flor de Azahar", percentage: 90 },
+      { name: "Rosa", percentage: 80 },
     ],
     base: [
-      { name: "Vainilla", percentage: 90 },
-      { name: "Ámbar", percentage: 85 },
-      { name: "Haba Tonka", percentage: 75 },
+      { name: "Vainilla", percentage: 95 },
+      { name: "Sándalo", percentage: 85 },
+      { name: "Notas Amaderadas", percentage: 75 },
+      { name: "Ámbar", percentage: 70 },
     ],
   },
   // ─── Página 2 ───
-  // 21 (111). Odyssey Mandarin Sky Vintage Edition
+  // 21 (111). Odyssey Mandarin Sky Vintage Edition — CORREGIDO: notas de Fragrantica (Cítricos+Mandarina en salida, Especias+Florales en corazón)
   111: {
     top: [
       { name: "Mandarina", percentage: 95 },
-      { name: "Naranja", percentage: 85 },
-      { name: "Azafrán", percentage: 70 },
+      { name: "Notas Cítricas", percentage: 85 },
     ],
     heart: [
-      { name: "Caramelo", percentage: 90 },
-      { name: "Haba Tonka", percentage: 80 },
-      { name: "Coco", percentage: 65 },
-      { name: "Notas Florales Suaves", percentage: 50 },
+      { name: "Especias", percentage: 85 },
+      { name: "Notas Florales", percentage: 75 },
     ],
     base: [
-      { name: "Ámbar", percentage: 85 },
-      { name: "Cedro", percentage: 75 },
-      { name: "Pachulí", percentage: 60 },
+      { name: "Notas Amaderadas", percentage: 85 },
+      { name: "Ámbar", percentage: 80 },
     ],
   },
   // 22 (112). Odyssey Mandarin Sky Elixir — CORREGIDO: notas de Fragrantica
@@ -3011,110 +3010,149 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
     { label: "Amaderado", percentage: 75, color: "#c17b2a" },
     { label: "Cuero", percentage: 65, color: "#8b5e3c" },
   ],
-  // 12 (5). Odyssey Homme White Edition
+  // 12 (5). Odyssey Homme White Edition — CORREGIDO: acordes de Fragrantica
   5: [
-    { label: "Fresco Especiado", percentage: 90, color: "#a0c4e8" },
-    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
-    { label: "Acuático", percentage: 80, color: "#4a8eb8" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Dulce", percentage: 65, color: "#f0a830" },
+    { label: "Amaderado", percentage: 95, color: "#c17b2a" },
+    { label: "Ámbar", percentage: 66, color: "#f0a830" },
+    { label: "Aromático", percentage: 64, color: "#6b8e4e" },
+    { label: "Avainillado", percentage: 58, color: "#c9a033" },
+    { label: "Cálido Especiado", percentage: 54, color: "#c45a3a" },
+    { label: "Especiado Suave", percentage: 54, color: "#d4855a" },
+    { label: "Dulce", percentage: 38, color: "#f0a830" },
+    { label: "Marino", percentage: 27, color: "#4a8eb8" },
   ],
-  // 13 (91). Odyssey Aoud
+  // 13 (91). Odyssey Aoud — CORREGIDO: acordes de Fragrantica
   91: [
-    { label: "Oud", percentage: 90, color: "#5a3a2a" },
-    { label: "Especiado Cálido", percentage: 85, color: "#c45a3a" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Almizclado", percentage: 75, color: "#a0a0a0" },
-    { label: "Pachulí", percentage: 65, color: "#4a7a3a" },
+    { label: "Amaderado", percentage: 95, color: "#c17b2a" },
+    { label: "Oud", percentage: 94, color: "#5a3a2a" },
+    { label: "Almizclado", percentage: 83, color: "#a0a0a0" },
+    { label: "Cálido Especiado", percentage: 82, color: "#c45a3a" },
+    { label: "Fresco Especiado", percentage: 81, color: "#a0c4e8" },
+    { label: "Ámbar", percentage: 51, color: "#f0a830" },
+    { label: "Lavanda", percentage: 47, color: "#9b8ec4" },
+    { label: "Pachulí", percentage: 43, color: "#4a7a3a" },
   ],
-  // 14 (104). Odyssey Mandarine Sky
+  // 14 (104). Odyssey Mandarine Sky — CORREGIDO: acordes de Fragrantica
   104: [
-    { label: "Dulce", percentage: 90, color: "#f0a830" },
-    { label: "Cítrico", percentage: 85, color: "#f0c934" },
-    { label: "Caramelo", percentage: 80, color: "#c98030" },
-    { label: "Ámbar", percentage: 75, color: "#f0a830" },
-    { label: "Especiado Suave", percentage: 60, color: "#c45a3a" },
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Caramelo", percentage: 61, color: "#c98030" },
+    { label: "Dulce", percentage: 59, color: "#f0a830" },
+    { label: "Ámbar", percentage: 38, color: "#f0a830" },
+    { label: "Aromático", percentage: 34, color: "#6b8e4e" },
+    { label: "Avainillado", percentage: 26, color: "#c9a033" },
+    { label: "Amaderado", percentage: 24, color: "#c17b2a" },
+    { label: "Cálido Especiado", percentage: 18, color: "#c45a3a" },
   ],
-  // 15 (105). Odyssey Artisto
+  // 15 (105). Odyssey Artisto — CORREGIDO: acordes de Fragrantica
   105: [
-    { label: "Cálido Especiado", percentage: 90, color: "#c45a3a" },
-    { label: "Tropical", percentage: 85, color: "#f0c934" },
-    { label: "Dulce", percentage: 80, color: "#f0a830" },
-    { label: "Coco", percentage: 75, color: "#d4c5a9" },
-    { label: "Ámbar", percentage: 65, color: "#f0a830" },
+    { label: "Avainillado", percentage: 95, color: "#c9a033" },
+    { label: "Ámbar", percentage: 67, color: "#f0a830" },
+    { label: "Coco", percentage: 65, color: "#d4c5a9" },
+    { label: "Dulce", percentage: 60, color: "#f0a830" },
+    { label: "Tropical", percentage: 58, color: "#f0c934" },
+    { label: "Cítrico", percentage: 48, color: "#f0c934" },
+    { label: "Aromático", percentage: 47, color: "#6b8e4e" },
+    { label: "Nueces", percentage: 40, color: "#8b6e4e" },
   ],
-  // 16 (106). Odyssey Bahamas
+  // 16 (106). Odyssey Bahamas — CORREGIDO: acordes de Fragrantica
   106: [
-    { label: "Acuático", percentage: 95, color: "#4a8eb8" },
-    { label: "Fresco", percentage: 90, color: "#a0c4e8" },
-    { label: "Afrutado", percentage: 80, color: "#e75a8d" },
-    { label: "Almizclado", percentage: 75, color: "#a0a0a0" },
-    { label: "Ámbar", percentage: 65, color: "#f0a830" },
+    { label: "Marino", percentage: 95, color: "#4a8eb8" },
+    { label: "Acuático", percentage: 92, color: "#5aaad4" },
+    { label: "Afrutado", percentage: 70, color: "#e75a8d" },
+    { label: "Dulce", percentage: 52, color: "#f0a830" },
+    { label: "Fresco", percentage: 49, color: "#a0c4e8" },
+    { label: "Salado", percentage: 49, color: "#7ab8d4" },
+    { label: "Ozónico", percentage: 38, color: "#a0d4e8" },
+    { label: "Aromático", percentage: 34, color: "#6b8e4e" },
   ],
-  // 17 (107). Odyssey Toffee Coffee
+  // 17 (107). Odyssey Toffee Coffee — CORREGIDO: acordes de Fragrantica
   107: [
-    { label: "Gourmand", percentage: 95, color: "#8b5e3c" },
-    { label: "Café", percentage: 90, color: "#5a3a2a" },
-    { label: "Dulce", percentage: 85, color: "#f0a830" },
-    { label: "Caramelo", percentage: 80, color: "#c98030" },
-    { label: "Ámbar", percentage: 70, color: "#f0a830" },
+    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Café", percentage: 41, color: "#5a3a2a" },
+    { label: "Cálido Especiado", percentage: 37, color: "#c45a3a" },
+    { label: "Avainillado", percentage: 36, color: "#c9a033" },
+    { label: "Caramelo", percentage: 23, color: "#c98030" },
+    { label: "Lácteo", percentage: 19, color: "#f5f0e0" },
+    { label: "Ámbar", percentage: 15, color: "#f0a830" },
+    { label: "Atalcado", percentage: 15, color: "#d4c5a9" },
   ],
-  // 18 (108). Odyssey Spectra
+  // 18 (108). Odyssey Spectra — CORREGIDO: acordes de Fragrantica
   108: [
-    { label: "Cálido Especiado", percentage: 95, color: "#c45a3a" },
-    { label: "Dulce", percentage: 85, color: "#f0a830" },
-    { label: "Tabaco", percentage: 80, color: "#5a3a2a" },
-    { label: "Vainilla", percentage: 75, color: "#c9a033" },
-    { label: "Ámbar", percentage: 65, color: "#f0a830" },
+    { label: "Avainillado", percentage: 95, color: "#c9a033" },
+    { label: "Cálido Especiado", percentage: 70, color: "#c45a3a" },
+    { label: "Ámbar", percentage: 64, color: "#f0a830" },
+    { label: "Canela", percentage: 63, color: "#d4855a" },
+    { label: "Dulce", percentage: 61, color: "#f0a830" },
+    { label: "Lavanda", percentage: 60, color: "#9b8ec4" },
+    { label: "Afrutado", percentage: 47, color: "#e75a8d" },
+    { label: "Aromático", percentage: 46, color: "#6b8e4e" },
   ],
-  // 19 (109). Odyssey Aqua
+  // 19 (109). Odyssey Aqua — CORREGIDO: acordes de Fragrantica
   109: [
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Aromático", percentage: 85, color: "#6b8e4e" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Fresco", percentage: 70, color: "#a0c4e8" },
-    { label: "Almizclado", percentage: 60, color: "#a0a0a0" },
+    { label: "Aromático", percentage: 95, color: "#6b8e4e" },
+    { label: "Cítrico", percentage: 80, color: "#f0c934" },
+    { label: "Fresco Especiado", percentage: 79, color: "#a0c4e8" },
+    { label: "Verde", percentage: 58, color: "#4a7a3a" },
+    { label: "Amaderado", percentage: 42, color: "#c17b2a" },
+    { label: "Ámbar", percentage: 39, color: "#f0a830" },
+    { label: "Herbal", percentage: 32, color: "#6b8e4e" },
+    { label: "Lavanda", percentage: 29, color: "#9b8ec4" },
   ],
-  // 20 (110). Odyssey Homme
+  // 20 (110). Odyssey Homme — CORREGIDO: acordes de Fragrantica
   110: [
-    { label: "Ámbar", percentage: 90, color: "#f0a830" },
-    { label: "Vainilla", percentage: 85, color: "#c9a033" },
-    { label: "Atalcado", percentage: 80, color: "#d4c5a9" },
-    { label: "Iris", percentage: 75, color: "#9b8ec4" },
-    { label: "Especiado Cálido", percentage: 70, color: "#c45a3a" },
+    { label: "Amaderado", percentage: 95, color: "#c17b2a" },
+    { label: "Avainillado", percentage: 61, color: "#c9a033" },
+    { label: "Cálido Especiado", percentage: 50, color: "#c45a3a" },
+    { label: "Atalcado", percentage: 48, color: "#d4c5a9" },
+    { label: "Cítrico", percentage: 46, color: "#f0c934" },
+    { label: "Floral Blanco", percentage: 42, color: "#f0e6f6" },
+    { label: "Ámbar", percentage: 41, color: "#f0a830" },
+    { label: "Dulce", percentage: 25, color: "#f0a830" },
   ],
   // ─── Página 2 ───
-  // 21 (111). Odyssey Mandarin Sky Vintage Edition
+  // 21 (111). Odyssey Mandarin Sky Vintage Edition — CORREGIDO: acordes de Fragrantica
   111: [
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Dulce", percentage: 85, color: "#f0a830" },
-    { label: "Ámbar", percentage: 75, color: "#f0a830" },
-    { label: "Caramelo", percentage: 70, color: "#c98030" },
-    { label: "Especiado Cálido", percentage: 65, color: "#c45a3a" },
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Amaderado", percentage: 58, color: "#c17b2a" },
+    { label: "Cálido Especiado", percentage: 38, color: "#c45a3a" },
+    { label: "Ámbar", percentage: 37, color: "#f0a830" },
+    { label: "Floral", percentage: 33, color: "#e75a8d" },
+    { label: "Fresco", percentage: 21, color: "#a0c4e8" },
+    { label: "Afrutado", percentage: 10, color: "#e75a8d" },
+    { label: "Fresco Especiado", percentage: 9, color: "#a0c4e8" },
   ],
-  // 22 (112). Odyssey Mandarin Sky Elixir
+  // 22 (112). Odyssey Mandarin Sky Elixir — CORREGIDO: acordes de Fragrantica
   112: [
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Dulce", percentage: 85, color: "#f0a830" },
-    { label: "Caramelo", percentage: 80, color: "#c98030" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Especiado", percentage: 65, color: "#c45a3a" },
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Avainillado", percentage: 82, color: "#c9a033" },
+    { label: "Dulce", percentage: 64, color: "#f0a830" },
+    { label: "Caramelo", percentage: 47, color: "#c98030" },
+    { label: "Aromático", percentage: 43, color: "#6b8e4e" },
+    { label: "Cálido Especiado", percentage: 42, color: "#c45a3a" },
+    { label: "Ámbar", percentage: 32, color: "#f0a830" },
+    { label: "Balsámico", percentage: 29, color: "#8b6e4e" },
   ],
-  // 23 (113). Odyssey Mega
+  // 23 (113). Odyssey Mega — CORREGIDO: acordes de Fragrantica
   113: [
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Aromático", percentage: 85, color: "#6b8e4e" },
-    { label: "Fresco Especiado", percentage: 80, color: "#a0c4e8" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Almizclado", percentage: 60, color: "#a0a0a0" },
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Aromático", percentage: 81, color: "#6b8e4e" },
+    { label: "Fresco Especiado", percentage: 72, color: "#a0c4e8" },
+    { label: "Amaderado", percentage: 36, color: "#c17b2a" },
+    { label: "Dulce", percentage: 34, color: "#f0a830" },
+    { label: "Fresco", percentage: 27, color: "#a0c4e8" },
+    { label: "Verde", percentage: 25, color: "#4a7a3a" },
+    { label: "Almizclado", percentage: 23, color: "#a0a0a0" },
   ],
-  // 24 (114). Odyssey Limoni Fresh
+  // 24 (114). Odyssey Limoni Fresh — CORREGIDO: acordes de Fragrantica
   114: [
     { label: "Cítrico", percentage: 95, color: "#f0c934" },
-    { label: "Fresco", percentage: 85, color: "#a0c4e8" },
-    { label: "Floral", percentage: 75, color: "#e75a8d" },
-    { label: "Almizclado", percentage: 65, color: "#a0a0a0" },
-    { label: "Marino", percentage: 55, color: "#4a8eb8" },
+    { label: "Fresco Especiado", percentage: 22, color: "#a0c4e8" },
+    { label: "Aromático", percentage: 21, color: "#6b8e4e" },
+    { label: "Fresco", percentage: 17, color: "#a0c4e8" },
+    { label: "Verde", percentage: 16, color: "#4a7a3a" },
+    { label: "Dulce", percentage: 12, color: "#f0a830" },
+    { label: "Floral Blanco", percentage: 10, color: "#f0e6f6" },
+    { label: "Marino", percentage: 10, color: "#4a8eb8" },
   ],
   // 25 (141). Yum Yum — CORREGIDO
   141: [

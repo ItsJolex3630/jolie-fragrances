@@ -99,13 +99,13 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   121: ["Ámbar", "Dulce"], // Club de Nuit Precieux I
   5: ["Cítrico", "Amaderado"], // Odyssey Homme White Edition
   91: ["Amaderado", "Ahumado"], // Odyssey Aoud
-  104: ["Cítrico"], // Odyssey Mandarine Sky
+  104: ["Cítrico", "Dulce"], // Odyssey Mandarine Sky
   105: ["Especiado", "Amaderado"], // Odyssey Artisto
   106: ["Acuático", "Frutal"], // Odyssey Bahamas
   107: ["Dulce"], // Odyssey Toffee Coffee
   108: ["Frutal", "Amaderado"], // Odyssey Spectra
   109: ["Acuático", "Cítrico"], // Odyssey Aqua
-  110: ["Cítrico", "Amaderado"], // Odyssey Homme
+  110: ["Amaderado", "Ámbar"], // Odyssey Homme
   111: ["Cítrico", "Amaderado"], // Odyssey Mandarin Sky Vintage
   112: ["Cítrico", "Dulce"], // Odyssey Mandarin Sky Elixir
   113: ["Cítrico", "Especiado"], // Odyssey Mega
