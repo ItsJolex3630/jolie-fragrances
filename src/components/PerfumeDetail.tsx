@@ -1838,296 +1838,294 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Almizcle", percentage: 83 },
     ],
   },
-  // 97 (71). Lattafa Maahir Legacy — CORREGIDO: notas de Fragrantica
+  // 97 (71). Lattafa Maahir Legacy — CORREGIDO: notas de Fragrantica (Menta 100%, Incienso en corazón)
   71: {
     top: [
-      { name: "Lima", percentage: 95 },
-      { name: "Menta", percentage: 90 },
-      { name: "Toronja", percentage: 85 },
-      { name: "Lavanda", percentage: 75 },
-      { name: "Piña", percentage: 70 },
+      { name: "Lima", percentage: 100 },
+      { name: "Menta", percentage: 100 },
+      { name: "Toronja", percentage: 96 },
+      { name: "Lavanda", percentage: 90 },
+      { name: "Piña", percentage: 81 },
     ],
     heart: [
-      { name: "Baya de Enebro", percentage: 85 },
-      { name: "Romero", percentage: 80 },
-      { name: "Geranio", percentage: 75 },
-      { name: "Pimienta Negra", percentage: 65 },
-      { name: "Incienso", percentage: 60 },
+      { name: "Pimienta Negra", percentage: 87 },
+      { name: "Romero", percentage: 84 },
+      { name: "Baya de Enebro", percentage: 83 },
+      { name: "Geranio", percentage: 76 },
+      { name: "Incienso", percentage: 74 },
     ],
     base: [
-      { name: "Ambroxan", percentage: 95 },
-      { name: "Vetiver", percentage: 85 },
-      { name: "Cachemira", percentage: 75 },
-      { name: "Musgo de Roble", percentage: 70 },
-      { name: "Haba Tonka", percentage: 65 },
+      { name: "Ambroxan", percentage: 92 },
+      { name: "Vetiver", percentage: 80 },
+      { name: "Musgo de Roble", percentage: 79 },
+      { name: "Haba Tonka", percentage: 77 },
+      { name: "Cachemira", percentage: 76 },
     ],
   },
-  // 98 (72). Lattafa Ramz Silver — CORREGIDO: notas de Fragrantica
+  // 98 (72). Lattafa Ramz Silver — CORREGIDO: notas de Fragrantica (Vainilla 100% en base)
   72: {
     top: [
-      { name: "Pera", percentage: 95 },
-      { name: "Lavanda", percentage: 90 },
-      { name: "Menta", percentage: 85 },
-      { name: "Bergamota", percentage: 75 },
+      { name: "Pera", percentage: 100 },
+      { name: "Lavanda", percentage: 93 },
+      { name: "Menta", percentage: 84 },
+      { name: "Bergamota", percentage: 83 },
     ],
     heart: [
-      { name: "Cardamomo", percentage: 85 },
-      { name: "Salvia", percentage: 75 },
+      { name: "Cardamomo", percentage: 83 },
+      { name: "Salvia", percentage: 74 },
     ],
     base: [
-      { name: "Vainilla", percentage: 95 },
-      { name: "Ámbar", percentage: 85 },
-      { name: "Almizcle", percentage: 75 },
-      { name: "Pachulí", percentage: 65 },
+      { name: "Vainilla", percentage: 100 },
+      { name: "Ámbar", percentage: 89 },
+      { name: "Almizcle", percentage: 83 },
+      { name: "Pachulí", percentage: 77 },
     ],
   },
-  // 99 (73). Lattafa Ramz Gold — CORREGIDO: notas de Fragrantica
+  // 99 (73). Lattafa Ramz Gold — CORREGIDO: notas de Fragrantica (Manzana primera, Jazmín Sambac, Almizcle Blanco, Sándalo primera en base)
   73: {
     top: [
-      { name: "Naranja Dulce", percentage: 90 },
-      { name: "Grosellas Negras", percentage: 85 },
-      { name: "Manzana", percentage: 80 },
-      { name: "Melocotón", percentage: 75 },
-      { name: "Pera", percentage: 70 },
+      { name: "Manzana", percentage: 100 },
+      { name: "Melocotón", percentage: 94 },
+      { name: "Grosellas Negras", percentage: 84 },
+      { name: "Pera", percentage: 83 },
+      { name: "Naranja Dulce", percentage: 74 },
     ],
     heart: [
-      { name: "Iris", percentage: 85 },
-      { name: "Jazmín", percentage: 80 },
-      { name: "Flor de Azahar", percentage: 75 },
-      { name: "Rosa", percentage: 65 },
+      { name: "Rosa", percentage: 100 },
+      { name: "Jazmín Sambac", percentage: 100 },
+      { name: "Flor de Azahar", percentage: 80 },
     ],
     base: [
-      { name: "Caramelo", percentage: 95 },
-      { name: "Vainilla", percentage: 90 },
-      { name: "Sándalo", percentage: 75 },
-      { name: "Almizcle", percentage: 70 },
-      { name: "Pachulí", percentage: 60 },
+      { name: "Sándalo", percentage: 100 },
+      { name: "Almizcle Blanco", percentage: 100 },
+      { name: "Vainilla", percentage: 93 },
+      { name: "Pachulí", percentage: 92 },
     ],
   },
-  // 100 (74). Lattafa Najdia — CORREGIDO: añadido Sándalo en base
+  // 100 (74). Lattafa Najdia — CORREGIDO: notas de Fragrantica (Manzana y Canela 100% en salida, Notas Acuáticas en corazón)
   74: {
     top: [
-      { name: "Limón", percentage: 95 },
-      { name: "Hierba Limón", percentage: 90 },
-      { name: "Manzana", percentage: 85 },
-      { name: "Canela", percentage: 80 },
-      { name: "Bergamota", percentage: 75 },
+      { name: "Limón", percentage: 100 },
+      { name: "Manzana", percentage: 100 },
+      { name: "Canela", percentage: 100 },
+      { name: "Hierba Limón", percentage: 96 },
+      { name: "Bergamota", percentage: 95 },
     ],
     heart: [
-      { name: "Notas Marinas", percentage: 95 },
-      { name: "Lavanda", percentage: 80 },
-      { name: "Romero", percentage: 75 },
-      { name: "Cardamomo", percentage: 65 },
+      { name: "Notas Acuáticas", percentage: 100 },
+      { name: "Lavanda", percentage: 99 },
+      { name: "Cardamomo", percentage: 83 },
+      { name: "Romero", percentage: 83 },
     ],
     base: [
-      { name: "Ámbar", percentage: 85 },
-      { name: "Almizcle", percentage: 80 },
-      { name: "Sándalo", percentage: 78 },
-      { name: "Cedro", percentage: 75 },
-      { name: "Tabaco", percentage: 60 },
+      { name: "Almizcle", percentage: 96 },
+      { name: "Ámbar", percentage: 92 },
+      { name: "Sándalo", percentage: 85 },
+      { name: "Cedro", percentage: 83 },
+      { name: "Tabaco", percentage: 74 },
     ],
   },
-  // 101 (75). Lattafa Suqraat — CORREGIDO: eliminado Notas Marinas de corazón
+  // 101 (75). Lattafa Suqraat — CORREGIDO: notas de Fragrantica (Jengibre 100% en salida, Almizcle primera en base)
   75: {
     top: [
-      { name: "Bergamota", percentage: 95 },
-      { name: "Jengibre", percentage: 80 },
+      { name: "Bergamota", percentage: 100 },
+      { name: "Jengibre", percentage: 100 },
     ],
     heart: [
-      { name: "Lavanda", percentage: 90 },
-      { name: "Hojas de Violeta", percentage: 80 },
+      { name: "Lavanda", percentage: 92 },
+      { name: "Hojas de Violeta", percentage: 88 },
     ],
     base: [
-      { name: "Almizcle", percentage: 85 },
-      { name: "Sándalo", percentage: 75 },
-      { name: "Ámbar", percentage: 70 },
+      { name: "Almizcle", percentage: 96 },
+      { name: "Sándalo", percentage: 81 },
+      { name: "Ámbar", percentage: 74 },
     ],
   },
-  // 102 (128). Lattafa Khamrah — CORREGIDO: notas de Fragrantica
+  // 102 (128). Lattafa Khamrah — CORREGIDO: notas de Fragrantica (Canela 100%, Tuberosa en corazón)
   128: {
     top: [
-      { name: "Canela", percentage: 95 },
-      { name: "Nuez Moscada", percentage: 90 },
-      { name: "Bergamota", percentage: 75 },
+      { name: "Canela", percentage: 100 },
+      { name: "Nuez Moscada", percentage: 92 },
+      { name: "Bergamota", percentage: 74 },
     ],
     heart: [
-      { name: "Dátiles", percentage: 95 },
-      { name: "Praliné", percentage: 90 },
-      { name: "Nardos", percentage: 75 },
-      { name: "Mahonial", percentage: 60 },
+      { name: "Dátiles", percentage: 100 },
+      { name: "Praliné", percentage: 99 },
+      { name: "Tuberosa", percentage: 75 },
+      { name: "Mahonial", percentage: 74 },
     ],
     base: [
-      { name: "Vainilla", percentage: 95 },
-      { name: "Haba Tonka", percentage: 90 },
-      { name: "Benjuí", percentage: 85 },
-      { name: "Amberwood", percentage: 80 },
-      { name: "Mirra", percentage: 75 },
-      { name: "Akigalawood", percentage: 65 },
+      { name: "Vainilla", percentage: 100 },
+      { name: "Haba Tonka", percentage: 95 },
+      { name: "Amberwood", percentage: 89 },
+      { name: "Mirra", percentage: 85 },
+      { name: "Benjuí", percentage: 84 },
+      { name: "Akigalawood", percentage: 82 },
     ],
   },
-  // 103 (129). Lattafa Khamrah Qahwa — CORREGIDO: Café en base (no corazón)
+  // 103 (129). Lattafa Khamrah Qahwa — CORREGIDO: notas de Fragrantica (Café 100% en base, Vainilla 100%)
   129: {
     top: [
-      { name: "Canela", percentage: 95 },
-      { name: "Cardamomo", percentage: 85 },
-      { name: "Jengibre", percentage: 75 },
-    ],
-    heart: [
-      { name: "Praliné", percentage: 90 },
-      { name: "Frutas Escarchadas", percentage: 85 },
-      { name: "Flores Blancas", percentage: 65 },
-    ],
-    base: [
-      { name: "Café Arabica", percentage: 95 },
-      { name: "Haba Tonka", percentage: 85 },
-      { name: "Benjuí", percentage: 80 },
-      { name: "Almizcle", percentage: 70 },
-      { name: "Vainilla", percentage: 90 },
-    ],
-  },
-  // 104 (130). Lattafa Khamrah Dukhan — CORREGIDO: notas completamente revisadas
-  130: {
-    top: [
-      { name: "Especias Ahumadas", percentage: 95 },
-      { name: "Pimiento", percentage: 85 },
-      { name: "Mandarina", percentage: 80 },
-    ],
-    heart: [
-      { name: "Incienso", percentage: 95 },
-      { name: "Ládano", percentage: 85 },
-      { name: "Flor de Azahar", percentage: 80 },
-      { name: "Pachulí", percentage: 75 },
-    ],
-    base: [
-      { name: "Praliné", percentage: 90 },
-      { name: "Tabaco", percentage: 85 },
-      { name: "Ámbar", percentage: 80 },
-      { name: "Haba Tonka", percentage: 75 },
-      { name: "Benjuí", percentage: 70 },
-    ],
-  },
-  // 105 (131). Lattafa Yara — CORREGIDO: notas de Fragrantica
-  131: {
-    top: [
-      { name: "Orquídea", percentage: 90 },
-      { name: "Heliotropo", percentage: 85 },
-      { name: "Mandarina", percentage: 75 },
-    ],
-    heart: [
-      { name: "Acorde Gourmand", percentage: 95 },
-      { name: "Frutas Tropicales", percentage: 85 },
-    ],
-    base: [
-      { name: "Vainilla", percentage: 95 },
-      { name: "Almizcle", percentage: 85 },
-      { name: "Sándalo", percentage: 75 },
-    ],
-  },
-  // 106 (132). Lattafa Yara Tous — CORREGIDO: notas de Fragrantica
-  132: {
-    top: [
-      { name: "Mango", percentage: 95 },
-      { name: "Coco", percentage: 90 },
-      { name: "Fruta de la Pasión", percentage: 85 },
-    ],
-    heart: [
-      { name: "Jazmín", percentage: 80 },
-      { name: "Heliotropo", percentage: 75 },
-      { name: "Flor de Azahar", percentage: 70 },
-    ],
-    base: [
-      { name: "Vainilla", percentage: 95 },
-      { name: "Almizcle", percentage: 80 },
-      { name: "Cachemira", percentage: 75 },
-    ],
-  },
-  // 107 (133). Lattafa Yara Moi — CORREGIDO: notas de Fragrantica
-  133: {
-    top: [
-      { name: "Melocotón", percentage: 90 },
-      { name: "Jazmín", percentage: 80 },
-    ],
-    heart: [
-      { name: "Caramelo", percentage: 95 },
-      { name: "Ámbar", percentage: 80 },
-    ],
-    base: [
-      { name: "Pachulí", percentage: 85 },
-      { name: "Sándalo", percentage: 75 },
-    ],
-  },
-  // 108 (134). Lattafa Asad — CORREGIDO: notas de Fragrantica
-  134: {
-    top: [
-      { name: "Pimienta Negra", percentage: 95 },
-      { name: "Piña", percentage: 80 },
-      { name: "Tabaco", percentage: 75 },
-    ],
-    heart: [
-      { name: "Café", percentage: 85 },
-      { name: "Pachulí", percentage: 80 },
-      { name: "Iris", percentage: 70 },
-    ],
-    base: [
-      { name: "Ámbar", percentage: 95 },
-      { name: "Vainilla", percentage: 90 },
-      { name: "Maderas Secas", percentage: 85 },
-      { name: "Benjuí", percentage: 75 },
-      { name: "Ládano", percentage: 65 },
-    ],
-  },
-  // 109 (135). Lattafa Asad Bourbon — CORREGIDO: notas completamente revisadas
-  135: {
-    top: [
-      { name: "Lavanda", percentage: 90 },
-      { name: "Mirabelle", percentage: 85 },
-      { name: "Pimienta Rosa", percentage: 80 },
-    ],
-    heart: [
-      { name: "Cacao", percentage: 90 },
-      { name: "Nuez Moscada", percentage: 85 },
-      { name: "Davana", percentage: 80 },
-    ],
-    base: [
-      { name: "Vainilla Bourbon", percentage: 95 },
-      { name: "Ámbar", percentage: 85 },
-      { name: "Vetiver", percentage: 80 },
-    ],
-  },
-  // 110 (136). Lattafa Asad Zanzibar — CORREGIDO: notas completamente revisadas
-  136: {
-    top: [
-      { name: "Lavanda", percentage: 90 },
-      { name: "Pimienta Negra", percentage: 85 },
-    ],
-    heart: [
-      { name: "Agua de Coco", percentage: 95 },
-      { name: "Iris", percentage: 90 },
-      { name: "Sal", percentage: 85 },
-    ],
-    base: [
-      { name: "Vainilla", percentage: 90 },
-      { name: "Incienso", percentage: 85 },
-    ],
-  },
-  // 111 (150). Lattafa Opulent Dubai — CORREGIDO: notas completamente revisadas
-  150: {
-    top: [
-      { name: "Mango", percentage: 95 },
-      { name: "Toronja", percentage: 90 },
-      { name: "Limón", percentage: 85 },
+      { name: "Canela", percentage: 100 },
+      { name: "Cardamomo", percentage: 92 },
       { name: "Jengibre", percentage: 80 },
     ],
     heart: [
-      { name: "Jazmín", percentage: 85 },
-      { name: "Cedro", percentage: 80 },
+      { name: "Praliné", percentage: 100 },
+      { name: "Frutas Escarchadas", percentage: 90 },
+      { name: "Flores Blancas", percentage: 74 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 100 },
+      { name: "Café Arabica", percentage: 100 },
+      { name: "Haba Tonka", percentage: 94 },
+      { name: "Benjuí", percentage: 83 },
+      { name: "Almizcle", percentage: 81 },
+    ],
+  },
+  // 104 (130). Lattafa Khamrah Dukhan — CORREGIDO: notas de Fragrantica (Praliné y Tabaco dominan base)
+  130: {
+    top: [
+      { name: "Especias Ahumadas", percentage: 100 },
+      { name: "Pimiento", percentage: 96 },
+      { name: "Mandarina", percentage: 81 },
+    ],
+    heart: [
+      { name: "Incienso", percentage: 97 },
+      { name: "Ládano", percentage: 78 },
+      { name: "Flor de Azahar", percentage: 77 },
+      { name: "Pachulí", percentage: 74 },
+    ],
+    base: [
+      { name: "Praliné", percentage: 100 },
+      { name: "Tabaco", percentage: 99 },
+      { name: "Ámbar", percentage: 95 },
+      { name: "Haba Tonka", percentage: 94 },
+      { name: "Benjuí", percentage: 89 },
+    ],
+  },
+  // 105 (131). Lattafa Yara — CORREGIDO: notas de Fragrantica (Vainilla 100% y Almizcle 94% en base)
+  131: {
+    top: [
+      { name: "Orquídea", percentage: 91 },
+      { name: "Heliotropo", percentage: 86 },
+      { name: "Mandarina", percentage: 78 },
+    ],
+    heart: [
+      { name: "Acorde Gourmand", percentage: 100 },
+      { name: "Frutas Tropicales", percentage: 96 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 100 },
+      { name: "Almizcle", percentage: 94 },
+      { name: "Sándalo", percentage: 74 },
+    ],
+  },
+  // 106 (132). Lattafa Yara Tous — CORREGIDO: notas de Fragrantica (Mango y Coco 100%, Heliotropo en corazón)
+  132: {
+    top: [
+      { name: "Mango", percentage: 100 },
+      { name: "Coco", percentage: 100 },
+      { name: "Fruta de la Pasión", percentage: 91 },
+    ],
+    heart: [
+      { name: "Jazmín", percentage: 97 },
+      { name: "Flor de Azahar", percentage: 87 },
+      { name: "Heliotropo", percentage: 83 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 96 },
+      { name: "Almizcle", percentage: 83 },
+      { name: "Cachemira", percentage: 74 },
+    ],
+  },
+  // 107 (133). Lattafa Yara Moi — CORREGIDO: notas de Fragrantica (Jazmín primera en salida, Pachulí 99% en base)
+  133: {
+    top: [
+      { name: "Jazmín", percentage: 100 },
+      { name: "Melocotón", percentage: 91 },
+    ],
+    heart: [
+      { name: "Caramelo", percentage: 88 },
+      { name: "Ámbar", percentage: 74 },
+    ],
+    base: [
+      { name: "Pachulí", percentage: 99 },
+      { name: "Sándalo", percentage: 87 },
+    ],
+  },
+  // 108 (134). Lattafa Asad — CORREGIDO: notas de Fragrantica (Tabaco 99%, Vainilla y Ámbar 100% en base, Maderas Secas 98%)
+  134: {
+    top: [
+      { name: "Pimienta Negra", percentage: 100 },
+      { name: "Tabaco", percentage: 99 },
+      { name: "Piña", percentage: 81 },
+    ],
+    heart: [
+      { name: "Pachulí", percentage: 86 },
+      { name: "Café", percentage: 79 },
+      { name: "Iris", percentage: 77 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 100 },
+      { name: "Ámbar", percentage: 100 },
+      { name: "Maderas Secas", percentage: 98 },
+      { name: "Benjuí", percentage: 82 },
+      { name: "Ládano", percentage: 74 },
+    ],
+  },
+  // 109 (135). Lattafa Asad Bourbon — CORREGIDO: notas de Fragrantica (Vainilla Bourbon 100%, Cacao 100% en corazón)
+  135: {
+    top: [
+      { name: "Lavanda", percentage: 100 },
+      { name: "Mirabelle", percentage: 88 },
+      { name: "Pimienta Rosa", percentage: 86 },
+    ],
+    heart: [
+      { name: "Cacao", percentage: 100 },
+      { name: "Nuez Moscada", percentage: 89 },
+      { name: "Davana", percentage: 74 },
+    ],
+    base: [
+      { name: "Vainilla Bourbon", percentage: 100 },
+      { name: "Ámbar", percentage: 95 },
+      { name: "Vetiver", percentage: 78 },
+    ],
+  },
+  // 110 (136). Lattafa Asad Zanzibar — CORREGIDO: notas de Fragrantica (Agua de Coco e Iris 100%, Sal 89%)
+  136: {
+    top: [
+      { name: "Lavanda", percentage: 95 },
+      { name: "Pimienta Negra", percentage: 83 },
+    ],
+    heart: [
+      { name: "Agua de Coco", percentage: 100 },
+      { name: "Iris", percentage: 100 },
+      { name: "Sal", percentage: 89 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 100 },
+      { name: "Incienso", percentage: 74 },
+    ],
+  },
+  // 111 (150). Lattafa Opulent Dubai — CORREGIDO: notas de Fragrantica (Jengibre 88%, Benjuí y Musgo de Roble en base)
+  150: {
+    top: [
+      { name: "Mango", percentage: 100 },
+      { name: "Toronja", percentage: 94 },
+      { name: "Limón", percentage: 93 },
+      { name: "Jengibre", percentage: 88 },
+    ],
+    heart: [
+      { name: "Jazmín", percentage: 82 },
+      { name: "Cedro", percentage: 77 },
       { name: "Violeta", percentage: 75 },
     ],
     base: [
-      { name: "Notas Amaderadas", percentage: 85 },
-      { name: "Ámbar Gris", percentage: 80 },
-      { name: "Benjuí", percentage: 75 },
-      { name: "Musgo de Roble", percentage: 70 },
+      { name: "Notas Amaderadas", percentage: 78 },
+      { name: "Ámbar Gris", percentage: 75 },
+      { name: "Benjuí", percentage: 74 },
+      { name: "Musgo de Roble", percentage: 74 },
     ],
   },
   // 112 (76). French Avenue Liquid Brun — CORREGIDO: notas de Fragrantica
@@ -4030,123 +4028,174 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
   ],
   // 97 (71). Lattafa Maahir Legacy — CORREGIDO
   71: [
-    { label: "Cítrico", percentage: 95, color: "#f0c934" },
-    { label: "Aromático", percentage: 90, color: "#6b8e4e" },
-    { label: "Fresco Especiado", percentage: 85, color: "#a0c4e8" },
-    { label: "Verde", percentage: 80, color: "#4a7a3a" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Aromático", percentage: 100, color: "#6b8e4e" },
+    { label: "Fresco Especiado", percentage: 96, color: "#a0c4e8" },
+    { label: "Cítrico", percentage: 76, color: "#f0c934" },
+    { label: "Verde", percentage: 63, color: "#4a7a3a" },
+    { label: "Amaderado", percentage: 62, color: "#c17b2a" },
+    { label: "Ámbar", percentage: 56, color: "#f0a830" },
+    { label: "Dulce", percentage: 54, color: "#f0a830" },
+    { label: "Lavanda", percentage: 52, color: "#9b8ec4" },
   ],
   // 98 (72). Lattafa Ramz Silver — CORREGIDO
   72: [
-    { label: "Dulce", percentage: 95, color: "#f0a830" },
-    { label: "Vainilla", percentage: 90, color: "#c9a033" },
-    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
+    { label: "Vainilla", percentage: 93, color: "#c9a033" },
     { label: "Aromático", percentage: 80, color: "#6b8e4e" },
-    { label: "Especiado Suave", percentage: 70, color: "#c45a3a" },
+    { label: "Dulce", percentage: 76, color: "#f0a830" },
+    { label: "Afrutado", percentage: 74, color: "#e75a8d" },
+    { label: "Atalcado", percentage: 72, color: "#d4c5a9" },
+    { label: "Lavanda", percentage: 70, color: "#9b8ec4" },
+    { label: "Fresco Especiado", percentage: 68, color: "#a0c4e8" },
+    { label: "Verde", percentage: 67, color: "#4a7a3a" },
+    { label: "Cálido Especiado", percentage: 66, color: "#c45a3a" },
   ],
   // 99 (73). Lattafa Ramz Gold — CORREGIDO
   73: [
-    { label: "Dulce", percentage: 95, color: "#f0a830" },
-    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
-    { label: "Atalcado", percentage: 80, color: "#d4c5a9" },
-    { label: "Floral", percentage: 75, color: "#e75a8d" },
-    { label: "Vainilla", percentage: 70, color: "#c9a033" },
+    { label: "Afrutado", percentage: 84, color: "#e75a8d" },
+    { label: "Amaderado", percentage: 78, color: "#c17b2a" },
+    { label: "Floral Blanco", percentage: 77, color: "#f0e6f6" },
+    { label: "Atalcado", percentage: 75, color: "#d4c5a9" },
+    { label: "Rosado", percentage: 66, color: "#e75a8d" },
+    { label: "Dulce", percentage: 64, color: "#f0a830" },
+    { label: "Almizclado", percentage: 61, color: "#a0a0a0" },
+    { label: "Cálido Especiado", percentage: 61, color: "#c45a3a" },
+    { label: "Fresco", percentage: 60, color: "#a0c4e8" },
   ],
   // 100 (74). Lattafa Najdia — CORREGIDO
   74: [
-    { label: "Cítrico", percentage: 95, color: "#f0c934" },
-    { label: "Marino", percentage: 90, color: "#4a8eb8" },
-    { label: "Fresco Especiado", percentage: 85, color: "#a0c4e8" },
-    { label: "Aromático", percentage: 80, color: "#6b8e4e" },
-    { label: "Verde", percentage: 75, color: "#4a7a3a" },
+    { label: "Cítrico", percentage: 82, color: "#f0c934" },
+    { label: "Aromático", percentage: 76, color: "#6b8e4e" },
+    { label: "Fresco Especiado", percentage: 73, color: "#a0c4e8" },
+    { label: "Acuático", percentage: 72, color: "#4a8eb8" },
+    { label: "Fresco", percentage: 71, color: "#a0c4e8" },
+    { label: "Cálido Especiado", percentage: 66, color: "#c45a3a" },
+    { label: "Amaderado", percentage: 61, color: "#c17b2a" },
+    { label: "Canela", percentage: 60, color: "#c45a3a" },
+    { label: "Lavanda", percentage: 60, color: "#9b8ec4" },
   ],
   // 101 (75). Lattafa Suqraat — CORREGIDO
   75: [
-    { label: "Marino", percentage: 95, color: "#4a8eb8" },
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Fresco Especiado", percentage: 85, color: "#a0c4e8" },
-    { label: "Aromático", percentage: 80, color: "#6b8e4e" },
-    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Fresco Especiado", percentage: 94, color: "#a0c4e8" },
+    { label: "Cítrico", percentage: 70, color: "#f0c934" },
+    { label: "Atalcado", percentage: 69, color: "#d4c5a9" },
+    { label: "Almizclado", percentage: 66, color: "#a0a0a0" },
+    { label: "Aromático", percentage: 65, color: "#6b8e4e" },
+    { label: "Lavanda", percentage: 62, color: "#9b8ec4" },
+    { label: "Amaderado", percentage: 61, color: "#c17b2a" },
+    { label: "Ozónico", percentage: 58, color: "#4a8eb8" },
+    { label: "Fresco", percentage: 56, color: "#a0c4e8" },
   ],
   // 102 (128). Lattafa Khamrah — CORREGIDO
   128: [
-    { label: "Dulce", percentage: 98, color: "#f0a830" },
-    { label: "Especiado Cálido", percentage: 95, color: "#c45a3a" },
-    { label: "Ámbar", percentage: 90, color: "#f0a830" },
-    { label: "Vainilla", percentage: 85, color: "#c9a033" },
-    { label: "Canela", percentage: 80, color: "#c45a3a" },
+    { label: "Dulce", percentage: 100, color: "#f0a830" },
+    { label: "Cálido Especiado", percentage: 85, color: "#c45a3a" },
+    { label: "Vainilla", percentage: 83, color: "#c9a033" },
+    { label: "Ámbar", percentage: 80, color: "#f0a830" },
+    { label: "Canela", percentage: 73, color: "#c45a3a" },
+    { label: "Amaderado", percentage: 56, color: "#c17b2a" },
+    { label: "Fresco Especiado", percentage: 56, color: "#a0c4e8" },
+    { label: "Afrutado", percentage: 52, color: "#e75a8d" },
   ],
   // 103 (129). Lattafa Khamrah Qahwa — CORREGIDO
   129: [
-    { label: "Café", percentage: 95, color: "#3a2010" },
-    { label: "Especiado Cálido", percentage: 90, color: "#c45a3a" },
-    { label: "Dulce", percentage: 85, color: "#f0a830" },
-    { label: "Vainilla", percentage: 80, color: "#c9a033" },
-    { label: "Gourmand", percentage: 85, color: "#8b5e3c" },
+    { label: "Cálido Especiado", percentage: 100, color: "#c45a3a" },
+    { label: "Dulce", percentage: 90, color: "#f0a830" },
+    { label: "Vainilla", percentage: 84, color: "#c9a033" },
+    { label: "Canela", percentage: 69, color: "#c45a3a" },
+    { label: "Café", percentage: 66, color: "#3a2010" },
+    { label: "Ámbar", percentage: 59, color: "#f0a830" },
+    { label: "Atalcado", percentage: 53, color: "#d4c5a9" },
   ],
   // 104 (130). Lattafa Khamrah Dukhan — CORREGIDO
   130: [
-    { label: "Ahumado", percentage: 95, color: "#7a6b5d" },
-    { label: "Dulce", percentage: 90, color: "#f0a830" },
-    { label: "Especiado Cálido", percentage: 85, color: "#c45a3a" },
-    { label: "Resinoso", percentage: 80, color: "#8b6e4e" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
+    { label: "Ámbar", percentage: 100, color: "#f0a830" },
+    { label: "Cálido Especiado", percentage: 94, color: "#c45a3a" },
+    { label: "Dulce", percentage: 79, color: "#f0a830" },
+    { label: "Tabaco", percentage: 58, color: "#5a3a2a" },
+    { label: "Balsámico", percentage: 55, color: "#8b6e4e" },
+    { label: "Vainilla", percentage: 55, color: "#c9a033" },
+    { label: "Ahumado", percentage: 54, color: "#7a6b5d" },
   ],
   // 105 (131). Lattafa Yara — CORREGIDO
   131: [
-    { label: "Dulce", percentage: 95, color: "#f0a830" },
-    { label: "Lácteo", percentage: 90, color: "#f5f0e0" },
-    { label: "Atalcado", percentage: 85, color: "#d4c5a9" },
-    { label: "Vainilla", percentage: 80, color: "#c9a033" },
-    { label: "Afrutado", percentage: 75, color: "#e75a8d" },
+    { label: "Dulce", percentage: 100, color: "#f0a830" },
+    { label: "Vainilla", percentage: 98, color: "#c9a033" },
+    { label: "Atalcado", percentage: 95, color: "#d4c5a9" },
+    { label: "Tropical", percentage: 69, color: "#f0c934" },
+    { label: "Afrutado", percentage: 67, color: "#e75a8d" },
+    { label: "Almizclado", percentage: 67, color: "#a0a0a0" },
+    { label: "Floral", percentage: 63, color: "#e75a8d" },
+    { label: "Cítrico", percentage: 54, color: "#f0c934" },
   ],
   // 106 (132). Lattafa Yara Tous — CORREGIDO
   132: [
-    { label: "Tropical", percentage: 98, color: "#f0c934" },
-    { label: "Afrutado", percentage: 95, color: "#e75a8d" },
-    { label: "Coco", percentage: 90, color: "#d4c5a9" },
-    { label: "Dulce", percentage: 85, color: "#f0a830" },
-    { label: "Vainilla", percentage: 80, color: "#c9a033" },
+    { label: "Tropical", percentage: 100, color: "#f0c934" },
+    { label: "Dulce", percentage: 96, color: "#f0a830" },
+    { label: "Vainilla", percentage: 84, color: "#c9a033" },
+    { label: "Floral Blanco", percentage: 83, color: "#f0e6f6" },
+    { label: "Afrutado", percentage: 82, color: "#e75a8d" },
+    { label: "Atalcado", percentage: 75, color: "#d4c5a9" },
+    { label: "Coco", percentage: 69, color: "#d4c5a9" },
+    { label: "Almizclado", percentage: 65, color: "#a0a0a0" },
   ],
   // 107 (133). Lattafa Yara Moi — CORREGIDO
   133: [
-    { label: "Dulce", percentage: 95, color: "#f0a830" },
-    { label: "Caramelo", percentage: 90, color: "#c98030" },
-    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Floral", percentage: 70, color: "#e75a8d" },
+    { label: "Amaderado", percentage: 100, color: "#c17b2a" },
+    { label: "Floral Blanco", percentage: 98, color: "#f0e6f6" },
+    { label: "Pachulí", percentage: 84, color: "#4a7a3a" },
+    { label: "Cálido Especiado", percentage: 75, color: "#c45a3a" },
+    { label: "Caramelo", percentage: 74, color: "#c98030" },
+    { label: "Atalcado", percentage: 68, color: "#d4c5a9" },
+    { label: "Afrutado", percentage: 66, color: "#e75a8d" },
+    { label: "Ámbar", percentage: 65, color: "#f0a830" },
   ],
   // 108 (134). Lattafa Asad — CORREGIDO
   134: [
-    { label: "Especiado Cálido", percentage: 95, color: "#c45a3a" },
-    { label: "Ámbar", percentage: 90, color: "#f0a830" },
-    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
-    { label: "Vainilla", percentage: 80, color: "#c9a033" },
-    { label: "Aromático", percentage: 75, color: "#6b8e4e" },
+    { label: "Ámbar", percentage: 100, color: "#f0a830" },
+    { label: "Fresco Especiado", percentage: 93, color: "#a0c4e8" },
+    { label: "Amaderado", percentage: 89, color: "#c17b2a" },
+    { label: "Cálido Especiado", percentage: 86, color: "#c45a3a" },
+    { label: "Vainilla", percentage: 85, color: "#c9a033" },
+    { label: "Dulce", percentage: 77, color: "#f0a830" },
+    { label: "Tabaco", percentage: 74, color: "#5a3a2a" },
+    { label: "Atalcado", percentage: 64, color: "#d4c5a9" },
   ],
   // 109 (135). Lattafa Asad Bourbon — CORREGIDO
   135: [
-    { label: "Vainilla", percentage: 95, color: "#c9a033" },
-    { label: "Especiado Cálido", percentage: 90, color: "#c45a3a" },
-    { label: "Balsámico", percentage: 85, color: "#8b6e4e" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Licoroso", percentage: 70, color: "#8b5e3c" },
+    { label: "Vainilla", percentage: 100, color: "#c9a033" },
+    { label: "Cacao", percentage: 90, color: "#5a3a2a" },
+    { label: "Dulce", percentage: 80, color: "#f0a830" },
+    { label: "Lavanda", percentage: 79, color: "#9b8ec4" },
+    { label: "Fresco Especiado", percentage: 75, color: "#a0c4e8" },
+    { label: "Ámbar", percentage: 70, color: "#f0a830" },
+    { label: "Cálido Especiado", percentage: 70, color: "#c45a3a" },
+    { label: "Aromático", percentage: 68, color: "#6b8e4e" },
   ],
   // 110 (136). Lattafa Asad Zanzibar — CORREGIDO
   136: [
-    { label: "Salado", percentage: 95, color: "#4a8eb8" },
-    { label: "Coco", percentage: 90, color: "#d4c5a9" },
-    { label: "Atalcado", percentage: 85, color: "#d4c5a9" },
-    { label: "Especiado", percentage: 80, color: "#c45a3a" },
-    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Vainilla", percentage: 100, color: "#c9a033" },
+    { label: "Iris", percentage: 88, color: "#d4c5a9" },
+    { label: "Atalcado", percentage: 87, color: "#d4c5a9" },
+    { label: "Fresco Especiado", percentage: 82, color: "#a0c4e8" },
+    { label: "Lavanda", percentage: 80, color: "#9b8ec4" },
+    { label: "Salado", percentage: 68, color: "#4a8eb8" },
+    { label: "Violeta", percentage: 64, color: "#9b8ec4" },
+    { label: "Ámbar", percentage: 61, color: "#f0a830" },
+    { label: "Cálido Especiado", percentage: 61, color: "#c45a3a" },
+    { label: "Balsámico", percentage: 61, color: "#8b6e4e" },
   ],
   // 111 (150). Lattafa Opulent Dubai — CORREGIDO
   150: [
-    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Cítrico", percentage: 100, color: "#f0c934" },
+    { label: "Tropical", percentage: 98, color: "#f0c934" },
     { label: "Afrutado", percentage: 90, color: "#e75a8d" },
-    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
-    { label: "Ámbar", percentage: 75, color: "#f0a830" },
-    { label: "Musgoso", percentage: 65, color: "#4a7a3a" },
+    { label: "Dulce", percentage: 75, color: "#f0a830" },
+    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Fresco Especiado", percentage: 66, color: "#a0c4e8" },
+    { label: "Fresco", percentage: 59, color: "#a0c4e8" },
+    { label: "Terpénico", percentage: 58, color: "#4a7a3a" },
+    { label: "Ámbar", percentage: 56, color: "#f0a830" },
+    { label: "Aromático", percentage: 55, color: "#6b8e4e" },
   ],
   // 112 (76). French Avenue Liquid Brun — CORREGIDO: accords de Fragrantica
   76: [
