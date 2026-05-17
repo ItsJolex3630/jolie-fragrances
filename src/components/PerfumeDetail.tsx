@@ -1060,7 +1060,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Madera de Agar / Oud", percentage: 80 },
     ],
   },
-  // 53 (149). Lattafa Emeer — CORREGIDO: sin Pachulí ni Cachemira (no están en Fragrantica), base real solo Ámbar Gris + Cedro
+  // 53 (149). Lattafa Emeer — CORREGIDO: base completa con Cashmeran y Pachulí (verificado Fragrantica: Ambergris, Cedarwood, Cashmeran, Patchouli)
   149: {
     top: [
       { name: "Limón", percentage: 95 },
@@ -1070,13 +1070,15 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
     ],
     heart: [
       { name: "Té Blanco", percentage: 85 },
-      { name: "Cardamomo", percentage: 80 },
-      { name: "Sándalo", percentage: 75 },
+      { name: "Sándalo", percentage: 80 },
+      { name: "Cardamomo", percentage: 75 },
       { name: "Olíbano", percentage: 65 },
     ],
     base: [
-      { name: "Ámbar Gris", percentage: 85 },
-      { name: "Cedro", percentage: 80 },
+      { name: "Ámbar Gris", percentage: 90 },
+      { name: "Cedro", percentage: 85 },
+      { name: "Cashmeran", percentage: 75 },
+      { name: "Pachulí", percentage: 70 },
     ],
   },
   // 54 (28). Lattafa Nebras Elixir — CORREGIDO: notas del ELIXIR (no del Nebras original)
@@ -1114,7 +1116,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Cashmeran", percentage: 70 },
     ],
   },
-  // 56 (30). Lattafa Ansaam Gold — CORREGIDO: sin Malvavisco/Flor de Azahar (no están en Fragrantica), corazón real = Sweet Notes + Jazmín + Rosa
+  // 56 (30). Lattafa Ansaam Gold — CORREGIDO: base en orden Fragrantica (Musk, Vanilla, Raspberry), corazón = Sweet Notes + Jasmine + Rose
   30: {
     top: [
       { name: "Mandarina", percentage: 90 },
@@ -1126,9 +1128,9 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Rosa", percentage: 70 },
     ],
     base: [
-      { name: "Vainilla", percentage: 95 },
-      { name: "Frambuesa", percentage: 85 },
-      { name: "Almizcle", percentage: 75 },
+      { name: "Almizcle", percentage: 90 },
+      { name: "Vainilla", percentage: 85 },
+      { name: "Frambuesa", percentage: 75 },
     ],
   },
   // 57 (31). Lattafa Ansaam Silver — CORREGIDO: Pachulí en base (no Haba Tonka)
@@ -3516,39 +3518,54 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
     { label: "Especiado Suave", percentage: 35, color: "#d4855a" },
     { label: "Animálico", percentage: 34, color: "#8b6e4e" },
   ],
-  // 52 (148). Lattafa Vintage Radio — CORREGIDO: accordes reales de Fragrantica (woody 90%, fruity 88%, aromatic 72%, fresh spicy 70%, citrus 70%)
+  // 52 (148). Lattafa Vintage Radio — CORREGIDO: 9 accordes reales de Fragrantica (woody 90%, fruity 88%, aromatic 72%, fresh spicy 70%, citrus 70%, lavender 67%, sweet 61%, herbal 57%, warm spicy 56%)
   148: [
     { label: "Amaderado", percentage: 90, color: "#c17b2a" },
     { label: "Afrutado", percentage: 88, color: "#e75a8d" },
     { label: "Aromático", percentage: 72, color: "#6b8e4e" },
     { label: "Fresco Especiado", percentage: 70, color: "#83C928" },
     { label: "Cítrico", percentage: 70, color: "#f0c934" },
+    { label: "Lavanda", percentage: 67, color: "#9B7DB8" },
+    { label: "Dulce", percentage: 61, color: "#f0a830" },
+    { label: "Herbal", percentage: 57, color: "#4a7a3a" },
+    { label: "Cálido Especiado", percentage: 56, color: "#c45a3a" },
   ],
-  // 53 (149). Lattafa Emeer — CORREGIDO: accordes reales de Fragrantica (citrus 100%, aromatic 91%, woody 76%, amber 69%, fresh spicy 66%)
+  // 53 (149). Lattafa Emeer — CORREGIDO: 9 accordes reales de Fragrantica (citrus 100%, aromatic 91%, woody 76%, amber 69%, fresh spicy 66%, warm spicy 58%, powdery 56%, green 54%, balsamic 53%)
   149: [
     { label: "Cítrico", percentage: 100, color: "#f0c934" },
     { label: "Aromático", percentage: 91, color: "#6b8e4e" },
     { label: "Amaderado", percentage: 76, color: "#c17b2a" },
     { label: "Ámbar", percentage: 69, color: "#bc4d10" },
     { label: "Fresco Especiado", percentage: 66, color: "#83C928" },
+    { label: "Cálido Especiado", percentage: 58, color: "#c45a3a" },
+    { label: "Atalcado", percentage: 56, color: "#d4c5a9" },
+    { label: "Verde", percentage: 54, color: "#4a7a3a" },
+    { label: "Balsámico", percentage: 53, color: "#8b6e4e" },
   ],
-  // 54 (28). Lattafa Nebras Elixir — CORREGIDO: accordes reales de Fragrantica (vanilla 85%, sweet 68%, powdery 64%, musky 55%, amber est.)
+  // 54 (28). Lattafa Nebras Elixir — CORREGIDO: 8 accordes reales de Fragrantica (vanilla 85%, sweet 68%, powdery 64%, musky 55%, amber 40%, lactonic 30%, almond 22%, floral 14%)
   28: [
     { label: "Vainilla", percentage: 85, color: "#c9a033" },
     { label: "Dulce", percentage: 69, color: "#f0a830" },
     { label: "Atalcado", percentage: 64, color: "#d4c5a9" },
     { label: "Almizclado", percentage: 55, color: "#a0a0a0" },
     { label: "Ámbar", percentage: 40, color: "#bc4d10" },
+    { label: "Lácteo", percentage: 30, color: "#f5f0e0" },
+    { label: "Almendra", percentage: 22, color: "#c9a87c" },
+    { label: "Floral", percentage: 14, color: "#f0e6f6" },
   ],
-  // 55 (29). Lattafa Asad Elixir — CORREGIDO: accordes reales de Fragrantica (amber 92%, woody 84%, tobacco 73%, vanilla 71%, warm spicy 71%)
+  // 55 (29). Lattafa Asad Elixir — CORREGIDO: 9 accordes reales de Fragrantica (amber 92%, woody 84%, tobacco 73%, vanilla 71%, warm spicy 71%, sweet 66%, powdery 60%, patchouli 59%, soft spicy 56%)
   29: [
     { label: "Ámbar", percentage: 92, color: "#bc4d10" },
     { label: "Amaderado", percentage: 84, color: "#c17b2a" },
     { label: "Tabaco", percentage: 73, color: "#5a3a2a" },
     { label: "Vainilla", percentage: 71, color: "#c9a033" },
     { label: "Cálido Especiado", percentage: 71, color: "#c45a3a" },
+    { label: "Dulce", percentage: 66, color: "#f0a830" },
+    { label: "Atalcado", percentage: 60, color: "#d4c5a9" },
+    { label: "Pachulí", percentage: 59, color: "#5a4a3a" },
+    { label: "Especiado Suave", percentage: 56, color: "#d4855a" },
   ],
-  // 56 (30). Lattafa Ansaam Gold — CORREGIDO: accordes reales de Fragrantica (sweet 73%, fruity 65%, citrus 61%, musky 60%, vanilla 59%, white floral 58%, rose 57%)
+  // 56 (30). Lattafa Ansaam Gold — CORREGIDO: 8 accordes reales de Fragrantica (sweet 73%, fruity 65%, citrus 61%, musky 60%, vanilla 59%, white floral 58%, rose 57%, powdery 45%)
   30: [
     { label: "Dulce", percentage: 73, color: "#f0a830" },
     { label: "Afrutado", percentage: 65, color: "#e75a8d" },
@@ -3556,6 +3573,8 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
     { label: "Almizclado", percentage: 60, color: "#a0a0a0" },
     { label: "Vainilla", percentage: 59, color: "#c9a033" },
     { label: "Floral Blanco", percentage: 58, color: "#f0e6f6" },
+    { label: "Rosa", percentage: 57, color: "#e8a0b4" },
+    { label: "Atalcado", percentage: 45, color: "#d4c5a9" },
   ],
   // 57 (31). Lattafa Ansaam Silver — CORREGIDO
   31: [
