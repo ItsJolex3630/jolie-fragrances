@@ -293,3 +293,32 @@ Stage Summary:
 - PERFUME_ACCORDS updated with accurate accord categories and percentages
 - Build verified successfully
 - Server restarted and responding on port 3000
+
+---
+Task ID: 1
+Agent: Main Agent
+Task: Correct all notes, percentages, and accords for Al Haramain brand perfumes based on real Fragrantica data
+
+Work Log:
+- Identified all 7 Al Haramain perfumes in catalog: Amber Oud Rouge Edition (id:6), Amber Oud Gold Edition (id:7), Amber Oud Carbon Edition (id:8), Amber Oud White Edition (id:9), L'Aventure (id:10), L'Aventure Woman (id:11), Amber Oud Aqua Dubai (id:154)
+- Fetched real Fragrantica data for all 7 perfumes using curl (page_reader was rate-limited)
+- Extracted note pyramids from HTML meta descriptions and pyramid-note-link elements
+- Extracted accord data from /accords-search/ URLs embedded in each page
+- Corrected NOTE_PYRAMIDS for 3 perfumes that had errors:
+  - id:7 Gold Edition: Changed "Notas Dulces" to "Acorde Goloso" in heart, reordered Ámbar before Acorde Goloso
+  - id:11 L'Aventure Woman: Fixed heart note order from (Rosa, Fresia, Cedro) to (Cedro, Fresia, Rosa) per Fragrantica
+  - id:154 Aqua Dubai: Fixed heart order (Melón, Ámbar, Grosellas Negras, Piña), fixed base order (Almizcle, Petitgrain, Gálbano, Vainilla)
+- Completely updated PERFUME_ACCORDS for all 7 perfumes based on real Fragrantica voting data:
+  - id:6 Rouge: Changed from (Ámbar, Azafrán, Floral, Almizclado, Amaderado) to (Especiado Cálido, Ámbar, Almizclado, Amaderado, Animal, Metálico, Floral Blanco, Atalcado)
+  - id:7 Gold: Changed from (Dulce, Afrutado, Tropical, Ámbar, Vainilla) to (Dulce, Afrutado, Ozónico, Atalcado, Vainilla, Almizclado, Fresco, Ámbar)
+  - id:8 Carbon: Changed from 5 accords to 8 (added Lavanda, Herbal, Terroso; adjusted percentages)
+  - id:9 White: Changed from (Floral Blanco, Cítrico, Atalcado, Amaderado, Especiado Suave) to (Cítrico, Floral, Amaderado, Pachulí, Floral Blanco, Rosado, Terroso, Aromático)
+  - id:10 L'Aventure: Changed from (Cítrico, Amaderado, Afrutado, Atalcado, Fresco) to (Cítrico, Aromático, Amaderado, Almizclado, Fresco Especiado, Floral Blanco, Atalcado, Pachulí)
+  - id:11 L'Aventure Woman: Changed from (Cítrico, Afrutado, Floral Blanco, Amaderado, Almizclado) to (Afrutado, Amaderado, Atalcado, Dulce, Almizclado, Floral, Cítrico, Aromático)
+  - id:154 Aqua Dubai: Changed from (Marino, Cítrico, Fresco, Amaderado, Ámbar) to (Cítrico, Verde, Aromático, Almizclado, Fresco Especiado, Afrutado, Atalcado, Dulce)
+- Built successfully and restarted dev server
+
+Stage Summary:
+- All 7 Al Haramain perfumes now have accurate notes, percentages, and accords verified against real Fragrantica data
+- Key corrections: note order fixes (3 perfumes), complete accord overhaul (all 7 perfumes now have 8 accords instead of 5, with real Fragrantica percentages)
+- App rebuilt and server running on port 3000

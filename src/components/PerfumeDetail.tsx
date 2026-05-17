@@ -641,7 +641,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Cedro Blanco", percentage: 70 },
     ],
   },
-  // 31 (7). Al Haramain Amber Oud Gold Edition — CORREGIDO: notas de Fragrantica/Basenotes
+  // 31 (7). Al Haramain Amber Oud Gold Edition — CORREGIDO: notas de Fragrantica (Acorde Goloso en corazón)
   7: {
     top: [
       { name: "Bergamota", percentage: 80 },
@@ -650,8 +650,8 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
     heart: [
       { name: "Melón", percentage: 95 },
       { name: "Piña", percentage: 90 },
-      { name: "Notas Dulces", percentage: 85 },
-      { name: "Ámbar", percentage: 80 },
+      { name: "Ámbar", percentage: 85 },
+      { name: "Acorde Goloso", percentage: 80 },
     ],
     base: [
       { name: "Vainilla", percentage: 95 },
@@ -715,7 +715,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Ámbar", percentage: 65 },
     ],
   },
-  // 35 (11). Al Haramain L'Aventure Woman — CORREGIDO: notas de Fragrantica
+  // 35 (11). Al Haramain L'Aventure Woman — CORREGIDO: notas de Fragrantica (Cedro antes de Fresia y Rosa en corazón)
   11: {
     top: [
       { name: "Piña", percentage: 90 },
@@ -724,9 +724,9 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Bayas Silvestres", percentage: 75 },
     ],
     heart: [
-      { name: "Rosa", percentage: 80 },
-      { name: "Fresia", percentage: 75 },
-      { name: "Cedro", percentage: 65 },
+      { name: "Cedro", percentage: 85 },
+      { name: "Fresia", percentage: 78 },
+      { name: "Rosa", percentage: 72 },
     ],
     base: [
       { name: "Almizcle", percentage: 85 },
@@ -735,7 +735,7 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Vainilla", percentage: 65 },
     ],
   },
-  // 36 (154). Al Haramain Amber Oud Aqua Dubai — CORREGIDO: notas de Basenotes
+  // 36 (154). Al Haramain Amber Oud Aqua Dubai — CORREGIDO: notas de Fragrantica (Ámbar antes de Grosellas y Piña en corazón, Petitgrain y Gálbano en base)
   154: {
     top: [
       { name: "Bergamota", percentage: 95 },
@@ -744,15 +744,15 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
     ],
     heart: [
       { name: "Melón", percentage: 90 },
-      { name: "Piña", percentage: 85 },
-      { name: "Grosellas Negras", percentage: 75 },
-      { name: "Ámbar", percentage: 80 },
+      { name: "Ámbar", percentage: 85 },
+      { name: "Grosellas Negras", percentage: 78 },
+      { name: "Piña", percentage: 72 },
     ],
     base: [
       { name: "Almizcle", percentage: 85 },
-      { name: "Vainilla", percentage: 80 },
-      { name: "Galbano", percentage: 70 },
-      { name: "Petitgrain", percentage: 65 },
+      { name: "Petitgrain", percentage: 78 },
+      { name: "Gálbano", percentage: 72 },
+      { name: "Vainilla", percentage: 68 },
     ],
   },
   // 37 (14). Lattafa Bade'e Al Oud Amethyst — CORREGIDO: notas de Fragrantica
@@ -3250,61 +3250,82 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
     { label: "Amaderado", percentage: 75, color: "#c17b2a" },
     { label: "Ámbar", percentage: 65, color: "#f0a830" },
   ],
-  // 30 (6). Al Haramain Amber Oud Rouge Edition — CORREGIDO
+  // 30 (6). Al Haramain Amber Oud Rouge Edition — CORREGIDO: accords de Fragrantica
   6: [
-    { label: "Ámbar", percentage: 95, color: "#f0a830" },
-    { label: "Azafrán", percentage: 90, color: "#e8a030" },
-    { label: "Floral", percentage: 85, color: "#e75a8d" },
-    { label: "Almizclado", percentage: 75, color: "#a0a0a0" },
-    { label: "Amaderado", percentage: 65, color: "#c17b2a" },
+    { label: "Especiado Cálido", percentage: 95, color: "#c45a3a" },
+    { label: "Ámbar", percentage: 88, color: "#f0a830" },
+    { label: "Almizclado", percentage: 78, color: "#a0a0a0" },
+    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
+    { label: "Animal", percentage: 65, color: "#8b4513" },
+    { label: "Metálico", percentage: 55, color: "#b8b8c8" },
+    { label: "Floral Blanco", percentage: 50, color: "#f0e6f6" },
+    { label: "Atalcado", percentage: 48, color: "#d4c5a9" },
   ],
-  // 31 (7). Al Haramain Amber Oud Gold Edition — CORREGIDO
+  // 31 (7). Al Haramain Amber Oud Gold Edition — CORREGIDO: accords de Fragrantica
   7: [
     { label: "Dulce", percentage: 95, color: "#f0a830" },
-    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
-    { label: "Tropical", percentage: 85, color: "#f0c934" },
-    { label: "Ámbar", percentage: 80, color: "#f0a830" },
-    { label: "Vainilla", percentage: 75, color: "#c9a033" },
+    { label: "Afrutado", percentage: 88, color: "#e75a8d" },
+    { label: "Ozónico", percentage: 62, color: "#a0c4e8" },
+    { label: "Atalcado", percentage: 58, color: "#d4c5a9" },
+    { label: "Vainilla", percentage: 58, color: "#c9a033" },
+    { label: "Almizclado", percentage: 57, color: "#a0a0a0" },
+    { label: "Fresco", percentage: 56, color: "#a0c4e8" },
+    { label: "Ámbar", percentage: 54, color: "#f0a830" },
   ],
-  // 32 (8). Al Haramain Amber Oud Carbon Edition — CORREGIDO
+  // 32 (8). Al Haramain Amber Oud Carbon Edition — CORREGIDO: accords de Fragrantica
   8: [
-    { label: "Aromático", percentage: 90, color: "#6b8e4e" },
-    { label: "Fresco Especiado", percentage: 85, color: "#a0c4e8" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Cítrico", percentage: 75, color: "#f0c934" },
-    { label: "Marino", percentage: 70, color: "#4a8eb8" },
+    { label: "Aromático", percentage: 95, color: "#6b8e4e" },
+    { label: "Fresco Especiado", percentage: 58, color: "#a0c4e8" },
+    { label: "Amaderado", percentage: 42, color: "#c17b2a" },
+    { label: "Cítrico", percentage: 35, color: "#f0c934" },
+    { label: "Marino", percentage: 34, color: "#4a8eb8" },
+    { label: "Lavanda", percentage: 28, color: "#9b7ec8" },
+    { label: "Herbal", percentage: 27, color: "#4a8a3a" },
+    { label: "Terroso", percentage: 22, color: "#8b6b4a" },
   ],
-  // 33 (9). Al Haramain Amber Oud White Edition — CORREGIDO
+  // 33 (9). Al Haramain Amber Oud White Edition — CORREGIDO: accords de Fragrantica
   9: [
-    { label: "Floral Blanco", percentage: 90, color: "#f0e6f6" },
-    { label: "Cítrico", percentage: 85, color: "#f0c934" },
-    { label: "Atalcado", percentage: 80, color: "#d4c5a9" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Especiado Suave", percentage: 65, color: "#c45a3a" },
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Floral", percentage: 82, color: "#e75a8d" },
+    { label: "Amaderado", percentage: 66, color: "#c17b2a" },
+    { label: "Pachulí", percentage: 64, color: "#4a7a3a" },
+    { label: "Floral Blanco", percentage: 61, color: "#f0e6f6" },
+    { label: "Rosado", percentage: 48, color: "#e75a8d" },
+    { label: "Terroso", percentage: 44, color: "#8b6b4a" },
+    { label: "Aromático", percentage: 38, color: "#6b8e4e" },
   ],
-  // 34 (10). Al Haramain L'Aventure — CORREGIDO
+  // 34 (10). Al Haramain L'Aventure — CORREGIDO: accords de Fragrantica
   10: [
     { label: "Cítrico", percentage: 95, color: "#f0c934" },
-    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
-    { label: "Afrutado", percentage: 80, color: "#e75a8d" },
-    { label: "Atalcado", percentage: 65, color: "#d4c5a9" },
-    { label: "Fresco", percentage: 60, color: "#a0c4e8" },
+    { label: "Aromático", percentage: 50, color: "#6b8e4e" },
+    { label: "Amaderado", percentage: 48, color: "#c17b2a" },
+    { label: "Almizclado", percentage: 33, color: "#a0a0a0" },
+    { label: "Fresco Especiado", percentage: 29, color: "#a0c4e8" },
+    { label: "Floral Blanco", percentage: 25, color: "#f0e6f6" },
+    { label: "Atalcado", percentage: 24, color: "#d4c5a9" },
+    { label: "Pachulí", percentage: 20, color: "#4a7a3a" },
   ],
-  // 35 (11). Al Haramain L'Aventure Woman — CORREGIDO
+  // 35 (11). Al Haramain L'Aventure Woman — CORREGIDO: accords de Fragrantica
   11: [
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
-    { label: "Floral Blanco", percentage: 80, color: "#f0e6f6" },
-    { label: "Amaderado", percentage: 70, color: "#c17b2a" },
-    { label: "Almizclado", percentage: 65, color: "#a0a0a0" },
+    { label: "Afrutado", percentage: 95, color: "#e75a8d" },
+    { label: "Amaderado", percentage: 94, color: "#c17b2a" },
+    { label: "Atalcado", percentage: 48, color: "#d4c5a9" },
+    { label: "Dulce", percentage: 43, color: "#f0a830" },
+    { label: "Almizclado", percentage: 38, color: "#a0a0a0" },
+    { label: "Floral", percentage: 37, color: "#e75a8d" },
+    { label: "Cítrico", percentage: 33, color: "#f0c934" },
+    { label: "Aromático", percentage: 25, color: "#6b8e4e" },
   ],
-  // 36 (154). Al Haramain Amber Oud Aqua Dubai — CORREGIDO
+  // 36 (154). Al Haramain Amber Oud Aqua Dubai — CORREGIDO: accords de Fragrantica
   154: [
-    { label: "Marino", percentage: 95, color: "#4a8eb8" },
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Fresco", percentage: 85, color: "#a0c4e8" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Ámbar", percentage: 65, color: "#f0a830" },
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Verde", percentage: 82, color: "#4a8a3a" },
+    { label: "Aromático", percentage: 38, color: "#6b8e4e" },
+    { label: "Almizclado", percentage: 36, color: "#a0a0a0" },
+    { label: "Fresco Especiado", percentage: 33, color: "#a0c4e8" },
+    { label: "Afrutado", percentage: 32, color: "#e75a8d" },
+    { label: "Atalcado", percentage: 27, color: "#d4c5a9" },
+    { label: "Dulce", percentage: 18, color: "#f0a830" },
   ],
   // 37 (14). Lattafa Bade'e Al Oud Amethyst — CORREGIDO
   14: [
