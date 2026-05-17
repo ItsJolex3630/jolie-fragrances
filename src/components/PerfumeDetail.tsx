@@ -536,95 +536,100 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Ámbar", percentage: 70 },
     ],
   },
-  // 25 (141). Yum Yum — CORREGIDO: notas de Fragrantica/Basenotes
+  // 25 (141). Yum Yum — CORREGIDO: notas de Fragrantica (Bayas Silvestres y Cereza primero en salida, Vainilla en corazón, Notas Atalcadas antes que Ámbar en base)
   141: {
     top: [
-      { name: "Bergamota", percentage: 85 },
-      { name: "Naranja", percentage: 80 },
+      { name: "Bayas Silvestres", percentage: 95 },
       { name: "Cereza", percentage: 90 },
-      { name: "Bayas Silvestres", percentage: 75 },
-    ],
-    heart: [
-      { name: "Vainilla", percentage: 85 },
-      { name: "Rosa", percentage: 75 },
-      { name: "Flores Blancas", percentage: 70 },
-    ],
-    base: [
-      { name: "Ámbar", percentage: 90 },
-      { name: "Almizcle", percentage: 80 },
-      { name: "Notas Atalcadas", percentage: 65 },
-    ],
-  },
-  // 26 (143). Bon Bon — CORREGIDO: notas de Fragrantica/Parfumo
-  143: {
-    top: [
-      { name: "Bergamota", percentage: 85 },
-      { name: "Manzana Granny Smith", percentage: 80 },
-      { name: "Mandarina", percentage: 75 },
-      { name: "Papaya", percentage: 70 },
-    ],
-    heart: [
-      { name: "Flor de Té", percentage: 85 },
-      { name: "Lirio de Madagascar", percentage: 75 },
-      { name: "Peonía", percentage: 70 },
-      { name: "Albaricoque", percentage: 65 },
-    ],
-    base: [
-      { name: "Notas Marinas", percentage: 80 },
-      { name: "Almizcle", percentage: 75 },
-      { name: "Maderas", percentage: 70 },
-    ],
-  },
-  // 27 (144). Island Bliss — CORREGIDO: notas de Fragrantica
-  144: {
-    top: [
-      { name: "Bayas Silvestres", percentage: 90 },
-      { name: "Notas Verdes", percentage: 80 },
-    ],
-    heart: [
-      { name: "Coco", percentage: 90 },
-      { name: "Flor de Azahar", percentage: 80 },
-      { name: "Lactonas", percentage: 75 },
-      { name: "Lirio de Agua", percentage: 70 },
-    ],
-    base: [
-      { name: "Vainilla", percentage: 90 },
-      { name: "Haba Tonka", percentage: 80 },
-      { name: "Almizcle", percentage: 70 },
-    ],
-  },
-  // 28 (145). Island Breeze — CORREGIDO: notas de Fragrantica
-  145: {
-    top: [
-      { name: "Melocotón", percentage: 90 },
-      { name: "Bayas Silvestres", percentage: 85 },
+      { name: "Naranja", percentage: 82 },
+      { name: "Bergamota", percentage: 78 },
     ],
     heart: [
       { name: "Rosa", percentage: 85 },
+      { name: "Flores Blancas", percentage: 78 },
+      { name: "Vainilla", percentage: 72 },
     ],
     base: [
-      { name: "Almizcle Blanco", percentage: 90 },
+      { name: "Notas Atalcadas", percentage: 88 },
+      { name: "Almizcle", percentage: 82 },
+      { name: "Ámbar", percentage: 75 },
     ],
   },
-  // 29 (151). Eter Arabian — CORREGIDO: notas de Amazon/Armaf oficial
-  151: {
+  // 26 (143). Bon Bon — CORREGIDO: notas de Fragrantica (Mandarina primero en salida, Azucena/Flor de Té Verde/Notas Marinas/Chabacano en corazón, Acorde Goloso y Sándalo en base)
+  143: {
     top: [
-      { name: "Pimienta", percentage: 80 },
-      { name: "Limón", percentage: 85 },
-      { name: "Bergamota", percentage: 90 },
-      { name: "Toronja", percentage: 75 },
-      { name: "Piña", percentage: 70 },
+      { name: "Mandarina", percentage: 88 },
+      { name: "Bergamota", percentage: 82 },
+      { name: "Manzana Granny Smith", percentage: 78 },
+      { name: "Papaya", percentage: 72 },
     ],
     heart: [
-      { name: "Lavanda", percentage: 85 },
-      { name: "Geranio", percentage: 80 },
-      { name: "Ylang-Ylang", percentage: 70 },
-      { name: "Caramelo", percentage: 65 },
+      { name: "Peonía", percentage: 85 },
+      { name: "Azucena", percentage: 78 },
+      { name: "Flor de Té Verde", percentage: 72 },
+      { name: "Notas Marinas", percentage: 68 },
+      { name: "Chabacano", percentage: 62 },
     ],
     base: [
-      { name: "Ámbar", percentage: 85 },
+      { name: "Almizcle", percentage: 88 },
+      { name: "Acorde Goloso", percentage: 80 },
+      { name: "Sándalo", percentage: 72 },
+    ],
+  },
+  // 27 (144). Island Bliss — CORREGIDO: notas de Fragrantica (Flor de Azahar del Naranjo, Nenúfar en corazón)
+  144: {
+    top: [
+      { name: "Bayas Silvestres", percentage: 92 },
+      { name: "Notas Verdes", percentage: 82 },
+    ],
+    heart: [
+      { name: "Coco", percentage: 92 },
+      { name: "Flor de Azahar del Naranjo", percentage: 82 },
+      { name: "Lactonas", percentage: 75 },
+      { name: "Nenúfar (Lirio de Agua)", percentage: 68 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 92 },
+      { name: "Haba Tonka", percentage: 82 },
+      { name: "Almizcle", percentage: 70 },
+    ],
+  },
+  // 28 (145). Island Breeze — CORREGIDO: notas de Fragrantica (Durazno/Melocotón)
+  145: {
+    top: [
+      { name: "Durazno (Melocotón)", percentage: 92 },
+      { name: "Bayas Silvestres", percentage: 85 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 88 },
+    ],
+    base: [
+      { name: "Almizcle Blanco", percentage: 92 },
+    ],
+  },
+  // 29 (151). Eter Arabian — CORREGIDO: notas de Fragrantica (Aceite de Naranja y Piña primero en salida, Caramelo antes de Lavanda en corazón, Cedro/Vetiver/Pachulí/Cuero en base)
+  151: {
+    top: [
+      { name: "Aceite de Naranja", percentage: 92 },
+      { name: "Piña", percentage: 88 },
+      { name: "Toronja", percentage: 82 },
+      { name: "Limón", percentage: 78 },
+      { name: "Bergamota", percentage: 75 },
+      { name: "Pimienta", percentage: 70 },
+    ],
+    heart: [
+      { name: "Caramelo", percentage: 85 },
+      { name: "Lavanda", percentage: 80 },
+      { name: "Geranio", percentage: 75 },
+      { name: "Ylang-Ylang", percentage: 68 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 88 },
+      { name: "Cedro", percentage: 80 },
       { name: "Almizcle", percentage: 75 },
-      { name: "Cuero", percentage: 70 },
+      { name: "Vetiver", percentage: 70 },
+      { name: "Pachulí", percentage: 65 },
+      { name: "Cuero", percentage: 60 },
     ],
   },
   // 30 (6). Al Haramain Amber Oud Rouge Edition — CORREGIDO: notas de Fragrantica
@@ -3210,45 +3215,60 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
     { label: "Floral Blanco", percentage: 10, color: "#f0e6f6" },
     { label: "Marino", percentage: 10, color: "#4a8eb8" },
   ],
-  // 25 (141). Yum Yum — CORREGIDO
+  // 25 (141). Yum Yum — CORREGIDO: accords de Fragrantica
   141: [
-    { label: "Dulce / Gourmand", percentage: 95, color: "#f0a830" },
-    { label: "Afrutado", percentage: 90, color: "#e75a8d" },
-    { label: "Cereza", percentage: 85, color: "#c4385a" },
-    { label: "Atalcado", percentage: 75, color: "#d4c5a9" },
-    { label: "Ámbar", percentage: 65, color: "#f0a830" },
+    { label: "Afrutado", percentage: 95, color: "#e75a8d" },
+    { label: "Atalcado", percentage: 88, color: "#d4c5a9" },
+    { label: "Cereza", percentage: 58, color: "#c4385a" },
+    { label: "Amaderado", percentage: 55, color: "#c17b2a" },
+    { label: "Rosado", percentage: 52, color: "#e75a8d" },
+    { label: "Dulce", percentage: 48, color: "#f0a830" },
+    { label: "Vainilla", percentage: 43, color: "#c9a033" },
+    { label: "Floral Blanco", percentage: 42, color: "#f0e6f6" },
   ],
-  // 26 (143). Bon Bon — CORREGIDO
+  // 26 (143). Bon Bon — CORREGIDO: accords de Fragrantica
   143: [
-    { label: "Floral", percentage: 95, color: "#e75a8d" },
-    { label: "Fresco", percentage: 90, color: "#a0c4e8" },
-    { label: "Afrutado", percentage: 85, color: "#e75a8d" },
-    { label: "Cítrico", percentage: 80, color: "#f0c934" },
-    { label: "Marino", percentage: 70, color: "#4a8eb8" },
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Fresco", percentage: 56, color: "#a0c4e8" },
+    { label: "Afrutado", percentage: 54, color: "#e75a8d" },
+    { label: "Floral", percentage: 51, color: "#e75a8d" },
+    { label: "Verde", percentage: 48, color: "#4a8a3a" },
+    { label: "Floral Blanco", percentage: 44, color: "#f0e6f6" },
+    { label: "Dulce", percentage: 42, color: "#f0a830" },
+    { label: "Atalcado", percentage: 42, color: "#d4c5a9" },
   ],
-  // 27 (144). Island Bliss — CORREGIDO
+  // 27 (144). Island Bliss — CORREGIDO: accords de Fragrantica
   144: [
-    { label: "Tropical", percentage: 95, color: "#f0c934" },
-    { label: "Coco", percentage: 90, color: "#d4c5a9" },
-    { label: "Dulce", percentage: 85, color: "#f0a830" },
-    { label: "Floral Blanco", percentage: 75, color: "#f0e6f6" },
-    { label: "Afrutado", percentage: 65, color: "#e75a8d" },
+    { label: "Vainilla", percentage: 95, color: "#c9a033" },
+    { label: "Coco", percentage: 82, color: "#d4c5a9" },
+    { label: "Dulce", percentage: 78, color: "#f0a830" },
+    { label: "Floral Blanco", percentage: 60, color: "#f0e6f6" },
+    { label: "Afrutado", percentage: 36, color: "#e75a8d" },
+    { label: "Almizclado", percentage: 36, color: "#a0a0a0" },
+    { label: "Floral", percentage: 32, color: "#e75a8d" },
+    { label: "Atalcado", percentage: 32, color: "#d4c5a9" },
   ],
-  // 28 (145). Island Breeze — CORREGIDO
+  // 28 (145). Island Breeze — CORREGIDO: accords de Fragrantica
   145: [
-    { label: "Fresco", percentage: 95, color: "#a0c4e8" },
-    { label: "Floral", percentage: 85, color: "#e75a8d" },
-    { label: "Afrutado", percentage: 80, color: "#e75a8d" },
-    { label: "Almizclado", percentage: 75, color: "#a0a0a0" },
-    { label: "Tropical", percentage: 65, color: "#f0c934" },
+    { label: "Afrutado", percentage: 95, color: "#e75a8d" },
+    { label: "Almizclado", percentage: 58, color: "#a0a0a0" },
+    { label: "Atalcado", percentage: 43, color: "#d4c5a9" },
+    { label: "Rosado", percentage: 39, color: "#e75a8d" },
+    { label: "Amaderado", percentage: 30, color: "#c17b2a" },
+    { label: "Dulce", percentage: 27, color: "#f0a830" },
+    { label: "Floral", percentage: 12, color: "#e75a8d" },
+    { label: "Animal", percentage: 9, color: "#8b4513" },
   ],
-  // 29 (151). Eter Arabian — CORREGIDO
+  // 29 (151). Eter Arabian — CORREGIDO: accords de Fragrantica
   151: [
-    { label: "Cítrico", percentage: 90, color: "#f0c934" },
-    { label: "Especiado Cálido", percentage: 85, color: "#c45a3a" },
-    { label: "Afrutado", percentage: 80, color: "#e75a8d" },
-    { label: "Amaderado", percentage: 75, color: "#c17b2a" },
-    { label: "Ámbar", percentage: 65, color: "#f0a830" },
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Fresco Especiado", percentage: 70, color: "#a0c4e8" },
+    { label: "Aromático", percentage: 60, color: "#6b8e4e" },
+    { label: "Dulce", percentage: 58, color: "#f0a830" },
+    { label: "Amaderado", percentage: 53, color: "#c17b2a" },
+    { label: "Afrutado", percentage: 29, color: "#e75a8d" },
+    { label: "Caramelo", percentage: 25, color: "#d4a030" },
+    { label: "Lavanda", percentage: 23, color: "#9b7ec8" },
   ],
   // 30 (6). Al Haramain Amber Oud Rouge Edition — CORREGIDO: accords de Fragrantica
   6: [

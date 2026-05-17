@@ -322,3 +322,31 @@ Stage Summary:
 - All 7 Al Haramain perfumes now have accurate notes, percentages, and accords verified against real Fragrantica data
 - Key corrections: note order fixes (3 perfumes), complete accord overhaul (all 7 perfumes now have 8 accords instead of 5, with real Fragrantica percentages)
 - App rebuilt and server running on port 3000
+
+---
+Task ID: 2
+Agent: Main Agent
+Task: Correct all remaining Armaf brand perfumes based on real Fragrantica data
+
+Work Log:
+- Identified 27 total Armaf perfumes, of which 22 were already corrected (Club de Nuit, Odyssey lines)
+- 5 remaining needed correction: Yum Yum (141), Bon Bon (143), Island Bliss (144), Island Breeze (145), Eter Arabian (151)
+- Downloaded and parsed Fragrantica pages for all 5 perfumes using curl
+- Extracted note pyramids from pyramid-note-link HTML elements
+- Extracted accord data from /accords-search/ URLs
+
+NOTE_PYRAMIDS corrections:
+- Yum Yum (141): Fixed top note order (Bayas Silvestres & Cereza first, not Bergamota); Vainilla moved to heart per Fragrantica; Base reordered (Notas Atalcadas before Ámbar)
+- Bon Bon (143): Top reordered (Mandarina first); Heart completely changed (was Flor de Té/Lirio de Madagascar/Albaricoque → now Azucena/Flor de Té Verde/Notas Marinas/Chabacano); Base completely changed (was Notas Marinas/Maderas → now Acorde Goloso/Sándalo)
+- Island Bliss (144): Updated note names (Flor de Azahar → Flor de Azahar del Naranjo, Lirio de Agua → Nenúfar (Lirio de Agua))
+- Island Breeze (145): Updated "Melocotón" → "Durazno (Melocotón)" per Fragrantica
+- Eter Arabian (151): Top completely reordered (was Pimienta first → now Aceite de Naranja/Piña/Toronja first); Heart reordered (Caramelo before Lavanda); Base expanded from 3 to 6 notes (added Cedro, Vetiver, Pachulí)
+
+PERFUME_ACCORDS corrections (all 5 perfumes updated from 5 generic accords to 8 real Fragrantica accords):
+- Yum Yum: Afrutado 95%, Atalcado 88%, Cereza 58%, Amaderado 55%, Rosado 52%, Dulce 48%, Vainilla 43%, Floral Blanco 42%
+- Bon Bon: Cítrico 95%, Fresco 56%, Afrutado 54%, Floral 51%, Verde 48%, Floral Blanco 44%, Dulce 42%, Atalcado 42%
+- Island Bliss: Vainilla 95%, Coco 82%, Dulce 78%, Floral Blanco 60%, Afrutado 36%, Almizclado 36%, Floral 32%, Atalcado 32%
+- Island Breeze: Afrutado 95%, Almizclado 58%, Atalcado 43%, Rosado 39%, Amaderado 30%, Dulce 27%, Floral 12%, Animal 9%
+- Eter Arabian: Cítrico 95%, Fresco Especiado 70%, Aromático 60%, Dulce 58%, Amaderado 53%, Afrutado 29%, Caramelo 25%, Lavanda 23%
+
+App built successfully and server restarted on port 3000.
