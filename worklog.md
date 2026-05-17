@@ -198,3 +198,24 @@ Stage Summary:
 - **All animations respect `prefers-reduced-motion`** for accessibility
 - **Lint passes** with no errors
 - **App serves correctly** (HTTP 200)
+---
+Task ID: 1
+Agent: Super Z (main)
+Task: Fix deployment issue - web page doesn't load from the link
+
+Work Log:
+- Investigated the deployment failure by examining project structure, build scripts, and server processes
+- Found that `db/custom.db` was missing - the build.sh script requires this file and exits with error code 1 if not found
+- Created the minimal SQLite database at `/home/z/my-project/db/custom.db`
+- Verified the full production build succeeds (npm run build)
+- Verified standalone build has all necessary files (static, public, server.js, node_modules)
+- Verified the production server starts and returns correct responses
+- Verified the API returns 149 perfumes correctly
+- Restarted the dev server
+
+Stage Summary:
+- Root cause: Missing `db/custom.db` file caused the build.sh to fail with exit code 1, preventing deployment
+- Fix: Created the database file with a minimal SQLite schema
+- Build now completes successfully
+- Server returns 200 on all endpoints
+- The .env had DATABASE_URL pointing to this file but it didn't exist (likely removed during auth system cleanup)
