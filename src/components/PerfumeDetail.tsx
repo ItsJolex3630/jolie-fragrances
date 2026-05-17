@@ -2850,66 +2850,73 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
   },
 
   // ==================== DAVIDOFF ====================
-  // 155. Davidoff Cool Water (Caballero)
+  // 155. Davidoff Cool Water (Caballero) — Fragrantica ID 507
   155: {
     top: [
-      { name: "Lavanda", percentage: 95 },
-      { name: "Menta", percentage: 90 },
-      { name: "Bergamota", percentage: 85 },
-      { name: "Romero", percentage: 75 },
-      { name: "Artemisa", percentage: 65 },
+      { name: "Agua de Mar", percentage: 95 },
+      { name: "Lavanda", percentage: 85 },
+      { name: "Menta", percentage: 82 },
+      { name: "Notas Verdes", percentage: 78 },
+      { name: "Romero", percentage: 70 },
+      { name: "Calone", percentage: 65 },
+      { name: "Cilantro", percentage: 58 },
     ],
     heart: [
-      { name: "Jazmín", percentage: 85 },
-      { name: "Geranio", percentage: 80 },
-      { name: "Sándalo", percentage: 75 },
-      { name: "Neroli", percentage: 70 },
+      { name: "Sándalo", percentage: 80 },
+      { name: "Neroli", percentage: 78 },
+      { name: "Geranio", percentage: 75 },
+      { name: "Jazmín", percentage: 75 },
     ],
     base: [
-      { name: "Almizcle", percentage: 90 },
-      { name: "Cedro", percentage: 85 },
-      { name: "Ámbar", percentage: 75 },
-      { name: "Musgo de Roble", percentage: 70 },
+      { name: "Almizcle", percentage: 85 },
+      { name: "Musgo de Roble", percentage: 82 },
+      { name: "Cedro", percentage: 78 },
+      { name: "Tabaco", percentage: 75 },
+      { name: "Ámbar Gris", percentage: 68 },
     ],
   },
-  // 156. Davidoff Cool Water Woman (Dama)
+  // 156. Davidoff Cool Water Woman (Dama) — Fragrantica ID 508
   156: {
     top: [
-      { name: "Piña", percentage: 90 },
-      { name: "Melón", percentage: 85 },
-      { name: "Lima", percentage: 80 },
-      { name: "Caléndula", percentage: 75 },
-      { name: "Bergamota", percentage: 70 },
+      { name: "Melón", percentage: 95 },
+      { name: "Flor de Loto", percentage: 90 },
+      { name: "Limón", percentage: 85 },
+      { name: "Piña", percentage: 78 },
+      { name: "Calone", percentage: 72 },
+      { name: "Membrillo", percentage: 72 },
+      { name: "Azucena", percentage: 68 },
+      { name: "Grosella Negra", percentage: 62 },
     ],
     heart: [
-      { name: "Lirio del Valle", percentage: 90 },
-      { name: "Jazmín", percentage: 85 },
-      { name: "Rosa", percentage: 80 },
-      { name: "Nenúfar", percentage: 75 },
+      { name: "Flor de Loto", percentage: 90 },
+      { name: "Nenúfar", percentage: 88 },
+      { name: "Lirio de los Valles", percentage: 75 },
+      { name: "Jazmín", percentage: 70 },
+      { name: "Miel", percentage: 65 },
+      { name: "Flor del Espino", percentage: 63 },
+      { name: "Rosa", percentage: 62 },
     ],
     base: [
-      { name: "Almizcle", percentage: 90 },
-      { name: "Sándalo", percentage: 85 },
-      { name: "Cedro", percentage: 75 },
-      { name: "Ámbar Blanco", percentage: 70 },
+      { name: "Almizcle", percentage: 80 },
+      { name: "Vetiver", percentage: 75 },
+      { name: "Raíz de Violeta", percentage: 73 },
+      { name: "Frambuesa", percentage: 72 },
+      { name: "Melocotón", percentage: 72 },
+      { name: "Zarzamora", percentage: 72 },
+      { name: "Sándalo", percentage: 72 },
+      { name: "Vainilla", percentage: 65 },
     ],
   },
-  // 157. Davidoff Cool Water Intense (Caballero)
+  // 157. Davidoff Cool Water Intense (Caballero) — Fragrantica ID 55266
   157: {
     top: [
-      { name: "Pomelo", percentage: 95 },
-      { name: "Bergamota", percentage: 85 },
-      { name: "Pimienta Rosada", percentage: 80 },
+      { name: "Mandarina Verde", percentage: 95 },
     ],
     heart: [
-      { name: "Resina", percentage: 90 },
-      { name: "Jengibre", percentage: 85 },
-      { name: "Canela", percentage: 75 },
+      { name: "Néctar de Coco", percentage: 88 },
     ],
     base: [
-      { name: "Almizcle", percentage: 95 },
-      { name: "Pachulí", percentage: 85 },
-      { name: "Cedro de Virginia", percentage: 80 },
+      { name: "Ámbar", percentage: 95 },
     ],
   },
 };
@@ -4132,29 +4139,37 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
   ],
 
   // ==================== DAVIDOFF ====================
-  // 155. Davidoff Cool Water (Caballero)
+  // 155. Davidoff Cool Water (Caballero) — Fragrantica ID 507
   155: [
-    { label: "Acuático", percentage: 95, color: "#4da6c9" },
-    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
-    { label: "Herbal", percentage: 75, color: "#6b8e4e" },
-    { label: "Almizclado", percentage: 70, color: "#a0a0a0" },
-    { label: "Fresco", percentage: 65, color: "#a0c4e8" },
+    { label: "Aromático", percentage: 95, color: "#6b8e4e" },
+    { label: "Verde", percentage: 76, color: "#4a7c3f" },
+    { label: "Marino", percentage: 73, color: "#4da6c9" },
+    { label: "Fresco Especiado", percentage: 69, color: "#a0c4e8" },
+    { label: "Lavanda", percentage: 61, color: "#9b8ec4" },
+    { label: "Amaderado", percentage: 59, color: "#c17b2a" },
+    { label: "Salado", percentage: 53, color: "#7a8b9a" },
   ],
-  // 156. Davidoff Cool Water Woman (Dama)
+  // 156. Davidoff Cool Water Woman (Dama) — Fragrantica ID 508
   156: [
-    { label: "Floral", percentage: 95, color: "#e75a8d" },
-    { label: "Acuático", percentage: 90, color: "#4da6c9" },
-    { label: "Fresco", percentage: 85, color: "#a0c4e8" },
-    { label: "Afrutado", percentage: 75, color: "#e75a8d" },
-    { label: "Almizclado", percentage: 65, color: "#a0a0a0" },
+    { label: "Fresco", percentage: 95, color: "#a0c4e8" },
+    { label: "Floral", percentage: 93, color: "#e75a8d" },
+    { label: "Afrutado", percentage: 90, color: "#d45a9d" },
+    { label: "Acuático", percentage: 83, color: "#4da6c9" },
+    { label: "Ozónico", percentage: 72, color: "#8cbfd4" },
+    { label: "Dulce", percentage: 69, color: "#f0a830" },
+    { label: "Floral Blanco", percentage: 47, color: "#f5c6d0" },
+    { label: "Cítrico", percentage: 40, color: "#f0c934" },
   ],
-  // 157. Davidoff Cool Water Intense (Caballero)
+  // 157. Davidoff Cool Water Intense (Caballero) — Fragrantica ID 55266
   157: [
-    { label: "Cítrico", percentage: 95, color: "#f0c934" },
-    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
-    { label: "Especiado", percentage: 80, color: "#c45a3a" },
-    { label: "Almizclado", percentage: 75, color: "#a0a0a0" },
-    { label: "Resinoso", percentage: 65, color: "#8b6914" },
+    { label: "Ámbar", percentage: 95, color: "#f0a830" },
+    { label: "Cítrico", percentage: 88, color: "#f0c934" },
+    { label: "Coco", percentage: 73, color: "#c9a033" },
+    { label: "Dulce", percentage: 38, color: "#e75a8d" },
+    { label: "Lactónico", percentage: 25, color: "#f5e6c8" },
+    { label: "Tropical", percentage: 22, color: "#e8a040" },
+    { label: "Vainilla", percentage: 22, color: "#c9a033" },
+    { label: "Animálico", percentage: 20, color: "#8b6914" },
   ],
 };
 

@@ -255,7 +255,7 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   // ==================== DAVIDOFF ====================
   155: ["Acuático", "Amaderado"], // Cool Water
   156: ["Floral", "Acuático"], // Cool Water Woman
-  157: ["Cítrico", "Amaderado"], // Cool Water Intense
+  157: ["Ámbar", "Cítrico"], // Cool Water Intense
 };
 
 export type Brand =
@@ -1868,7 +1868,7 @@ export const perfumes: Perfume[] = [
     brand: "Davidoff",
     gender: "Caballero",
     size: "125ml",
-    fragranticaId: 536,
+    fragranticaId: 507,
     brandSlug: "Davidoff",
     perfumeSlug: "Cool-Water",
   },
@@ -1878,7 +1878,7 @@ export const perfumes: Perfume[] = [
     brand: "Davidoff",
     gender: "Dama",
     size: "100ml",
-    fragranticaId: 363,
+    fragranticaId: 508,
     brandSlug: "Davidoff",
     perfumeSlug: "Cool-Water-for-Women",
   },
@@ -1888,7 +1888,7 @@ export const perfumes: Perfume[] = [
     brand: "Davidoff",
     gender: "Caballero",
     size: "125ml",
-    fragranticaId: 44788,
+    fragranticaId: 55266,
     brandSlug: "Davidoff",
     perfumeSlug: "Cool-Water-Intense",
   },
