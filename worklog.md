@@ -219,3 +219,25 @@ Stage Summary:
 - Build now completes successfully
 - Server returns 200 on all endpoints
 - The .env had DATABASE_URL pointing to this file but it didn't exist (likely removed during auth system cleanup)
+
+---
+Task ID: 1
+Agent: Main Agent
+Task: Fix deployment - server not running on port 3000, preview panel broken
+
+Work Log:
+- Investigated project structure: no broken imports to auth/security modules (those were already cleaned up)
+- Discovered the Next.js dev server was NOT running on port 3000
+- Found that the dev.log shows the server was killed by SIGTERM
+- The startup script (.zscripts/dev.sh) has a cleanup trap that kills the server on SIGTERM
+- The standalone production server also worked but processes kept dying between Bash tool calls
+- Created a double-fork startup script (.zscripts/run-dev-server.sh) to properly detach the process
+- Successfully started the dev server which now persists and is accessible via both direct (3000) and Caddy proxy (81)
+- Verified: 149 perfumes loaded, page renders correctly, Caddy proxy returns 200
+
+Stage Summary:
+- Root cause: The dev server was killed by SIGTERM and never restarted
+- Fix: Restarted server using double-fork pattern for persistence
+- Server PID 14902 running stable, 739MB memory usage
+- Both direct (0.0.0.0:3000) and Caddy proxy (0.0.0.0:81) return HTTP 200
+- Updated daemon.sh with improved auto-restart logic
