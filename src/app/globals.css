@@ -225,19 +225,77 @@
   animation: float-up linear infinite;
 }
 
+/* ─── Filter pill selection bounce ─── */
+@keyframes filterBounce {
+  0% { transform: scale(0.95); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.filter-pill.active {
+  background: linear-gradient(135deg, #d4af37, #b8941e);
+  color: #0a0a0a;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+  animation: filterBounce 0.3s ease-out;
+}
+
+/* ─── Gold shimmer pulse for CTA button ─── */
+@keyframes shimmerPulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+  50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); }
+}
+
+.cta-shimmer {
+  animation: shimmerPulse 3s ease-in-out infinite;
+}
+
+/* ─── Smooth reveal for footer ─── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer-reveal {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* ─── Hover lift effect for interactive elements ─── */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
+
 /* Disable heavy animations on low-end devices */
 @media (prefers-reduced-motion: reduce) {
   .floating-particle,
   .shimmer-text,
   .shimmer-line,
   .skeleton-pulse,
-  .card-fade-in {
+  .card-fade-in,
+  .filter-pill.active,
+  .cta-shimmer,
+  .footer-reveal {
     animation: none !important;
   }
   .card-fade-in {
     opacity: 1 !important;
   }
   .perfume-card:hover {
+    transform: none;
+  }
+  .hover-lift:hover {
     transform: none;
   }
 }
@@ -255,12 +313,6 @@
 /* ─── Filter pill styles ─── */
 .filter-pill {
   transition: all 0.3s ease;
-}
-
-.filter-pill.active {
-  background: linear-gradient(135deg, #d4af37, #b8941e);
-  color: #0a0a0a;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }
 
 /* ─── Image placeholder ─── */
