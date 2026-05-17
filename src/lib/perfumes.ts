@@ -141,11 +141,11 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   142: ["Dulce", "Ámbar"], // Hayaati Gold Elixir
   146: ["Frutal", "Especiado"], // Hayaati
   147: ["Ámbar", "Especiado"], // Hayaati Al Maleky
-  148: ["Amaderado", "Ahumado"], // Vintage Radio
-  149: ["Amaderado", "Especiado"], // Emeer
-  28: ["Dulce", "Ámbar"], // Nebras Elixir
-  29: ["Especiado", "Ámbar"], // Asad Elixir
-  30: ["Dulce", "Ámbar"], // Ansaam Gold
+  148: ["Amaderado", "Afrutado"], // Vintage Radio
+  149: ["Cítrico", "Aromático"], // Emeer
+  28: ["Vainilla", "Dulce"], // Nebras Elixir
+  29: ["Ámbar", "Amaderado"], // Asad Elixir
+  30: ["Dulce", "Afrutado"], // Ansaam Gold
   31: ["Cítrico", "Amaderado"], // Ansaam Silver
   32: ["Cítrico", "Amaderado"], // Shaheen Gold
   33: ["Cítrico", "Amaderado"], // Shaheen Silver
@@ -882,7 +882,7 @@ export const perfumes: Perfume[] = [
     brand: "Lattafa",
     gender: "Unisex",
     size: "100ml",
-    fragranticaId: 85091,
+    fragranticaId: 113906,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Nebras-Elixir",
   },
