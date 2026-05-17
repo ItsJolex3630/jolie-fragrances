@@ -126,21 +126,21 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   154: ["Ámbar", "Frutal"], // Amber Oud Aqua Dubai
 
   // ==================== LATTAFA ====================
-  14: ["Amaderado", "Ámbar"], // Bade'e Al Oud Amethyst
-  15: ["Amaderado", "Ahumado"], // Bade'e Al Oud Oud for Glory
-  16: ["Amaderado", "Especiado"], // Bade'e Al Oud Honor & Glory
-  18: ["Dulce"], // Eclaire Pistache
+  14: ["Floral", "Amaderado"], // Bade'e Al Oud Amethyst
+  15: ["Amaderado", "Especiado"], // Bade'e Al Oud Oud for Glory
+  16: ["Dulce", "Especiado"], // Bade'e Al Oud Honor & Glory
+  18: ["Dulce", "Ámbar"], // Eclaire Pistache
   19: ["Dulce"], // Eclaire Banoffi
   20: ["Floral", "Dulce"], // Mayar Natural Intense
   21: ["Cítrico", "Amaderado"], // Fakhar Black
   22: ["Floral", "Dulce"], // Fakhar Rose
-  103: ["Amaderado", "Dulce"], // Qaed Al Fursan
-  25: ["Especiado", "Amaderado"], // Qaed Al Fursan Untamed
-  26: ["Amaderado", "Dulce"], // Qaed Al Fursan Unlimited
-  27: ["Floral", "Dulce"], // Hayaati Florence
+  103: ["Frutal", "Dulce"], // Qaed Al Fursan
+  25: ["Ámbar", "Especiado"], // Qaed Al Fursan Untamed
+  26: ["Dulce", "Frutal"], // Qaed Al Fursan Unlimited
+  27: ["Cítrico", "Dulce"], // Hayaati Florence
   142: ["Dulce", "Ámbar"], // Hayaati Gold Elixir
-  146: ["Dulce", "Especiado"], // Hayaati
-  147: ["Especiado", "Amaderado"], // Hayaati Al Maleky
+  146: ["Frutal", "Especiado"], // Hayaati
+  147: ["Ámbar", "Especiado"], // Hayaati Al Maleky
   148: ["Amaderado", "Ahumado"], // Vintage Radio
   149: ["Amaderado", "Especiado"], // Emeer
   28: ["Dulce", "Ámbar"], // Nebras Elixir
