@@ -2848,6 +2848,70 @@ const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Almizcle Blanco", percentage: 80 },
     ],
   },
+
+  // ==================== DAVIDOFF ====================
+  // 155. Davidoff Cool Water (Caballero)
+  155: {
+    top: [
+      { name: "Lavanda", percentage: 95 },
+      { name: "Menta", percentage: 90 },
+      { name: "Bergamota", percentage: 85 },
+      { name: "Romero", percentage: 75 },
+      { name: "Artemisa", percentage: 65 },
+    ],
+    heart: [
+      { name: "Jazmín", percentage: 85 },
+      { name: "Geranio", percentage: 80 },
+      { name: "Sándalo", percentage: 75 },
+      { name: "Neroli", percentage: 70 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 90 },
+      { name: "Cedro", percentage: 85 },
+      { name: "Ámbar", percentage: 75 },
+      { name: "Musgo de Roble", percentage: 70 },
+    ],
+  },
+  // 156. Davidoff Cool Water Woman (Dama)
+  156: {
+    top: [
+      { name: "Piña", percentage: 90 },
+      { name: "Melón", percentage: 85 },
+      { name: "Lima", percentage: 80 },
+      { name: "Caléndula", percentage: 75 },
+      { name: "Bergamota", percentage: 70 },
+    ],
+    heart: [
+      { name: "Lirio del Valle", percentage: 90 },
+      { name: "Jazmín", percentage: 85 },
+      { name: "Rosa", percentage: 80 },
+      { name: "Nenúfar", percentage: 75 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 90 },
+      { name: "Sándalo", percentage: 85 },
+      { name: "Cedro", percentage: 75 },
+      { name: "Ámbar Blanco", percentage: 70 },
+    ],
+  },
+  // 157. Davidoff Cool Water Intense (Caballero)
+  157: {
+    top: [
+      { name: "Pomelo", percentage: 95 },
+      { name: "Bergamota", percentage: 85 },
+      { name: "Pimienta Rosada", percentage: 80 },
+    ],
+    heart: [
+      { name: "Resina", percentage: 90 },
+      { name: "Jengibre", percentage: 85 },
+      { name: "Canela", percentage: 75 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 95 },
+      { name: "Pachulí", percentage: 85 },
+      { name: "Cedro de Virginia", percentage: 80 },
+    ],
+  },
 };
 
 // ─── Accords data ───
@@ -4065,6 +4129,32 @@ const PERFUME_ACCORDS: Record<number, { label: string; percentage: number; color
     { label: "Lavanda", percentage: 85, color: "#9b8ec4" },
     { label: "Chocolate", percentage: 80, color: "#5a3a2a" },
     { label: "Dulce", percentage: 75, color: "#f0a830" },
+  ],
+
+  // ==================== DAVIDOFF ====================
+  // 155. Davidoff Cool Water (Caballero)
+  155: [
+    { label: "Acuático", percentage: 95, color: "#4da6c9" },
+    { label: "Amaderado", percentage: 80, color: "#c17b2a" },
+    { label: "Herbal", percentage: 75, color: "#6b8e4e" },
+    { label: "Almizclado", percentage: 70, color: "#a0a0a0" },
+    { label: "Fresco", percentage: 65, color: "#a0c4e8" },
+  ],
+  // 156. Davidoff Cool Water Woman (Dama)
+  156: [
+    { label: "Floral", percentage: 95, color: "#e75a8d" },
+    { label: "Acuático", percentage: 90, color: "#4da6c9" },
+    { label: "Fresco", percentage: 85, color: "#a0c4e8" },
+    { label: "Afrutado", percentage: 75, color: "#e75a8d" },
+    { label: "Almizclado", percentage: 65, color: "#a0a0a0" },
+  ],
+  // 157. Davidoff Cool Water Intense (Caballero)
+  157: [
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Amaderado", percentage: 85, color: "#c17b2a" },
+    { label: "Especiado", percentage: 80, color: "#c45a3a" },
+    { label: "Almizclado", percentage: 75, color: "#a0a0a0" },
+    { label: "Resinoso", percentage: 65, color: "#8b6914" },
   ],
 };
 
