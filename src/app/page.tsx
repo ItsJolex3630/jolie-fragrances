@@ -2,6 +2,85 @@
 
 import { useState, useMemo, useRef, useEffect, useCallback, memo } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+
+// ─── Scroll Reveal Hook (lightweight IntersectionObserver) ───
+function useScrollReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("revealed");
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return ref;
+}
+
+// ─── ScrollRevealDiv component ───
+function ScrollRevealDiv({ children, className = "", variant = "up" }: { children: React.ReactNode; className?: string; variant?: "up" | "left" | "scale" }) {
+  const ref = useScrollReveal();
+  const variantClass = variant === "left" ? "scroll-reveal-left" : variant === "scale" ? "scroll-reveal-scale" : "scroll-reveal";
+  return (
+    <div ref={ref} className={`${variantClass} ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+// ─── Cursor Glow Component (lightweight mouse follower) ───
+function CursorGlow() {
+  const glowRef = useRef<HTMLDivElement>(null);
+  const posRef = useRef({ x: 0, y: 0 });
+  const visibleRef = useRef(false);
+  const rafRef = useRef<number>(0);
+
+  useEffect(() => {
+    // Only on non-touch devices
+    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+
+    function handleMove(e: MouseEvent) {
+      posRef.current = { x: e.clientX, y: e.clientY };
+      if (!visibleRef.current && glowRef.current) {
+        visibleRef.current = true;
+        glowRef.current.classList.add('visible');
+      }
+    }
+
+    function handleLeave() {
+      visibleRef.current = false;
+      glowRef.current?.classList.remove('visible');
+    }
+
+    // Smooth animation loop
+    function animate() {
+      if (glowRef.current) {
+        glowRef.current.style.left = `${posRef.current.x}px`;
+        glowRef.current.style.top = `${posRef.current.y}px`;
+      }
+      rafRef.current = requestAnimationFrame(animate);
+    }
+
+    document.addEventListener('mousemove', handleMove, { passive: true });
+    document.addEventListener('mouseleave', handleLeave);
+    rafRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMove);
+      document.removeEventListener('mouseleave', handleLeave);
+      cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  return <div ref={glowRef} className="cursor-glow" />;
+}
 import {
   Search,
   X,
@@ -20,10 +99,9 @@ import {
   Heart,
   Gem,
   Clock,
+  ArrowLeftRight,
 } from "lucide-react";
 import dynamic from "next/dynamic";
-import TopBar from "@/components/TopBar";
-const SimilarPerfumesModal = dynamic(() => import("@/components/SimilarPerfumesModal"), { ssr: false });
 import {
   GENDERS,
   getImageUrl,
@@ -38,6 +116,9 @@ import {
 
 // ─── Dynamic imports for heavy modal components (only loaded when needed) ───
 const PerfumeDetail = dynamic(() => import("@/components/PerfumeDetail"), { ssr: false });
+const CompareModal = dynamic(() => import("@/components/CompareModal"), { ssr: false });
+const SimilarPerfumesModal = dynamic(() => import("@/components/SimilarPerfumesModal"), { ssr: false });
+import TopBar from "@/components/TopBar";
 
 // ─── Gender badge colors ───
 const genderStyles: Record<Gender, string> = {
@@ -92,26 +173,32 @@ const PerfumeCard = memo(function PerfumeCard({
   const [imgError, setImgError] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
 
-  // Primary .avif URL, fallback to .jpg
-  const imgSrc = imgTriedJpg
+  // Primary: customImageUrl if available, then .avif URL, fallback to .jpg
+  const hasCustomImage = !!perfume.customImageUrl;
+  const imgSrc = hasCustomImage
+    ? perfume.customImageUrl!
+    : imgTriedJpg
     ? `https://fimgs.net/mdimg/perfume/${perfume.fragranticaId}.jpg`
     : getImageUrl(perfume.fragranticaId);
 
   const handleImgError = useCallback(() => {
-    if (!imgTriedJpg) {
+    if (hasCustomImage) {
+      // For custom images, skip Fragrantica fallback and go directly to fallback icon
+      setImgError(true);
+    } else if (!imgTriedJpg) {
       setImgTriedJpg(true);
       setImgLoaded(false);
     } else {
       setImgError(true);
     }
-  }, [imgTriedJpg]);
+  }, [imgTriedJpg, hasCustomImage]);
 
   return (
     <div
       className="perfume-card group relative card-fade-in"
       style={{ animationDelay: `${Math.min(index * 0.03, 0.5)}s` }}
     >
-      <div className="relative overflow-hidden rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111] transition-all duration-500 group-hover:border-[rgba(212,175,55,0.35)] gold-glow-hover">
+      <div className="card-shimmer-border relative overflow-hidden rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111] transition-all duration-500 group-hover:border-[rgba(212,175,55,0.35)] gold-glow-hover">
         {/* Image container - dark background for the bottle */}
         <div className="relative aspect-[3/4] overflow-hidden bg-[#0a0a0a] flex items-center justify-center">
           {/* Loading skeleton */}
@@ -247,6 +334,7 @@ export default function Home() {
   const catalogRef = useRef<HTMLDivElement>(null);
 
   const [selectedPerfume, setSelectedPerfume] = useState<Perfume | null>(null);
+  const [showCompare, setShowCompare] = useState(false);
   const [showSimilar, setShowSimilar] = useState(false);
 
   // ─── Perfume list (fetched from API) ───
@@ -262,6 +350,8 @@ export default function Home() {
   const { scrollYProgress } = useScroll();
   const heroOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.12], [1, 0.95]);
+  // Parallax: particles and aurora move slower than scroll
+  const heroParallaxY = useTransform(scrollYProgress, [0, 0.15], [0, -60]);
 
   // ─── Fetch perfumes on mount ───
   useEffect(() => {
@@ -452,6 +542,9 @@ export default function Home() {
       ref={topRef}
       className="min-h-screen flex flex-col bg-[#0a0a0a] relative"
     >
+      {/* ─── Cursor Glow Effect ─── */}
+      <CursorGlow />
+
       {/* ─── Top Bar ─── */}
       <TopBar
         onSearch={() => {
@@ -461,7 +554,7 @@ export default function Home() {
             input?.focus();
           }, 500);
         }}
-        onCompare={() => setShowSimilar(true)}
+        onCompare={() => setShowCompare(true)}
         onSimilar={() => setShowSimilar(true)}
       />
 
@@ -470,11 +563,24 @@ export default function Home() {
         style={{ opacity: heroOpacity, scale: heroScale }}
         className="relative overflow-hidden"
       >
-        {/* Background particles */}
+        {/* Background aurora blobs — with parallax */}
+        <motion.div
+          style={{ y: heroParallaxY }}
+          className="hero-aurora"
+        >
+          <div className="hero-aurora-blob hero-aurora-blob-1" />
+          <div className="hero-aurora-blob hero-aurora-blob-2" />
+          <div className="hero-aurora-blob hero-aurora-blob-3" />
+        </motion.div>
+
+        {/* Background gradient */}
         <div className="absolute inset-0 hero-gradient" />
 
-        {/* Floating gold particles — reduced for mobile performance */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Floating gold particles — with parallax — reduced for mobile performance */}
+        <motion.div
+          style={{ y: heroParallaxY }}
+          className="absolute inset-0 overflow-hidden pointer-events-none"
+        >
           {[10, 30, 50, 70, 85, 20, 45, 65, 40, 75].map((left, i) => (
             <div
               key={i}
@@ -486,7 +592,7 @@ export default function Home() {
               }}
             />
           ))}
-        </div>
+        </motion.div>
 
         {/* Shimmer line decorations */}
         <div className="absolute top-0 left-0 right-0 h-px shimmer-line" />
@@ -697,6 +803,14 @@ export default function Home() {
                   <X className="w-4 h-4" />
                 </button>
               )}
+              <button
+                onClick={() => setShowCompare(true)}
+                className="flex items-center gap-1.5 text-[10px] px-2.5 py-1.5 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/20 text-[#d4af37] hover:bg-[#d4af37]/20 transition-all font-[family-name:var(--font-inter)]"
+                title="Comparar perfumes"
+              >
+                <ArrowLeftRight className="w-3 h-3" />
+                <span className="hidden sm:inline">Comparar</span>
+              </button>
               {activeFilterCount > 0 && (
                 <button
                   onClick={clearAllFilters}
@@ -898,11 +1012,8 @@ export default function Home() {
             className="mb-6"
           >
             <div className="relative rounded-2xl border border-[rgba(212,175,55,0.10)] bg-[#0d0d0d]/80 backdrop-blur-sm overflow-hidden">
-              {/* Decorative top gold line */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
-
               <div className="px-4 sm:px-6 py-3 flex items-center justify-center gap-2 sm:gap-3">
-                {/* Previous button */}
                 <button
                   onClick={() => goToPage(Math.max(1, safePage - 1))}
                   disabled={safePage === 1}
@@ -911,8 +1022,6 @@ export default function Home() {
                   <ChevronLeft className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">Anterior</span>
                 </button>
-
-                {/* Page numbers */}
                 <div className="flex items-center gap-1">
                   {visiblePages.map((page, i) =>
                     page === -1 ? (
@@ -940,8 +1049,6 @@ export default function Home() {
                     )
                   )}
                 </div>
-
-                {/* Next button */}
                 <button
                   onClick={() => goToPage(Math.min(totalPages, safePage + 1))}
                   disabled={safePage === totalPages}
@@ -951,8 +1058,6 @@ export default function Home() {
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
-
-              {/* Decorative bottom gold line */}
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
             </div>
           </motion.div>
@@ -998,17 +1103,12 @@ export default function Home() {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="mt-10"
           >
-            {/* Page info */}
             <p className="text-center text-xs text-white/25 font-[family-name:var(--font-inter)] mb-3">
               Mostrando {(safePage - 1) * PERFUMES_PER_PAGE + 1}–{Math.min(safePage * PERFUMES_PER_PAGE, filteredPerfumes.length)} de {filteredPerfumes.length} perfumes
             </p>
-
             <div className="relative rounded-2xl border border-[rgba(212,175,55,0.10)] bg-[#0d0d0d]/80 backdrop-blur-sm overflow-hidden">
-              {/* Decorative top gold line */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
-
               <div className="px-4 sm:px-6 py-3 flex items-center justify-center gap-2 sm:gap-3">
-                {/* First page */}
                 {totalPages > 3 && (
                   <button
                     onClick={() => goToPage(1)}
@@ -1019,8 +1119,6 @@ export default function Home() {
                     <ChevronLeft className="w-3 h-3 -ml-2" />
                   </button>
                 )}
-
-                {/* Previous button */}
                 <button
                   onClick={() => goToPage(Math.max(1, safePage - 1))}
                   disabled={safePage === 1}
@@ -1029,8 +1127,6 @@ export default function Home() {
                   <ChevronLeft className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">Anterior</span>
                 </button>
-
-                {/* Page numbers */}
                 <div className="flex items-center gap-1">
                   {visiblePages.map((page, i) =>
                     page === -1 ? (
@@ -1058,8 +1154,6 @@ export default function Home() {
                     )
                   )}
                 </div>
-
-                {/* Next button */}
                 <button
                   onClick={() => goToPage(Math.min(totalPages, safePage + 1))}
                   disabled={safePage === totalPages}
@@ -1068,8 +1162,6 @@ export default function Home() {
                   <span className="hidden sm:inline">Siguiente</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
-
-                {/* Last page */}
                 {totalPages > 3 && (
                   <button
                     onClick={() => goToPage(totalPages)}
@@ -1081,8 +1173,6 @@ export default function Home() {
                   </button>
                 )}
               </div>
-
-              {/* Decorative bottom gold line */}
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
             </div>
           </motion.div>
@@ -1268,12 +1358,9 @@ export default function Home() {
       </section>
 
       {/* ─── FOOTER ─── */}
+      <ScrollRevealDiv>
       <footer className="relative z-10 border-t border-[rgba(212,175,55,0.1)] bg-[#060606] mt-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <div
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
@@ -1328,8 +1415,9 @@ export default function Home() {
               reservados. Las imágenes pertenecen a Fragrantica.
             </p>
           </div>
-        </motion.div>
+        </div>
       </footer>
+      </ScrollRevealDiv>
 
       {/* ─── FLOATING WHATSAPP BUTTON ─── */}
       <a
@@ -1374,15 +1462,23 @@ export default function Home() {
         )}
       </AnimatePresence>
 
+      {/* ─── COMPARE MODAL ─── */}
+      <CompareModal
+        isOpen={showCompare}
+        onClose={() => setShowCompare(false)}
+        perfumes={allPerfumes}
+        initialPerfume1={null}
+      />
+
       {/* ─── SIMILAR PERFUMES MODAL ─── */}
       <SimilarPerfumesModal
         isOpen={showSimilar}
         onClose={() => setShowSimilar(false)}
-        allPerfumes={allPerfumes}
         onSelectPerfume={(perfume) => {
-          setShowSimilar(false);
           setSelectedPerfume(perfume);
+          setShowSimilar(false);
         }}
+        allPerfumes={allPerfumes}
       />
     </div>
   );
