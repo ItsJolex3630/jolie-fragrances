@@ -3280,6 +3280,254 @@ export const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Ámbar", percentage: 72 },
     ],
   },
+
+  // ==================== CAROLINA HERRERA ====================
+  186: {
+    top: [
+      { name: "Almendra", percentage: 80 },
+      { name: "Café", percentage: 75 },
+      { name: "Bergamota", percentage: 50 },
+      { name: "Limón", percentage: 40 },
+    ],
+    heart: [
+      { name: "Tuberosa", percentage: 85 },
+      { name: "Jazmín Sambac", percentage: 80 },
+      { name: "Nardo", percentage: 60 },
+      { name: "Rosa", percentage: 45 },
+    ],
+    base: [
+      { name: "Tonka", percentage: 90 },
+      { name: "Cacao", percentage: 85 },
+      { name: "Sándalo", percentage: 60 },
+      { name: "Vainilla", percentage: 50 },
+    ],
+  },
+  187: {
+    top: [
+      { name: "Bergamota", percentage: 70 },
+      { name: "Almendra Amarga", percentage: 65 },
+    ],
+    heart: [
+      { name: "Peonía", percentage: 80 },
+      { name: "Ylang-Ylang", percentage: 75 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 85 },
+      { name: "Cumaro", percentage: 70 },
+    ],
+  },
+  188: {
+    top: [
+      { name: "Lichi", percentage: 80 },
+      { name: "Grosella", percentage: 75 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 85 },
+      { name: "Iris", percentage: 60 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 80 },
+      { name: "Almizcle", percentage: 65 },
+    ],
+  },
+  189: {
+    top: [
+      { name: "Cereza Negra", percentage: 85 },
+      { name: "Almendra Amarga", percentage: 75 },
+    ],
+    heart: [
+      { name: "Tuberosa", percentage: 80 },
+      { name: "Agua de Rosa", percentage: 70 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 85 },
+      { name: "Vainilla", percentage: 80 },
+    ],
+  },
+  190: {
+    top: [
+      { name: "Bergamota", percentage: 65 },
+      { name: "Mandarina", percentage: 60 },
+    ],
+    heart: [
+      { name: "Ylang-Ylang", percentage: 80 },
+      { name: "Rosa", percentage: 75 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 85 },
+      { name: "Pachulí", percentage: 70 },
+    ],
+  },
+  191: {
+    top: [
+      { name: "Pitahaya", percentage: 85 },
+    ],
+    heart: [
+      { name: "Frangipani", percentage: 80 },
+      { name: "Peonía Roja", percentage: 70 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 80 },
+      { name: "Pachulí", percentage: 65 },
+    ],
+  },
+  192: {
+    top: [
+      { name: "Lavanda", percentage: 80 },
+      { name: "Pimienta Rosa", percentage: 65 },
+    ],
+    heart: [
+      { name: "Ciruela", percentage: 75 },
+      { name: "Geranio", percentage: 60 },
+    ],
+    base: [
+      { name: "Cedro", percentage: 80 },
+      { name: "Vetiver", percentage: 75 },
+      { name: "Trufa", percentage: 60 },
+      { name: "Roble", percentage: 55 },
+    ],
+  },
+  193: {
+    top: [
+      { name: "Pimienta Blanca", percentage: 75 },
+      { name: "Bergamota", percentage: 70 },
+      { name: "Pimienta Rosa", percentage: 60 },
+    ],
+    heart: [
+      { name: "Cedro", percentage: 80 },
+      { name: "Salvia", percentage: 70 },
+    ],
+    base: [
+      { name: "Tonka", percentage: 90 },
+      { name: "Cacao", percentage: 85 },
+    ],
+  },
+  194: {
+    top: [
+      { name: "Pimienta Negra", percentage: 80 },
+      { name: "Salvia", percentage: 70 },
+    ],
+    heart: [
+      { name: "Trufa", percentage: 75 },
+      { name: "Notas Amaderadas", percentage: 65 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 85 },
+      { name: "Incienso", percentage: 75 },
+    ],
+  },
+  195: {
+    top: [
+      { name: "Bergamota", percentage: 60 },
+      { name: "Jengibre", percentage: 70 },
+      { name: "Ciruela", percentage: 65 },
+    ],
+    heart: [
+      { name: "Salvia", percentage: 70 },
+      { name: "Opoponaco", percentage: 60 },
+      { name: "Davana", percentage: 55 },
+    ],
+    base: [
+      { name: "Cacao", percentage: 90 },
+      { name: "Tonka", percentage: 85 },
+      { name: "Pachulí", percentage: 75 },
+      { name: "Incienso", percentage: 65 },
+    ],
+  },
+  196: {
+    top: [
+      { name: "Cáñamo", percentage: 80 },
+      { name: "Toronja", percentage: 70 },
+    ],
+    heart: [
+      { name: "Pimienta Negra", percentage: 75 },
+      { name: "Geranio", percentage: 65 },
+    ],
+    base: [
+      { name: "Cuero", percentage: 85 },
+      { name: "Vetiver", percentage: 75 },
+    ],
+  },
+  197: {
+    top: [
+      { name: "Salvia", percentage: 80 },
+      { name: "Lavanda", percentage: 70 },
+    ],
+    heart: [
+      { name: "Cuero", percentage: 85 },
+      { name: "Lirio", percentage: 65 },
+    ],
+    base: [
+      { name: "Cedro", percentage: 80 },
+      { name: "Incienso", percentage: 75 },
+    ],
+  },
+  198: {
+    top: [
+      { name: "Césped", percentage: 70 },
+      { name: "Bergamota", percentage: 65 },
+      { name: "Toronja", percentage: 60 },
+    ],
+    heart: [
+      { name: "Azafrán", percentage: 75 },
+      { name: "Nuez Moscada", percentage: 65 },
+      { name: "Jazmín", percentage: 55 },
+      { name: "Violeta", percentage: 50 },
+    ],
+    base: [
+      { name: "Sándalo", percentage: 80 },
+      { name: "Cuero", percentage: 75 },
+      { name: "Ámbar", percentage: 60 },
+      { name: "Almizcle", percentage: 55 },
+    ],
+  },
+  199: {
+    top: [
+      { name: "Maracuyá", percentage: 75 },
+      { name: "Lima", percentage: 70 },
+      { name: "Pimienta", percentage: 60 },
+      { name: "Jengibre", percentage: 55 },
+    ],
+    heart: [
+      { name: "Vodka", percentage: 80 },
+      { name: "Ginebra", percentage: 70 },
+      { name: "Menta", percentage: 55 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 80 },
+      { name: "Cuero", percentage: 75 },
+    ],
+  },
+  200: {
+    top: [
+      { name: "Bergamota", percentage: 65 },
+      { name: "Pimienta Verde", percentage: 55 },
+    ],
+    heart: [
+      { name: "Gardenia", percentage: 70 },
+      { name: "Jengibre", percentage: 60 },
+    ],
+    base: [
+      { name: "Sándalo", percentage: 75 },
+      { name: "Almizcle", percentage: 70 },
+      { name: "Incienso", percentage: 60 },
+      { name: "Vainilla", percentage: 55 },
+    ],
+  },
+  201: {
+    top: [
+      { name: "Absenta", percentage: 80 },
+      { name: "Anís", percentage: 65 },
+      { name: "Hinojo", percentage: 55 },
+    ],
+    heart: [
+      { name: "Lavanda", percentage: 70 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 85 },
+      { name: "Almizcle", percentage: 70 },
+    ],
+  },
 };
 
 // ─── Accords data ───
@@ -5262,6 +5510,109 @@ export const PERFUME_ACCORDS: Record<number, { label: string; percentage: number
     { label: "Fresco", percentage: 64, color: "#4a9eb5" },
     { label: "Especiado Fresco", percentage: 61, color: "#c45a3a" },
     { label: "Aromático", percentage: 57, color: "#6b8e4e" },
+  ],
+
+  // ==================== CAROLINA HERRERA ====================
+  186: [
+    { label: "Oriental", percentage: 85, color: "#c45a3a" },
+    { label: "Dulce", percentage: 80, color: "#d4775c" },
+    { label: "Cacao", percentage: 75, color: "#8b5e3c" },
+    { label: "Floral Blanco", percentage: 70, color: "#e8b4c8" },
+    { label: "Amaderado", percentage: 55, color: "#8b6f47" },
+  ],
+  187: [
+    { label: "Floral", percentage: 85, color: "#e8b4c8" },
+    { label: "Dulce", percentage: 75, color: "#d4775c" },
+    { label: "Polvado", percentage: 65, color: "#c4b8a0" },
+    { label: "Vainillado", percentage: 70, color: "#d4a574" },
+  ],
+  188: [
+    { label: "Frutal", percentage: 80, color: "#e87d5c" },
+    { label: "Floral", percentage: 85, color: "#e8b4c8" },
+    { label: "Dulce", percentage: 70, color: "#d4775c" },
+    { label: "Rosado", percentage: 65, color: "#e8a0b8" },
+  ],
+  189: [
+    { label: "Oriental", percentage: 85, color: "#c45a3a" },
+    { label: "Floral", percentage: 80, color: "#e8b4c8" },
+    { label: "Dulce", percentage: 80, color: "#d4775c" },
+    { label: "Ámbar", percentage: 75, color: "#d4a030" },
+  ],
+  190: [
+    { label: "Floral", percentage: 85, color: "#e8b4c8" },
+    { label: "Oriental", percentage: 75, color: "#c45a3a" },
+    { label: "Dulce", percentage: 75, color: "#d4775c" },
+    { label: "Vainillado", percentage: 70, color: "#d4a574" },
+    { label: "Terroso", percentage: 55, color: "#8b7355" },
+  ],
+  191: [
+    { label: "Floral Tropical", percentage: 85, color: "#e8b4c8" },
+    { label: "Frutal", percentage: 80, color: "#e87d5c" },
+    { label: "Dulce", percentage: 75, color: "#d4775c" },
+    { label: "Cremoso", percentage: 60, color: "#f0e6d4" },
+  ],
+  192: [
+    { label: "Aromático", percentage: 85, color: "#6b8e4e" },
+    { label: "Amaderado", percentage: 75, color: "#8b6f47" },
+    { label: "Fresco", percentage: 70, color: "#4a9eb5" },
+    { label: "Especiado", percentage: 65, color: "#c45a3a" },
+  ],
+  193: [
+    { label: "Especiado", percentage: 80, color: "#c45a3a" },
+    { label: "Amaderado", percentage: 75, color: "#8b6f47" },
+    { label: "Cacao", percentage: 70, color: "#8b5e3c" },
+    { label: "Aromático", percentage: 65, color: "#6b8e4e" },
+  ],
+  194: [
+    { label: "Oriental", percentage: 85, color: "#c45a3a" },
+    { label: "Especiado", percentage: 75, color: "#c45a3a" },
+    { label: "Amaderado", percentage: 70, color: "#8b6f47" },
+    { label: "Dulce", percentage: 65, color: "#d4775c" },
+  ],
+  195: [
+    { label: "Oriental", percentage: 85, color: "#c45a3a" },
+    { label: "Cacao", percentage: 80, color: "#8b5e3c" },
+    { label: "Dulce", percentage: 75, color: "#d4775c" },
+    { label: "Amaderado", percentage: 70, color: "#8b6f47" },
+    { label: "Incienso", percentage: 60, color: "#9b8a6e" },
+  ],
+  196: [
+    { label: "Cuero", percentage: 85, color: "#7a5c3a" },
+    { label: "Especiado", percentage: 80, color: "#c45a3a" },
+    { label: "Aromático", percentage: 70, color: "#6b8e4e" },
+    { label: "Terroso", percentage: 60, color: "#8b7355" },
+  ],
+  197: [
+    { label: "Cuero", percentage: 85, color: "#7a5c3a" },
+    { label: "Oriental", percentage: 80, color: "#c45a3a" },
+    { label: "Amaderado", percentage: 75, color: "#8b6f47" },
+    { label: "Especiado", percentage: 70, color: "#c45a3a" },
+    { label: "Incienso", percentage: 60, color: "#9b8a6e" },
+  ],
+  198: [
+    { label: "Oriental Especiado", percentage: 85, color: "#c45a3a" },
+    { label: "Amaderado", percentage: 75, color: "#8b6f47" },
+    { label: "Cuero", percentage: 70, color: "#7a5c3a" },
+    { label: "Fresco", percentage: 60, color: "#4a9eb5" },
+  ],
+  199: [
+    { label: "Frutal", percentage: 80, color: "#e87d5c" },
+    { label: "Dulce", percentage: 75, color: "#d4775c" },
+    { label: "Aromático", percentage: 70, color: "#6b8e4e" },
+    { label: "Cuero", percentage: 60, color: "#7a5c3a" },
+  ],
+  200: [
+    { label: "Amaderado Floral", percentage: 80, color: "#8b6f47" },
+    { label: "Fresco", percentage: 75, color: "#4a9eb5" },
+    { label: "Aromático", percentage: 70, color: "#6b8e4e" },
+    { label: "Especiado", percentage: 60, color: "#c45a3a" },
+  ],
+  201: [
+    { label: "Oriental", percentage: 85, color: "#c45a3a" },
+    { label: "Dulce", percentage: 80, color: "#d4775c" },
+    { label: "Vainillado", percentage: 75, color: "#d4a574" },
+    { label: "Aromático", percentage: 65, color: "#6b8e4e" },
+    { label: "Licoroso", percentage: 60, color: "#9b6a8e" },
   ],
 };
 

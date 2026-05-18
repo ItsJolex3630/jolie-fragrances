@@ -287,6 +287,24 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
 
   // ==================== LATTAFA ====================
   185: ["Especiado", "Amaderado"], // Sherif
+
+  // ==================== CAROLINA HERRERA ====================
+  186: ["Almendra", "Café", "Tuberosa", "Jazmín", "Cacao", "Tonka"], // Good Girl
+  187: ["Bergamota", "Almendra", "Peonía", "Ylang-Ylang", "Vainilla", "Cumaro"], // Good Girl Blush
+  188: ["Lichi", "Grosella", "Rosa", "Vainilla"], // Very Good Girl
+  189: ["Cereza Negra", "Almendra", "Tuberosa", "Rosa", "Ámbar", "Vainilla"], // Very Good Girl Elixir
+  190: ["Bergamota", "Mandarina", "Ylang-Ylang", "Rosa", "Vainilla", "Pachulí"], // Good Girl Blush Elixir EdP
+  191: ["Pitahaya", "Frangipani", "Peonía", "Vainilla", "Pachulí"], // La Bomba
+  192: ["Lavanda", "Pimienta Rosa", "Ciruela", "Geranio", "Cedro", "Vetiver", "Trufa"], // Bad Boy Cobalt PE
+  193: ["Pimienta Blanca", "Bergamota", "Pimienta Rosa", "Cedro", "Salvia", "Tonka", "Cacao"], // Bad Boy
+  194: ["Pimienta Negra", "Salvia", "Trufa", "Amaderado", "Vainilla", "Incienso"], // Bad Boy Cobalt Elixir
+  195: ["Bergamota", "Jengibre", "Ciruela", "Salvia", "Cacao", "Tonka", "Pachulí", "Incienso"], // Bad Boy Extreme
+  196: ["Cáñamo", "Toronja", "Pimienta Negra", "Geranio", "Cuero", "Vetiver"], // Bad Boy Le Parfum
+  197: ["Salvia", "Lavanda", "Cuero", "Lirio", "Cedro", "Incienso"], // Bad Boy Elixir
+  198: ["Bergamota", "Césped", "Toronja", "Azafrán", "Nuez Moscada", "Jazmín", "Violeta", "Sándalo", "Cuero"], // CH Men
+  199: ["Maracuyá", "Lima", "Pimienta", "Jengibre", "Vodka", "Ginebra", "Menta", "Ámbar", "Cuero"], // 212 VIP Men
+  200: ["Bergamota", "Pimienta Verde", "Gardenia", "Jengibre", "Sándalo", "Almizcle", "Incienso", "Vainilla"], // 212 Men
+  201: ["Absenta", "Anís", "Hinojo", "Lavanda", "Vainilla", "Almizcle"], // 212 VIP Black
 };
 
 export type Brand =
@@ -299,7 +317,8 @@ export type Brand =
   | "Maison Alhambra"
   | "Dumont"
   | "Rasasi"
-  | "Davidoff";
+  | "Davidoff"
+  | "Carolina Herrera";
 
 export interface Perfume {
   id: number;
@@ -327,6 +346,7 @@ export const BRANDS: Brand[] = [
   "Dumont",
   "Rasasi",
   "Davidoff",
+  "Carolina Herrera",
 ];
 
 export const GENDERS: Gender[] = ["Dama", "Caballero", "Unisex"];
@@ -342,6 +362,7 @@ export const BRAND_SLUGS: Record<Brand, string> = {
   Dumont: "Dumont",
   Rasasi: "Rasasi",
   Davidoff: "Davidoff",
+  "Carolina Herrera": "Carolina-Herrera",
 };
 
 export function getImageUrl(fragranticaId: number): string {
@@ -2141,5 +2162,183 @@ export const perfumes: Perfume[] = [
     fragranticaId: 114332,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Sherif",
+  },
+
+  // ==================== CAROLINA HERRERA ====================
+  {
+    id: 186,
+    name: "Good Girl",
+    brand: "Carolina Herrera",
+    gender: "Dama",
+    size: "80ml",
+    fragranticaId: 39681,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "Good-Girl",
+    available: false,
+  },
+  {
+    id: 187,
+    name: "Good Girl Blush",
+    brand: "Carolina Herrera",
+    gender: "Dama",
+    size: "80ml",
+    fragranticaId: 78576,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "Good-Girl-Blush",
+    available: false,
+  },
+  {
+    id: 188,
+    name: "Very Good Girl",
+    brand: "Carolina Herrera",
+    gender: "Dama",
+    size: "75ml",
+    fragranticaId: 65560,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "Very-Good-Girl",
+    available: false,
+  },
+  {
+    id: 189,
+    name: "Very Good Girl Elixir",
+    brand: "Carolina Herrera",
+    gender: "Dama",
+    size: "80ml",
+    fragranticaId: 101155,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "Very-Good-Girl-Elixir",
+    available: false,
+  },
+  {
+    id: 190,
+    name: "Good Girl Blush Elixir Eau de Parfum",
+    brand: "Carolina Herrera",
+    gender: "Dama",
+    size: "80ml",
+    fragranticaId: 88937,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "Good-Girl-Blush-Elixir-Eau-de-Parfum",
+    available: false,
+  },
+  {
+    id: 191,
+    name: "La Bomba",
+    brand: "Carolina Herrera",
+    gender: "Dama",
+    size: "80ml",
+    fragranticaId: 105931,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "La-Bomba",
+    available: false,
+  },
+  {
+    id: 192,
+    name: "Bad Boy Cobalt Parfum Electrique",
+    brand: "Carolina Herrera",
+    gender: "Caballero",
+    size: "100ml",
+    fragranticaId: 71888,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "Bad-Boy-Cobalt-Parfum-Electrique",
+    available: false,
+  },
+  {
+    id: 193,
+    name: "Bad Boy",
+    brand: "Carolina Herrera",
+    gender: "Caballero",
+    size: "100ml",
+    fragranticaId: 55449,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "Bad-Boy",
+    available: false,
+  },
+  {
+    id: 194,
+    name: "Bad Boy Cobalt Elixir",
+    brand: "Carolina Herrera",
+    gender: "Caballero",
+    size: "100ml",
+    fragranticaId: 89374,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "Bad-Boy-Cobalt-Elixir",
+    available: false,
+  },
+  {
+    id: 195,
+    name: "Bad Boy Extreme",
+    brand: "Carolina Herrera",
+    gender: "Caballero",
+    size: "100ml",
+    fragranticaId: 78562,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "Bad-Boy-Extreme",
+    available: false,
+  },
+  {
+    id: 196,
+    name: "Bad Boy Le Parfum",
+    brand: "Carolina Herrera",
+    gender: "Caballero",
+    size: "100ml",
+    fragranticaId: 65718,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "Bad-Boy-Le-Parfum",
+    available: false,
+  },
+  {
+    id: 197,
+    name: "Bad Boy Elixir",
+    brand: "Carolina Herrera",
+    gender: "Caballero",
+    size: "100ml",
+    fragranticaId: 101597,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "Bad-Boy-Elixir",
+    available: false,
+  },
+  {
+    id: 198,
+    name: "CH Men",
+    brand: "Carolina Herrera",
+    gender: "Caballero",
+    size: "100ml",
+    fragranticaId: 6759,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "CH-Men",
+    available: false,
+  },
+  {
+    id: 199,
+    name: "212 VIP Men",
+    brand: "Carolina Herrera",
+    gender: "Caballero",
+    size: "100ml",
+    fragranticaId: 12865,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "212-VIP-Men",
+    available: false,
+  },
+  {
+    id: 200,
+    name: "212 Men",
+    brand: "Carolina Herrera",
+    gender: "Caballero",
+    size: "100ml",
+    fragranticaId: 297,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "212-Men",
+    available: false,
+  },
+  {
+    id: 201,
+    name: "212 VIP Black",
+    brand: "Carolina Herrera",
+    gender: "Caballero",
+    size: "100ml",
+    fragranticaId: 46093,
+    brandSlug: "Carolina-Herrera",
+    perfumeSlug: "212-VIP-Black",
+    available: false,
   },
 ];
