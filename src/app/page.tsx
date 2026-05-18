@@ -337,6 +337,10 @@ export default function Home() {
   const [showCompare, setShowCompare] = useState(false);
   const [showSimilar, setShowSimilar] = useState(false);
   const [compareViewPerfume, setCompareViewPerfume] = useState<Perfume | null>(null);
+  // Navigation stack for "back" button when navigating between similar perfumes
+  const [perfumeBackStack, setPerfumeBackStack] = useState<Perfume[]>([]);
+  // Navigation stack for "back" button when navigating from comparison view
+  const [compareBackStack, setCompareBackStack] = useState<Perfume[]>([]);
 
   // ─── Perfume list (fetched from API) ───
   const [allPerfumes, setAllPerfumes] = useState<Perfume[]>([]);
@@ -1457,9 +1461,20 @@ export default function Home() {
             perfume={selectedPerfume}
             isFavorited={false}
             isLoggedIn={false}
-            onClose={() => setSelectedPerfume(null)}
+            onClose={() => { setSelectedPerfume(null); setPerfumeBackStack([]); }}
             onToggleFavorite={() => {}}
-            onNavigateToPerfume={(p) => setSelectedPerfume(p)}
+            onNavigateToPerfume={(p) => {
+              // Push current perfume to back stack, then navigate to new one
+              setPerfumeBackStack(prev => [...prev, selectedPerfume]);
+              setSelectedPerfume(p);
+            }}
+            returnLabel={perfumeBackStack.length > 0 ? (perfumeBackStack[perfumeBackStack.length - 1].name.length > 22 ? perfumeBackStack[perfumeBackStack.length - 1].name.slice(0, 22) + '…' : perfumeBackStack[perfumeBackStack.length - 1].name) : undefined}
+            onReturn={perfumeBackStack.length > 0 ? () => {
+              const prev = [...perfumeBackStack];
+              const lastPerfume = prev.pop()!;
+              setPerfumeBackStack(prev);
+              setSelectedPerfume(lastPerfume);
+            } : undefined}
           />
         )}
       </AnimatePresence>
@@ -1472,11 +1487,26 @@ export default function Home() {
             perfume={compareViewPerfume}
             isFavorited={false}
             isLoggedIn={false}
-            onClose={() => setCompareViewPerfume(null)}
+            onClose={() => { setCompareViewPerfume(null); setCompareBackStack([]); }}
             onToggleFavorite={() => {}}
-            onNavigateToPerfume={(p) => setCompareViewPerfume(p)}
-            returnLabel="Volver a comparación"
-            onReturn={() => setCompareViewPerfume(null)}
+            onNavigateToPerfume={(p) => {
+              // Push current perfume to compare back stack, then navigate
+              setCompareBackStack(prev => [...prev, compareViewPerfume]);
+              setCompareViewPerfume(p);
+            }}
+            returnLabel={compareBackStack.length > 0
+              ? (compareBackStack[compareBackStack.length - 1].name.length > 22
+                ? compareBackStack[compareBackStack.length - 1].name.slice(0, 22) + '…'
+                : compareBackStack[compareBackStack.length - 1].name)
+              : "Volver a comparación"}
+            onReturn={compareBackStack.length > 0
+              ? () => {
+                  const prev = [...compareBackStack];
+                  const lastPerfume = prev.pop()!;
+                  setCompareBackStack(prev);
+                  setCompareViewPerfume(lastPerfume);
+                }
+              : () => setCompareViewPerfume(null)}
           />
         )}
       </AnimatePresence>
@@ -1496,6 +1526,7 @@ export default function Home() {
         onClose={() => setShowSimilar(false)}
         onSelectPerfume={(perfume) => {
           setSelectedPerfume(perfume);
+          setPerfumeBackStack([]);
           setShowSimilar(false);
         }}
         allPerfumes={allPerfumes}
