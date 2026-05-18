@@ -5250,18 +5250,18 @@ export const PERFUME_ACCORDS: Record<number, { label: string; percentage: number
     { label: "Atalcado", percentage: 68, color: "#d4c5a9" },
     { label: "Ámbar", percentage: 62, color: "#f0a830" },
   ],
-  // 185. Sherif — ACORDES DE FRAGRANTICA
+  // 185. Sherif — ACORDES DE FRAGRANTICA (porcentajes exactos)
   185: [
     { label: "Amaderado", percentage: 100, color: "#c17b2a" },
-    { label: "Frutal", percentage: 88, color: "#e75a8d" },
-    { label: "Cítrico", percentage: 82, color: "#f0c934" },
-    { label: "Verde", percentage: 72, color: "#6b8e4e" },
-    { label: "Atalcado", percentage: 65, color: "#d4c5a9" },
-    { label: "Musgoso", percentage: 60, color: "#5a7a3a" },
-    { label: "Almizclado", percentage: 58, color: "#d4c5a9" },
-    { label: "Fresco", percentage: 55, color: "#4a9eb5" },
-    { label: "Especiado Fresco", percentage: 52, color: "#c45a3a" },
-    { label: "Aromático", percentage: 48, color: "#6b8e4e" },
+    { label: "Frutal", percentage: 80, color: "#e75a8d" },
+    { label: "Cítrico", percentage: 77, color: "#f0c934" },
+    { label: "Verde", percentage: 74, color: "#6b8e4e" },
+    { label: "Atalcado", percentage: 74, color: "#d4c5a9" },
+    { label: "Musgoso", percentage: 68, color: "#5a7a3a" },
+    { label: "Almizclado", percentage: 67, color: "#d4c5a9" },
+    { label: "Fresco", percentage: 64, color: "#4a9eb5" },
+    { label: "Especiado Fresco", percentage: 61, color: "#c45a3a" },
+    { label: "Aromático", percentage: 57, color: "#6b8e4e" },
   ],
 };
 
