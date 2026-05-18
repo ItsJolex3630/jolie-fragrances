@@ -3262,6 +3262,24 @@ export const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Madera de Cachemira", percentage: 82 },
     ],
   },
+  // 185. Sherif — NOTAS DE FRAGRANTICA
+  185: {
+    top: [
+      { name: "Manzana", percentage: 92 },
+      { name: "Petitgrain", percentage: 80 },
+      { name: "Bergamota", percentage: 72 },
+    ],
+    heart: [
+      { name: "Madera de Cedro", percentage: 88 },
+      { name: "Cashmeran", percentage: 78 },
+      { name: "Violeta", percentage: 65 },
+    ],
+    base: [
+      { name: "Musgo de Roble", percentage: 90 },
+      { name: "Almizcle", percentage: 82 },
+      { name: "Ámbar", percentage: 72 },
+    ],
+  },
 };
 
 // ─── Accords data ───
@@ -5231,6 +5249,15 @@ export const PERFUME_ACCORDS: Record<number, { label: string; percentage: number
     { label: "Aromático", percentage: 75, color: "#6b8e4e" },
     { label: "Atalcado", percentage: 68, color: "#d4c5a9" },
     { label: "Ámbar", percentage: 62, color: "#f0a830" },
+  ],
+  // 185. Sherif — ACORDES DE FRAGRANTICA
+  185: [
+    { label: "Amaderado", percentage: 100, color: "#c17b2a" },
+    { label: "Aromático", percentage: 88, color: "#6b8e4e" },
+    { label: "Especiado Fresco", percentage: 78, color: "#c45a3a" },
+    { label: "Cítrico", percentage: 72, color: "#f0c934" },
+    { label: "Almizclado", percentage: 65, color: "#d4c5a9" },
+    { label: "Frutal", percentage: 60, color: "#e75a8d" },
   ],
 };
 

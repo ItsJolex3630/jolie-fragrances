@@ -284,6 +284,9 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   182: ["Cítrico", "Acuático"], // Viking Dubai
   183: ["Cítrico", "Amaderado"], // Viking Cairo
   184: ["Amaderado", "Especiado"], // Viking Kashmir
+
+  // ==================== LATTAFA - SHERIF ====================
+  185: ["Amaderado", "Cítrico"], // Sherif
 };
 
 export type Brand =
@@ -2138,5 +2141,17 @@ export const perfumes: Perfume[] = [
     fragranticaId: 113761,
     brandSlug: "Bharara",
     perfumeSlug: "Viking-Kashmir",
+  },
+
+  // ==================== LATTAFA - SHERIF ====================
+  {
+    id: 185,
+    name: "Sherif",
+    brand: "Lattafa",
+    gender: "Caballero",
+    size: "100ml",
+    fragranticaId: 114332,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Sherif",
   },
 ];
