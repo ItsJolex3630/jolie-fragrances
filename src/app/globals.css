@@ -604,3 +604,24 @@
 .skeleton-pulse {
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
+
+/* ─── Top Bar smart scroll ─── */
+.top-bar {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.top-bar-hidden {
+  transform: translateY(-100%);
+}
+
+.top-bar-visible {
+  transform: translateY(0);
+}
+
+/* On desktop, always visible */
+@media (min-width: 1024px) {
+  .top-bar-hidden {
+    transform: translateY(0);
+  }
+}

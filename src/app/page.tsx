@@ -113,10 +113,12 @@ import {
   type Gender,
   type Note,
 } from "@/lib/perfumes";
+import TopBar from "@/components/TopBar";
 
 // ─── Dynamic imports for heavy modal components (only loaded when needed) ───
 const PerfumeDetail = dynamic(() => import("@/components/PerfumeDetail"), { ssr: false });
 const CompareModal = dynamic(() => import("@/components/CompareModal"), { ssr: false });
+const SimilarPerfumesModal = dynamic(() => import("@/components/SimilarPerfumesModal"), { ssr: false });
 
 // ─── Gender badge colors ───
 const genderStyles: Record<Gender, string> = {
@@ -333,6 +335,7 @@ export default function Home() {
 
   const [selectedPerfume, setSelectedPerfume] = useState<Perfume | null>(null);
   const [showCompare, setShowCompare] = useState(false);
+  const [showSimilar, setShowSimilar] = useState(false);
 
   // ─── Perfume list (fetched from API) ───
   const [allPerfumes, setAllPerfumes] = useState<Perfume[]>([]);
@@ -541,6 +544,19 @@ export default function Home() {
     >
       {/* ─── Cursor Glow Effect ─── */}
       <CursorGlow />
+
+      {/* ─── TOP NAVIGATION BAR ─── */}
+      <TopBar
+        onSearch={() => {
+          scrollToCatalog();
+          setTimeout(() => {
+            const input = document.querySelector('input[placeholder="Buscar perfume o marca..."]') as HTMLInputElement;
+            input?.focus();
+          }, 500);
+        }}
+        onCompare={() => setShowCompare(true)}
+        onSimilar={() => setShowSimilar(true)}
+      />
 
       {/* ─── HERO SECTION ─── */}
       <motion.header
@@ -1397,6 +1413,17 @@ export default function Home() {
         onClose={() => setShowCompare(false)}
         perfumes={allPerfumes}
         initialPerfume1={null}
+      />
+
+      {/* ─── SIMILAR PERFUMES MODAL ─── */}
+      <SimilarPerfumesModal
+        isOpen={showSimilar}
+        onClose={() => setShowSimilar(false)}
+        allPerfumes={allPerfumes}
+        onSelectPerfume={(perfume) => {
+          setShowSimilar(false);
+          setSelectedPerfume(perfume);
+        }}
       />
     </div>
   );
