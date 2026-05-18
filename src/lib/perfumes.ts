@@ -126,26 +126,26 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   154: ["Ámbar", "Frutal"], // Amber Oud Aqua Dubai
 
   // ==================== LATTAFA ====================
-  14: ["Floral", "Amaderado"], // Bade'e Al Oud Amethyst
-  15: ["Amaderado", "Especiado"], // Bade'e Al Oud Oud for Glory
-  16: ["Dulce", "Especiado"], // Bade'e Al Oud Honor & Glory
-  18: ["Dulce", "Ámbar"], // Eclaire Pistache
+  14: ["Amaderado", "Ámbar"], // Bade'e Al Oud Amethyst
+  15: ["Amaderado", "Ahumado"], // Bade'e Al Oud Oud for Glory
+  16: ["Amaderado", "Especiado"], // Bade'e Al Oud Honor & Glory
+  18: ["Dulce"], // Eclaire Pistache
   19: ["Dulce"], // Eclaire Banoffi
   20: ["Floral", "Dulce"], // Mayar Natural Intense
   21: ["Cítrico", "Amaderado"], // Fakhar Black
   22: ["Floral", "Dulce"], // Fakhar Rose
-  103: ["Frutal", "Dulce"], // Qaed Al Fursan
-  25: ["Ámbar", "Especiado"], // Qaed Al Fursan Untamed
-  26: ["Dulce", "Frutal"], // Qaed Al Fursan Unlimited
-  27: ["Cítrico", "Dulce"], // Hayaati Florence
+  103: ["Amaderado", "Dulce"], // Qaed Al Fursan
+  25: ["Especiado", "Amaderado"], // Qaed Al Fursan Untamed
+  26: ["Amaderado", "Dulce"], // Qaed Al Fursan Unlimited
+  27: ["Floral", "Dulce"], // Hayaati Florence
   142: ["Dulce", "Ámbar"], // Hayaati Gold Elixir
-  146: ["Frutal", "Especiado"], // Hayaati
-  147: ["Ámbar", "Especiado"], // Hayaati Al Maleky
-  148: ["Amaderado", "Frutal"], // Vintage Radio
-  149: ["Cítrico", "Amaderado"], // Emeer
+  146: ["Dulce", "Especiado"], // Hayaati
+  147: ["Especiado", "Amaderado"], // Hayaati Al Maleky
+  148: ["Amaderado", "Ahumado"], // Vintage Radio
+  149: ["Amaderado", "Especiado"], // Emeer
   28: ["Dulce", "Ámbar"], // Nebras Elixir
-  29: ["Ámbar", "Amaderado"], // Asad Elixir
-  30: ["Dulce", "Frutal"], // Ansaam Gold
+  29: ["Especiado", "Ámbar"], // Asad Elixir
+  30: ["Dulce", "Ámbar"], // Ansaam Gold
   31: ["Cítrico", "Amaderado"], // Ansaam Silver
   32: ["Cítrico", "Amaderado"], // Shaheen Gold
   33: ["Cítrico", "Amaderado"], // Shaheen Silver
@@ -236,7 +236,6 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   95: ["Cítrico", "Amaderado"], // Glacier Le Noir
   96: ["Cítrico", "Floral"], // Céleste
   97: ["Ahumado", "Dulce"], // Tobacco Touch
-  158: ["Dulce", "Cítrico"], // Glacier Bella
 
   // ==================== DUMONT ====================
   98: ["Cítrico", "Amaderado"], // Nitro Pour Homme
@@ -257,36 +256,6 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   155: ["Acuático", "Amaderado"], // Cool Water
   156: ["Floral", "Acuático"], // Cool Water Woman
   157: ["Ámbar", "Cítrico"], // Cool Water Intense
-
-  // ==================== JEAN PAUL GAULTIER ====================
-  159: ["Dulce", "Especiado"], // Le Male Le Parfum
-  160: ["Dulce", "Amaderado"], // Le Beau Le Parfum
-  161: ["Dulce", "Ámbar"], // Le Male Elixir
-  162: ["Dulce", "Cítrico"], // Scandal Pour Homme
-  163: ["Dulce", "Amaderado"], // Le Beau
-  164: ["Dulce", "Floral"], // Scandal
-  165: ["Amaderado", "Dulce"], // Scandal Pour Homme Le Parfum
-  166: ["Dulce", "Floral"], // Scandal Le Parfum
-
-  // ==================== MAISON ALHAMBRA - SCEPTRE MALACHITE ====================
-  167: ["Cítrico", "Amaderado"], // Sceptre Malachite
-
-  // ==================== KHADLAJ ====================
-  168: ["Frutal", "Amaderado"], // Island
-  169: ["Cítrico", "Acuático"], // Island Dreams
-  170: ["Dulce", "Ámbar"], // Island Vanilla Dunes
-
-  // ==================== BHARARA ====================
-  176: ["Amaderado", "Especiado"], // Rome Pour Homme
-  178: ["Cítrico", "Amaderado"], // Bharara King
-  180: ["Floral", "Dulce"], // Bharara Queen
-  181: ["Dulce", "Amaderado"], // Viking Rio
-  182: ["Cítrico", "Acuático"], // Viking Dubai
-  183: ["Cítrico", "Amaderado"], // Viking Cairo
-  184: ["Amaderado", "Especiado"], // Viking Kashmir
-
-  // ==================== LATTAFA - SHERIF ====================
-  185: ["Amaderado", "Cítrico"], // Sherif
 };
 
 export type Brand =
@@ -299,10 +268,7 @@ export type Brand =
   | "Maison Alhambra"
   | "Dumont"
   | "Rasasi"
-  | "Davidoff"
-  | "Jean Paul Gaultier"
-  | "Khadlaj"
-  | "Bharara";
+  | "Davidoff";
 
 export interface Perfume {
   id: number;
@@ -315,7 +281,6 @@ export interface Perfume {
   brandSlug: string;
   perfumeSlug: string;
   fragranticaSearchUrl?: string;
-  customImageUrl?: string;
   notes?: Note[];
 }
 
@@ -330,9 +295,6 @@ export const BRANDS: Brand[] = [
   "Dumont",
   "Rasasi",
   "Davidoff",
-  "Jean Paul Gaultier",
-  "Khadlaj",
-  "Bharara",
 ];
 
 export const GENDERS: Gender[] = ["Dama", "Caballero", "Unisex"];
@@ -348,9 +310,6 @@ export const BRAND_SLUGS: Record<Brand, string> = {
   Dumont: "Dumont",
   Rasasi: "Rasasi",
   Davidoff: "Davidoff",
-  "Jean Paul Gaultier": "Jean-Paul-Gaultier",
-  Khadlaj: "Khadlaj-Perfumes",
-  Bharara: "Bharara",
 };
 
 export function getImageUrl(fragranticaId: number): string {
@@ -923,7 +882,7 @@ export const perfumes: Perfume[] = [
     brand: "Lattafa",
     gender: "Unisex",
     size: "100ml",
-    fragranticaId: 113906,
+    fragranticaId: 85091,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Nebras-Elixir",
   },
@@ -1787,16 +1746,6 @@ export const perfumes: Perfume[] = [
     brandSlug: "Maison-Alhambra",
     perfumeSlug: "Tobacco-Touch",
   },
-  {
-    id: 158,
-    name: "Glacier Bella",
-    brand: "Maison Alhambra",
-    gender: "Unisex",
-    size: "100ml",
-    fragranticaId: 93644,
-    brandSlug: "Maison-Alhambra",
-    perfumeSlug: "Glacier-Bella",
-  },
 
   // ==================== DUMONT ====================
   {
@@ -1942,216 +1891,5 @@ export const perfumes: Perfume[] = [
     fragranticaId: 55266,
     brandSlug: "Davidoff",
     perfumeSlug: "Cool-Water-Intense",
-  },
-
-  // ==================== JEAN PAUL GAULTIER ====================
-  {
-    id: 159,
-    name: "Le Male Le Parfum",
-    brand: "Jean Paul Gaultier",
-    gender: "Caballero",
-    size: "125ml",
-    fragranticaId: 61856,
-    brandSlug: "Jean-Paul-Gaultier",
-    perfumeSlug: "Le-Male-Le-Parfum",
-  },
-  {
-    id: 160,
-    name: "Le Beau Le Parfum",
-    brand: "Jean Paul Gaultier",
-    gender: "Caballero",
-    size: "125ml",
-    fragranticaId: 72158,
-    brandSlug: "Jean-Paul-Gaultier",
-    perfumeSlug: "Le-Beau-Le-Parfum",
-  },
-  {
-    id: 161,
-    name: "Le Male Elixir",
-    brand: "Jean Paul Gaultier",
-    gender: "Caballero",
-    size: "125ml",
-    fragranticaId: 81642,
-    brandSlug: "Jean-Paul-Gaultier",
-    perfumeSlug: "Le-Male-Elixir",
-  },
-  {
-    id: 162,
-    name: "Scandal Pour Homme",
-    brand: "Jean Paul Gaultier",
-    gender: "Caballero",
-    size: "100ml",
-    fragranticaId: 68074,
-    brandSlug: "Jean-Paul-Gaultier",
-    perfumeSlug: "Scandal-Pour-Homme",
-  },
-  {
-    id: 163,
-    name: "Le Beau",
-    brand: "Jean Paul Gaultier",
-    gender: "Caballero",
-    size: "125ml",
-    fragranticaId: 55785,
-    brandSlug: "Jean-Paul-Gaultier",
-    perfumeSlug: "Le-Beau",
-  },
-  {
-    id: 164,
-    name: "Scandal",
-    brand: "Jean Paul Gaultier",
-    gender: "Dama",
-    size: "80ml",
-    fragranticaId: 45651,
-    brandSlug: "Jean-Paul-Gaultier",
-    perfumeSlug: "Scandal",
-  },
-  {
-    id: 165,
-    name: "Scandal Pour Homme Le Parfum",
-    brand: "Jean Paul Gaultier",
-    gender: "Caballero",
-    size: "100ml",
-    fragranticaId: 74915,
-    brandSlug: "Jean-Paul-Gaultier",
-    perfumeSlug: "Scandal-Pour-Homme-Le-Parfum",
-  },
-  {
-    id: 166,
-    name: "Scandal Le Parfum",
-    brand: "Jean Paul Gaultier",
-    gender: "Dama",
-    size: "80ml",
-    fragranticaId: 74914,
-    brandSlug: "Jean-Paul-Gaultier",
-    perfumeSlug: "Scandal-Le-Parfum",
-  },
-
-  // ==================== MAISON ALHAMBRA - SCEPTRE MALACHITE ====================
-  {
-    id: 167,
-    name: "Sceptre Malachite",
-    brand: "Maison Alhambra",
-    gender: "Unisex",
-    size: "100ml",
-    fragranticaId: 94163,
-    brandSlug: "Maison-Alhambra",
-    perfumeSlug: "Sceptre-Malachite",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Maison-Alhambra/Sceptre-Malachite-94163.html",
-  },
-
-  // ==================== KHADLAJ ====================
-  {
-    id: 168,
-    name: "Island",
-    brand: "Khadlaj",
-    gender: "Unisex",
-    size: "100ml",
-    fragranticaId: 102362,
-    brandSlug: "Khadlaj-Perfumes",
-    perfumeSlug: "Island",
-  },
-  {
-    id: 169,
-    name: "Island Dreams",
-    brand: "Khadlaj",
-    gender: "Unisex",
-    size: "100ml",
-    fragranticaId: 113593,
-    brandSlug: "Khadlaj-Perfumes",
-    perfumeSlug: "Island-Dreams",
-  },
-  {
-    id: 170,
-    name: "Island Vanilla Dunes",
-    brand: "Khadlaj",
-    gender: "Unisex",
-    size: "100ml",
-    fragranticaId: 106802,
-    brandSlug: "Khadlaj-Perfumes",
-    perfumeSlug: "Island-Vanilla-Dunes",
-  },
-
-  // ==================== BHARARA ====================
-  {
-    id: 176,
-    name: "Rome Pour Homme",
-    brand: "Bharara",
-    gender: "Caballero",
-    size: "100ml",
-    fragranticaId: 126400,
-    brandSlug: "Bharara",
-    perfumeSlug: "Rome-pour-Homme",
-  },
-  {
-    id: 178,
-    name: "Bharara King",
-    brand: "Bharara",
-    gender: "Caballero",
-    size: "100ml",
-    fragranticaId: 74184,
-    brandSlug: "Bharara",
-    perfumeSlug: "King",
-  },
-  {
-    id: 180,
-    name: "Bharara Queen",
-    brand: "Bharara",
-    gender: "Dama",
-    size: "100ml",
-    fragranticaId: 95437,
-    brandSlug: "Bharara",
-    perfumeSlug: "Bharara-Queen",
-  },
-  {
-    id: 181,
-    name: "Viking Rio",
-    brand: "Bharara",
-    gender: "Unisex",
-    size: "100ml",
-    fragranticaId: 96818,
-    brandSlug: "Bharara",
-    perfumeSlug: "Viking-Rio",
-  },
-  {
-    id: 182,
-    name: "Viking Dubai",
-    brand: "Bharara",
-    gender: "Unisex",
-    size: "100ml",
-    fragranticaId: 113760,
-    brandSlug: "Bharara",
-    perfumeSlug: "Viking-Dubai",
-  },
-  {
-    id: 183,
-    name: "Viking Cairo",
-    brand: "Bharara",
-    gender: "Unisex",
-    size: "100ml",
-    fragranticaId: 103876,
-    brandSlug: "Bharara",
-    perfumeSlug: "Viking-Cairo",
-  },
-  {
-    id: 184,
-    name: "Viking Kashmir",
-    brand: "Bharara",
-    gender: "Unisex",
-    size: "100ml",
-    fragranticaId: 113761,
-    brandSlug: "Bharara",
-    perfumeSlug: "Viking-Kashmir",
-  },
-
-  // ==================== LATTAFA - SHERIF ====================
-  {
-    id: 185,
-    name: "Sherif",
-    brand: "Lattafa",
-    gender: "Caballero",
-    size: "100ml",
-    fragranticaId: 114332,
-    brandSlug: "Lattafa-Perfumes",
-    perfumeSlug: "Sherif",
   },
 ];
