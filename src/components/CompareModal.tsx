@@ -12,6 +12,7 @@ import {
   ArrowLeftRight,
   Check,
   MessageCircle,
+  ExternalLink,
 } from "lucide-react";
 import {
   type Perfume,
@@ -287,11 +288,13 @@ export default function CompareModal({
   onClose,
   perfumes,
   initialPerfume1,
+  onViewPerfume,
 }: {
   isOpen: boolean;
   onClose: () => void;
   perfumes: Perfume[];
   initialPerfume1?: Perfume | null;
+  onViewPerfume?: (perfume: Perfume) => void;
 }) {
   const [perfume1, setPerfume1] = useState<Perfume | null>(initialPerfume1 ?? null);
   const [perfume2, setPerfume2] = useState<Perfume | null>(null);
@@ -502,25 +505,35 @@ export default function CompareModal({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* Perfume 1 */}
                 <div className="rounded-xl border border-[rgba(212,175,55,0.08)] bg-[#0d0d0d] p-4">
-                  {/* Image + Info */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-16 h-20 rounded-lg overflow-hidden bg-[#080808] flex-shrink-0 border border-[rgba(212,175,55,0.1)]">
+                  {/* Image + Info — clickable */}
+                  <button
+                    onClick={() => onViewPerfume?.(perfume1)}
+                    className="w-full flex items-center gap-3 mb-4 text-left group/img hover:bg-white/[0.02] rounded-lg transition-colors -m-1 p-1 cursor-pointer"
+                  >
+                    <div className="w-16 h-20 rounded-lg overflow-hidden bg-[#080808] flex-shrink-0 border border-[rgba(212,175,55,0.1)] group-hover/img:border-[#d4af37]/30 transition-colors relative">
                       <img
                         src={getImageUrl(perfume1.fragranticaId)}
                         alt={perfume1.name}
                         className="w-full h-full object-contain"
                         onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                       />
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-[#d4af37]/10 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
+                        <ExternalLink className="w-4 h-4 text-[#d4af37]/80" />
+                      </div>
                     </div>
-                    <div className="min-w-0">
+                    <div className="min-w-0 flex-1">
                       <p className="text-[10px] text-[#d4af37]/60 tracking-[0.1em] uppercase font-[family-name:var(--font-inter)]">{perfume1.brand}</p>
-                      <p className="text-sm font-semibold text-white font-[family-name:var(--font-playfair)] leading-snug">{perfume1.name}</p>
-                      <span className={`inline-flex items-center gap-1 text-[9px] px-2 py-0.5 rounded-full border mt-1 ${genderStyles[perfume1.gender]}`}>
-                        <span>{genderIcons[perfume1.gender]}</span>
-                        {perfume1.gender}
-                      </span>
+                      <p className="text-sm font-semibold text-white font-[family-name:var(--font-playfair)] leading-snug group-hover/img:text-[#d4af37] transition-colors">{perfume1.name}</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className={`inline-flex items-center gap-1 text-[9px] px-2 py-0.5 rounded-full border ${genderStyles[perfume1.gender]}`}>
+                          <span>{genderIcons[perfume1.gender]}</span>
+                          {perfume1.gender}
+                        </span>
+                        <span className="text-[8px] text-[#d4af37]/40 font-[family-name:var(--font-inter)] opacity-0 group-hover/img:opacity-100 transition-opacity">Ver detalle →</span>
+                      </div>
                     </div>
-                  </div>
+                  </button>
 
                   {/* Note Pyramid */}
                   <NotePyramidColumn perfumeId={perfume1.id} />
@@ -534,24 +547,35 @@ export default function CompareModal({
 
                 {/* Perfume 2 */}
                 <div className="rounded-xl border border-[rgba(212,175,55,0.08)] bg-[#0d0d0d] p-4">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-16 h-20 rounded-lg overflow-hidden bg-[#080808] flex-shrink-0 border border-[rgba(212,175,55,0.1)]">
+                  {/* Image + Info — clickable */}
+                  <button
+                    onClick={() => onViewPerfume?.(perfume2)}
+                    className="w-full flex items-center gap-3 mb-4 text-left group/img hover:bg-white/[0.02] rounded-lg transition-colors -m-1 p-1 cursor-pointer"
+                  >
+                    <div className="w-16 h-20 rounded-lg overflow-hidden bg-[#080808] flex-shrink-0 border border-[rgba(212,175,55,0.1)] group-hover/img:border-[#d4af37]/30 transition-colors relative">
                       <img
                         src={getImageUrl(perfume2.fragranticaId)}
                         alt={perfume2.name}
                         className="w-full h-full object-contain"
                         onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                       />
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-[#d4af37]/10 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
+                        <ExternalLink className="w-4 h-4 text-[#d4af37]/80" />
+                      </div>
                     </div>
-                    <div className="min-w-0">
+                    <div className="min-w-0 flex-1">
                       <p className="text-[10px] text-[#d4af37]/60 tracking-[0.1em] uppercase font-[family-name:var(--font-inter)]">{perfume2.brand}</p>
-                      <p className="text-sm font-semibold text-white font-[family-name:var(--font-playfair)] leading-snug">{perfume2.name}</p>
-                      <span className={`inline-flex items-center gap-1 text-[9px] px-2 py-0.5 rounded-full border mt-1 ${genderStyles[perfume2.gender]}`}>
-                        <span>{genderIcons[perfume2.gender]}</span>
-                        {perfume2.gender}
-                      </span>
+                      <p className="text-sm font-semibold text-white font-[family-name:var(--font-playfair)] leading-snug group-hover/img:text-[#d4af37] transition-colors">{perfume2.name}</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className={`inline-flex items-center gap-1 text-[9px] px-2 py-0.5 rounded-full border ${genderStyles[perfume2.gender]}`}>
+                          <span>{genderIcons[perfume2.gender]}</span>
+                          {perfume2.gender}
+                        </span>
+                        <span className="text-[8px] text-[#d4af37]/40 font-[family-name:var(--font-inter)] opacity-0 group-hover/img:opacity-100 transition-opacity">Ver detalle →</span>
+                      </div>
                     </div>
-                  </div>
+                  </button>
 
                   <NotePyramidColumn perfumeId={perfume2.id} />
 

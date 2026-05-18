@@ -336,6 +336,7 @@ export default function Home() {
   const [selectedPerfume, setSelectedPerfume] = useState<Perfume | null>(null);
   const [showCompare, setShowCompare] = useState(false);
   const [showSimilar, setShowSimilar] = useState(false);
+  const [compareViewPerfume, setCompareViewPerfume] = useState<Perfume | null>(null);
 
   // ─── Perfume list (fetched from API) ───
   const [allPerfumes, setAllPerfumes] = useState<Perfume[]>([]);
@@ -1458,6 +1459,24 @@ export default function Home() {
             isLoggedIn={false}
             onClose={() => setSelectedPerfume(null)}
             onToggleFavorite={() => {}}
+            onNavigateToPerfume={(p) => setSelectedPerfume(p)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* ─── PERFUME DETAIL FROM COMPARISON ─── */}
+      <AnimatePresence>
+        {compareViewPerfume && (
+          <PerfumeDetail
+            key={`compare-${compareViewPerfume.id}`}
+            perfume={compareViewPerfume}
+            isFavorited={false}
+            isLoggedIn={false}
+            onClose={() => setCompareViewPerfume(null)}
+            onToggleFavorite={() => {}}
+            onNavigateToPerfume={(p) => setCompareViewPerfume(p)}
+            returnLabel="Volver a comparación"
+            onReturn={() => setCompareViewPerfume(null)}
           />
         )}
       </AnimatePresence>
@@ -1468,6 +1487,7 @@ export default function Home() {
         onClose={() => setShowCompare(false)}
         perfumes={allPerfumes}
         initialPerfume1={null}
+        onViewPerfume={(perfume) => setCompareViewPerfume(perfume)}
       />
 
       {/* ─── SIMILAR PERFUMES MODAL ─── */}
