@@ -34,6 +34,53 @@ function ScrollRevealDiv({ children, className = "", variant = "up" }: { childre
     </div>
   );
 }
+
+// ─── Cursor Glow Component (lightweight mouse follower) ───
+function CursorGlow() {
+  const glowRef = useRef<HTMLDivElement>(null);
+  const posRef = useRef({ x: 0, y: 0 });
+  const visibleRef = useRef(false);
+  const rafRef = useRef<number>(0);
+
+  useEffect(() => {
+    // Only on non-touch devices
+    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+
+    function handleMove(e: MouseEvent) {
+      posRef.current = { x: e.clientX, y: e.clientY };
+      if (!visibleRef.current && glowRef.current) {
+        visibleRef.current = true;
+        glowRef.current.classList.add('visible');
+      }
+    }
+
+    function handleLeave() {
+      visibleRef.current = false;
+      glowRef.current?.classList.remove('visible');
+    }
+
+    // Smooth animation loop
+    function animate() {
+      if (glowRef.current) {
+        glowRef.current.style.left = `${posRef.current.x}px`;
+        glowRef.current.style.top = `${posRef.current.y}px`;
+      }
+      rafRef.current = requestAnimationFrame(animate);
+    }
+
+    document.addEventListener('mousemove', handleMove, { passive: true });
+    document.addEventListener('mouseleave', handleLeave);
+    rafRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMove);
+      document.removeEventListener('mouseleave', handleLeave);
+      cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  return <div ref={glowRef} className="cursor-glow" />;
+}
 import {
   Search,
   X,
@@ -294,6 +341,8 @@ export default function Home() {
   const { scrollYProgress } = useScroll();
   const heroOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.12], [1, 0.95]);
+  // Parallax: particles and aurora move slower than scroll
+  const heroParallaxY = useTransform(scrollYProgress, [0, 0.15], [0, -60]);
 
   // ─── Fetch perfumes on mount ───
   useEffect(() => {
@@ -484,23 +533,32 @@ export default function Home() {
       ref={topRef}
       className="min-h-screen flex flex-col bg-[#0a0a0a] relative"
     >
+      {/* ─── Cursor Glow Effect ─── */}
+      <CursorGlow />
+
       {/* ─── HERO SECTION ─── */}
       <motion.header
         style={{ opacity: heroOpacity, scale: heroScale }}
         className="relative overflow-hidden"
       >
-        {/* Background aurora blobs */}
-        <div className="hero-aurora">
+        {/* Background aurora blobs — with parallax */}
+        <motion.div
+          style={{ y: heroParallaxY }}
+          className="hero-aurora"
+        >
           <div className="hero-aurora-blob hero-aurora-blob-1" />
           <div className="hero-aurora-blob hero-aurora-blob-2" />
           <div className="hero-aurora-blob hero-aurora-blob-3" />
-        </div>
+        </motion.div>
 
         {/* Background gradient */}
         <div className="absolute inset-0 hero-gradient" />
 
-        {/* Floating gold particles — reduced for mobile performance */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Floating gold particles — with parallax — reduced for mobile performance */}
+        <motion.div
+          style={{ y: heroParallaxY }}
+          className="absolute inset-0 overflow-hidden pointer-events-none"
+        >
           {[10, 30, 50, 70, 85, 20, 45, 65, 40, 75].map((left, i) => (
             <div
               key={i}
@@ -512,7 +570,7 @@ export default function Home() {
               }}
             />
           ))}
-        </div>
+        </motion.div>
 
         {/* Shimmer line decorations */}
         <div className="absolute top-0 left-0 right-0 h-px shimmer-line" />
