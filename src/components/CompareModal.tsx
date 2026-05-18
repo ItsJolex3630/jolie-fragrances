@@ -393,25 +393,24 @@ export default function CompareModal({
                 <SimilarityGauge score={similarity.score} />
               </div>
 
-              {/* Breakdown bars — now with 4 components */}
-              <div className="grid grid-cols-4 gap-2 max-w-lg mx-auto">
+              {/* Breakdown bars — 5 components with profile penalty */}
+              <div className="grid grid-cols-5 gap-1.5 max-w-lg mx-auto">
                 {[
-                  { label: "Notas", value: similarity.noteOverlap, weight: "40%" },
-                  { label: "Acordes", value: similarity.accordOverlap, weight: "35%" },
-                  { label: "Categorías", value: similarity.categoryOverlap, weight: "10%" },
-                  { label: "Género", value: similarity.genderBonus, weight: "15%" },
+                  { label: "Notas", value: similarity.noteOverlap, weight: "38%", color: "bg-[#d4af37]/60" },
+                  { label: "Acordes", value: similarity.accordOverlap, weight: "35%", color: "bg-emerald-400/60" },
+                  { label: "Categorías", value: similarity.categoryOverlap, weight: "7%", color: "bg-cyan-400/60" },
+                  { label: "Género", value: similarity.genderBonus, weight: "8%", color: "bg-purple-400/60" },
+                  { label: "Perfil", value: similarity.profilePenalty ?? 0, weight: "12%", color: "bg-rose-400/60" },
                 ].map(item => (
                   <div key={item.label} className="text-center">
                     <div className="h-1.5 bg-white/5 rounded-full mb-2 overflow-hidden">
                       <div
-                        className={`h-full rounded-full transition-all duration-500 ${
-                          item.label === "Género" ? "bg-purple-400/60" : "bg-[#d4af37]/60"
-                        }`}
+                        className={`h-full rounded-full transition-all duration-500 ${item.color}`}
                         style={{ width: `${item.value}%` }}
                       />
                     </div>
-                    <p className="text-[11px] text-white/50 font-[family-name:var(--font-inter)]">{item.label}</p>
-                    <p className="text-[9px] text-white/25 font-[family-name:var(--font-inter)]">({item.weight}) {item.value}%</p>
+                    <p className="text-[10px] text-white/50 font-[family-name:var(--font-inter)]">{item.label}</p>
+                    <p className="text-[8px] text-white/25 font-[family-name:var(--font-inter)]">({item.weight}) {item.value}%</p>
                   </div>
                 ))}
               </div>

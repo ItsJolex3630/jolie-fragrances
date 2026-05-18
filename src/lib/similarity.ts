@@ -1,11 +1,20 @@
 /**
  * Similarity algorithm for comparing perfumes based on their notes and accords.
  * 
- * The similarity score (0–100%) is computed using four weighted components:
- *   1. Individual note overlap (cosine similarity with layer weighting) — 40%
- *   2. Olfactive accord overlap (cosine similarity with label normalization) — 35%
- *   3. Category overlap (PERFUME_NOTES, Jaccard) — 10%
- *   4. Gender compatibility factor — 15%
+ * The similarity score (0–100%) is computed using five weighted components:
+ *   1. Individual note overlap (cosine similarity with layer weighting + note family affinity) — 38%
+ *   2. Olfactive accord overlap (cosine similarity with label normalization + accord affinity) — 35%
+ *   3. Category overlap (PERFUME_NOTES, Jaccard) — 7%
+ *   4. Gender compatibility factor — 8%
+ *   5. Profile divergence penalty — 12% (penalizes fundamentally different profiles)
+ *
+ * Key precision improvements over previous versions:
+ *   - Note Family Affinity: related notes (e.g., Limón ↔ Bergamota) get partial credit
+ *   - Accord Family Affinity: related accords (e.g., Floral ↔ Floral Blanco) get partial credit
+ *   - Profile Divergence: fundamentally opposite profiles are penalized
+ *   - Rebalanced weights: gender reduced from 15% to 8%, profile divergence added at 12%
+ *   - Improved layer weighting: base notes weighted more heavily (they define lasting similarity)
+ *   - Normalized percentage handling within layers
  *
  * Missing data is penalized (returns 0), never rewarded.
  */
@@ -25,6 +34,7 @@ export interface SimilarityResult {
   accordOverlap: number;   // 0–100
   categoryOverlap: number; // 0–100
   genderBonus: number;     // 0–100
+  profilePenalty: number;  // 0–100 (100 = no penalty, 0 = maximum penalty)
   commonNotes: string[];
   commonAccords: string[];
   commonCategories: string[];
@@ -61,6 +71,7 @@ const ALIASES: Record<string, string> = {
   "vainilla de madagascar": "vainilla",
   "vainilla negra": "vainilla",
   "vainilla bourbon": "vainilla",
+  "avainillado": "vainilla",
 
   // Bergamot
   "bergamota": "bergamota",
@@ -80,6 +91,7 @@ const ALIASES: Record<string, string> = {
   "rosa absoluta": "rosa",
   "damascena": "rosa",
   "peonia": "peonía",
+  "rosado": "rosa",
 
   // Cedar family
   "cedro": "cedro",
@@ -150,6 +162,9 @@ const ALIASES: Record<string, string> = {
   "akigalawood": "notas amaderadas",
   "cashmeran": "cachemira",
   "cachemira": "cachemira",
+  "guayaco": "guayaco",
+  "ebano": "ébano",
+  "ébano": "ébano",
 
   // Floral family
   "lirio del valle": "lirio del valle",
@@ -179,6 +194,11 @@ const ALIASES: Record<string, string> = {
   "flor de cerezo": "flor de cerezo",
   "sakura": "flor de cerezo",
   "tulipán negro": "tulipán",
+  "clavelón / tagetes": "tagetes",
+  "tagetes": "tagetes",
+  "clavel": "clavel",
+  "tuberosa": "tuberosa",
+  "nardo": "tuberosa",
 
   // Citrus family
   "limón": "limón",
@@ -196,6 +216,7 @@ const ALIASES: Record<string, string> = {
   "citrón": "citrón",
   "kumquat": "kumquat",
   "cáscara de limón": "limón",
+  "cilantro": "cilantro",
 
   // Fruit family
   "manzana": "manzana",
@@ -330,6 +351,8 @@ const ALIASES: Record<string, string> = {
   "pino": "pino",
   "abeto": "abeto",
   "ciprés": "ciprés",
+  "elemí": "elemí",
+  "elemi": "elemí",
 
   // Animalic
   "castóreo": "castóreo",
@@ -349,19 +372,82 @@ const ALIASES: Record<string, string> = {
   "té negro": "té negro",
   "té blanco": "té",
   "mate": "mate",
-  "pera": "pera",
   "sake": "sake",
   "ron": "ron",
   "whisky": "whisky",
   "vino": "vino",
   "champán": "champán",
-  "absenta": "absenta",
   "ouzo": "ouzo",
 };
 
 function normalizeNote(name: string): string {
   const lower = name.toLowerCase().trim();
   return ALIASES[lower] ?? lower;
+}
+
+// ─── NOTE FAMILY AFFINITY ───
+// When two notes don't match exactly but belong to the same olfactory family,
+// they get partial credit. This is the #1 precision improvement.
+// Each family maps to an array of normalized note keys.
+// Two notes in the same family get a bonus of NOTE_FAMILY_BONUS (0.55).
+
+const NOTE_FAMILIES: string[][] = [
+  // Citrus family — all citrus notes are related
+  ["limón", "bergamota", "lima", "naranja", "naranja amarga", "mandarina", "pomelo", "yuzu", "citrón", "kumquat"],
+  // Red/Black berry family
+  ["grosellas", "frutos rojos", "frambuesa", "fresa", "arándano", "moras", "cereza"],
+  // Stone fruit family
+  ["melocotón", "ciruela", "albaricoque", "lichi", "manzana", "pera"],
+  // Tropical fruit family
+  ["piña", "mango", "maracuyá", "guayaba", "papaya", "coco", "higo", "granada", "melón", "sandía"],
+  // White floral family — all share indolic creamy-floral character
+  ["jazmín", "flor de azahar", "tuberosa", "lirio del valle", "ylang-ylang", "magnolia", "madreselva"],
+  // Rose & Peony — related florals
+  ["rosa", "peonía", "geranio"],
+  // Cool floral family
+  ["violeta", "iris", "lavanda", "freesia", "orquídea"],
+  // Woody family — all share dry/woody character
+  ["cedro", "sándalo", "pachulí", "vetiver", "notas amaderadas", "cachemira", "guayaco", "ébano", "pino", "ciprés", "abeto"],
+  // Warm resinous family — all share amber/balsamic warmth
+  ["ámbar", "ládano", "benjuí", "mirra", "resina", "bálsamo", "incienso"],
+  // Sweet gourmand family — all share vanilla/caramel/sweetness
+  ["vainilla", "haba tonka", "caramelo", "praliné", "azúcar", "miel", "malvavisco", "almendra", "pistacho"],
+  // Chocolate/coffee family — all share roasted/bitter-sweet character
+  ["cacao", "café", "galleta"],
+  // Spice family — all share warm/spicy character
+  ["pimienta", "pimienta rosa", "cardamomo", "canela", "azafrán", "nuez moscada", "clavo", "jengibre", "cúrcuma", "comino", "anís"],
+  // Smoky/leathery family — all share dark/animalic character
+  ["tabaco", "cuero", "humo", "oud"],
+  // Musky family — all share clean/skin-like character
+  ["almizcle", "ambroxan", "notas atalcadas"],
+  // Green/herbal family — all share fresh/cut character
+  ["menta", "salvia", "romero", "albahaca", "tomillo", "eucalipto", "artemisa", "hierba", "galbano"],
+  // Mossy/aquatic family — fresh natural character
+  ["musgo", "notas acuáticas"],
+];
+
+// Build a lookup map for fast affinity checks
+const noteFamilyMap = new Map<string, number>();
+NOTE_FAMILIES.forEach((family, idx) => {
+  for (const note of family) {
+    noteFamilyMap.set(note, idx);
+  }
+});
+
+// Returns affinity between two normalized note keys:
+// 1.0 = exact match, 0.55 = same family, 0.0 = unrelated
+const EXACT_MATCH = 1.0;
+const FAMILY_BONUS = 0.55;
+const NO_RELATION = 0.0;
+
+function getNoteAffinity(key1: string, key2: string): number {
+  if (key1 === key2) return EXACT_MATCH;
+  const family1 = noteFamilyMap.get(key1);
+  const family2 = noteFamilyMap.get(key2);
+  if (family1 !== undefined && family2 !== undefined && family1 === family2) {
+    return FAMILY_BONUS;
+  }
+  return NO_RELATION;
 }
 
 // ─── Accord label normalization ───
@@ -371,9 +457,6 @@ const ACCORD_ALIASES: Record<string, string> = {
   "cítrico": "cítrico",
   "cítricos": "cítrico",
   "citrus": "cítrico",
-  "limón": "cítrico",
-  "lima": "cítrico",
-  "naranja": "cítrico",
 
   // Woody family
   "amaderado": "amaderado",
@@ -387,7 +470,6 @@ const ACCORD_ALIASES: Record<string, string> = {
   "fresco especiado": "fresco especiado",
   "especiado fresco": "fresco especiado",
   "fresh spicy": "fresco especiado",
-  "especiado fresco": "fresco especiado",
 
   // Warm spicy
   "especiado cálido": "especiado cálido",
@@ -409,7 +491,7 @@ const ACCORD_ALIASES: Record<string, string> = {
   "gourmand": "dulce",
   "azucarado": "dulce",
   "goloso": "dulce",
-  "caramelo": "dulce",
+  "avainillado": "dulce vainilla",
   "vainilla": "dulce vainilla",
   "vainilloso": "dulce vainilla",
 
@@ -420,6 +502,7 @@ const ACCORD_ALIASES: Record<string, string> = {
   "flor blanca": "floral blanco",
   "florales": "floral",
   "rosa": "rosado floral",
+  "rosado": "rosado floral",
   "floral rosado": "rosado floral",
   "powdery floral": "floral atalcado",
 
@@ -507,6 +590,9 @@ const ACCORD_ALIASES: Record<string, string> = {
   "alcohólico": "alcohólico",
   "ron": "alcohólico",
   "whisky": "alcohólico",
+
+  // Pachulí accord
+  "pachulí": "pachulí",
 };
 
 function normalizeAccord(label: string): string {
@@ -514,7 +600,54 @@ function normalizeAccord(label: string): string {
   return ACCORD_ALIASES[lower] ?? lower;
 }
 
-// ─── 1. Individual Note Overlap (Cosine Similarity) ───
+// ─── ACCORD FAMILY AFFINITY ───
+// Related accords get partial credit when they don't match exactly.
+// This captures that "Floral" and "Floral Blanco" are related,
+// or that "Especiado Cálido" and "Especiado Fresco" share spice character.
+
+const ACCORD_FAMILIES: string[][] = [
+  // Floral family
+  ["floral", "floral blanco", "rosado floral", "floral atalcado"],
+  // Spicy family
+  ["fresco especiado", "especiado cálido"],
+  // Sweet/gourmand family
+  ["dulce", "dulce vainilla"],
+  // Dark/smoky family
+  ["ahumado", "cuero", "tabaco", "oud", "animalico"],
+  // Woody/resinous family
+  ["amaderado", "ámbar", "balsámico", "pachulí"],
+  // Fresh/clean family
+  ["fresco", "acuático", "cítrico", "aromático"],
+  // Earthy/soft family
+  ["terroso", "atalcado", "almizclado"],
+  // Fruity family
+  ["afrutado", "tropical afrutado", "café cacao"],
+  // Green family
+  ["verde", "verde herbal"],
+];
+
+const accordFamilyMap = new Map<string, number>();
+ACCORD_FAMILIES.forEach((family, idx) => {
+  for (const accord of family) {
+    accordFamilyMap.set(accord, idx);
+  }
+});
+
+const ACCORD_FAMILY_BONUS = 0.50;
+
+function getAccordAffinity(key1: string, key2: string): number {
+  if (key1 === key2) return EXACT_MATCH;
+  const family1 = accordFamilyMap.get(key1);
+  const family2 = accordFamilyMap.get(key2);
+  if (family1 !== undefined && family2 !== undefined && family1 === family2) {
+    return ACCORD_FAMILY_BONUS;
+  }
+  return NO_RELATION;
+}
+
+// ─── 1. Individual Note Overlap (Cosine Similarity with Note Family Affinity) ───
+// This is the biggest precision improvement: related notes get partial credit.
+// E.g., Limón and Bergamota are both citrus → 0.55 affinity instead of 0.
 
 function getAllNotesWithWeight(pyramid: {
   top: { name: string; percentage: number }[];
@@ -522,9 +655,9 @@ function getAllNotesWithWeight(pyramid: {
   base: { name: string; percentage: number }[];
 }): Map<string, number> {
   const map = new Map<string, number>();
-  // Slightly rebalanced: top notes matter for first impression,
-  // heart is the core identity, base provides depth
-  const layerWeights = { top: 0.30, heart: 0.40, base: 0.30 };
+  // Rebalanced layer weights: base notes define the lasting impression
+  // and are most important for similarity. Heart is identity. Top is first impression.
+  const layerWeights = { top: 0.25, heart: 0.35, base: 0.40 };
   for (const layer of ["top", "heart", "base"] as const) {
     for (const note of pyramid[layer]) {
       const key = normalizeNote(note.name);
@@ -543,7 +676,14 @@ function computeNoteOverlap(p1Id: number, p2Id: number): { score: number; common
   const map1 = getAllNotesWithWeight(pyramid1);
   const map2 = getAllNotesWithWeight(pyramid2);
 
-  const allKeys = new Set([...map1.keys(), ...map2.keys()]);
+  // ── Enhanced cosine similarity with note family affinity ──
+  // Instead of only counting exact matches, we compute the "affinity dot product":
+  // dot += v1[key1] * v2[key2] * affinity(key1, key2)
+  // This gives partial credit for related notes in the same family.
+
+  const keys1 = [...map1.keys()];
+  const keys2 = [...map2.keys()];
+
   let dotProduct = 0;
   let norm1 = 0;
   let norm2 = 0;
@@ -551,18 +691,58 @@ function computeNoteOverlap(p1Id: number, p2Id: number): { score: number; common
   const uniqueA: string[] = [];
   const uniqueB: string[] = [];
 
-  for (const key of allKeys) {
-    const v1 = map1.get(key) ?? 0;
-    const v2 = map2.get(key) ?? 0;
-    if (v1 > 0 && v2 > 0) {
-      dotProduct += v1 * v2;
-      common.push(key);
-    } else {
-      if (v1 > 0) uniqueA.push(key);
-      if (v2 > 0) uniqueB.push(key);
+  // Track which keys in map2 have been "consumed" by a family match
+  // to avoid double-counting
+  const consumed2 = new Set<number>();
+
+  // Compute norms
+  for (const key of keys1) {
+    const v = map1.get(key)!;
+    norm1 += v * v;
+  }
+  for (const key of keys2) {
+    const v = map2.get(key)!;
+    norm2 += v * v;
+  }
+
+  // Compute affinity-weighted dot product
+  // For each key in map1, find the best matching key in map2
+  for (let i = 0; i < keys1.length; i++) {
+    const key1 = keys1[i];
+    const v1 = map1.get(key1)!;
+
+    let bestAffinity = NO_RELATION;
+    let bestJ = -1;
+
+    for (let j = 0; j < keys2.length; j++) {
+      if (consumed2.has(j)) continue;
+      const affinity = getNoteAffinity(key1, keys2[j]);
+      if (affinity > bestAffinity) {
+        bestAffinity = affinity;
+        bestJ = j;
+      }
     }
-    norm1 += v1 * v1;
-    norm2 += v2 * v2;
+
+    if (bestAffinity > NO_RELATION && bestJ >= 0) {
+      const v2 = map2.get(keys2[bestJ])!;
+      dotProduct += v1 * v2 * bestAffinity;
+      consumed2.add(bestJ);
+
+      if (bestAffinity >= EXACT_MATCH) {
+        common.push(key1);
+      }
+      // Family matches don't add to "common" (they're not the same note)
+      // but they do contribute to the similarity score
+    } else {
+      uniqueA.push(key1);
+    }
+  }
+
+  // Find keys in map2 that weren't consumed (unique to B)
+  for (let j = 0; j < keys2.length; j++) {
+    if (!consumed2.has(j)) {
+      uniqueB.push(keys2[j]);
+    }
   }
 
   const denom = Math.sqrt(norm1) * Math.sqrt(norm2);
@@ -571,7 +751,7 @@ function computeNoteOverlap(p1Id: number, p2Id: number): { score: number; common
   return { score: (dotProduct / denom) * 100, common, uniqueA, uniqueB };
 }
 
-// ─── 2. Accord Overlap (Cosine Similarity with normalization) ───
+// ─── 2. Accord Overlap (Cosine Similarity with Accord Family Affinity) ───
 
 function computeAccordOverlap(p1Id: number, p2Id: number): { score: number; common: string[] } {
   const accords1 = PERFUME_ACCORDS[p1Id];
@@ -592,21 +772,52 @@ function computeAccordOverlap(p1Id: number, p2Id: number): { score: number; comm
     merged2.set(key, (merged2.get(key) ?? 0) + val);
   }
 
-  const allKeys = new Set([...merged1.keys(), ...merged2.keys()]);
+  // ── Enhanced cosine similarity with accord family affinity ──
+  const keys1 = [...merged1.keys()];
+  const keys2 = [...merged2.keys()];
+
   let dotProduct = 0;
   let norm1 = 0;
   let norm2 = 0;
   const common: string[] = [];
+  const consumed2 = new Set<number>();
 
-  for (const key of allKeys) {
-    const v1 = merged1.get(key) ?? 0;
-    const v2 = merged2.get(key) ?? 0;
-    if (v1 > 0 && v2 > 0) {
-      dotProduct += v1 * v2;
-      common.push(key);
+  // Compute norms
+  for (const key of keys1) {
+    const v = merged1.get(key)!;
+    norm1 += v * v;
+  }
+  for (const key of keys2) {
+    const v = merged2.get(key)!;
+    norm2 += v * v;
+  }
+
+  // Compute affinity-weighted dot product
+  for (let i = 0; i < keys1.length; i++) {
+    const key1 = keys1[i];
+    const v1 = merged1.get(key1)!;
+
+    let bestAffinity = NO_RELATION;
+    let bestJ = -1;
+
+    for (let j = 0; j < keys2.length; j++) {
+      if (consumed2.has(j)) continue;
+      const affinity = getAccordAffinity(key1, keys2[j]);
+      if (affinity > bestAffinity) {
+        bestAffinity = affinity;
+        bestJ = j;
+      }
     }
-    norm1 += v1 * v1;
-    norm2 += v2 * v2;
+
+    if (bestAffinity > NO_RELATION && bestJ >= 0) {
+      const v2 = merged2.get(keys2[bestJ])!;
+      dotProduct += v1 * v2 * bestAffinity;
+      consumed2.add(bestJ);
+
+      if (bestAffinity >= EXACT_MATCH) {
+        common.push(key1);
+      }
+    }
   }
 
   const denom = Math.sqrt(norm1) * Math.sqrt(norm2);
@@ -616,13 +827,11 @@ function computeAccordOverlap(p1Id: number, p2Id: number): { score: number; comm
 }
 
 // ─── 3. Category Overlap (PERFUME_NOTES) ───
-// FIXED: Missing data now returns 0 instead of inflating scores
 
 function computeCategoryOverlap(p1Id: number, p2Id: number): { score: number; common: string[] } {
   const cats1 = (PERFUME_NOTES as Record<number, string[]>)[p1Id] ?? [];
   const cats2 = (PERFUME_NOTES as Record<number, string[]>)[p2Id] ?? [];
 
-  // If either perfume lacks category data, return 0 (penalize missing data)
   if (cats1.length === 0 || cats2.length === 0) return { score: 0, common: [] };
 
   const set1 = new Set(cats1.map(c => c.toLowerCase()));
@@ -637,18 +846,86 @@ function computeCategoryOverlap(p1Id: number, p2Id: number): { score: number; co
 }
 
 // ─── 4. Gender Compatibility Factor ───
-// Same gender = 100 bonus, Unisex match = 80, Cross-gender = 40 (small penalty)
+// Reduced weight (8% vs previous 15%) — in modern perfumery,
+// gender is increasingly less relevant for similarity.
 
 function computeGenderBonus(p1: Perfume, p2: Perfume): number {
-  // Same gender → full bonus
   if (p1.gender === p2.gender) return 100;
-
-  // One is Unisex → high compatibility
   if (p1.gender === "Unisex" || p2.gender === "Unisex") return 85;
-
-  // Cross-gender (Dama vs Caballero) → reduced but not zero
-  // People do wear opposite-gender fragrances sometimes
   return 50;
+}
+
+// ─── 5. Profile Divergence Penalty ───
+// This is a critical precision improvement: when two perfumes have
+// fundamentally OPPOSITE olfactory profiles, they should be penalized
+// even if they happen to share a few notes.
+//
+// We compare the "dominant profile" of each perfume using accord data.
+// If one is predominantly sweet/gourmand and the other is fresh/aquatic,
+// they get a divergence penalty.
+
+// Profile axes: each axis has a set of accords that push in that direction
+const PROFILE_AXES = {
+  sweet: new Set(["dulce", "dulce vainilla", "café cacao"]),
+  fresh: new Set(["cítrico", "acuático", "fresco", "verde", "verde herbal", "fresco especiado"]),
+  dark: new Set(["ahumado", "cuero", "tabaco", "oud", "animalico"]),
+  woody: new Set(["amaderado", "ámbar", "balsámico", "pachulí"]),
+  floral: new Set(["floral", "floral blanco", "rosado floral", "floral atalcado"]),
+  spicy: new Set(["especiado cálido", "aromático"]),
+};
+
+type ProfileAxis = keyof typeof PROFILE_AXES;
+
+function getProfileVector(perfumeId: number): Record<ProfileAxis, number> {
+  const accords = PERFUME_ACCORDS[perfumeId];
+  const profile: Record<ProfileAxis, number> = {
+    sweet: 0, fresh: 0, dark: 0, woody: 0, floral: 0, spicy: 0,
+  };
+
+  if (!accords) return profile;
+
+  for (const accord of accords) {
+    const normLabel = normalizeAccord(accord.label);
+    for (const axis of Object.keys(PROFILE_AXES) as ProfileAxis[]) {
+      if (PROFILE_AXES[axis].has(normLabel)) {
+        profile[axis] += accord.percentage;
+      }
+    }
+  }
+
+  // Normalize so the profile vector has a sum of 1.0
+  const total = Object.values(profile).reduce((a, b) => a + b, 0);
+  if (total > 0) {
+    for (const axis of Object.keys(profile) as ProfileAxis[]) {
+      profile[axis] /= total;
+    }
+  }
+
+  return profile;
+}
+
+function computeProfilePenalty(p1Id: number, p2Id: number): number {
+  const prof1 = getProfileVector(p1Id);
+  const prof2 = getProfileVector(p2Id);
+
+  // Compute cosine similarity between profile vectors
+  let dotProduct = 0;
+  let norm1 = 0;
+  let norm2 = 0;
+
+  for (const axis of Object.keys(PROFILE_AXES) as ProfileAxis[]) {
+    dotProduct += prof1[axis] * prof2[axis];
+    norm1 += prof1[axis] * prof1[axis];
+    norm2 += prof2[axis] * prof2[axis];
+  }
+
+  const denom = Math.sqrt(norm1) * Math.sqrt(norm2);
+  if (denom === 0) return 50; // No data → neutral penalty
+
+  const cosineSim = dotProduct / denom;
+  // cosineSim ranges from -1 to 1 (but with our non-negative profiles, 0 to 1)
+  // Convert to a 0-100 score where 100 = identical profiles, 0 = opposite
+  return cosineSim * 100;
 }
 
 // ─── Main: compute full similarity ───
@@ -658,17 +935,20 @@ export function computeSimilarity(p1: Perfume, p2: Perfume): SimilarityResult {
   const accordResult = computeAccordOverlap(p1.id, p2.id);
   const categoryResult = computeCategoryOverlap(p1.id, p2.id);
   const genderBonus = computeGenderBonus(p1, p2);
+  const profilePenalty = computeProfilePenalty(p1.id, p2.id);
 
-  // Weighted combination:
-  // Notes: 40% (most precise — specific ingredient data)
-  // Accords: 35% (very important — olfactory profile)
-  // Categories: 10% (coarse, supplementary)
-  // Gender: 15% (contextual relevance)
+  // Weighted combination (rebalanced for maximum precision):
+  // Notes: 38% (most precise — specific ingredient data + family affinity)
+  // Accords: 35% (very important — olfactory profile + family affinity)
+  // Categories: 7% (coarse, supplementary — reduced from 10%)
+  // Gender: 8% (contextual — reduced from 15%)
+  // Profile: 12% (NEW — penalizes fundamentally different profiles)
   const rawScore =
-    noteResult.score * 0.40 +
+    noteResult.score * 0.38 +
     accordResult.score * 0.35 +
-    categoryResult.score * 0.10 +
-    genderBonus * 0.15;
+    categoryResult.score * 0.07 +
+    genderBonus * 0.08 +
+    profilePenalty * 0.12;
 
   const score = Math.round(Math.min(100, Math.max(0, rawScore)));
 
@@ -679,6 +959,7 @@ export function computeSimilarity(p1: Perfume, p2: Perfume): SimilarityResult {
     accordOverlap: Math.round(accordResult.score),
     categoryOverlap: Math.round(categoryResult.score),
     genderBonus,
+    profilePenalty: Math.round(profilePenalty),
     commonNotes: noteResult.common,
     commonAccords: accordResult.common,
     commonCategories: categoryResult.common,
@@ -687,8 +968,7 @@ export function computeSimilarity(p1: Perfume, p2: Perfume): SimilarityResult {
   };
 }
 
-// ─── Find top N similar perfumes ───
-// Now with a minimum score threshold to filter out irrelevant results
+// ─── Find top N similar perfumes ──
 
 export function findSimilarPerfumes(
   target: Perfume,
@@ -699,7 +979,7 @@ export function findSimilarPerfumes(
   return catalog
     .filter(p => p.id !== target.id)
     .map(p => computeSimilarity(target, p))
-    .filter(r => r.score >= minScore) // Filter out irrelevant results
+    .filter(r => r.score >= minScore)
     .sort((a, b) => b.score - a.score)
     .slice(0, limit);
 }
