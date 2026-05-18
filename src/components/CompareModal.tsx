@@ -393,22 +393,25 @@ export default function CompareModal({
                 <SimilarityGauge score={similarity.score} />
               </div>
 
-              {/* Breakdown bars */}
-              <div className="grid grid-cols-3 gap-3 max-w-md mx-auto">
+              {/* Breakdown bars — now with 4 components */}
+              <div className="grid grid-cols-4 gap-2 max-w-lg mx-auto">
                 {[
-                  { label: "Notas", value: similarity.noteOverlap, weight: "45%" },
+                  { label: "Notas", value: similarity.noteOverlap, weight: "40%" },
                   { label: "Acordes", value: similarity.accordOverlap, weight: "35%" },
-                  { label: "Categorías", value: similarity.categoryOverlap, weight: "20%" },
+                  { label: "Categorías", value: similarity.categoryOverlap, weight: "10%" },
+                  { label: "Género", value: similarity.genderBonus, weight: "15%" },
                 ].map(item => (
                   <div key={item.label} className="text-center">
                     <div className="h-1.5 bg-white/5 rounded-full mb-2 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-[#d4af37]/60 transition-all duration-500"
+                        className={`h-full rounded-full transition-all duration-500 ${
+                          item.label === "Género" ? "bg-purple-400/60" : "bg-[#d4af37]/60"
+                        }`}
                         style={{ width: `${item.value}%` }}
                       />
                     </div>
-                    <p className="text-xs text-white/50 font-[family-name:var(--font-inter)]">{item.label}</p>
-                    <p className="text-[10px] text-white/25 font-[family-name:var(--font-inter)]">({item.weight}) {item.value}%</p>
+                    <p className="text-[11px] text-white/50 font-[family-name:var(--font-inter)]">{item.label}</p>
+                    <p className="text-[9px] text-white/25 font-[family-name:var(--font-inter)]">({item.weight}) {item.value}%</p>
                   </div>
                 ))}
               </div>
@@ -426,6 +429,44 @@ export default function CompareModal({
                         className="px-2.5 py-1 rounded-full text-[11px] bg-[#d4af37]/10 text-[#d4af37]/70 border border-[#d4af37]/15 font-[family-name:var(--font-inter)]"
                       >
                         {note}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Common accords chips */}
+              {similarity.commonAccords.length > 0 && (
+                <div className="text-center">
+                  <p className="text-[10px] text-emerald-400/50 tracking-[0.15em] uppercase mb-2 font-[family-name:var(--font-inter)]">
+                    Acordes en común ({similarity.commonAccords.length})
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-1.5">
+                    {similarity.commonAccords.map(accord => (
+                      <span
+                        key={accord}
+                        className="px-2.5 py-1 rounded-full text-[11px] bg-emerald-500/10 text-emerald-400/70 border border-emerald-500/15 font-[family-name:var(--font-inter)] capitalize"
+                      >
+                        {accord}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Common categories */}
+              {similarity.commonCategories.length > 0 && (
+                <div className="text-center">
+                  <p className="text-[10px] text-purple-400/50 tracking-[0.15em] uppercase mb-2 font-[family-name:var(--font-inter)]">
+                    Categorías en común ({similarity.commonCategories.length})
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-1.5">
+                    {similarity.commonCategories.map(cat => (
+                      <span
+                        key={cat}
+                        className="px-2.5 py-1 rounded-full text-[11px] bg-purple-500/10 text-purple-300/70 border border-purple-500/15 font-[family-name:var(--font-inter)] capitalize"
+                      >
+                        {cat}
                       </span>
                     ))}
                   </div>

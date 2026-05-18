@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { motion } from "framer-motion";
-import { Sparkles, ArrowLeftRight } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import {
   type Perfume,
   getImageUrl,
@@ -28,12 +28,6 @@ function getScoreColor(score: number): string {
   return "text-rose-400";
 }
 
-function getScoreBg(score: number): string {
-  if (score >= 70) return "bg-emerald-500/10 border-emerald-500/20";
-  if (score >= 45) return "bg-amber-500/10 border-amber-500/20";
-  return "bg-rose-500/10 border-rose-500/20";
-}
-
 function getScoreBarColor(score: number): string {
   if (score >= 70) return "bg-emerald-400";
   if (score >= 45) return "bg-amber-400";
@@ -44,7 +38,7 @@ function getScoreLabel(score: number): string {
   if (score >= 80) return "Muy Similar";
   if (score >= 60) return "Similar";
   if (score >= 40) return "Algo Similar";
-  if (score >= 20) return "Poco Similar";
+  if (score >= 25) return "Poco Similar";
   return "Diferente";
 }
 
@@ -58,7 +52,7 @@ function SimilarPerfumeCard({
   onSelect: (perfume: Perfume) => void;
   index: number;
 }) {
-  const { perfume, score, commonNotes } = result;
+  const { perfume, score, commonNotes, commonAccords } = result;
 
   return (
     <motion.button
@@ -103,31 +97,52 @@ function SimilarPerfumeCard({
             <div className="h-1 bg-white/5 rounded-full overflow-hidden">
               <div
                 className={`h-full rounded-full ${getScoreBarColor(score)} transition-all duration-700`}
-                style={{ width: `${score}%` }}
+                style={{ width: `${Math.max(score, 5)}%` }}
               />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Common notes */}
-      {commonNotes.length > 0 && (
-        <div className="px-3 pb-2.5 pt-0">
-          <div className="flex flex-wrap gap-1">
-            {commonNotes.slice(0, 5).map(note => (
-              <span
-                key={note}
-                className="px-1.5 py-0.5 rounded text-[8px] bg-[#d4af37]/5 text-[#d4af37]/50 border border-[#d4af37]/10 font-[family-name:var(--font-inter)]"
-              >
-                {note}
-              </span>
-            ))}
-            {commonNotes.length > 5 && (
-              <span className="px-1.5 py-0.5 rounded text-[8px] text-white/20 font-[family-name:var(--font-inter)]">
-                +{commonNotes.length - 5} más
-              </span>
-            )}
-          </div>
+      {/* Common notes + accords */}
+      {(commonNotes.length > 0 || commonAccords.length > 0) && (
+        <div className="px-3 pb-2.5 pt-0 space-y-1">
+          {/* Common notes */}
+          {commonNotes.length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {commonNotes.slice(0, 5).map(note => (
+                <span
+                  key={note}
+                  className="px-1.5 py-0.5 rounded text-[8px] bg-[#d4af37]/5 text-[#d4af37]/50 border border-[#d4af37]/10 font-[family-name:var(--font-inter)]"
+                >
+                  {note}
+                </span>
+              ))}
+              {commonNotes.length > 5 && (
+                <span className="px-1.5 py-0.5 rounded text-[8px] text-white/20 font-[family-name:var(--font-inter)]">
+                  +{commonNotes.length - 5}
+                </span>
+              )}
+            </div>
+          )}
+          {/* Common accords */}
+          {commonAccords.length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {commonAccords.slice(0, 3).map(accord => (
+                <span
+                  key={accord}
+                  className="px-1.5 py-0.5 rounded text-[8px] bg-emerald-500/5 text-emerald-400/40 border border-emerald-500/10 font-[family-name:var(--font-inter)] capitalize"
+                >
+                  {accord}
+                </span>
+              ))}
+              {commonAccords.length > 3 && (
+                <span className="px-1.5 py-0.5 rounded text-[8px] text-white/20 font-[family-name:var(--font-inter)]">
+                  +{commonAccords.length - 3}
+                </span>
+              )}
+            </div>
+          )}
         </div>
       )}
     </motion.button>
@@ -145,15 +160,15 @@ export default function SimilarPerfumes({
   onSelectPerfume: (perfume: Perfume) => void;
 }) {
   const similar = useMemo(() => {
-    return findSimilarPerfumes(targetPerfume, allPerfumes, 8);
+    // Only show results with meaningful similarity (≥ 20%)
+    return findSimilarPerfumes(targetPerfume, allPerfumes, 10, 20);
   }, [targetPerfume, allPerfumes]);
 
   if (similar.length === 0) return null;
 
-  // Group by similarity level
-  const verySimilar = similar.filter(r => r.score >= 60);
-  const somewhatSimilar = similar.filter(r => r.score >= 30 && r.score < 60);
-  const different = similar.filter(r => r.score < 30);
+  // Group by similarity level — removed "Perfil diferente" group
+  const verySimilar = similar.filter(r => r.score >= 55);
+  const somewhatSimilar = similar.filter(r => r.score >= 30 && r.score < 55);
 
   return (
     <div className="mt-6 pt-5 border-t border-[rgba(212,175,55,0.08)]">
@@ -167,18 +182,18 @@ export default function SimilarPerfumes({
             Perfumes Similares
           </h3>
           <p className="text-[10px] text-white/30 font-[family-name:var(--font-inter)]">
-            Basado en notas, acordes y categorías olfativas
+            Basado en notas, acordes y perfil olfativo
           </p>
         </div>
       </div>
 
-      {/* Similarity groups */}
+      {/* Most similar group */}
       {verySimilar.length > 0 && (
         <div className="mb-4">
           <div className="flex items-center gap-2 mb-2">
             <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             <p className="text-[10px] text-emerald-400/60 tracking-[0.1em] uppercase font-[family-name:var(--font-inter)]">
-              Más similares
+              Más similares ({verySimilar.length})
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -194,12 +209,13 @@ export default function SimilarPerfumes({
         </div>
       )}
 
+      {/* Somewhat similar group */}
       {somewhatSimilar.length > 0 && (
-        <div className="mb-4">
+        <div>
           <div className="flex items-center gap-2 mb-2">
             <div className="h-1.5 w-1.5 rounded-full bg-amber-400" />
             <p className="text-[10px] text-amber-400/60 tracking-[0.1em] uppercase font-[family-name:var(--font-inter)]">
-              Algo similares
+              Algo similares ({somewhatSimilar.length})
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -209,27 +225,6 @@ export default function SimilarPerfumes({
                 result={result}
                 onSelect={onSelectPerfume}
                 index={i + verySimilar.length}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {different.length > 0 && (
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-rose-400" />
-            <p className="text-[10px] text-rose-400/60 tracking-[0.1em] uppercase font-[family-name:var(--font-inter)]">
-              Perfil diferente
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {different.map((result, i) => (
-              <SimilarPerfumeCard
-                key={result.perfume.id}
-                result={result}
-                onSelect={onSelectPerfume}
-                index={i + verySimilar.length + somewhatSimilar.length}
               />
             ))}
           </div>

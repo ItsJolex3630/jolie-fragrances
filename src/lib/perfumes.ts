@@ -256,6 +256,37 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   155: ["Acuático", "Amaderado"], // Cool Water
   156: ["Floral", "Acuático"], // Cool Water Woman
   157: ["Ámbar", "Cítrico"], // Cool Water Intense
+
+  // ==================== MAISON ALHAMBRA ====================
+  158: ["Floral", "Ámbar"], // Glacier Bella
+  167: ["Amaderado", "Especiado"], // Sceptre Malachite
+
+  // ==================== JEAN PAUL GAULTIER ====================
+  159: ["Especiado", "Amaderado"], // Le Male Le Parfum
+  160: ["Dulce", "Amaderado"], // Le Beau Le Parfum
+  161: ["Dulce", "Especiado"], // Le Male Elixir
+  162: ["Cítrico", "Amaderado"], // Scandal Pour Homme
+  163: ["Dulce", "Amaderado"], // Le Beau
+  164: ["Dulce", "Floral"], // Scandal
+  165: ["Especiado", "Amaderado"], // Scandal Pour Homme Le Parfum
+  166: ["Dulce", "Floral"], // Scandal Le Parfum
+
+  // ==================== KHADLAJ (Island line) ====================
+  168: ["Acuático", "Frutal"], // Island
+  169: ["Frutal", "Dulce"], // Island Dreams
+  170: ["Dulce", "Amaderado"], // Island Vanilla Dunes
+
+  // ==================== BHARARA (new additions) ====================
+  176: ["Especiado", "Amaderado"], // Rome Pour Homme
+  178: ["Especiado", "Amaderado"], // Bharara King
+  180: ["Floral", "Dulce"], // Bharara Queen
+  181: ["Frutal", "Especiado"], // Viking Rio
+  182: ["Amaderado", "Especiado"], // Viking Dubai
+  183: ["Especiado", "Amaderado"], // Viking Cairo
+  184: ["Ámbar", "Amaderado"], // Viking Kashmir
+
+  // ==================== LATTAFA ====================
+  185: ["Especiado", "Amaderado"], // Sherif
 };
 
 export type Brand =
