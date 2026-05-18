@@ -16,6 +16,7 @@ export async function GET() {
         perfumeSlug: p.perfumeSlug,
         fragranticaSearchUrl: p.fragranticaSearchUrl || null,
         notes: PERFUME_NOTES[p.id] || [],
+        available: p.available !== false,
       })),
       source: "static",
       count: perfumes.length,
