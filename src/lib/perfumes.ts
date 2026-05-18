@@ -141,11 +141,11 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   142: ["Dulce", "Ámbar"], // Hayaati Gold Elixir
   146: ["Frutal", "Especiado"], // Hayaati
   147: ["Ámbar", "Especiado"], // Hayaati Al Maleky
-  148: ["Amaderado", "Afrutado"], // Vintage Radio
-  149: ["Cítrico", "Aromático"], // Emeer
-  28: ["Vainilla", "Dulce"], // Nebras Elixir
+  148: ["Amaderado", "Frutal"], // Vintage Radio
+  149: ["Cítrico", "Amaderado"], // Emeer
+  28: ["Dulce", "Ámbar"], // Nebras Elixir
   29: ["Ámbar", "Amaderado"], // Asad Elixir
-  30: ["Dulce", "Afrutado"], // Ansaam Gold
+  30: ["Dulce", "Frutal"], // Ansaam Gold
   31: ["Cítrico", "Amaderado"], // Ansaam Silver
   32: ["Cítrico", "Amaderado"], // Shaheen Gold
   33: ["Cítrico", "Amaderado"], // Shaheen Silver
@@ -268,8 +268,8 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   165: ["Amaderado", "Dulce"], // Scandal Pour Homme Le Parfum
   166: ["Dulce", "Floral"], // Scandal Le Parfum
 
-  // ==================== LATTAFA - SCEPTRE MALACHITE ====================
-  167: ["Especiado", "Amaderado"], // Sceptre Malachite
+  // ==================== MAISON ALHAMBRA - SCEPTRE MALACHITE ====================
+  167: ["Cítrico", "Amaderado"], // Sceptre Malachite
 
   // ==================== KHADLAJ ====================
   168: ["Frutal", "Amaderado"], // Island
@@ -277,15 +277,8 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   170: ["Dulce", "Ámbar"], // Island Vanilla Dunes
 
   // ==================== BHARARA ====================
-  171: ["Cítrico", "Amaderado"], // Rome Imagine
-  172: ["Cítrico", "Amaderado"], // Rome Extradose Pour Homme
-  173: ["Cítrico", "Dulce"], // Rome Extradose Pour Femme
-  174: ["Amaderado", "Especiado"], // Rome Ivory Pour Homme
-  175: ["Dulce", "Frutal"], // Rome Yum Yum
   176: ["Amaderado", "Especiado"], // Rome Pour Homme
-  177: ["Floral", "Amaderado"], // Rome Woman
   178: ["Cítrico", "Amaderado"], // Bharara King
-  179: ["Cítrico", "Amaderado"], // Bharara King Blue
   180: ["Floral", "Dulce"], // Bharara Queen
   181: ["Dulce", "Amaderado"], // Viking Rio
   182: ["Cítrico", "Acuático"], // Viking Dubai
@@ -2030,12 +2023,12 @@ export const perfumes: Perfume[] = [
     perfumeSlug: "Scandal-Le-Parfum",
   },
 
-  // ==================== LATTAFA - SCEPTRE MALACHITE ====================
+  // ==================== MAISON ALHAMBRA - SCEPTRE MALACHITE ====================
   {
     id: 167,
     name: "Sceptre Malachite",
-    brand: "Lattafa",
-    gender: "Caballero",
+    brand: "Maison Alhambra",
+    gender: "Unisex",
     size: "100ml",
     fragranticaId: 94163,
     brandSlug: "Maison-Alhambra",
@@ -2077,61 +2070,6 @@ export const perfumes: Perfume[] = [
 
   // ==================== BHARARA ====================
   {
-    id: 171,
-    name: "Rome Imagine",
-    brand: "Bharara",
-    gender: "Unisex",
-    size: "100ml",
-    fragranticaId: 0,
-    brandSlug: "Bharara",
-    perfumeSlug: "Rome-Imagine",
-    customImageUrl: "https://www.bhararabeauty.com/cdn/shop/files/GeneratedwithKive.ai-Re_ovetheboxjustkeepthebottleandcentreit_1.png?v=1772084563&width=600",
-  },
-  {
-    id: 172,
-    name: "Rome Extradose Pour Homme",
-    brand: "Bharara",
-    gender: "Caballero",
-    size: "100ml",
-    fragranticaId: 0,
-    brandSlug: "Bharara",
-    perfumeSlug: "Rome-Extradose-Pour-Homme",
-    customImageUrl: "https://www.bhararabeauty.com/cdn/shop/files/GeneratedwithKive.ai-Removetheboxjustkeepthebottleandcentreit_1.png?v=1772085209&width=600",
-  },
-  {
-    id: 173,
-    name: "Rome Extradose Pour Femme",
-    brand: "Bharara",
-    gender: "Dama",
-    size: "100ml",
-    fragranticaId: 0,
-    brandSlug: "Bharara",
-    perfumeSlug: "Rome-Extradose-Pour-Femme",
-    customImageUrl: "https://www.bhararabeauty.com/cdn/shop/files/Generated_with_Kive.ai_-_Remove_the_box_just_keep_the_bottle_and_center_it_1.png?v=1772574381&width=600",
-  },
-  {
-    id: 174,
-    name: "Rome Ivory Pour Homme",
-    brand: "Bharara",
-    gender: "Caballero",
-    size: "100ml",
-    fragranticaId: 0,
-    brandSlug: "Bharara",
-    perfumeSlug: "Rome-Ivory-Pour-Homme",
-    customImageUrl: "https://www.bhararabeauty.com/cdn/shop/files/GeneratedwithKive.ai-Removetheboxjustkeepthebottleandcentreit.png?v=1772084800&width=600",
-  },
-  {
-    id: 175,
-    name: "Rome Yum Yum",
-    brand: "Bharara",
-    gender: "Dama",
-    size: "100ml",
-    fragranticaId: 0,
-    brandSlug: "Bharara",
-    perfumeSlug: "Rome-Yum-Yum",
-    customImageUrl: "https://www.bhararabeauty.com/cdn/shop/files/GeneratedwithKive.ai-Removethebox_justkeepthebottleandcenterit_13_c8c8efd5-f48c-4731-9030-a51bc57a1fc4.png?v=1772045526&width=600",
-  },
-  {
     id: 176,
     name: "Rome Pour Homme",
     brand: "Bharara",
@@ -2142,17 +2080,6 @@ export const perfumes: Perfume[] = [
     perfumeSlug: "Rome-pour-Homme",
   },
   {
-    id: 177,
-    name: "Rome Woman",
-    brand: "Bharara",
-    gender: "Dama",
-    size: "100ml",
-    fragranticaId: 0,
-    brandSlug: "Bharara",
-    perfumeSlug: "Rome-Woman",
-    customImageUrl: "https://www.bhararabeauty.com/cdn/shop/files/Generated_with_Kive.ai_-_Remove_the_box_just_keep_the_bottle_and_center_it.png?v=1772574155&width=600",
-  },
-  {
     id: 178,
     name: "Bharara King",
     brand: "Bharara",
@@ -2161,17 +2088,6 @@ export const perfumes: Perfume[] = [
     fragranticaId: 74184,
     brandSlug: "Bharara",
     perfumeSlug: "King",
-  },
-  {
-    id: 179,
-    name: "Bharara King Blue",
-    brand: "Bharara",
-    gender: "Caballero",
-    size: "100ml",
-    fragranticaId: 0,
-    brandSlug: "Bharara",
-    perfumeSlug: "Bharara-King-Blue",
-    customImageUrl: "https://www.bhararabeauty.com/cdn/shop/files/Generated_with_Kive.ai_-_Remove_Box_and_Mini_Perfume_and_Put_perfume_centre_2.png?v=1772284926&width=600",
   },
   {
     id: 180,
