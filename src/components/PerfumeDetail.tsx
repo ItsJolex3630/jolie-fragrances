@@ -5634,6 +5634,16 @@ export default function PerfumeDetail({
               {perfume.name}
             </h2>
 
+            {/* Not available badge */}
+            {perfume.available === false && (
+              <div className="mt-2 mb-1">
+                <span className="inline-flex items-center gap-1.5 text-[10px] px-3 py-1 rounded-full border border-rose-500/30 bg-rose-500/10 text-rose-400 font-[family-name:var(--font-inter)] tracking-wide uppercase">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse" />
+                  No disponible actualmente
+                </span>
+              </div>
+            )}
+
             {/* Gold divider */}
             <div className="w-full h-px bg-gradient-to-r from-[#d4af37]/40 via-[#d4af37]/15 to-transparent mb-5 mt-4" />
 

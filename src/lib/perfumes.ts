@@ -313,6 +313,7 @@ export interface Perfume {
   perfumeSlug: string;
   fragranticaSearchUrl?: string;
   notes?: Note[];
+  available?: boolean; // defaults to true; false = out of stock / not available
 }
 
 export const BRANDS: Brand[] = [
@@ -1942,6 +1943,7 @@ export const perfumes: Perfume[] = [
     fragranticaId: 61856,
     brandSlug: "Jean-Paul-Gaultier",
     perfumeSlug: "Le-Male-Le-Parfum",
+    available: false,
   },
   {
     id: 160,
@@ -1952,6 +1954,7 @@ export const perfumes: Perfume[] = [
     fragranticaId: 72158,
     brandSlug: "Jean-Paul-Gaultier",
     perfumeSlug: "Le-Beau-Le-Parfum",
+    available: false,
   },
   {
     id: 161,
@@ -1962,6 +1965,7 @@ export const perfumes: Perfume[] = [
     fragranticaId: 81642,
     brandSlug: "Jean-Paul-Gaultier",
     perfumeSlug: "Le-Male-Elixir",
+    available: false,
   },
   {
     id: 162,
@@ -1972,6 +1976,7 @@ export const perfumes: Perfume[] = [
     fragranticaId: 68074,
     brandSlug: "Jean-Paul-Gaultier",
     perfumeSlug: "Scandal-Pour-Homme",
+    available: false,
   },
   {
     id: 163,
@@ -1982,6 +1987,7 @@ export const perfumes: Perfume[] = [
     fragranticaId: 55785,
     brandSlug: "Jean-Paul-Gaultier",
     perfumeSlug: "Le-Beau",
+    available: false,
   },
   {
     id: 164,
@@ -1992,6 +1998,7 @@ export const perfumes: Perfume[] = [
     fragranticaId: 45651,
     brandSlug: "Jean-Paul-Gaultier",
     perfumeSlug: "Scandal",
+    available: false,
   },
   {
     id: 165,
@@ -2002,6 +2009,7 @@ export const perfumes: Perfume[] = [
     fragranticaId: 74915,
     brandSlug: "Jean-Paul-Gaultier",
     perfumeSlug: "Scandal-Pour-Homme-Le-Parfum",
+    available: false,
   },
   {
     id: 166,
@@ -2012,6 +2020,7 @@ export const perfumes: Perfume[] = [
     fragranticaId: 74914,
     brandSlug: "Jean-Paul-Gaultier",
     perfumeSlug: "Scandal-Le-Parfum",
+    available: false,
   },
   {
     id: 167,

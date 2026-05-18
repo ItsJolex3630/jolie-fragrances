@@ -198,7 +198,7 @@ const PerfumeCard = memo(function PerfumeCard({
       className="perfume-card group relative card-fade-in"
       style={{ animationDelay: `${Math.min(index * 0.03, 0.5)}s` }}
     >
-      <div className="card-shimmer-border relative overflow-hidden rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111] transition-all duration-500 group-hover:border-[rgba(212,175,55,0.35)] gold-glow-hover">
+      <div className={`card-shimmer-border relative overflow-hidden rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111] transition-all duration-500 group-hover:border-[rgba(212,175,55,0.35)] gold-glow-hover ${perfume.available === false ? 'opacity-75' : ''}`}>
         {/* Image container - dark background for the bottle */}
         <div className="relative aspect-[3/4] overflow-hidden bg-[#0a0a0a] flex items-center justify-center">
           {/* Loading skeleton */}
@@ -257,6 +257,15 @@ const PerfumeCard = memo(function PerfumeCard({
               {perfume.size}
             </span>
           </div>
+
+          {/* Not available badge */}
+          {perfume.available === false && (
+            <div className="absolute top-2 left-2 z-10 pointer-events-none">
+              <span className="text-[8px] sm:text-[9px] px-2 py-0.5 sm:py-1 rounded-full border border-rose-500/30 bg-rose-500/15 text-rose-400 font-[family-name:var(--font-inter)] tracking-wide uppercase backdrop-blur-sm">
+                No disponible
+              </span>
+            </div>
+          )}
 
           {/* Hover text overlay */}
           <div className="absolute bottom-8 left-0 right-0 text-center z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
