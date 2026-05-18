@@ -2,6 +2,38 @@
 
 import { useState, useMemo, useRef, useEffect, useCallback, memo } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+
+// ─── Scroll Reveal Hook (lightweight IntersectionObserver) ───
+function useScrollReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("revealed");
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return ref;
+}
+
+// ─── ScrollRevealDiv component ───
+function ScrollRevealDiv({ children, className = "", variant = "up" }: { children: React.ReactNode; className?: string; variant?: "up" | "left" | "scale" }) {
+  const ref = useScrollReveal();
+  const variantClass = variant === "left" ? "scroll-reveal-left" : variant === "scale" ? "scroll-reveal-scale" : "scroll-reveal";
+  return (
+    <div ref={ref} className={`${variantClass} ${className}`}>
+      {children}
+    </div>
+  );
+}
 import {
   Search,
   X,
@@ -111,7 +143,7 @@ const PerfumeCard = memo(function PerfumeCard({
       className="perfume-card group relative card-fade-in"
       style={{ animationDelay: `${Math.min(index * 0.03, 0.5)}s` }}
     >
-      <div className="relative overflow-hidden rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111] transition-all duration-500 group-hover:border-[rgba(212,175,55,0.35)] gold-glow-hover">
+      <div className="card-shimmer-border relative overflow-hidden rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111] transition-all duration-500 group-hover:border-[rgba(212,175,55,0.35)] gold-glow-hover">
         {/* Image container - dark background for the bottle */}
         <div className="relative aspect-[3/4] overflow-hidden bg-[#0a0a0a] flex items-center justify-center">
           {/* Loading skeleton */}
@@ -457,7 +489,14 @@ export default function Home() {
         style={{ opacity: heroOpacity, scale: heroScale }}
         className="relative overflow-hidden"
       >
-        {/* Background particles */}
+        {/* Background aurora blobs */}
+        <div className="hero-aurora">
+          <div className="hero-aurora-blob hero-aurora-blob-1" />
+          <div className="hero-aurora-blob hero-aurora-blob-2" />
+          <div className="hero-aurora-blob hero-aurora-blob-3" />
+        </div>
+
+        {/* Background gradient */}
         <div className="absolute inset-0 hero-gradient" />
 
         {/* Floating gold particles — reduced for mobile performance */}
@@ -1184,12 +1223,9 @@ export default function Home() {
       </section>
 
       {/* ─── FOOTER ─── */}
+      <ScrollRevealDiv>
       <footer className="relative z-10 border-t border-[rgba(212,175,55,0.1)] bg-[#060606] mt-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <div
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
@@ -1244,8 +1280,9 @@ export default function Home() {
               reservados. Las imágenes pertenecen a Fragrantica.
             </p>
           </div>
-        </motion.div>
+        </div>
       </footer>
+      </ScrollRevealDiv>
 
       {/* ─── FLOATING WHATSAPP BUTTON ─── */}
       <a
