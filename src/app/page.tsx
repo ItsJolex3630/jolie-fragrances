@@ -171,19 +171,25 @@ const PerfumeCard = memo(function PerfumeCard({
   const [imgError, setImgError] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
 
-  // Primary .avif URL, fallback to .jpg
-  const imgSrc = imgTriedJpg
+  // Primary: customImageUrl if available, then .avif URL, fallback to .jpg
+  const hasCustomImage = !!perfume.customImageUrl;
+  const imgSrc = hasCustomImage
+    ? perfume.customImageUrl!
+    : imgTriedJpg
     ? `https://fimgs.net/mdimg/perfume/${perfume.fragranticaId}.jpg`
     : getImageUrl(perfume.fragranticaId);
 
   const handleImgError = useCallback(() => {
-    if (!imgTriedJpg) {
+    if (hasCustomImage) {
+      // For custom images, skip Fragrantica fallback and go directly to fallback icon
+      setImgError(true);
+    } else if (!imgTriedJpg) {
       setImgTriedJpg(true);
       setImgLoaded(false);
     } else {
       setImgError(true);
     }
-  }, [imgTriedJpg]);
+  }, [imgTriedJpg, hasCustomImage]);
 
   return (
     <div

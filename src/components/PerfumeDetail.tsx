@@ -3069,6 +3069,357 @@ export const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Vainilla", percentage: 95 },
     ],
   },
+  // 167. Sceptre Malachite
+  167: {
+    top: [
+      { name: "Mandarina Verde", percentage: 25 },
+      { name: "Bergamota", percentage: 20 },
+      { name: "Grosella Negra", percentage: 15 },
+    ],
+    heart: [
+      { name: "Notas Aromáticas", percentage: 15 },
+      { name: "Notas Especiadas", percentage: 12 },
+      { name: "Jazmín", percentage: 10 },
+      { name: "Pimienta Rosa", percentage: 8 },
+      { name: "Lavanda", percentage: 5 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 30 },
+      { name: "Almizcle", percentage: 25 },
+      { name: "Notas Amaderadas", percentage: 20 },
+      { name: "Vetiver", percentage: 15 },
+    ],
+  },
+  // 168. Island (Khadlaj)
+  168: {
+    top: [
+      { name: "Piña", percentage: 30 },
+      { name: "Iris", percentage: 20 },
+      { name: "Jengibre", percentage: 15 },
+      { name: "Ciprés", percentage: 10 },
+    ],
+    heart: [
+      { name: "Coco", percentage: 30 },
+      { name: "Notas Amaderadas", percentage: 20 },
+    ],
+    base: [
+      { name: "Habas Tonka", percentage: 25 },
+      { name: "Sándalo", percentage: 20 },
+      { name: "Ámbar", percentage: 15 },
+      { name: "Ámbar Gris", percentage: 10 },
+    ],
+  },
+  // 169. Island Dreams
+  169: {
+    top: [
+      { name: "Jengibre", percentage: 35 },
+      { name: "Bergamota", percentage: 25 },
+    ],
+    heart: [
+      { name: "Toronja", percentage: 40 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 30 },
+      { name: "Ambroxan", percentage: 25 },
+    ],
+  },
+  // 170. Island Vanilla Dunes
+  170: {
+    top: [
+      { name: "Vainilla", percentage: 25 },
+      { name: "Canela", percentage: 15 },
+      { name: "Cardamomo", percentage: 15 },
+      { name: "Bergamota", percentage: 10 },
+    ],
+    heart: [
+      { name: "Flor de Azahar", percentage: 25 },
+      { name: "Madera de Guayaco", percentage: 15 },
+    ],
+    base: [
+      { name: "Pralina", percentage: 25 },
+      { name: "Ámbar", percentage: 20 },
+      { name: "Almizcle", percentage: 15 },
+    ],
+  },
+  // 171. Rome Imagine
+  171: {
+    top: [
+      { name: "Cítricos", percentage: 20 },
+      { name: "Bergamota", percentage: 15 },
+      { name: "Naranja Dulce", percentage: 12 },
+      { name: "Jengibre", percentage: 10 },
+      { name: "Pimienta Negra", percentage: 8 },
+    ],
+    heart: [
+      { name: "Flores Blancas", percentage: 15 },
+      { name: "Lirio del Valle", percentage: 10 },
+      { name: "Violeta", percentage: 8 },
+      { name: "Flor de Azahar", percentage: 7 },
+    ],
+    base: [
+      { name: "Ámbar Gris", percentage: 20 },
+      { name: "Almizcle", percentage: 15 },
+      { name: "Madera de Guayaco", percentage: 12 },
+      { name: "Incienso", percentage: 10 },
+      { name: "Madera de Cabreuva", percentage: 8 },
+    ],
+  },
+  // 172. Rome Extradose Pour Homme
+  172: {
+    top: [
+      { name: "Bergamota", percentage: 30 },
+      { name: "Limón", percentage: 25 },
+    ],
+    heart: [
+      { name: "Hoja de Higo", percentage: 15 },
+      { name: "Musgo Blanco", percentage: 12 },
+      { name: "Jazmín", percentage: 10 },
+      { name: "Manzana Verde", percentage: 8 },
+    ],
+    base: [
+      { name: "Madera de Guayaco", percentage: 25 },
+      { name: "Sándalo", percentage: 20 },
+      { name: "Ámbar Gris", percentage: 15 },
+    ],
+  },
+  // 173. Rome Extradose Pour Femme
+  173: {
+    top: [
+      { name: "Bergamota", percentage: 30 },
+      { name: "Limón", percentage: 25 },
+    ],
+    heart: [
+      { name: "Grosella", percentage: 15 },
+      { name: "Coco", percentage: 12 },
+      { name: "Ciruela", percentage: 10 },
+      { name: "Jazmín", percentage: 8 },
+      { name: "Rosa", percentage: 7 },
+    ],
+    base: [
+      { name: "Benjuí", percentage: 15 },
+      { name: "Ámbar", percentage: 15 },
+      { name: "Vainilla", percentage: 12 },
+      { name: "Sándalo", percentage: 10 },
+      { name: "Habas Tonka", percentage: 8 },
+    ],
+  },
+  // 174. Rome Ivory Pour Homme
+  174: {
+    top: [
+      { name: "Limón", percentage: 20 },
+      { name: "Bergamota", percentage: 15 },
+      { name: "Naranja", percentage: 10 },
+    ],
+    heart: [
+      { name: "Notas Cremosas", percentage: 12 },
+      { name: "Pimienta", percentage: 10 },
+      { name: "Nuez Moscada", percentage: 8 },
+      { name: "Geranio", percentage: 7 },
+      { name: "Lavandín", percentage: 5 },
+    ],
+    base: [
+      { name: "Sándalo", percentage: 12 },
+      { name: "Pachulí", percentage: 10 },
+      { name: "Lábdano", percentage: 8 },
+      { name: "Oud", percentage: 7 },
+      { name: "Cedro", percentage: 6 },
+      { name: "Incienso", percentage: 5 },
+      { name: "Vetiver", percentage: 5 },
+      { name: "Vainilla", percentage: 5 },
+      { name: "Ámbar", percentage: 5 },
+    ],
+  },
+  // 175. Rome Yum Yum
+  175: {
+    top: [
+      { name: "Cítricos", percentage: 15 },
+      { name: "Flores Blancas", percentage: 12 },
+      { name: "Flores Frescas", percentage: 10 },
+      { name: "Limón", percentage: 8 },
+    ],
+    heart: [
+      { name: "Gourmand", percentage: 18 },
+      { name: "Frutal", percentage: 12 },
+      { name: "Vainilla", percentage: 10 },
+      { name: "Chocolate", percentage: 8 },
+      { name: "Fresa", percentage: 7 },
+    ],
+    base: [
+      { name: "Azúcar", percentage: 15 },
+      { name: "Caramelo", percentage: 12 },
+      { name: "Benjuí", percentage: 8 },
+      { name: "Ámbar", percentage: 8 },
+      { name: "Almizcle Blanco", percentage: 7 },
+    ],
+  },
+  // 176. Rome Pour Homme
+  176: {
+    top: [
+      { name: "Geranio", percentage: 30 },
+      { name: "Rosa", percentage: 20 },
+    ],
+    heart: [
+      { name: "Salvia", percentage: 30 },
+      { name: "Jengibre", percentage: 15 },
+    ],
+    base: [
+      { name: "Madera de Cedro", percentage: 35 },
+      { name: "Vetiver", percentage: 25 },
+    ],
+  },
+  // 177. Rome Woman
+  177: {
+    top: [
+      { name: "Cítricos", percentage: 15 },
+      { name: "Limón", percentage: 12 },
+      { name: "Bergamota", percentage: 10 },
+    ],
+    heart: [
+      { name: "Jazmín", percentage: 12 },
+      { name: "Rosa", percentage: 10 },
+      { name: "Violeta", percentage: 8 },
+      { name: "Notas Marinas", percentage: 7 },
+      { name: "Frambuesa", percentage: 6 },
+      { name: "Pimienta", percentage: 5 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 12 },
+      { name: "Notas Amaderadas", percentage: 10 },
+      { name: "Almizcle", percentage: 8 },
+      { name: "Vainilla", percentage: 7 },
+      { name: "Madera de Guayaco", percentage: 6 },
+      { name: "Habas Tonka", percentage: 5 },
+      { name: "Sándalo", percentage: 5 },
+    ],
+  },
+  // 178. Bharara King
+  178: {
+    top: [
+      { name: "Naranja", percentage: 25 },
+      { name: "Bergamota", percentage: 20 },
+      { name: "Limón", percentage: 15 },
+    ],
+    heart: [
+      { name: "Notas Frutales", percentage: 40 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 25 },
+      { name: "Almizcle Blanco", percentage: 20 },
+      { name: "Ámbar", percentage: 15 },
+    ],
+  },
+  // 179. Bharara King Blue
+  179: {
+    top: [
+      { name: "Bergamota", percentage: 20 },
+      { name: "Limón", percentage: 15 },
+      { name: "Manzana Verde", percentage: 12 },
+      { name: "Pera", percentage: 10 },
+      { name: "Grosella Negra", percentage: 8 },
+      { name: "Cardamomo", percentage: 5 },
+    ],
+    heart: [
+      { name: "Notas Acuáticas", percentage: 20 },
+      { name: "Lavanda", percentage: 12 },
+      { name: "Jazmín", percentage: 8 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 20 },
+      { name: "Cedro", percentage: 12 },
+      { name: "Ámbar", percentage: 10 },
+      { name: "Sándalo", percentage: 8 },
+    ],
+  },
+  // 180. Bharara Queen
+  180: {
+    top: [
+      { name: "Bergamota", percentage: 40 },
+    ],
+    heart: [
+      { name: "Flores Blancas", percentage: 25 },
+      { name: "Rosa", percentage: 20 },
+    ],
+    base: [
+      { name: "Sándalo", percentage: 25 },
+      { name: "Caramelo", percentage: 20 },
+      { name: "Vainilla", percentage: 15 },
+    ],
+  },
+  // 181. Viking Rio
+  181: {
+    top: [
+      { name: "Avellana", percentage: 25 },
+      { name: "Cacao", percentage: 20 },
+    ],
+    heart: [
+      { name: "Cedro", percentage: 25 },
+      { name: "Jazmín Sambac", percentage: 15 },
+    ],
+    base: [
+      { name: "Caramelo", percentage: 25 },
+      { name: "Ambroxan", percentage: 15 },
+      { name: "Musgo de Roble", percentage: 10 },
+    ],
+  },
+  // 182. Viking Dubai
+  182: {
+    top: [
+      { name: "Limón", percentage: 18 },
+      { name: "Bergamota", percentage: 15 },
+      { name: "Jengibre", percentage: 12 },
+      { name: "Toronja", percentage: 10 },
+      { name: "Naranja Dulce", percentage: 8 },
+    ],
+    heart: [
+      { name: "Madera Cashmere", percentage: 12 },
+      { name: "Habas Tonka", percentage: 10 },
+      { name: "Violeta", percentage: 8 },
+      { name: "Magnolia", percentage: 7 },
+    ],
+    base: [
+      { name: "Ambroxan", percentage: 15 },
+      { name: "Almizcle Blanco", percentage: 12 },
+      { name: "Pachulí", percentage: 8 },
+      { name: "Ámbar Gris", percentage: 7 },
+    ],
+  },
+  // 183. Viking Cairo
+  183: {
+    top: [
+      { name: "Mandarina", percentage: 22 },
+      { name: "Jengibre", percentage: 15 },
+      { name: "Limón", percentage: 12 },
+    ],
+    heart: [
+      { name: "Acorde Fougère", percentage: 15 },
+      { name: "Habas Tonka", percentage: 10 },
+      { name: "Lavanda", percentage: 8 },
+      { name: "Violeta", percentage: 7 },
+      { name: "Magnolia", percentage: 6 },
+    ],
+    base: [
+      { name: "Vetiver", percentage: 20 },
+      { name: "Ámbar", percentage: 15 },
+      { name: "Pachulí", percentage: 10 },
+      { name: "Almizcle", percentage: 8 },
+    ],
+  },
+  // 184. Viking Kashmir
+  184: {
+    top: [
+      { name: "Papiro", percentage: 25 },
+      { name: "Cardamomo", percentage: 20 },
+    ],
+    heart: [
+      { name: "Hisopo", percentage: 20 },
+      { name: "Olíbano", percentage: 15 },
+      { name: "Zanahoria", percentage: 10 },
+    ],
+    base: [
+      { name: "Sándalo", percentage: 30 },
+      { name: "Madera de Cachemira", percentage: 25 },
+    ],
+  },
 };
 
 // ─── Accords data ───
@@ -4937,6 +5288,131 @@ export const PERFUME_ACCORDS: Record<number, { label: string; percentage: number
     { label: "Salado", percentage: 65, color: "#a0c4e8" },
     { label: "Atalcado", percentage: 55, color: "#d4c5a9" },
     { label: "Balsámico", percentage: 45, color: "#8b6e4e" },
+  ],
+  // 167. Sceptre Malachite
+  167: [
+    { label: "Especiado Amaderado", percentage: 35, color: "#c45a3a" },
+    { label: "Ámbar Cálido", percentage: 25, color: "#f0a830" },
+    { label: "Cítrico Fresco", percentage: 20, color: "#f0c934" },
+    { label: "Aromático", percentage: 15, color: "#6b8e4e" },
+  ],
+  // 168. Island (Khadlaj)
+  168: [
+    { label: "Tropical Frutal", percentage: 35, color: "#e75a8d" },
+    { label: "Amaderado Cremoso", percentage: 25, color: "#c17b2a" },
+    { label: "Ámbar Dulce", percentage: 20, color: "#f0a830" },
+    { label: "Acuático Fresco", percentage: 15, color: "#a0c4e8" },
+  ],
+  // 169. Island Dreams
+  169: [
+    { label: "Cítrico Fresco", percentage: 40, color: "#f0c934" },
+    { label: "Acuático Limpio", percentage: 30, color: "#a0c4e8" },
+    { label: "Almizcle Suave", percentage: 20, color: "#d4c5a9" },
+  ],
+  // 170. Island Vanilla Dunes
+  170: [
+    { label: "Vainilla Dulce", percentage: 35, color: "#c9a033" },
+    { label: "Ámbar Cálido", percentage: 25, color: "#f0a830" },
+    { label: "Especiado Oriental", percentage: 20, color: "#c45a3a" },
+    { label: "Floral Suave", percentage: 15, color: "#e75a8d" },
+  ],
+  // 171. Rome Imagine
+  171: [
+    { label: "Cítrico Especiado", percentage: 30, color: "#f0c934" },
+    { label: "Amaderado Resinoso", percentage: 25, color: "#c17b2a" },
+    { label: "Floral Blanco", percentage: 20, color: "#e75a8d" },
+    { label: "Ámbar Profundo", percentage: 15, color: "#f0a830" },
+  ],
+  // 172. Rome Extradose Pour Homme
+  172: [
+    { label: "Cítrico Fresco", percentage: 35, color: "#f0c934" },
+    { label: "Amaderado Verde", percentage: 25, color: "#c17b2a" },
+    { label: "Musgoso", percentage: 20, color: "#7a6b5d" },
+    { label: "Ámbar Gris", percentage: 15, color: "#f0a830" },
+  ],
+  // 173. Rome Extradose Pour Femme
+  173: [
+    { label: "Cítrico Gourmand", percentage: 30, color: "#f0c934" },
+    { label: "Frutal Dulce", percentage: 25, color: "#e75a8d" },
+    { label: "Floral Cremoso", percentage: 20, color: "#e75a8d" },
+    { label: "Vainilla Ámbar", percentage: 15, color: "#c9a033" },
+  ],
+  // 174. Rome Ivory Pour Homme
+  174: [
+    { label: "Amaderado Especiado", percentage: 35, color: "#c17b2a" },
+    { label: "Ahumado Oud", percentage: 25, color: "#7a6b5d" },
+    { label: "Cítrico Cremoso", percentage: 20, color: "#f0c934" },
+    { label: "Balsámico", percentage: 15, color: "#8b6e4e" },
+  ],
+  // 175. Rome Yum Yum
+  175: [
+    { label: "Gourmand Dulce", percentage: 35, color: "#c9a033" },
+    { label: "Frutal Caramelo", percentage: 25, color: "#e75a8d" },
+    { label: "Floral Dulce", percentage: 20, color: "#e75a8d" },
+    { label: "Cítrico Fresco", percentage: 15, color: "#f0c934" },
+  ],
+  // 176. Rome Pour Homme
+  176: [
+    { label: "Amaderado Aromático", percentage: 35, color: "#c17b2a" },
+    { label: "Especiado Fresco", percentage: 25, color: "#c45a3a" },
+    { label: "Terroso", percentage: 20, color: "#7a6b5d" },
+    { label: "Herbal", percentage: 15, color: "#6b8e4e" },
+  ],
+  // 177. Rome Woman
+  177: [
+    { label: "Floral Amaderado", percentage: 30, color: "#e75a8d" },
+    { label: "Frutal Cítrico", percentage: 25, color: "#f0c934" },
+    { label: "Ámbar Suave", percentage: 20, color: "#f0a830" },
+    { label: "Acuático Fresco", percentage: 15, color: "#a0c4e8" },
+  ],
+  // 178. Bharara King
+  178: [
+    { label: "Cítrico Amaderado", percentage: 35, color: "#f0c934" },
+    { label: "Vainilla Dulce", percentage: 25, color: "#c9a033" },
+    { label: "Ámbar Cálido", percentage: 20, color: "#f0a830" },
+    { label: "Frutal Fresco", percentage: 15, color: "#e75a8d" },
+  ],
+  // 179. Bharara King Blue
+  179: [
+    { label: "Cítrico Acuático", percentage: 35, color: "#f0c934" },
+    { label: "Amaderado Fresco", percentage: 25, color: "#c17b2a" },
+    { label: "Almizcle Suave", percentage: 20, color: "#d4c5a9" },
+    { label: "Frutal Verde", percentage: 15, color: "#6b8e4e" },
+  ],
+  // 180. Bharara Queen
+  180: [
+    { label: "Floral Dulce", percentage: 35, color: "#e75a8d" },
+    { label: "Amaderado Cremoso", percentage: 25, color: "#c17b2a" },
+    { label: "Gourmand Caramelo", percentage: 20, color: "#c9a033" },
+    { label: "Cítrico Fresco", percentage: 15, color: "#f0c934" },
+  ],
+  // 181. Viking Rio
+  181: [
+    { label: "Gourmand Amaderado", percentage: 35, color: "#c9a033" },
+    { label: "Dulce Caramelo", percentage: 25, color: "#c9a033" },
+    { label: "Cacao Especiado", percentage: 20, color: "#c45a3a" },
+    { label: "Musgoso", percentage: 15, color: "#7a6b5d" },
+  ],
+  // 182. Viking Dubai
+  182: [
+    { label: "Cítrico Acuático", percentage: 30, color: "#f0c934" },
+    { label: "Amaderado Fresco", percentage: 25, color: "#c17b2a" },
+    { label: "Ámbar Limpio", percentage: 20, color: "#f0a830" },
+    { label: "Floral Suave", percentage: 15, color: "#e75a8d" },
+  ],
+  // 183. Viking Cairo
+  183: [
+    { label: "Cítrico Amaderado", percentage: 30, color: "#f0c934" },
+    { label: "Fougère Aromático", percentage: 25, color: "#6b8e4e" },
+    { label: "Terroso Verde", percentage: 20, color: "#7a6b5d" },
+    { label: "Ámbar Especiado", percentage: 15, color: "#f0a830" },
+  ],
+  // 184. Viking Kashmir
+  184: [
+    { label: "Amaderado Oriental", percentage: 35, color: "#c17b2a" },
+    { label: "Especiado Resinoso", percentage: 25, color: "#c45a3a" },
+    { label: "Terroso Balsámico", percentage: 20, color: "#8b6e4e" },
+    { label: "Sándalo Cremoso", percentage: 15, color: "#c9a033" },
   ],
 };
 
