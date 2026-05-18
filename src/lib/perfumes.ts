@@ -289,22 +289,22 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   185: ["Especiado", "Amaderado"], // Sherif
 
   // ==================== CAROLINA HERRERA ====================
-  186: ["Almendra", "Café", "Tuberosa", "Jazmín", "Cacao", "Tonka"], // Good Girl
-  187: ["Bergamota", "Almendra", "Peonía", "Ylang-Ylang", "Vainilla", "Cumaro"], // Good Girl Blush
-  188: ["Lichi", "Grosella", "Rosa", "Vainilla"], // Very Good Girl
-  189: ["Cereza Negra", "Almendra", "Tuberosa", "Rosa", "Ámbar", "Vainilla"], // Very Good Girl Elixir
+  186: ["Almendra", "Café", "Bergamota", "Limón", "Tuberosa", "Jazmín Sambac", "Naranjo", "Rosa Búlgara", "Lirio", "Tonka", "Cacao", "Vainilla", "Praline", "Sándalo", "Almizcle", "Ámbar", "Madera de Cashmere", "Pachulí", "Canela", "Cedro"], // Good Girl
+  187: ["Bergamota", "Almendra Amarga", "Peonía", "Ylang-Ylang", "Vainilla", "Cumaro"], // Good Girl Blush
+  188: ["Lichi", "Grosella", "Rosa", "Vainilla", "Vetiver"], // Very Good Girl
+  189: ["Cereza Negra", "Almendra Amarga", "Rosa", "Tuberosa", "Vainilla", "Cacao"], // Very Good Girl Elixir
   190: ["Bergamota", "Mandarina", "Ylang-Ylang", "Rosa", "Vainilla", "Pachulí"], // Good Girl Blush Elixir EdP
-  191: ["Pitahaya", "Frangipani", "Peonía", "Vainilla", "Pachulí"], // La Bomba
-  192: ["Lavanda", "Pimienta Rosa", "Ciruela", "Geranio", "Cedro", "Vetiver", "Trufa"], // Bad Boy Cobalt PE
+  191: ["Pitahaya", "Frangipani", "Peonía Roja", "Vainilla", "Pachulí"], // La Bomba
+  192: ["Lavanda", "Pimienta Rosa", "Ciruela", "Geranio", "Cedro", "Vetiver", "Trufa", "Roble"], // Bad Boy Cobalt PE
   193: ["Pimienta Blanca", "Bergamota", "Pimienta Rosa", "Cedro", "Salvia", "Tonka", "Cacao"], // Bad Boy
-  194: ["Pimienta Negra", "Salvia", "Trufa", "Amaderado", "Vainilla", "Incienso"], // Bad Boy Cobalt Elixir
-  195: ["Bergamota", "Jengibre", "Ciruela", "Salvia", "Cacao", "Tonka", "Pachulí", "Incienso"], // Bad Boy Extreme
+  194: ["Pimienta Negra", "Salvia", "Trufa", "Notas Amaderadas", "Vainilla", "Incienso"], // Bad Boy Cobalt Elixir
+  195: ["Bergamota", "Jengibre", "Ciruela", "Salvia", "Opoponaco", "Davana", "Cacao", "Tonka", "Pachulí", "Incienso", "Olibano", "Vetiver", "Ládano"], // Bad Boy Extreme
   196: ["Cáñamo", "Toronja", "Pimienta Negra", "Geranio", "Cuero", "Vetiver"], // Bad Boy Le Parfum
   197: ["Salvia", "Lavanda", "Cuero", "Lirio", "Cedro", "Incienso"], // Bad Boy Elixir
-  198: ["Bergamota", "Césped", "Toronja", "Azafrán", "Nuez Moscada", "Jazmín", "Violeta", "Sándalo", "Cuero"], // CH Men
-  199: ["Maracuyá", "Lima", "Pimienta", "Jengibre", "Vodka", "Ginebra", "Menta", "Ámbar", "Cuero"], // 212 VIP Men
-  200: ["Bergamota", "Pimienta Verde", "Gardenia", "Jengibre", "Sándalo", "Almizcle", "Incienso", "Vainilla"], // 212 Men
-  201: ["Absenta", "Anís", "Hinojo", "Lavanda", "Vainilla", "Almizcle"], // 212 VIP Black
+  198: ["Césped", "Bergamota", "Toronja", "Notas Amaderadas", "Nuez Moscada", "Violeta", "Azafrán", "Jazmín", "Azúcar", "Cuero", "Vainilla", "Ante", "Ámbar", "Madera de Cashmere", "Sándalo", "Musgo de Roble", "Vetiver"], // CH Men
+  199: ["Maracuyá", "Lima", "Pimienta", "Jengibre", "Vodka", "Ginebra", "Menta", "Especias", "Ámbar", "Cuero", "Notas Amaderadas"], // 212 VIP Men
+  200: ["Notas Verdes", "Toronja", "Especias", "Bergamota", "Lavanda", "Petitgrain", "Jengibre", "Violeta", "Gardenia", "Salvia", "Almizcle", "Sándalo", "Incienso", "Vetiver", "Madera de Guayaco", "Ládano"], // 212 Men
+  201: ["Absenta", "Anís", "Hinojo", "Lavanda", "Vainilla Negra", "Almizcle"], // 212 VIP Black
 };
 
 export type Brand =
