@@ -350,6 +350,10 @@ export default function Home() {
   const [perfumeBackStack, setPerfumeBackStack] = useState<Perfume[]>([]);
   // Navigation stack for "back" button when navigating from comparison view
   const [compareBackStack, setCompareBackStack] = useState<Perfume[]>([]);
+  // Perfume viewed from Similar Perfumes Modal (with back navigation)
+  const [similarViewPerfume, setSimilarViewPerfume] = useState<Perfume | null>(null);
+  // Navigation stack for "back" button when navigating from similar perfumes modal
+  const [similarBackStack, setSimilarBackStack] = useState<Perfume[]>([]);
 
   // ─── Perfume list (fetched from API) ───
   const [allPerfumes, setAllPerfumes] = useState<Perfume[]>([]);
@@ -1529,14 +1533,45 @@ export default function Home() {
         onViewPerfume={(perfume) => setCompareViewPerfume(perfume)}
       />
 
+      {/* ─── PERFUME DETAIL FROM SIMILAR PERFUMES MODAL ─── */}
+      <AnimatePresence>
+        {similarViewPerfume && (
+          <PerfumeDetail
+            key={`similar-${similarViewPerfume.id}`}
+            perfume={similarViewPerfume}
+            isFavorited={false}
+            isLoggedIn={false}
+            onClose={() => { setSimilarViewPerfume(null); setSimilarBackStack([]); }}
+            onToggleFavorite={() => {}}
+            onNavigateToPerfume={(p) => {
+              // Push current perfume to similar back stack, then navigate
+              setSimilarBackStack(prev => [...prev, similarViewPerfume]);
+              setSimilarViewPerfume(p);
+            }}
+            returnLabel={similarBackStack.length > 0
+              ? (similarBackStack[similarBackStack.length - 1].name.length > 22
+                ? similarBackStack[similarBackStack.length - 1].name.slice(0, 22) + '…'
+                : similarBackStack[similarBackStack.length - 1].name)
+              : "Volver a similares"}
+            onReturn={similarBackStack.length > 0
+              ? () => {
+                  const prev = [...similarBackStack];
+                  const lastPerfume = prev.pop()!;
+                  setSimilarBackStack(prev);
+                  setSimilarViewPerfume(lastPerfume);
+                }
+              : () => setSimilarViewPerfume(null)}
+          />
+        )}
+      </AnimatePresence>
+
       {/* ─── SIMILAR PERFUMES MODAL ─── */}
       <SimilarPerfumesModal
         isOpen={showSimilar}
         onClose={() => setShowSimilar(false)}
         onSelectPerfume={(perfume) => {
-          setSelectedPerfume(perfume);
-          setPerfumeBackStack([]);
-          setShowSimilar(false);
+          setSimilarViewPerfume(perfume);
+          setSimilarBackStack([]);
         }}
         allPerfumes={allPerfumes}
       />
