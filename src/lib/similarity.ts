@@ -26,8 +26,9 @@
 import type { Perfume, Concentration } from "./perfumes";
 import { PERFUME_NOTES, CONCENTRATION_ORDER } from "./perfumes";
 
-// Re-export from PerfumeDetail so consumers only need this one import
-import { NOTE_PYRAMIDS, PERFUME_ACCORDS } from "@/components/PerfumeDetail";
+// Re-export from data modules so consumers only need this one import
+import { NOTE_PYRAMIDS } from "@/lib/notePyramids";
+import { PERFUME_ACCORDS } from "@/lib/perfumeAccords";
 
 // ─── Types ───
 

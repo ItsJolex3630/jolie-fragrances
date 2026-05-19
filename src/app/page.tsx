@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useRef, useEffect, useCallback, memo } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 // ─── Scroll Reveal Hook (lightweight IntersectionObserver) ───
 function useScrollReveal() {
@@ -38,19 +38,19 @@ function ScrollRevealDiv({ children, className = "", variant = "up" }: { childre
 // ─── Cursor Glow Component (lightweight mouse follower) ───
 function CursorGlow() {
   const glowRef = useRef<HTMLDivElement>(null);
-  const posRef = useRef({ x: 0, y: 0 });
   const visibleRef = useRef(false);
-  const rafRef = useRef<number>(0);
 
   useEffect(() => {
     // Only on non-touch devices
     if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
 
     function handleMove(e: MouseEvent) {
-      posRef.current = { x: e.clientX, y: e.clientY };
-      if (!visibleRef.current && glowRef.current) {
-        visibleRef.current = true;
-        glowRef.current.classList.add('visible');
+      if (glowRef.current) {
+        glowRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        if (!visibleRef.current) {
+          visibleRef.current = true;
+          glowRef.current.classList.add('visible');
+        }
       }
     }
 
@@ -59,23 +59,12 @@ function CursorGlow() {
       glowRef.current?.classList.remove('visible');
     }
 
-    // Smooth animation loop
-    function animate() {
-      if (glowRef.current) {
-        glowRef.current.style.left = `${posRef.current.x}px`;
-        glowRef.current.style.top = `${posRef.current.y}px`;
-      }
-      rafRef.current = requestAnimationFrame(animate);
-    }
-
     document.addEventListener('mousemove', handleMove, { passive: true });
     document.addEventListener('mouseleave', handleLeave);
-    rafRef.current = requestAnimationFrame(animate);
 
     return () => {
       document.removeEventListener('mousemove', handleMove);
       document.removeEventListener('mouseleave', handleLeave);
-      cancelAnimationFrame(rafRef.current);
     };
   }, []);
 
@@ -228,6 +217,8 @@ const PerfumeCard = memo(function PerfumeCard({
               onLoad={() => setImgLoaded(true)}
               onError={handleImgError}
               loading="lazy"
+              decoding="async"
+              style={{ color: 'transparent' }}
             />
           )}
 
@@ -364,12 +355,6 @@ export default function Home() {
 
   // ─── Pagination config ───
   const PERFUMES_PER_PAGE = 20;
-
-  const { scrollYProgress } = useScroll();
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.12], [1, 0.95]);
-  // Parallax: particles and aurora move slower than scroll
-  const heroParallaxY = useTransform(scrollYProgress, [0, 0.15], [0, -60]);
 
   // ─── Fetch perfumes on mount ───
   useEffect(() => {
@@ -532,16 +517,16 @@ export default function Home() {
 
   const brandCounts = useMemo(() => {
     const counts: Record<string, number> = { Todas: allPerfumes.length };
-    allBrands.forEach((brand) => {
-      counts[brand] = allPerfumes.filter((p) => p.brand === brand).length;
+    allPerfumes.forEach((p) => {
+      counts[p.brand] = (counts[p.brand] || 0) + 1;
     });
     return counts;
-  }, [allPerfumes, allBrands]);
+  }, [allPerfumes]);
 
   const genderCounts = useMemo(() => {
     const counts: Record<string, number> = { Todos: allPerfumes.length };
-    GENDERS.forEach((gender) => {
-      counts[gender] = allPerfumes.filter((p) => p.gender === gender).length;
+    allPerfumes.forEach((p) => {
+      counts[p.gender] = (counts[p.gender] || 0) + 1;
     });
     return counts;
   }, [allPerfumes]);
@@ -577,26 +562,23 @@ export default function Home() {
       />
 
       {/* ─── HERO SECTION ─── */}
-      <motion.header
-        style={{ opacity: heroOpacity, scale: heroScale }}
+      <header
         className="relative overflow-hidden"
       >
         {/* Background aurora blobs — with parallax */}
-        <motion.div
-          style={{ y: heroParallaxY }}
+        <div
           className="hero-aurora"
         >
           <div className="hero-aurora-blob hero-aurora-blob-1" />
           <div className="hero-aurora-blob hero-aurora-blob-2" />
           <div className="hero-aurora-blob hero-aurora-blob-3" />
-        </motion.div>
+        </div>
 
         {/* Background gradient */}
         <div className="absolute inset-0 hero-gradient" />
 
         {/* Floating gold particles — with parallax — reduced for mobile performance */}
-        <motion.div
-          style={{ y: heroParallaxY }}
+        <div
           className="absolute inset-0 overflow-hidden pointer-events-none"
         >
           {[10, 30, 50, 70, 85, 20, 45, 65, 40, 75].map((left, i) => (
@@ -610,7 +592,7 @@ export default function Home() {
               }}
             />
           ))}
-        </motion.div>
+        </div>
 
         {/* Shimmer line decorations */}
         <div className="absolute top-0 left-0 right-0 h-px shimmer-line" />
@@ -738,7 +720,7 @@ export default function Home() {
             </motion.a>
           </motion.div>
         </div>
-      </motion.header>
+      </header>
 
       {/* ─── BRAND SHOWCASE ─── */}
       <section className="relative z-10 border-y border-[rgba(212,175,55,0.08)] bg-[#080808]">
@@ -861,6 +843,9 @@ export default function Home() {
                         src={getImageUrl(perfume.fragranticaId)}
                         alt=""
                         className="w-full h-full object-contain"
+                        loading="lazy"
+                        decoding="async"
+                        style={{ color: 'transparent' }}
                         onError={(e) => {
                           (e.target as HTMLImageElement).style.display = "none";
                         }}
@@ -1560,7 +1545,10 @@ export default function Home() {
                   setSimilarBackStack(prev);
                   setSimilarViewPerfume(lastPerfume);
                 }
-              : () => setSimilarViewPerfume(null)}
+              : () => {
+                  setSimilarViewPerfume(null);
+                  setShowSimilar(true);
+                }}
           />
         )}
       </AnimatePresence>

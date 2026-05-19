@@ -18,10 +18,8 @@ import {
   type Perfume,
   getImageUrl,
 } from "@/lib/perfumes";
-import {
-  NOTE_PYRAMIDS,
-  PERFUME_ACCORDS,
-} from "@/components/PerfumeDetail";
+import { NOTE_PYRAMIDS } from "@/lib/notePyramids";
+import { PERFUME_ACCORDS } from "@/lib/perfumeAccords";
 import { computeSimilarity } from "@/lib/similarity";
 
 // ─── Gender badge styles ───
