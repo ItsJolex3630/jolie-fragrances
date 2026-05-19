@@ -160,7 +160,7 @@ function PerfumeSearchDropdown({
 }
 
 // ─── Note Pyramid Column ───
-function NotePyramidColumn({ perfumeId }: { perfumeId: number }) {
+function NotePyramidColumn({ perfumeId, commonNotes }: { perfumeId: number; commonNotes?: Set<string> }) {
   const pyramid = NOTE_PYRAMIDS[perfumeId];
   if (!pyramid) {
     return (
@@ -182,22 +182,25 @@ function NotePyramidColumn({ perfumeId }: { perfumeId: number }) {
               {style.label}
             </p>
             <div className="space-y-1.5">
-              {notes.map((note, i) => (
+              {notes.map((note, i) => {
+                const isCommon = commonNotes && commonNotes.has(note.name.toLowerCase());
+                return (
                 <div key={i} className="flex items-center gap-2">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-0.5">
-                      <span className="text-xs text-white/70 truncate font-[family-name:var(--font-inter)]">{note.name}</span>
-                      <span className="text-[10px] text-white/30 font-[family-name:var(--font-inter)] ml-1">{note.percentage}%</span>
+                      <span className={`text-xs truncate font-[family-name:var(--font-inter)] ${isCommon ? "text-[#d4af37] font-semibold" : "text-white/70"}`}>{note.name}</span>
+                      <span className={`text-[10px] ml-1 font-[family-name:var(--font-inter)] ${isCommon ? "text-[#d4af37]/60" : "text-white/30"}`}>{note.percentage}%</span>
                     </div>
                     <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
                       <div
-                        className={`h-full rounded-full ${style.bar} transition-all duration-500`}
+                        className={`h-full rounded-full transition-all duration-500 ${isCommon ? "bg-[#d4af37]/70" : style.bar}`}
                         style={{ width: `${note.percentage}%` }}
                       />
                     </div>
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         );
@@ -396,14 +399,16 @@ export default function CompareModal({
                 <SimilarityGauge score={similarity.score} />
               </div>
 
-              {/* Breakdown bars — 5 components with profile penalty */}
-              <div className="grid grid-cols-5 gap-1.5 max-w-lg mx-auto">
+              {/* Breakdown bars — 7 components */}
+              <div className="grid grid-cols-7 gap-1 max-w-xl mx-auto">
                 {[
-                  { label: "Notas", value: similarity.noteOverlap, weight: "38%", color: "bg-[#d4af37]/60" },
-                  { label: "Acordes", value: similarity.accordOverlap, weight: "35%", color: "bg-emerald-400/60" },
-                  { label: "Categorías", value: similarity.categoryOverlap, weight: "7%", color: "bg-cyan-400/60" },
-                  { label: "Género", value: similarity.genderBonus, weight: "8%", color: "bg-purple-400/60" },
-                  { label: "Perfil", value: similarity.profilePenalty ?? 0, weight: "12%", color: "bg-rose-400/60" },
+                  { label: "Notas", value: similarity.noteOverlap, weight: "35%", color: "bg-[#d4af37]/60" },
+                  { label: "Acordes", value: similarity.accordOverlap, weight: "32%", color: "bg-emerald-400/60" },
+                  { label: "Categ.", value: similarity.categoryOverlap, weight: "5%", color: "bg-cyan-400/60" },
+                  { label: "Género", value: similarity.genderBonus, weight: "6%", color: "bg-purple-400/60" },
+                  { label: "Perfil", value: similarity.profilePenalty ?? 0, weight: "10%", color: "bg-rose-400/60" },
+                  { label: "Conc.", value: similarity.concentrationBonus ?? 75, weight: "5%", color: "bg-amber-400/60" },
+                  { label: "Línea", value: similarity.flankerBonus ?? 0, weight: "7%", color: "bg-sky-400/60" },
                 ].map(item => (
                   <div key={item.label} className="text-center">
                     <div className="h-1.5 bg-white/5 rounded-full mb-2 overflow-hidden">
@@ -536,7 +541,7 @@ export default function CompareModal({
                   </button>
 
                   {/* Note Pyramid */}
-                  <NotePyramidColumn perfumeId={perfume1.id} />
+                  <NotePyramidColumn perfumeId={perfume1.id} commonNotes={commonNoteNames} />
 
                   {/* Accords */}
                   <div className="mt-4 pt-3 border-t border-white/5">
@@ -577,7 +582,7 @@ export default function CompareModal({
                     </div>
                   </button>
 
-                  <NotePyramidColumn perfumeId={perfume2.id} />
+                  <NotePyramidColumn perfumeId={perfume2.id} commonNotes={commonNoteNames} />
 
                   <div className="mt-4 pt-3 border-t border-white/5">
                     <p className="text-[10px] text-white/30 tracking-[0.1em] uppercase mb-2 font-[family-name:var(--font-inter)]">Acordes</p>

@@ -320,6 +320,26 @@ export type Brand =
   | "Davidoff"
   | "Carolina Herrera";
 
+export type Concentration = "Parfum" | "Elixir" | "Eau de Parfum" | "Eau de Toilette" | "Eau de Cologne" | "Eau Fraîche";
+
+export const CONCENTRATION_ORDER: Concentration[] = [
+  "Parfum",
+  "Elixir",
+  "Eau de Parfum",
+  "Eau de Toilette",
+  "Eau de Cologne",
+  "Eau Fraîche",
+];
+
+export const CONCENTRATION_LABELS: Record<Concentration, string> = {
+  "Parfum": "Parfum",
+  "Elixir": "Elixir",
+  "Eau de Parfum": "EdP",
+  "Eau de Toilette": "EdT",
+  "Eau de Cologne": "EdC",
+  "Eau Fraîche": "EdF",
+};
+
 export interface Perfume {
   id: number;
   name: string;
@@ -333,6 +353,7 @@ export interface Perfume {
   fragranticaSearchUrl?: string;
   notes?: Note[];
   available?: boolean; // defaults to true; false = out of stock / not available
+  concentration?: Concentration; // olfactive concentration type
 }
 
 export const BRANDS: Brand[] = [
@@ -2175,6 +2196,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "Good-Girl",
     available: false,
+    concentration: "Eau de Parfum",
   },
   {
     id: 187,
@@ -2186,6 +2208,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "Good-Girl-Blush",
     available: false,
+    concentration: "Eau de Parfum",
   },
   {
     id: 188,
@@ -2197,6 +2220,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "Very-Good-Girl",
     available: false,
+    concentration: "Eau de Parfum",
   },
   {
     id: 189,
@@ -2208,6 +2232,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "Very-Good-Girl-Elixir",
     available: false,
+    concentration: "Elixir",
   },
   {
     id: 190,
@@ -2219,6 +2244,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "Good-Girl-Blush-Elixir-Eau-de-Parfum",
     available: false,
+    concentration: "Eau de Parfum",
   },
   {
     id: 191,
@@ -2230,6 +2256,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "La-Bomba",
     available: false,
+    concentration: "Eau de Parfum",
   },
   {
     id: 192,
@@ -2241,6 +2268,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "Bad-Boy-Cobalt-Parfum-Electrique",
     available: false,
+    concentration: "Parfum",
   },
   {
     id: 193,
@@ -2252,6 +2280,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "Bad-Boy",
     available: false,
+    concentration: "Eau de Toilette",
   },
   {
     id: 194,
@@ -2263,6 +2292,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "Bad-Boy-Cobalt-Elixir",
     available: false,
+    concentration: "Elixir",
   },
   {
     id: 195,
@@ -2274,6 +2304,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "Bad-Boy-Extreme",
     available: false,
+    concentration: "Eau de Parfum",
   },
   {
     id: 196,
@@ -2285,6 +2316,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "Bad-Boy-Le-Parfum",
     available: false,
+    concentration: "Parfum",
   },
   {
     id: 197,
@@ -2296,6 +2328,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "Bad-Boy-Elixir",
     available: false,
+    concentration: "Elixir",
   },
   {
     id: 198,
@@ -2307,6 +2340,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "CH-Men",
     available: false,
+    concentration: "Eau de Toilette",
   },
   {
     id: 199,
@@ -2318,6 +2352,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "212-VIP-Men",
     available: false,
+    concentration: "Eau de Toilette",
   },
   {
     id: 200,
@@ -2329,6 +2364,7 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "212-Men",
     available: false,
+    concentration: "Eau de Toilette",
   },
   {
     id: 201,
@@ -2340,5 +2376,6 @@ export const perfumes: Perfume[] = [
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "212-VIP-Black",
     available: false,
+    concentration: "Eau de Parfum",
   },
 ];

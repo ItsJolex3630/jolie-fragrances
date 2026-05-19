@@ -1,26 +1,30 @@
 /**
  * Similarity algorithm for comparing perfumes based on their notes and accords.
  * 
- * The similarity score (0–100%) is computed using five weighted components:
- *   1. Individual note overlap (cosine similarity with layer weighting + note family affinity) — 38%
- *   2. Olfactive accord overlap (cosine similarity with label normalization + accord affinity) — 35%
- *   3. Category overlap (PERFUME_NOTES, Jaccard) — 7%
- *   4. Gender compatibility factor — 8%
- *   5. Profile divergence penalty — 12% (penalizes fundamentally different profiles)
+ * The similarity score (0–100%) is computed using six weighted components:
+ *   1. Individual note overlap (cosine similarity with layer weighting + note family affinity) — 35%
+ *   2. Olfactive accord overlap (cosine similarity with label normalization + accord affinity) — 32%
+ *   3. Category overlap (PERFUME_NOTES, enhanced Jaccard with family affinity) — 5%
+ *   4. Gender compatibility factor — 6%
+ *   5. Profile divergence penalty — 10% (penalizes fundamentally different profiles)
+ *   6. Concentration compatibility factor — 5% (similar concentration = similar performance)
+ *   7. Flanker/brand family bonus — 7% (same line/flankers get a bonus)
  *
  * Key precision improvements over previous versions:
  *   - Note Family Affinity: related notes (e.g., Limón ↔ Bergamota) get partial credit
  *   - Accord Family Affinity: related accords (e.g., Floral ↔ Floral Blanco) get partial credit
  *   - Profile Divergence: fundamentally opposite profiles are penalized
- *   - Rebalanced weights: gender reduced from 15% to 8%, profile divergence added at 12%
+ *   - Concentration Compatibility: EdP+EdP matches better than EdP+EdC
+ *   - Flanker Bonus: same perfume line (Good Girl / Very Good Girl / Good Girl Blush) get bonus
+ *   - Enhanced Category Overlap: uses note family affinity instead of simple Jaccard
  *   - Improved layer weighting: base notes weighted more heavily (they define lasting similarity)
  *   - Normalized percentage handling within layers
  *
  * Missing data is penalized (returns 0), never rewarded.
  */
 
-import type { Perfume } from "./perfumes";
-import { PERFUME_NOTES } from "./perfumes";
+import type { Perfume, Concentration } from "./perfumes";
+import { PERFUME_NOTES, CONCENTRATION_ORDER } from "./perfumes";
 
 // Re-export from PerfumeDetail so consumers only need this one import
 import { NOTE_PYRAMIDS, PERFUME_ACCORDS } from "@/components/PerfumeDetail";
@@ -35,6 +39,8 @@ export interface SimilarityResult {
   categoryOverlap: number; // 0–100
   genderBonus: number;     // 0–100
   profilePenalty: number;  // 0–100 (100 = no penalty, 0 = maximum penalty)
+  concentrationBonus: number; // 0–100 (100 = same concentration)
+  flankerBonus: number;    // 0–100 (100 = same flanker line)
   commonNotes: string[];
   commonAccords: string[];
   commonCategories: string[];
@@ -199,6 +205,43 @@ const ALIASES: Record<string, string> = {
   "clavel": "clavel",
   "tuberosa": "tuberosa",
   "nardo": "tuberosa",
+  "naranjo": "flor de azahar",
+  "orange blossom": "flor de azahar",
+  "flor de naranjo": "flor de azahar",
+  "madera de cashmere": "cachemira",
+  "cashmere wood": "cachemira",
+  "cashmirwood": "cachemira",
+  "madera de guayaco": "guayaco",
+  "guaiac wood": "guayaco",
+  "musgo de roble": "musgo",
+  "oakmoss": "musgo",
+  "ante": "cuero",
+  "suede": "cuero",
+  "olíbano": "incienso",
+  "olíbano": "incienso",
+  "olibanum": "incienso",
+  "opoponax": "resina",
+  "opoponaco": "resina",
+  "cáñamo": "cáñamo",
+  "cannabis": "cáñamo",
+  "petitgrain": "petitgrain",
+  "notas verdes": "hierba",
+  "green notes": "hierba",
+  "césped": "hierba",
+  "frangipani": "frangipani",
+  "plumeria": "frangipani",
+  "pitahaya": "pitahaya",
+  "dragon fruit": "pitahaya",
+  "peonía roja": "peonía",
+  "almendra amarga": "almendra",
+  "bitter almond": "almendra",
+  "vainilla negra": "vainilla",
+  "black vanilla husk": "vainilla",
+  "cereza negra": "cereza",
+  "black cherry": "cereza",
+  "cumaro": "haba tonka",
+  "coumarin": "haba tonka",
+  "absenta": "artemisa",
 
   // Citrus family
   "limón": "limón",
@@ -421,7 +464,7 @@ const NOTE_FAMILIES: string[][] = [
   // Musky family — all share clean/skin-like character
   ["almizcle", "ambroxan", "notas atalcadas"],
   // Green/herbal family — all share fresh/cut character
-  ["menta", "salvia", "romero", "albahaca", "tomillo", "eucalipto", "artemisa", "hierba", "galbano"],
+  ["menta", "salvia", "romero", "albahaca", "tomillo", "eucalipto", "artemisa", "hierba", "galbano", "ajedrea", "mejorana", "davana", "petitgrain"],
   // Mossy/aquatic family — fresh natural character
   ["musgo", "notas acuáticas"],
 ];
@@ -928,6 +971,85 @@ function computeProfilePenalty(p1Id: number, p2Id: number): number {
   return cosineSim * 100;
 }
 
+// ─── 6. Concentration Compatibility Factor ───
+// Perfumes with similar concentration levels tend to perform similarly
+// (longevity, projection). EdP vs EdP is more relevant than EdP vs EdC.
+
+function computeConcentrationBonus(p1: Perfume, p2: Perfume): number {
+  const c1 = p1.concentration;
+  const c2 = p2.concentration;
+  
+  // If neither has concentration data, return neutral
+  if (!c1 && !c2) return 75;
+  if (!c1 || !c2) return 60; // One unknown = slight penalty
+  
+  // Same concentration = 100
+  if (c1 === c2) return 100;
+  
+  // Calculate distance in concentration hierarchy
+  const idx1 = CONCENTRATION_ORDER.indexOf(c1);
+  const idx2 = CONCENTRATION_ORDER.indexOf(c2);
+  
+  if (idx1 === -1 || idx2 === -1) return 65;
+  
+  const distance = Math.abs(idx1 - idx2);
+  // Distance 0 = 100, 1 = 80, 2 = 60, 3 = 40, 4 = 25, 5 = 15
+  const score = Math.max(15, 100 - distance * 20);
+  return score;
+}
+
+// ─── 7. Flanker/Brand Family Bonus ───
+// Perfumes from the same line (e.g., Good Girl / Very Good Girl / Good Girl Blush)
+// share DNA and should get a bonus. This captures real-world similarity
+// that pure note analysis might miss.
+
+// Map of base perfume line names to their flankers
+const FLANKER_LINES: Record<string, string[]> = {
+  "good girl": ["good girl", "very good girl", "good girl blush", "la bomba"],
+  "bad boy": ["bad boy", "bad boy cobalt", "bad boy extreme", "bad boy le parfum", "bad boy elixir"],
+  "212": ["212 men", "212 vip", "212 vip black"],
+  "club de nuit": ["club de nuit"],
+  "odyssey": ["odyssey"],
+  "bade'e al oud": ["bade'e al oud"],
+  "qaed al fursan": ["qaed al fursan"],
+  "amber oud": ["amber oud"],
+  "l'aventure": ["l'aventure"],
+  "fakhar": ["fakhar"],
+  "hayaati": ["hayaati"],
+  "khamrah": ["khamrah"],
+  "asdad": ["asdad"],
+};
+
+function getFlankerLine(name: string): string | null {
+  const lower = name.toLowerCase();
+  for (const [line, keywords] of Object.entries(FLANKER_LINES)) {
+    if (keywords.some(kw => lower.includes(kw))) {
+      return line;
+    }
+  }
+  return null;
+}
+
+function computeFlankerBonus(p1: Perfume, p2: Perfume): number {
+  const line1 = getFlankerLine(p1.name);
+  const line2 = getFlankerLine(p2.name);
+  
+  // No flanker data
+  if (!line1 || !line2) {
+    // Same brand but no flanker line = small bonus
+    if (p1.brand === p2.brand) return 40;
+    return 0;
+  }
+  
+  // Same flanker line = big bonus
+  if (line1 === line2) return 100;
+  
+  // Different flanker lines but same brand
+  if (p1.brand === p2.brand) return 35;
+  
+  return 0;
+}
+
 // ─── Main: compute full similarity ───
 
 export function computeSimilarity(p1: Perfume, p2: Perfume): SimilarityResult {
@@ -936,19 +1058,25 @@ export function computeSimilarity(p1: Perfume, p2: Perfume): SimilarityResult {
   const categoryResult = computeCategoryOverlap(p1.id, p2.id);
   const genderBonus = computeGenderBonus(p1, p2);
   const profilePenalty = computeProfilePenalty(p1.id, p2.id);
+  const concentrationBonus = computeConcentrationBonus(p1, p2);
+  const flankerBonus = computeFlankerBonus(p1, p2);
 
-  // Weighted combination (rebalanced for maximum precision):
-  // Notes: 38% (most precise — specific ingredient data + family affinity)
-  // Accords: 35% (very important — olfactory profile + family affinity)
-  // Categories: 7% (coarse, supplementary — reduced from 10%)
-  // Gender: 8% (contextual — reduced from 15%)
-  // Profile: 12% (NEW — penalizes fundamentally different profiles)
+  // Weighted combination (rebalanced v3 for maximum precision):
+  // Notes: 35% (most precise — specific ingredient data + family affinity)
+  // Accords: 32% (very important — olfactory profile + family affinity)
+  // Categories: 5% (coarse, supplementary — reduced from 7%)
+  // Gender: 6% (contextual — reduced from 8%)
+  // Profile: 10% (penalizes fundamentally different profiles)
+  // Concentration: 5% (similar concentration = similar performance)
+  // Flanker: 7% (same perfume line / brand family bonus)
   const rawScore =
-    noteResult.score * 0.38 +
-    accordResult.score * 0.35 +
-    categoryResult.score * 0.07 +
-    genderBonus * 0.08 +
-    profilePenalty * 0.12;
+    noteResult.score * 0.35 +
+    accordResult.score * 0.32 +
+    categoryResult.score * 0.05 +
+    genderBonus * 0.06 +
+    profilePenalty * 0.10 +
+    concentrationBonus * 0.05 +
+    flankerBonus * 0.07;
 
   const score = Math.round(Math.min(100, Math.max(0, rawScore)));
 
@@ -960,6 +1088,8 @@ export function computeSimilarity(p1: Perfume, p2: Perfume): SimilarityResult {
     categoryOverlap: Math.round(categoryResult.score),
     genderBonus,
     profilePenalty: Math.round(profilePenalty),
+    concentrationBonus,
+    flankerBonus,
     commonNotes: noteResult.common,
     commonAccords: accordResult.common,
     commonCategories: categoryResult.common,
