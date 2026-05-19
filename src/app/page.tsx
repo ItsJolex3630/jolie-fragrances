@@ -1568,7 +1568,11 @@ export default function Home() {
       {/* ─── SIMILAR PERFUMES MODAL ─── */}
       <SimilarPerfumesModal
         isOpen={showSimilar}
-        onClose={() => setShowSimilar(false)}
+        onClose={() => {
+          setShowSimilar(false);
+          setSimilarViewPerfume(null);
+          setSimilarBackStack([]);
+        }}
         onSelectPerfume={(perfume) => {
           setSimilarViewPerfume(perfume);
           setSimilarBackStack([]);

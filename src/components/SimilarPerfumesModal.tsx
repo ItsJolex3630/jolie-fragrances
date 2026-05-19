@@ -338,7 +338,6 @@ export default function SimilarPerfumesModal({
                         key={result.perfume.id}
                         result={result}
                         onSelect={(perfume) => {
-                          handleClose();
                           onSelectPerfume(perfume);
                         }}
                         index={i}
