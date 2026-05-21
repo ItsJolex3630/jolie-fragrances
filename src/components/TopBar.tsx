@@ -7,7 +7,9 @@ import {
   Sparkles,
   Instagram,
   MessageCircle,
+  Gift,
 } from "lucide-react";
+import { getFathersDayInfo, type FathersDayInfo } from "@/lib/fathersDay";
 
 interface TopBarProps {
   onSearch: () => void;
@@ -18,8 +20,17 @@ interface TopBarProps {
 export default function TopBar({ onSearch, onCompare, onSimilar }: TopBarProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [isAtTop, setIsAtTop] = useState(true);
+  const [fathersDayInfo, setFathersDayInfo] = useState<FathersDayInfo | null>(null);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
+
+  // Check Father's Day status
+  useEffect(() => {
+    setFathersDayInfo(getFathersDayInfo());
+  }, []);
+
+  const isFathersDay = fathersDayInfo?.status === "exact_day";
+  const isFathersMonth = fathersDayInfo?.status === "fathers_month";
 
   // Smart scroll: hide on scroll DOWN (mobile), show on scroll UP or at top
   useEffect(() => {
@@ -84,6 +95,24 @@ export default function TopBar({ onSearch, onCompare, onSimilar }: TopBarProps) 
 
         {/* Right: Action buttons */}
         <div className="flex items-center gap-1 sm:gap-1.5">
+          {/* Father's Day indicator (only during June) */}
+          {isFathersDay && (
+            <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#d4af37]/15 border border-[#d4af37]/25 fathers-day-border-glow">
+              <Gift className="w-3.5 h-3.5 text-[#d4af37]" />
+              <span className="hidden sm:inline text-[9px] text-[#d4af37]/80 font-[family-name:var(--font-inter)] tracking-wider uppercase">
+                Día del Padre
+              </span>
+            </div>
+          )}
+          {isFathersMonth && !isFathersDay && (
+            <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#d4af37]/8 border border-[#d4af37]/12">
+              <Gift className="w-3 h-3 text-[#d4af37]/50" />
+              <span className="hidden lg:inline text-[9px] text-[#d4af37]/50 font-[family-name:var(--font-inter)] tracking-wider uppercase">
+                Día del Padre
+              </span>
+            </div>
+          )}
+
           {/* Search */}
           <button
             onClick={handleSearch}

@@ -107,6 +107,8 @@ import {
 const PerfumeDetail = dynamic(() => import("@/components/PerfumeDetail"), { ssr: false });
 const CompareModal = dynamic(() => import("@/components/CompareModal"), { ssr: false });
 const SimilarPerfumesModal = dynamic(() => import("@/components/SimilarPerfumesModal"), { ssr: false });
+const FathersDayBanner = dynamic(() => import("@/components/FathersDayBanner"), { ssr: false });
+const FathersDaySection = dynamic(() => import("@/components/FathersDaySection"), { ssr: false });
 import TopBar from "@/components/TopBar";
 
 // ─── Gender badge colors ───
@@ -652,6 +654,11 @@ export default function Home() {
             Asesoría personalizada para encontrar tu perfume ideal.
           </motion.p>
 
+          {/* ─── Father's Day Banner (dynamic - only renders during June) ─── */}
+          <div className="mb-8">
+            <FathersDayBanner />
+          </div>
+
           {/* Feature pills */}
           <div
             className="flex flex-wrap items-center justify-center gap-3 mb-8"
@@ -754,6 +761,12 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* ─── FATHER'S DAY SECTION (dynamic - only renders during June) ─── */}
+      <FathersDaySection
+        allPerfumes={allPerfumes}
+        onPerfumeSelect={(perfume) => setSelectedPerfume(perfume)}
+      />
 
       {/* ─── MAIN CONTENT ─── */}
       <main ref={catalogRef} className="flex-1 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 w-full">
