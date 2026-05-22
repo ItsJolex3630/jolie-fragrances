@@ -143,3 +143,29 @@ Applied to both the main PerfumeCard image and the autocomplete suggestion image
 - `bun run build` completed successfully
 - All routes compiled without errors
 - Pushed to `ItsJolex3630/jolie-fragrances` on `main` branch
+
+---
+Task ID: price-integration
+Agent: main
+Task: Integrate price system from Lista-de-Precios GitHub repo into Jolie Fragrances
+
+Work Log:
+- Explored Lista-de-Precios private repo (200 perfumes with wholesale prices)
+- Explored Jolie Fragrances data (189 perfumes, no prices)
+- Created prices.json in Lista-de-Precios repo and pushed to GitHub
+- Created src/lib/priceMapping.ts with Jolie-to-Lista name mapping and fallback prices
+- Created src/app/api/prices/route.ts that fetches from GitHub with PAT + applies 35% markup
+- Created src/hooks/usePrices.ts React hook for frontend price consumption
+- Added price display in PerfumeCard (golden gradient price after name)
+- Added price display in PerfumeDetail (large price before action buttons)
+- Added GITHUB_PAT to local .env (not committed to repo)
+- Build successful, API tested and working: 148 perfumes priced, 41 unpriced
+- Pushed to GitHub (auto-deploys to Vercel)
+
+Stage Summary:
+- Prices are fetched from private GitHub repo (Lista-de-Precios) using GitHub API
+- 35% markup applied server-side - cost prices NEVER exposed to frontend
+- Fallback static prices embedded in code for when GitHub fetch fails
+- 148/189 perfumes have prices, 41 have null (not in Lista or no wholesale price set)
+- User needs to add GITHUB_PAT env var in Vercel dashboard for auto-sync
+- Without GITHUB_PAT, system uses embedded fallback prices (same data)
