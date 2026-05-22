@@ -102,6 +102,18 @@ import {
   type Gender,
   type Note,
 } from "@/lib/perfumes";
+import {
+  TIMES_OF_DAY,
+  CLIMATES,
+  OCCASIONS,
+  TIME_INFO,
+  CLIMATE_INFO,
+  OCCASION_INFO,
+  PERFUME_OCCASIONS,
+  type TimeOfDay,
+  type Climate,
+  type Occasion,
+} from "@/lib/perfumeOccasions";
 
 // ─── Dynamic imports for heavy modal components (only loaded when needed) ───
 const PerfumeDetail = dynamic(() => import("@/components/PerfumeDetail"), { ssr: false });
@@ -353,6 +365,9 @@ export default function Home() {
   const [allBrands, setAllBrands] = useState<Brand[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedNote, setSelectedNote] = useState<Note | "Todas">("Todas");
+  const [selectedTime, setSelectedTime] = useState<TimeOfDay | "Todos">("Todos");
+  const [selectedClimate, setSelectedClimate] = useState<Climate | "Todos">("Todos");
+  const [selectedOccasion, setSelectedOccasion] = useState<Occasion | "Todos">("Todos");
   const [currentPage, setCurrentPage] = useState(1);
 
   // ─── Pagination config ───
@@ -424,9 +439,20 @@ export default function Home() {
         searchQuery.trim() === "" ||
         p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.brand.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesBrand && matchesGender && matchesNote && matchesSearch;
+      // Occasion filters (time, climate, occasion)
+      const perfumeOccasion = PERFUME_OCCASIONS[p.id];
+      const matchesTime =
+        selectedTime === "Todos" ||
+        (perfumeOccasion && perfumeOccasion.time.includes(selectedTime));
+      const matchesClimate =
+        selectedClimate === "Todos" ||
+        (perfumeOccasion && perfumeOccasion.climate.includes(selectedClimate));
+      const matchesOccasion =
+        selectedOccasion === "Todos" ||
+        (perfumeOccasion && perfumeOccasion.occasion.includes(selectedOccasion));
+      return matchesBrand && matchesGender && matchesNote && matchesSearch && matchesTime && matchesClimate && matchesOccasion;
     });
-  }, [allPerfumes, selectedBrand, selectedGender, selectedNote, searchQuery]);
+  }, [allPerfumes, selectedBrand, selectedGender, selectedNote, searchQuery, selectedTime, selectedClimate, selectedOccasion]);
 
   // Pagination
   const totalPages = Math.max(1, Math.ceil(filteredPerfumes.length / PERFUMES_PER_PAGE));
@@ -455,6 +481,18 @@ export default function Home() {
   }, []);
   const handleNoteChange = useCallback((note: Note | "Todas") => {
     setSelectedNote(note);
+    setCurrentPage(1);
+  }, []);
+  const handleTimeChange = useCallback((time: TimeOfDay | "Todos") => {
+    setSelectedTime(time);
+    setCurrentPage(1);
+  }, []);
+  const handleClimateChange = useCallback((climate: Climate | "Todos") => {
+    setSelectedClimate(climate);
+    setCurrentPage(1);
+  }, []);
+  const handleOccasionChange = useCallback((occasion: Occasion | "Todos") => {
+    setSelectedOccasion(occasion);
     setCurrentPage(1);
   }, []);
   const handleSearchChange = useCallback((value: string) => {
@@ -513,6 +551,9 @@ export default function Home() {
     setSelectedBrand("Todas");
     setSelectedGender("Todos");
     setSelectedNote("Todas");
+    setSelectedTime("Todos");
+    setSelectedClimate("Todos");
+    setSelectedOccasion("Todos");
     setSearchQuery("");
     setCurrentPage(1);
   }, []);
@@ -538,9 +579,12 @@ export default function Home() {
     if (selectedBrand !== "Todas") count++;
     if (selectedGender !== "Todos") count++;
     if (selectedNote !== "Todas") count++;
+    if (selectedTime !== "Todos") count++;
+    if (selectedClimate !== "Todos") count++;
+    if (selectedOccasion !== "Todos") count++;
     if (searchQuery.trim()) count++;
     return count;
-  }, [selectedBrand, selectedGender, selectedNote, searchQuery]);
+  }, [selectedBrand, selectedGender, selectedNote, selectedTime, selectedClimate, selectedOccasion, searchQuery]);
 
   return (
     <div
@@ -984,6 +1028,117 @@ export default function Home() {
                   >
                     <span className="text-sm">{info.emoji}</span>
                     {note}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Time of Day filters */}
+          <div>
+            <h3 className="text-[10px] text-[#555] tracking-[0.2em] uppercase mb-3 font-[family-name:var(--font-inter)]">
+              Momento del día
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => handleTimeChange("Todos")}
+                className={`filter-pill px-3.5 py-2 rounded-xl text-xs border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+                  selectedTime === "Todos"
+                    ? "active border-[#d4af37] shadow-lg shadow-[#d4af37]/10"
+                    : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+                }`}
+              >
+                Todos
+              </button>
+              {TIMES_OF_DAY.map((time) => {
+                const info = TIME_INFO[time];
+                const isSelected = selectedTime === time;
+                return (
+                  <button
+                    key={time}
+                    onClick={() => handleTimeChange(isSelected ? "Todos" : time)}
+                    className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+                      isSelected
+                        ? `${info.bgColor} ${info.color} ${info.borderColor} shadow-sm`
+                        : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+                    }`}
+                  >
+                    <span className="text-sm">{info.emoji}</span>
+                    {time}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Climate filters */}
+          <div>
+            <h3 className="text-[10px] text-[#555] tracking-[0.2em] uppercase mb-3 font-[family-name:var(--font-inter)]">
+              Clima ideal
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => handleClimateChange("Todos")}
+                className={`filter-pill px-3.5 py-2 rounded-xl text-xs border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+                  selectedClimate === "Todos"
+                    ? "active border-[#d4af37] shadow-lg shadow-[#d4af37]/10"
+                    : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+                }`}
+              >
+                Todos
+              </button>
+              {CLIMATES.map((climate) => {
+                const info = CLIMATE_INFO[climate];
+                const isSelected = selectedClimate === climate;
+                return (
+                  <button
+                    key={climate}
+                    onClick={() => handleClimateChange(isSelected ? "Todos" : climate)}
+                    className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+                      isSelected
+                        ? `${info.bgColor} ${info.color} ${info.borderColor} shadow-sm`
+                        : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+                    }`}
+                  >
+                    <span className="text-sm">{info.emoji}</span>
+                    {climate}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Occasion filters */}
+          <div>
+            <h3 className="text-[10px] text-[#555] tracking-[0.2em] uppercase mb-3 font-[family-name:var(--font-inter)]">
+              Ocasión
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => handleOccasionChange("Todos")}
+                className={`filter-pill px-3.5 py-2 rounded-xl text-xs border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+                  selectedOccasion === "Todos"
+                    ? "active border-[#d4af37] shadow-lg shadow-[#d4af37]/10"
+                    : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+                }`}
+              >
+                Todos
+              </button>
+              {OCCASIONS.map((occasion) => {
+                const info = OCCASION_INFO[occasion];
+                const isSelected = selectedOccasion === occasion;
+                return (
+                  <button
+                    key={occasion}
+                    onClick={() => handleOccasionChange(isSelected ? "Todos" : occasion)}
+                    className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+                      isSelected
+                        ? `${info.bgColor} ${info.color} ${info.borderColor} shadow-sm`
+                        : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+                    }`}
+                  >
+                    <span className="text-sm">{info.emoji}</span>
+                    {occasion}
                   </button>
                 );
               })}
