@@ -23,6 +23,8 @@ import dynamic from "next/dynamic";
 const SimilarPerfumes = dynamic(() => import("./SimilarPerfumes"), { ssr: false });
 import { NOTE_PYRAMIDS } from '@/lib/notePyramids';
 import { PERFUME_ACCORDS } from '@/lib/perfumeAccords';
+import { usePrices } from '@/hooks/usePrices';
+import { formatPrice } from '@/lib/priceMapping';
 
 // ─── Gender badge styles ───
 const genderStyles: Record<string, string> = {
@@ -219,6 +221,10 @@ export default function PerfumeDetail({
   returnLabel,
   onReturn,
 }: PerfumeDetailProps) {
+  // ─── Price integration ───
+  const { getPrice: getPriceFromHook } = usePrices();
+  const retailPrice = getPriceFromHook(perfume.id);
+
   const [imgTriedJpg, setImgTriedJpg] = useState(false);
   const [imgError, setImgError] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
@@ -604,6 +610,18 @@ export default function PerfumeDetail({
 
             {/* Spacer */}
             <div className="flex-1" />
+
+            {/* ─── Price Display ─── */}
+            {retailPrice !== null && (
+              <div className="mt-3 pt-3 border-t border-white/5">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent">
+                    {formatPrice(retailPrice)}
+                  </span>
+                  <span className="text-xs text-white/40 font-[family-name:var(--font-inter)]">USD</span>
+                </div>
+              </div>
+            )}
 
             {/* ─── Action Buttons ─── */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-4 pt-4 border-t border-white/5">

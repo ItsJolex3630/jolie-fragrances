@@ -102,6 +102,8 @@ import {
   type Gender,
   type Note,
 } from "@/lib/perfumes";
+import { usePrices } from "@/hooks/usePrices";
+import { formatPrice } from "@/lib/priceMapping";
 import {
   TIMES_OF_DAY,
   CLIMATES,
@@ -167,10 +169,12 @@ const PerfumeCard = memo(function PerfumeCard({
   perfume,
   index,
   onSelect,
+  retailPrice,
 }: {
   perfume: Perfume;
   index: number;
   onSelect: (perfume: Perfume) => void;
+  retailPrice: number | null;
 }) {
   const [imgTriedJpg, setImgTriedJpg] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -299,6 +303,12 @@ const PerfumeCard = memo(function PerfumeCard({
             <h3 className="text-sm sm:text-[15px] font-semibold text-white/90 leading-snug font-[family-name:var(--font-playfair)] line-clamp-2 min-h-[2.5rem]">
               {perfume.name}
             </h3>
+            {/* Price */}
+            {retailPrice !== null && (
+              <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent">
+                {formatPrice(retailPrice)}
+              </p>
+            )}
           </div>
         </button>
       </div>
@@ -337,6 +347,9 @@ function BrandCard({
 
 // ─── Main Page Component ───
 export default function Home() {
+  // ─── Price integration ───
+  const { getPrice } = usePrices();
+
   const [selectedBrand, setSelectedBrand] = useState<Brand | "Todas">("Todas");
   const [selectedGender, setSelectedGender] = useState<Gender | "Todos">("Todos");
   const [searchQuery, setSearchQuery] = useState("");
@@ -1260,6 +1273,7 @@ export default function Home() {
                   perfume={perfume}
                   index={index}
                   onSelect={() => setSelectedPerfume(perfume)}
+                  retailPrice={getPrice(perfume.id)}
                 />
               ))}
             </motion.div>
