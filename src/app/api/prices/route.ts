@@ -15,7 +15,39 @@ let cacheTimestamp = 0;
 const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 
 /**
- * Fetch prices from GitHub private repo using PAT
+ * Parse the TypeScript file content from Lista-de-Precios repo.
+ * The file has entries like:
+ *   { id: 1, name: "YARA ELIXIR", volume: "100ML", gender: "DAMA", wholesale: 39 },
+ *   { id: 72, name: "QIMMAH", volume: "100ML", gender: "CABALLERO", wholesale: null },
+ */
+function parseTypeScriptPrices(tsContent: string): ListaPriceEntry[] {
+  const entries: ListaPriceEntry[] = [];
+
+  // Match each object entry in the array: { id: N, name: "...", volume: "...", gender: "...", wholesale: N | null }
+  const entryRegex = /\{\s*id:\s*(\d+),\s*name:\s*"([^"]+)",\s*volume:\s*"([^"]*)",\s*gender:\s*"[^"]+",\s*wholesale:\s*(null|\d+(?:\.\d+)?)\s*\}/g;
+
+  let match;
+  while ((match = entryRegex.exec(tsContent)) !== null) {
+    const id = parseInt(match[1], 10);
+    const name = match[2];
+    const wholesaleRaw = match[4];
+
+    const volume = match[3]; // Extract volume field for disambiguation
+
+    entries.push({
+      id,
+      name,
+      volume: volume || undefined, // Include volume for volume-aware matching
+      wholesale: wholesaleRaw === 'null' ? null : parseFloat(wholesaleRaw),
+    });
+  }
+
+  return entries;
+}
+
+/**
+ * Fetch prices from GitHub private repo using PAT.
+ * Reads the TypeScript source file directly and parses it.
  */
 async function fetchPricesFromGitHub(): Promise<ListaPriceEntry[] | null> {
   const pat = process.env.GITHUB_PAT;
@@ -29,7 +61,7 @@ async function fetchPricesFromGitHub(): Promise<ListaPriceEntry[] | null> {
     const response = await fetch(url, {
       headers: {
         'Authorization': `Bearer ${pat}`,
-        'Accept': 'application/vnd.github.v3.raw',
+        'Accept': 'application/vnd.github.v3.raw', // Get raw file content
         'User-Agent': 'JolieFragrances-PriceSync',
       },
       next: { revalidate: 1800 }, // Cache for 30 min at Next.js level
@@ -40,10 +72,27 @@ async function fetchPricesFromGitHub(): Promise<ListaPriceEntry[] | null> {
       return null;
     }
 
-    const data = await response.json();
-    if (Array.isArray(data)) {
-      return data as ListaPriceEntry[];
+    const tsContent = await response.text();
+
+    // Parse TypeScript file to extract price entries
+    const entries = parseTypeScriptPrices(tsContent);
+
+    if (entries.length > 0) {
+      console.log(`[prices] Parsed ${entries.length} price entries from GitHub TypeScript file`);
+      return entries;
     }
+
+    // Fallback: try to parse as JSON (for backward compatibility with prices.json)
+    try {
+      const jsonData = JSON.parse(tsContent);
+      if (Array.isArray(jsonData)) {
+        return jsonData as ListaPriceEntry[];
+      }
+    } catch {
+      // Not JSON, that's fine
+    }
+
+    console.error('[prices] Could not parse price data from GitHub file');
     return null;
   } catch (error) {
     console.error('[prices] Error fetching from GitHub:', error);

@@ -4,10 +4,12 @@
  * Maps Lista-de-Precios wholesale prices to Jolie Fragrances perfume IDs.
  * 
  * Architecture:
- * 1. prices.json in Lista-de-Precios GitHub repo contains wholesale prices
+ * 1. src/data/perfumes.ts in Lista-de-Precios GitHub repo contains wholesale prices
  * 2. This file maps those prices to Jolie perfume IDs
  * 3. The API route fetches prices from GitHub, applies markup, returns retail prices
  * 4. Cost prices are NEVER exposed to the frontend
+ * 5. When names have volume variants (e.g. "AL HARAMAIN GOLD EDITION 100ML" vs "120ML"),
+ *    volume-aware matching ensures the correct price is used
  */
 
 // Default markup percentage (can be overridden via env var)
@@ -17,7 +19,7 @@ export const DEFAULT_MARGIN_PERCENT = 35;
 export const PRICE_REPO = {
   owner: 'ItsJolex3630',
   repo: 'Lista-de-Precios',
-  path: 'public/prices.json',
+  path: 'src/data/perfumes.ts', // TypeScript file with wholesale prices
   branch: 'main',
 } as const;
 
@@ -291,13 +293,13 @@ export const FALLBACK_WHOLESALE_PRICES: Record<number, number | null> = {
   151: null, // Eter Arabian
 
   // ==================== AL HARAMAIN ====================
-  6: null,   // Amber Oud Rouge Edition
+  6: null,   // Amber Oud Rouge Edition (100ML)
   7: 65,     // Amber Oud Gold Edition (120ML)
   8: 58,     // Amber Oud Carbon Edition
   9: 62,     // Amber Oud White Edition
-  10: 65,    // L'Aventure
-  11: null,  // L'Aventure Woman
-  154: null, // Amber Oud Aqua Dubai
+  10: 65,    // L'Aventure (Ruby 100ML)
+  11: null,  // L'Aventure Woman (Ruby 120ML)
+  154: null, // Amber Oud Aqua Dubai (Gold Edition 100ML)
 
   // ==================== LATTAFA ====================
   14: 30,    // Bade'e Al Oud Amethyst
@@ -502,6 +504,14 @@ export function normalizeName(name: string): string {
 }
 
 /**
+ * Extract volume from a perfume name (e.g. "120ML" from "AL HARAMAIN GOLD EDITION 120ML")
+ */
+export function extractVolume(name: string): string | null {
+  const match = name.toUpperCase().match(/\b(\d+ML)\b/);
+  return match ? match[1] : null;
+}
+
+/**
  * Calculate retail price from wholesale price with margin
  */
 export function calculateRetailPrice(wholesale: number | null, marginPercent: number = DEFAULT_MARGIN_PERCENT): number | null {
@@ -519,29 +529,75 @@ export function formatPrice(price: number | null): string {
 
 /**
  * Interface for the price data from Lista-de-Precios
+ * Now includes volume for disambiguation
  */
 export interface ListaPriceEntry {
   id: number;
   name: string;
+  volume?: string; // Volume like "100ML", "120ML" etc.
   wholesale: number | null;
 }
 
 /**
- * Build a price lookup from Lista-de-Precios data
- * Returns a map of normalized Lista name → wholesale price
+ * Build a price lookup from Lista-de-Precios data.
+ * 
+ * Creates a TWO-LEVEL lookup map:
+ * 1. "NAME + VOLUME" → price (for volume-specific matching, e.g. "AL HARAMAIN GOLD EDITION 120ML")
+ * 2. "NAME" → price (for general matching without volume)
+ * 
+ * When multiple entries have the same normalized name but different volumes,
+ * each volume variant gets its own key. The base name (without volume) is set
+ * to the FIRST non-null price found for that name.
  */
 export function buildListaPriceLookup(prices: ListaPriceEntry[]): Map<string, number | null> {
   const lookup = new Map<string, number | null>();
+  
+  // Group entries by normalized name to detect duplicates
+  const groups = new Map<string, ListaPriceEntry[]>();
   for (const entry of prices) {
     const normalizedName = normalizeName(entry.name);
-    lookup.set(normalizedName, entry.wholesale);
+    if (!groups.has(normalizedName)) {
+      groups.set(normalizedName, []);
+    }
+    groups.get(normalizedName)!.push(entry);
   }
+  
+  for (const [normalizedName, entries] of groups) {
+    if (entries.length > 1) {
+      // Multiple entries with same name (different volumes)
+      // Add volume-specific keys for each entry
+      for (const entry of entries) {
+        if (entry.volume && entry.volume.trim() !== '') {
+          const volumeKey = `${normalizedName} ${entry.volume.toUpperCase()}`;
+          lookup.set(volumeKey, entry.wholesale);
+        }
+      }
+      // Set base name to first non-null price, or first entry's price
+      const firstNonNull = entries.find(e => e.wholesale !== null);
+      lookup.set(normalizedName, firstNonNull?.wholesale ?? entries[0].wholesale);
+    } else {
+      // Single entry - just use the normalized name
+      lookup.set(normalizedName, entries[0].wholesale);
+      // Also add with volume if present
+      const entry = entries[0];
+      if (entry.volume && entry.volume.trim() !== '') {
+        const volumeKey = `${normalizedName} ${entry.volume.toUpperCase()}`;
+        lookup.set(volumeKey, entry.wholesale);
+      }
+    }
+  }
+  
   return lookup;
 }
 
 /**
- * Resolve the wholesale price for a Jolie perfume ID
- * Uses the mapping + Lista price data
+ * Resolve the wholesale price for a Jolie perfume ID.
+ * 
+ * Matching priority:
+ * 1. Exact match with volume (e.g. "AL HARAMAIN GOLD EDITION 120ML")
+ * 2. Exact match without volume (e.g. "AL HARAMAIN GOLD EDITION")
+ * 3. Partial match (contains or contained by)
+ * 4. Fallback to static prices
  */
 export function resolveWholesalePrice(
   jolieId: number,
@@ -554,19 +610,31 @@ export function resolveWholesalePrice(
   }
 
   const normalizedName = normalizeName(listaName);
-  const listaPrice = listaLookup.get(normalizedName);
+  
+  // Step 1: Try volume-specific match first
+  // Extract volume from the JOLIE_TO_LISTA_NAME mapping (e.g. "120ML" from "AL HARAMAIN GOLD EDITION 120ML")
+  const volume = extractVolume(listaName);
+  if (volume) {
+    const volumeKey = `${normalizedName} ${volume}`;
+    const volumePrice = listaLookup.get(volumeKey);
+    if (volumePrice !== undefined) {
+      return volumePrice;
+    }
+  }
 
+  // Step 2: Try exact match without volume
+  const listaPrice = listaLookup.get(normalizedName);
   if (listaPrice !== undefined) {
     return listaPrice;
   }
 
-  // Try partial matching
+  // Step 3: Try partial matching
   for (const [key, price] of listaLookup.entries()) {
     if (key.includes(normalizedName) || normalizedName.includes(key)) {
       return price;
     }
   }
 
-  // Fall back to static prices
+  // Step 4: Fall back to static prices
   return FALLBACK_WHOLESALE_PRICES[jolieId] ?? null;
 }
