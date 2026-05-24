@@ -169,3 +169,22 @@ Stage Summary:
 - 148/189 perfumes have prices, 41 have null (not in Lista or no wholesale price set)
 - User needs to add GITHUB_PAT env var in Vercel dashboard for auto-sync
 - Without GITHUB_PAT, system uses embedded fallback prices (same data)
+
+---
+Task ID: 1
+Agent: Main Agent
+Task: Verify Excel inventory and update perfume prices/availability
+
+Work Log:
+- Read Excel file Inventario_Perfumes_Jolie_Fragrances.xlsx (404 with price, 59 sin precio)
+- Created comprehensive manual mapping between Excel names and perfumes.ts names (189 perfumes)
+- Applied sugerido prices (35% markup) to 96 perfumes that appear in Excel
+- Marked 93 perfumes as unavailable (available: false) and removed their prices
+- Verified file structure integrity - no syntax issues
+- Built Next.js app successfully
+- Pushed changes to GitHub
+
+Stage Summary:
+- 96 perfumes now have correct sugerido prices from Excel
+- 93 perfumes marked as unavailable (not in Excel or Sin precio)
+- All changes committed and pushed to main branch
