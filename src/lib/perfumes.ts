@@ -404,6 +404,7 @@ export const perfumes: Perfume[] = [
     name: "Club de Nuit Intense Man",
     brand: "Armaf",
     gender: "Caballero",
+    price: 50,
     size: "105ml",
     fragranticaId: 34696,
     brandSlug: "Armaf",
@@ -418,12 +419,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 77861,
     brandSlug: "Armaf",
     perfumeSlug: "Club-de-Nuit-Intense-Man-Limited-Edition-Parfum",
+    available: false,
+
   },
   {
     id: 3,
     name: "Club de Nuit Woman",
     brand: "Armaf",
     gender: "Dama",
+    price: 43,
     size: "105ml",
     fragranticaId: 27655,
     brandSlug: "Armaf",
@@ -438,12 +442,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 78474,
     brandSlug: "Armaf",
     perfumeSlug: "Club-de-Nuit-White-Imperiale",
+    available: false,
+
   },
   {
     id: 115,
     name: "Club de Nuit Iconic",
     brand: "Armaf",
     gender: "Caballero",
+    price: 68,
     size: "100ml",
     fragranticaId: 78475,
     brandSlug: "Armaf",
@@ -454,6 +461,7 @@ export const perfumes: Perfume[] = [
     name: "Club de Nuit Sillage",
     brand: "Armaf",
     gender: "Unisex",
+    price: 54,
     size: "100ml",
     fragranticaId: 64105,
     brandSlug: "Armaf",
@@ -468,12 +476,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 77860,
     brandSlug: "Armaf",
     perfumeSlug: "Club-De-Nuit-Urban-Elixir",
+    available: false,
+
   },
   {
     id: 118,
     name: "Club de Nuit Urban Man",
     brand: "Armaf",
     gender: "Caballero",
+    price: 45,
     size: "100ml",
     fragranticaId: 47394,
     brandSlug: "Armaf",
@@ -484,6 +495,7 @@ export const perfumes: Perfume[] = [
     name: "Club de Nuit Maleka",
     brand: "Armaf",
     gender: "Dama",
+    price: 61,
     size: "100ml",
     fragranticaId: 106168,
     brandSlug: "Armaf",
@@ -498,12 +510,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 78476,
     brandSlug: "Armaf",
     perfumeSlug: "Club-de-Nuit-Untold",
+    available: false,
+
   },
   {
     id: 121,
     name: "Club de Nuit Precieux I",
     brand: "Armaf",
     gender: "Unisex",
+    price: 74,
     size: "100ml",
     fragranticaId: 93272,
     brandSlug: "Armaf",
@@ -514,6 +529,7 @@ export const perfumes: Perfume[] = [
     name: "Odyssey Homme White Edition",
     brand: "Armaf",
     gender: "Caballero",
+    price: 41,
     size: "100ml",
     fragranticaId: 64466,
     brandSlug: "Armaf",
@@ -524,6 +540,7 @@ export const perfumes: Perfume[] = [
     name: "Odyssey Aoud",
     brand: "Armaf",
     gender: "Unisex",
+    price: 42,
     size: "100ml",
     fragranticaId: 83136,
     brandSlug: "Armaf",
@@ -534,6 +551,7 @@ export const perfumes: Perfume[] = [
     name: "Odyssey Mandarine Sky",
     brand: "Armaf",
     gender: "Caballero",
+    price: 47,
     size: "100ml",
     fragranticaId: 83132,
     brandSlug: "Armaf",
@@ -544,6 +562,7 @@ export const perfumes: Perfume[] = [
     name: "Odyssey Artisto",
     brand: "Armaf",
     gender: "Unisex",
+    price: 54,
     size: "100ml",
     fragranticaId: 106710,
     brandSlug: "Armaf",
@@ -554,6 +573,7 @@ export const perfumes: Perfume[] = [
     name: "Odyssey Bahamas",
     brand: "Armaf",
     gender: "Unisex",
+    price: 57,
     size: "100ml",
     fragranticaId: 115127,
     brandSlug: "Armaf",
@@ -564,6 +584,7 @@ export const perfumes: Perfume[] = [
     name: "Odyssey Toffee Coffee",
     brand: "Armaf",
     gender: "Unisex",
+    price: 63,
     size: "100ml",
     fragranticaId: 115137,
     brandSlug: "Armaf",
@@ -574,6 +595,7 @@ export const perfumes: Perfume[] = [
     name: "Odyssey Spectra",
     brand: "Armaf",
     gender: "Unisex",
+    price: 41,
     size: "100ml",
     fragranticaId: 98692,
     brandSlug: "Armaf",
@@ -588,12 +610,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 83134,
     brandSlug: "Armaf",
     perfumeSlug: "Odyssey-Aqua-Edition",
+    available: false,
+
   },
   {
     id: 110,
     name: "Odyssey Homme",
     brand: "Armaf",
     gender: "Caballero",
+    price: 41,
     size: "100ml",
     fragranticaId: 64464,
     brandSlug: "Armaf",
@@ -604,6 +629,7 @@ export const perfumes: Perfume[] = [
     name: "Odyssey Mandarin Sky Vintage Edition",
     brand: "Armaf",
     gender: "Unisex",
+    price: 63,
     size: "100ml",
     fragranticaId: 123184,
     brandSlug: "Armaf",
@@ -618,12 +644,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 106709,
     brandSlug: "Armaf",
     perfumeSlug: "Odyssey-Mandarin-Sky-Elixir",
+    available: false,
+
   },
   {
     id: 113,
     name: "Odyssey Mega",
     brand: "Armaf",
     gender: "Caballero",
+    price: 41,
     size: "100ml",
     fragranticaId: 83133,
     brandSlug: "Armaf",
@@ -634,6 +663,7 @@ export const perfumes: Perfume[] = [
     name: "Odyssey Limoni Fresh",
     brand: "Armaf",
     gender: "Unisex",
+    price: 43,
     size: "100ml",
     fragranticaId: 98695,
     brandSlug: "Armaf",
@@ -648,6 +678,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 98717,
     brandSlug: "Armaf",
     perfumeSlug: "Yum-Yum",
+    available: false,
+
   },
   {
     id: 143,
@@ -658,12 +690,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 123334,
     brandSlug: "Armaf",
     perfumeSlug: "Bon-Bon",
+    available: false,
+
   },
   {
     id: 144,
     name: "Island Bliss",
     brand: "Armaf",
     gender: "Unisex",
+    price: 62,
     size: "100ml",
     fragranticaId: 98718,
     brandSlug: "Armaf",
@@ -674,6 +709,7 @@ export const perfumes: Perfume[] = [
     name: "Island Breeze",
     brand: "Armaf",
     gender: "Unisex",
+    price: 68,
     size: "100ml",
     fragranticaId: 116844,
     brandSlug: "Armaf",
@@ -688,6 +724,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 92894,
     brandSlug: "Armaf",
     perfumeSlug: "Arabian-Sky",
+    available: false,
+
   },
 
   // ==================== AL HARAMAIN ====================
@@ -696,6 +734,7 @@ export const perfumes: Perfume[] = [
     name: "Amber Oud Rouge Edition",
     brand: "Al Haramain",
     gender: "Unisex",
+    price: 88,
     size: "100ml",
     fragranticaId: 66100,
     brandSlug: "Al-Haramain-Perfumes",
@@ -707,6 +746,7 @@ export const perfumes: Perfume[] = [
     name: "Amber Oud Gold Edition",
     brand: "Al Haramain",
     gender: "Unisex",
+    price: 88,
     size: "100ml",
     fragranticaId: 51816,
     brandSlug: "Al-Haramain-Perfumes",
@@ -718,6 +758,7 @@ export const perfumes: Perfume[] = [
     name: "Amber Oud Carbon Edition",
     brand: "Al Haramain",
     gender: "Unisex",
+    price: 78,
     size: "100ml",
     fragranticaId: 73207,
     brandSlug: "Al-Haramain-Perfumes",
@@ -729,6 +770,7 @@ export const perfumes: Perfume[] = [
     name: "Amber Oud White Edition",
     brand: "Al Haramain",
     gender: "Unisex",
+    price: 84,
     size: "100ml",
     fragranticaId: 73210,
     brandSlug: "Al-Haramain-Perfumes",
@@ -745,6 +787,8 @@ export const perfumes: Perfume[] = [
     brandSlug: "Al-Haramain-Perfumes",
     perfumeSlug: "L-Aventure",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Al-Haramain-Perfumes/L-Aventure-40405.html",
+    available: false,
+
   },
   {
     id: 11,
@@ -756,6 +800,8 @@ export const perfumes: Perfume[] = [
     brandSlug: "Al-Haramain-Perfumes",
     perfumeSlug: "L-Aventure-Femme",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Al-Haramain-Perfumes/L-Aventure-Femme-51820.html",
+    available: false,
+
   },
   {
     id: 154,
@@ -766,6 +812,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 96482,
     brandSlug: "Al-Haramain-Perfumes",
     perfumeSlug: "Amber-Oud-Aqua-Dubai",
+    available: false,
+
   },
 
   // ==================== LATTAFA (Verificados Batch 1) ====================
@@ -774,6 +822,7 @@ export const perfumes: Perfume[] = [
     name: "Bade'e Al Oud Amethyst",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 41,
     size: "100ml",
     fragranticaId: 68214,
     brandSlug: "Lattafa-Perfumes",
@@ -785,6 +834,7 @@ export const perfumes: Perfume[] = [
     name: "Bade'e Al Oud Oud for Glory",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 41,
     size: "100ml",
     fragranticaId: 64948,
     brandSlug: "Lattafa-Perfumes",
@@ -796,6 +846,7 @@ export const perfumes: Perfume[] = [
     name: "Bade'e Al Oud Honor & Glory",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 41,
     size: "100ml",
     fragranticaId: 84302,
     brandSlug: "Lattafa-Perfumes",
@@ -808,6 +859,7 @@ export const perfumes: Perfume[] = [
     name: "Eclaire Pistache",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 58,
     size: "100ml",
     fragranticaId: 113777,
     brandSlug: "Lattafa-Perfumes",
@@ -819,6 +871,7 @@ export const perfumes: Perfume[] = [
     name: "Eclaire Banoffi",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 58,
     size: "100ml",
     fragranticaId: 113778,
     brandSlug: "Lattafa-Perfumes",
@@ -830,6 +883,7 @@ export const perfumes: Perfume[] = [
     name: "Mayar Natural Intense",
     brand: "Lattafa",
     gender: "Dama",
+    price: 36,
     size: "100ml",
     fragranticaId: 89759,
     brandSlug: "Lattafa-Perfumes",
@@ -846,12 +900,15 @@ export const perfumes: Perfume[] = [
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Fakhar-Black",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Lattafa-Perfumes/Fakhar-Black-70465.html",
+    available: false,
+
   },
   {
     id: 22,
     name: "Fakhar Rose",
     brand: "Lattafa",
     gender: "Dama",
+    price: 41,
     size: "100ml",
     fragranticaId: 70466,
     brandSlug: "Lattafa-Perfumes",
@@ -864,6 +921,7 @@ export const perfumes: Perfume[] = [
     name: "Qaed Al Fursan",
     brand: "Lattafa",
     gender: "Caballero",
+    price: 34,
     size: "100ml",
     fragranticaId: 67996,
     brandSlug: "Lattafa-Perfumes",
@@ -874,6 +932,7 @@ export const perfumes: Perfume[] = [
     name: "Qaed Al Fursan Untamed",
     brand: "Lattafa",
     gender: "Caballero",
+    price: 36,
     size: "100ml",
     fragranticaId: 105383,
     brandSlug: "Lattafa-Perfumes",
@@ -885,6 +944,7 @@ export const perfumes: Perfume[] = [
     name: "Qaed Al Fursan Unlimited",
     brand: "Lattafa",
     gender: "Caballero",
+    price: 34,
     size: "100ml",
     fragranticaId: 82590,
     brandSlug: "Lattafa-Perfumes",
@@ -899,12 +959,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 84769,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Hayaati-Florence",
+    available: false,
+
   },
   {
     id: 142,
     name: "Hayaati Gold Elixir",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 34,
     size: "100ml",
     fragranticaId: 76589,
     brandSlug: "Lattafa-Perfumes",
@@ -915,6 +978,7 @@ export const perfumes: Perfume[] = [
     name: "Hayaati",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 34,
     size: "100ml",
     fragranticaId: 75902,
     brandSlug: "Lattafa-Perfumes",
@@ -929,12 +993,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 84306,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Hayaati-Al-Maleky",
+    available: false,
+
   },
   {
     id: 148,
     name: "Vintage Radio",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 47,
     size: "100ml",
     fragranticaId: 89454,
     brandSlug: "Lattafa-Perfumes",
@@ -945,6 +1012,7 @@ export const perfumes: Perfume[] = [
     name: "Emeer",
     brand: "Lattafa",
     gender: "Caballero",
+    price: 61,
     size: "100ml",
     fragranticaId: 89761,
     brandSlug: "Lattafa-Perfumes",
@@ -955,6 +1023,7 @@ export const perfumes: Perfume[] = [
     name: "Nebras Elixir",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 61,
     size: "100ml",
     fragranticaId: 85091,
     brandSlug: "Lattafa-Perfumes",
@@ -967,6 +1036,7 @@ export const perfumes: Perfume[] = [
     name: "Asad Elixir",
     brand: "Lattafa",
     gender: "Caballero",
+    price: 53,
     size: "100ml",
     fragranticaId: 117616,
     brandSlug: "Lattafa-Perfumes",
@@ -981,6 +1051,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 82731,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Ansaam-Gold",
+    available: false,
+
   },
   {
     id: 31,
@@ -991,6 +1063,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 82788,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Ansaam-Silver",
+    available: false,
+
   },
   {
     id: 32,
@@ -1001,6 +1075,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 82814,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Shaheen-Gold",
+    available: false,
+
   },
   {
     id: 33,
@@ -1011,6 +1087,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 82815,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Shaheen-Silver",
+    available: false,
+
   },
   {
     id: 34,
@@ -1021,6 +1099,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 82813,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Hala",
+    available: false,
+
   },
   {
     id: 35,
@@ -1031,6 +1111,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 81121,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Ishq-Al-Shuyukh-Gold",
+    available: false,
+
   },
   {
     id: 36,
@@ -1041,6 +1123,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 81099,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Ishq-Al-Shuyukh-Silver",
+    available: false,
+
   },
   {
     id: 37,
@@ -1051,12 +1135,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 85095,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Taweel",
+    available: false,
+
   },
   {
     id: 38,
     name: "Teriaq Intense",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 54,
     size: "100ml",
     fragranticaId: 99586,
     brandSlug: "Lattafa-Perfumes",
@@ -1071,12 +1158,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 85087,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Musamam-White-Intense",
+    available: false,
+
   },
   {
     id: 40,
     name: "Victoria",
     brand: "Lattafa",
     gender: "Dama",
+    price: 51,
     size: "100ml",
     fragranticaId: 102906,
     brandSlug: "Lattafa-Perfumes",
@@ -1091,12 +1181,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 101314,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Art-Of-Universe",
+    available: false,
+
   },
   {
     id: 42,
     name: "Vanilla Freak",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 68,
     size: "100ml",
     fragranticaId: 114400,
     brandSlug: "Lattafa-Perfumes",
@@ -1107,6 +1200,7 @@ export const perfumes: Perfume[] = [
     name: "Berry On Top",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 68,
     size: "100ml",
     fragranticaId: 114395,
     brandSlug: "Lattafa-Perfumes",
@@ -1117,6 +1211,7 @@ export const perfumes: Perfume[] = [
     name: "Choco Overdose",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 68,
     size: "100ml",
     fragranticaId: 114398,
     brandSlug: "Lattafa-Perfumes",
@@ -1127,6 +1222,7 @@ export const perfumes: Perfume[] = [
     name: "Mallow Madness",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 68,
     size: "100ml",
     fragranticaId: 114396,
     brandSlug: "Lattafa-Perfumes",
@@ -1137,6 +1233,7 @@ export const perfumes: Perfume[] = [
     name: "Whipped Pleasure",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 68,
     size: "100ml",
     fragranticaId: 114397,
     brandSlug: "Lattafa-Perfumes",
@@ -1149,6 +1246,7 @@ export const perfumes: Perfume[] = [
     name: "The Kingdom Woman",
     brand: "Lattafa",
     gender: "Dama",
+    price: 42,
     size: "100ml",
     fragranticaId: 98648,
     brandSlug: "Lattafa-Perfumes",
@@ -1163,12 +1261,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 97995,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "The-Kingdom-For-Men",
+    available: false,
+
   },
   {
     id: 49,
     name: "Layaan",
     brand: "Lattafa",
     gender: "Dama",
+    price: 54,
     size: "100ml",
     fragranticaId: 117123,
     brandSlug: "Lattafa-Perfumes",
@@ -1183,12 +1284,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 100126,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Afeef",
+    available: false,
+
   },
   {
     id: 51,
     name: "Al Noble Safeer",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 41,
     size: "100ml",
     fragranticaId: 82795,
     brandSlug: "Lattafa-Perfumes",
@@ -1203,6 +1307,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 82794,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Ameer",
+    available: false,
+
   },
   {
     id: 53,
@@ -1213,12 +1319,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 82796,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Wazeer",
+    available: false,
+
   },
   {
     id: 54,
     name: "Her Confession",
     brand: "Lattafa",
     gender: "Dama",
+    price: 61,
     size: "100ml",
     fragranticaId: 96864,
     brandSlug: "Lattafa-Perfumes",
@@ -1233,12 +1342,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 96866,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "His-Confession",
+    available: false,
+
   },
   {
     id: 56,
     name: "Ajwaa",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 61,
     size: "100ml",
     fragranticaId: 85368,
     brandSlug: "Lattafa-Perfumes",
@@ -1249,6 +1361,7 @@ export const perfumes: Perfume[] = [
     name: "Sehr",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 65,
     size: "100ml",
     fragranticaId: 94967,
     brandSlug: "Lattafa-Perfumes",
@@ -1263,6 +1376,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 110354,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Habik-For-Women",
+    available: false,
+
   },
   {
     id: 59,
@@ -1273,12 +1388,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 119155,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Eternal-Vanille",
+    available: false,
+
   },
   {
     id: 60,
     name: "Jassor",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 50,
     size: "100ml",
     fragranticaId: 85093,
     brandSlug: "Lattafa-Perfumes",
@@ -1293,12 +1411,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 112859,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Dynasty",
+    available: false,
+
   },
   {
     id: 62,
     name: "Velvet Rose",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 34,
     size: "100ml",
     fragranticaId: 76867,
     brandSlug: "Lattafa-Perfumes",
@@ -1313,6 +1434,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 107089,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Petra",
+    available: false,
+
   },
   {
     id: 64,
@@ -1323,12 +1446,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 105152,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Atheeri",
+    available: false,
+
   },
   {
     id: 65,
     name: "Sakeena",
     brand: "Lattafa",
     gender: "Dama",
+    price: 41,
     size: "100ml",
     fragranticaId: 85094,
     brandSlug: "Lattafa-Perfumes",
@@ -1343,12 +1469,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 85091,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Emaan",
+    available: false,
+
   },
   {
     id: 67,
     name: "Qimmah",
     brand: "Lattafa",
     gender: "Dama",
+    price: 30,
     size: "100ml",
     fragranticaId: 82793,
     brandSlug: "Lattafa-Perfumes",
@@ -1363,6 +1492,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 64947,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Ameer-Al-Oudh-Intense-Oud",
+    available: false,
+
   },
   {
     id: 69,
@@ -1373,6 +1504,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 64950,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Maahir",
+    available: false,
+
   },
   {
     id: 70,
@@ -1383,6 +1516,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 66564,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Maahir-Black-Edition",
+    available: false,
+
   },
   {
     id: 71,
@@ -1393,6 +1528,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 82727,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Maahir-Legacy",
+    available: false,
+
   },
   {
     id: 72,
@@ -1403,12 +1540,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 71868,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Ramz-Lattafa-Silver",
+    available: false,
+
   },
   {
     id: 73,
     name: "Ramz Gold",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 30,
     size: "100ml",
     fragranticaId: 70368,
     brandSlug: "Lattafa-Perfumes",
@@ -1423,6 +1563,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 66011,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Najdia",
+    available: false,
+
   },
   {
     id: 75,
@@ -1433,6 +1575,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 75471,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Suqraat",
+    available: false,
+
   },
 
   // ==================== LATTAFA - YARA ====================
@@ -1441,6 +1585,7 @@ export const perfumes: Perfume[] = [
     name: "Yara",
     brand: "Lattafa",
     gender: "Dama",
+    price: 38,
     size: "100ml",
     fragranticaId: 76880,
     brandSlug: "Lattafa-Perfumes",
@@ -1451,6 +1596,7 @@ export const perfumes: Perfume[] = [
     name: "Yara Tous",
     brand: "Lattafa",
     gender: "Dama",
+    price: 38,
     size: "100ml",
     fragranticaId: 83320,
     brandSlug: "Lattafa-Perfumes",
@@ -1461,6 +1607,7 @@ export const perfumes: Perfume[] = [
     name: "Yara Moi",
     brand: "Lattafa",
     gender: "Dama",
+    price: 38,
     size: "100ml",
     fragranticaId: 80722,
     brandSlug: "Lattafa-Perfumes",
@@ -1477,12 +1624,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 72821,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Asad",
+    available: false,
+
   },
   {
     id: 135,
     name: "Asad Bourbon",
     brand: "Lattafa",
     gender: "Caballero",
+    price: 47,
     size: "100ml",
     fragranticaId: 101124,
     brandSlug: "Lattafa-Perfumes",
@@ -1493,6 +1643,7 @@ export const perfumes: Perfume[] = [
     name: "Asad Zanzibar",
     brand: "Lattafa",
     gender: "Caballero",
+    price: 38,
     size: "100ml",
     fragranticaId: 90713,
     brandSlug: "Lattafa-Perfumes",
@@ -1505,6 +1656,7 @@ export const perfumes: Perfume[] = [
     name: "Khamrah",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 47,
     size: "100ml",
     fragranticaId: 75805,
     brandSlug: "Lattafa-Perfumes",
@@ -1515,6 +1667,7 @@ export const perfumes: Perfume[] = [
     name: "Khamrah Qwah",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 47,
     size: "100ml",
     fragranticaId: 88175,
     brandSlug: "Lattafa-Perfumes",
@@ -1525,6 +1678,7 @@ export const perfumes: Perfume[] = [
     name: "Khamrah Dukhan",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 54,
     size: "100ml",
     fragranticaId: 104529,
     brandSlug: "Lattafa-Perfumes",
@@ -1535,6 +1689,7 @@ export const perfumes: Perfume[] = [
     name: "Opulent Dubai",
     brand: "Lattafa",
     gender: "Unisex",
+    price: 38,
     size: "100ml",
     fragranticaId: 105609,
     brandSlug: "Lattafa-Perfumes",
@@ -1547,6 +1702,7 @@ export const perfumes: Perfume[] = [
     name: "Liquid Brun",
     brand: "French Avenue",
     gender: "Caballero",
+    price: 68,
     size: "100ml",
     fragranticaId: 94713,
     brandSlug: "French-Avenue",
@@ -1561,6 +1717,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 94702,
     brandSlug: "French-Avenue",
     perfumeSlug: "Aether",
+    available: false,
+
   },
   {
     id: 78,
@@ -1571,6 +1729,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 94023,
     brandSlug: "French-Avenue",
     perfumeSlug: "Luscious",
+    available: false,
+
   },
   {
     id: 79,
@@ -1581,6 +1741,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 105090,
     brandSlug: "French-Avenue",
     perfumeSlug: "Intense-Addiction",
+    available: false,
+
   },
   {
     id: 80,
@@ -1591,12 +1753,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 120872,
     brandSlug: "French-Avenue",
     perfumeSlug: "OBSIDIAN",
+    available: false,
+
   },
   {
     id: 81,
     name: "Vulcan Feu",
     brand: "French Avenue",
     gender: "Unisex",
+    price: 70,
     size: "100ml",
     fragranticaId: 105520,
     brandSlug: "French-Avenue",
@@ -1613,6 +1778,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 68271,
     brandSlug: "Afnan",
     perfumeSlug: "Supremacy-Not-Only-Intense",
+    available: false,
+
   },
   {
     id: 83,
@@ -1623,6 +1790,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 27352,
     brandSlug: "Afnan",
     perfumeSlug: "Supremacy-Silver",
+    available: false,
+
   },
   {
     id: 84,
@@ -1633,6 +1802,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 64372,
     brandSlug: "Afnan",
     perfumeSlug: "Supremacy-Incense",
+    available: false,
+
   },
   {
     id: 85,
@@ -1643,6 +1814,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 70703,
     brandSlug: "Afnan",
     perfumeSlug: "Supremacy-In-Heaven",
+    available: false,
+
   },
   {
     id: 86,
@@ -1653,6 +1826,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 99238,
     brandSlug: "Afnan",
     perfumeSlug: "9-PM-Rebel",
+    available: false,
+
   },
   {
     id: 87,
@@ -1663,6 +1838,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 78544,
     brandSlug: "Afnan",
     perfumeSlug: "9pm-pour-Femme",
+    available: false,
+
   },
 
   // ==================== AFNAN - 9AM/PM ====================
@@ -1671,6 +1848,7 @@ export const perfumes: Perfume[] = [
     name: "9PM",
     brand: "Afnan",
     gender: "Caballero",
+    price: 47,
     size: "100ml",
     fragranticaId: 65414,
     brandSlug: "Afnan",
@@ -1681,6 +1859,7 @@ export const perfumes: Perfume[] = [
     name: "9PM Nite Out",
     brand: "Afnan",
     gender: "Unisex",
+    price: 74,
     size: "100ml",
     fragranticaId: 123313,
     brandSlug: "Afnan",
@@ -1695,6 +1874,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 111894,
     brandSlug: "Afnan",
     perfumeSlug: "9PM-Elixir",
+    available: false,
+
   },
   {
     id: 140,
@@ -1705,12 +1886,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 78611,
     brandSlug: "Afnan",
     perfumeSlug: "9am-Dive",
+    available: false,
+
   },
   {
     id: 152,
     name: "Turathi Electric",
     brand: "Afnan",
     gender: "Unisex",
+    price: 58,
     size: "100ml",
     fragranticaId: 108244,
     brandSlug: "Afnan",
@@ -1721,6 +1905,7 @@ export const perfumes: Perfume[] = [
     name: "Turathi Blue",
     brand: "Afnan",
     gender: "Caballero",
+    price: 54,
     size: "100ml",
     fragranticaId: 70839,
     brandSlug: "Afnan",
@@ -1733,6 +1918,7 @@ export const perfumes: Perfume[] = [
     name: "Rave Now",
     brand: "Rave",
     gender: "Caballero",
+    price: 34,
     size: "100ml",
     fragranticaId: 82467,
     brandSlug: "RAVE",
@@ -1743,6 +1929,7 @@ export const perfumes: Perfume[] = [
     name: "Rave Now Women",
     brand: "Rave",
     gender: "Dama",
+    price: 34,
     size: "100ml",
     fragranticaId: 85088,
     brandSlug: "RAVE",
@@ -1757,6 +1944,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 129938,
     brandSlug: "RAVE",
     perfumeSlug: "Rage",
+    available: false,
+
   },
 
   // ==================== MAISON ALHAMBRA ====================
@@ -1769,6 +1958,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 89849,
     brandSlug: "Maison-Alhambra",
     perfumeSlug: "Baroque-Rouge-540",
+    available: false,
+
   },
   {
     id: 93,
@@ -1779,6 +1970,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 95509,
     brandSlug: "Maison-Alhambra",
     perfumeSlug: "Cassius",
+    available: false,
+
   },
   {
     id: 94,
@@ -1789,6 +1982,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 78559,
     brandSlug: "Maison-Alhambra",
     perfumeSlug: "The-Tux",
+    available: false,
+
   },
   {
     id: 95,
@@ -1799,6 +1994,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 93646,
     brandSlug: "Maison-Alhambra",
     perfumeSlug: "Glacier-Le-Noir",
+    available: false,
+
   },
   {
     id: 96,
@@ -1809,6 +2006,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 101640,
     brandSlug: "Maison-Alhambra",
     perfumeSlug: "Celeste",
+    available: false,
+
   },
   {
     id: 97,
@@ -1819,6 +2018,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 79943,
     brandSlug: "Maison-Alhambra",
     perfumeSlug: "Tobacco-Touch",
+    available: false,
+
   },
 
   // ==================== DUMONT ====================
@@ -1831,12 +2032,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 73020,
     brandSlug: "Dumont",
     perfumeSlug: "Nitro-Pour-Homme",
+    available: false,
+
   },
   {
     id: 99,
     name: "Nitro Blue",
     brand: "Dumont",
     gender: "Caballero",
+    price: 54,
     size: "100ml",
     fragranticaId: 73021,
     brandSlug: "Dumont",
@@ -1847,6 +2051,7 @@ export const perfumes: Perfume[] = [
     name: "Nitro Red",
     brand: "Dumont",
     gender: "Caballero",
+    price: 54,
     size: "100ml",
     fragranticaId: 73023,
     brandSlug: "Dumont",
@@ -1857,6 +2062,7 @@ export const perfumes: Perfume[] = [
     name: "Nitro White",
     brand: "Dumont",
     gender: "Caballero",
+    price: 54,
     size: "100ml",
     fragranticaId: 95995,
     brandSlug: "Dumont",
@@ -1867,6 +2073,7 @@ export const perfumes: Perfume[] = [
     name: "Nitro Platinum",
     brand: "Dumont",
     gender: "Caballero",
+    price: 61,
     size: "100ml",
     fragranticaId: 101991,
     brandSlug: "Dumont",
@@ -1883,12 +2090,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 46890,
     brandSlug: "Rasasi",
     perfumeSlug: "Hawas-for-Him",
+    available: false,
+
   },
   {
     id: 123,
     name: "Hawas Tropical",
     brand: "Rasasi",
     gender: "Caballero",
+    price: 68,
     size: "100ml",
     fragranticaId: 108054,
     brandSlug: "Rasasi",
@@ -1899,6 +2109,7 @@ export const perfumes: Perfume[] = [
     name: "Hawas Fire",
     brand: "Rasasi",
     gender: "Unisex",
+    price: 65,
     size: "100ml",
     fragranticaId: 101665,
     brandSlug: "Rasasi",
@@ -1913,6 +2124,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 112707,
     brandSlug: "Rasasi",
     perfumeSlug: "Hawas-Malibu",
+    available: false,
+
   },
   {
     id: 126,
@@ -1923,12 +2136,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 89050,
     brandSlug: "Rasasi",
     perfumeSlug: "Hawas-Ice",
+    available: false,
+
   },
   {
     id: 127,
     name: "Hawas Elixir",
     brand: "Rasasi",
     gender: "Unisex",
+    price: 57,
     size: "100ml",
     fragranticaId: 110808,
     brandSlug: "Rasasi",
@@ -1941,6 +2157,7 @@ export const perfumes: Perfume[] = [
     name: "Cool Water",
     brand: "Davidoff",
     gender: "Caballero",
+    price: 43,
     size: "125ml",
     fragranticaId: 507,
     brandSlug: "Davidoff",
@@ -1951,6 +2168,7 @@ export const perfumes: Perfume[] = [
     name: "Cool Water Woman",
     brand: "Davidoff",
     gender: "Dama",
+    price: 46,
     size: "100ml",
     fragranticaId: 508,
     brandSlug: "Davidoff",
@@ -1961,6 +2179,7 @@ export const perfumes: Perfume[] = [
     name: "Cool Water Intense",
     brand: "Davidoff",
     gender: "Caballero",
+    price: 57,
     size: "125ml",
     fragranticaId: 55266,
     brandSlug: "Davidoff",
@@ -1975,6 +2194,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 93644,
     brandSlug: "Maison-Alhambra",
     perfumeSlug: "Glacier-Bella",
+    available: false,
+
   },
   {
     id: 159,
@@ -2003,11 +2224,11 @@ export const perfumes: Perfume[] = [
     name: "Le Male Elixir",
     brand: "Jean Paul Gaultier",
     gender: "Caballero",
+    price: 192,
     size: "125ml",
     fragranticaId: 81642,
     brandSlug: "Jean-Paul-Gaultier",
     perfumeSlug: "Le-Male-Elixir",
-    available: false,
   },
   {
     id: 162,
@@ -2058,17 +2279,18 @@ export const perfumes: Perfume[] = [
     name: "Scandal Le Parfum",
     brand: "Jean Paul Gaultier",
     gender: "Dama",
+    price: 189,
     size: "80ml",
     fragranticaId: 74914,
     brandSlug: "Jean-Paul-Gaultier",
     perfumeSlug: "Scandal-Le-Parfum",
-    available: false,
   },
   {
     id: 167,
     name: "Sceptre Malachite",
     brand: "Maison Alhambra",
     gender: "Unisex",
+    price: 41,
     size: "100ml",
     fragranticaId: 94163,
     brandSlug: "Maison-Alhambra",
@@ -2083,6 +2305,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 102362,
     brandSlug: "Khadlaj-Perfumes",
     perfumeSlug: "Island",
+    available: false,
+
   },
   {
     id: 169,
@@ -2093,6 +2317,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 113593,
     brandSlug: "Khadlaj-Perfumes",
     perfumeSlug: "Island-Dreams",
+    available: false,
+
   },
   {
     id: 170,
@@ -2103,12 +2329,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 106802,
     brandSlug: "Khadlaj-Perfumes",
     perfumeSlug: "Island-Vanilla-Dunes",
+    available: false,
+
   },
   {
     id: 176,
     name: "Rome Pour Homme",
     brand: "Bharara",
     gender: "Caballero",
+    price: 53,
     size: "100ml",
     fragranticaId: 126400,
     brandSlug: "Bharara",
@@ -2123,12 +2352,15 @@ export const perfumes: Perfume[] = [
     fragranticaId: 74184,
     brandSlug: "Bharara",
     perfumeSlug: "King",
+    available: false,
+
   },
   {
     id: 180,
     name: "Bharara Queen",
     brand: "Bharara",
     gender: "Dama",
+    price: 92,
     size: "100ml",
     fragranticaId: 95437,
     brandSlug: "Bharara",
@@ -2139,6 +2371,7 @@ export const perfumes: Perfume[] = [
     name: "Viking Rio",
     brand: "Bharara",
     gender: "Unisex",
+    price: 109,
     size: "100ml",
     fragranticaId: 96818,
     brandSlug: "Bharara",
@@ -2153,6 +2386,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 113760,
     brandSlug: "Bharara",
     perfumeSlug: "Viking-Dubai",
+    available: false,
+
   },
   {
     id: 183,
@@ -2163,6 +2398,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 103876,
     brandSlug: "Bharara",
     perfumeSlug: "Viking-Cairo",
+    available: false,
+
   },
   {
     id: 184,
@@ -2173,6 +2410,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 113761,
     brandSlug: "Bharara",
     perfumeSlug: "Viking-Kashmir",
+    available: false,
+
   },
   {
     id: 185,
@@ -2183,6 +2422,8 @@ export const perfumes: Perfume[] = [
     fragranticaId: 114332,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Sherif",
+    available: false,
+
   },
 
   // ==================== CAROLINA HERRERA ====================
@@ -2191,11 +2432,11 @@ export const perfumes: Perfume[] = [
     name: "Good Girl",
     brand: "Carolina Herrera",
     gender: "Dama",
+    price: 209,
     size: "80ml",
     fragranticaId: 39681,
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "Good-Girl",
-    available: false,
     concentration: "Eau de Parfum",
   },
   {
@@ -2251,11 +2492,11 @@ export const perfumes: Perfume[] = [
     name: "La Bomba",
     brand: "Carolina Herrera",
     gender: "Dama",
+    price: 236,
     size: "80ml",
     fragranticaId: 105931,
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "La-Bomba",
-    available: false,
     concentration: "Eau de Parfum",
   },
   {
@@ -2275,11 +2516,11 @@ export const perfumes: Perfume[] = [
     name: "Bad Boy",
     brand: "Carolina Herrera",
     gender: "Caballero",
+    price: 155,
     size: "100ml",
     fragranticaId: 55449,
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "Bad-Boy",
-    available: false,
     concentration: "Eau de Toilette",
   },
   {
@@ -2335,11 +2576,11 @@ export const perfumes: Perfume[] = [
     name: "CH Men",
     brand: "Carolina Herrera",
     gender: "Caballero",
+    price: 132,
     size: "100ml",
     fragranticaId: 6759,
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "CH-Men",
-    available: false,
     concentration: "Eau de Toilette",
   },
   {
@@ -2347,11 +2588,11 @@ export const perfumes: Perfume[] = [
     name: "212 VIP Men",
     brand: "Carolina Herrera",
     gender: "Caballero",
+    price: 128,
     size: "100ml",
     fragranticaId: 12865,
     brandSlug: "Carolina-Herrera",
     perfumeSlug: "212-VIP-Men",
-    available: false,
     concentration: "Eau de Toilette",
   },
   {
