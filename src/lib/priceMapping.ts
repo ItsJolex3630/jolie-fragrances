@@ -10,226 +10,195 @@
 
 // Retail prices (already include 35% markup) from inventory Excel
 export const RETAIL_PRICES: Record<number, number | null> = {
-  // ==================== ARMAF ====================
-  1: 50,     // Club de Nuit Intense Man
-  2: null,   // Club de Nuit Intense Man Limited Edition
-  3: null,   // Club de Nuit Woman
-  4: null,   // Club de Nuit White Imperiale
-  5: 41,     // Odyssey Homme White Edition
-  91: 42,    // Odyssey Aoud
-  104: 47,   // Odyssey Mandarine Sky
-  105: 54,   // Odyssey Artisto
-  106: 57,   // Odyssey Bahamas
-  107: 63,   // Odyssey Toffee Coffee
-  108: 41,   // Odyssey Spectra
-  109: null, // Odyssey Aqua
-  110: 41,   // Odyssey Homme
-  111: 63,   // Odyssey Mandarin Sky Vintage Edition
-  112: null, // Odyssey Mandarin Sky Elixir
-  113: 41,   // Odyssey Mega
-  114: 43,   // Odyssey Limoni Fresh
-  115: 68,   // Club de Nuit Iconic
-  116: 54,   // Club de Nuit Sillage
-  117: null, // Club de Nuit Urban Man Elixir
-  118: 45,   // Club de Nuit Urban Man
-  119: 61,   // Club de Nuit Maleka
-  120: null, // Club de Nuit Untold
-  121: 74,   // Club de Nuit Precieux I
-  141: null, // Yum Yum
-  143: null, // Bon Bon
-  144: 62,   // Island Bliss
-  145: 68,   // Island Breeze
-  151: null, // Eter Arabian
-
-  // ==================== AL HARAMAIN ====================
-  6: 88,     // Amber Oud Rouge Edition (Gold Edition 100ML)
-  7: 88,     // Amber Oud Gold Edition (Gold Edition 120ML)
-  8: 78,     // Amber Oud Carbon Edition
-  9: 84,     // Amber Oud White Edition
-  10: 88,    // L'Aventure (Ruby 100ML)
-  11: 88,    // L'Aventure Woman (Ruby 120ML)
-  154: 88,   // Amber Oud Aqua Dubai
-
-  // ==================== LATTAFA ====================
-  14: 41,    // Bade'e Al Oud Amethyst
-  15: 41,    // Bade'e Al Oud Oud for Glory
-  16: 41,    // Bade'e Al Oud Honor & Glory
-  18: 58,    // Eclaire Pistache
-  19: 58,    // Eclaire Banoffi
-  20: 36,    // Mayar Natural Intense
-  21: 41,    // Fakhar Black (Fakhar Silver price)
-  22: 41,    // Fakhar Rose
-  103: 34,   // Qaed Al Fursan
-  25: 36,    // Qaed Al Fursan Untamed
-  26: 34,    // Qaed Al Fursan Unlimited
-  27: null,  // Hayaati Florence
-  142: 34,   // Hayaati Gold Elixir
-  146: 34,   // Hayaati
-  147: null, // Hayaati Al Maleky
-  148: 47,   // Vintage Radio
-  149: 61,   // Emeer
-  28: 61,    // Nebras Elixir
-  29: 53,    // Asad Elixir
-  30: null,  // Ansaam Gold
-  31: null,  // Ansaam Silver
-  32: null,  // Shaheen Gold
-  33: null,  // Shaheen Silver
-  34: null,  // Hala
-  35: null,  // Ishq Al Shuyukh Gold
-  36: null,  // Ishq Al Shuyukh Silver
-  37: 47,    // Ta'weel (Atlas Lattafa price)
-  38: 54,    // Teriaq Intense
-  39: null,  // Musamam White Intense
-  40: 51,    // Victoria
-  41: null,  // Art Of Universe
-  42: 68,    // Vanilla Freak
-  43: 68,    // Berry On Top
-  44: 68,    // Choco Overdose
-  45: 68,    // Mallow Madness
-  46: 68,    // Whipped Pleasure
-  47: 42,    // The Kingdom Woman
-  48: null,  // The Kingdom Men
-  49: 54,    // Layaan
-  50: null,  // Efeef
-  51: 41,    // Al Noble Safeer
-  52: 41,    // Al Noble Ameer (Sublime price)
-  53: 41,    // Al Noble Wazeer (Sublime price)
-  54: 61,    // Her Confession
-  55: null,  // His Confession
-  56: 61,    // Ajwaa
-  57: 65,    // Sehr
-  58: null,  // Habik Woman
-  59: null,  // Eternal Vanille
-  60: 50,    // Jassor
-  61: null,  // Dinasty
-  62: 34,    // Velvet Rose
-  63: null,  // Petra
-  64: null,  // Atheeri
-  65: 41,    // Sakeena
-  66: null,  // Emaan
-  67: 30,    // Qimmah
-  68: 41,    // Ameer Al Oudh (Oud for Glory price)
-  69: 41,    // Maahir (Oud for Glory price)
-  70: 78,    // Maahir Black Edition (Carbon price)
-  71: 47,    // Maahir Legacy (Fire on Ice price)
-  72: null,  // Ramz Silver
-  73: 30,    // Ramz Gold
-  74: 30,    // Najdia (Ramz Gold price)
-  75: null,  // Suqraat
-  131: 38,   // Yara
-  132: 38,   // Yara Tous
-  133: 38,   // Yara Moi
-  134: null,  // Asad
-  135: 47,   // Asad Bourbon
-  136: 38,   // Asad Zanzibar
-  128: 47,   // Khamrah
-  129: 47,   // Khamrah Qwah
-  130: 54,   // Khamrah Dukhan
-  150: 38,   // Opulent Dubai
-
-  // ==================== FRENCH AVENUE ====================
-  76: 68,    // Liquid Brun
-  77: 68,    // Aether (Liquid Brun price)
-  78: 41,    // Luscious (Fakhar Rose price)
-  79: 61,    // Intense Addiction (Her Confession price)
-  80: 41,    // Obsidian (Oud for Glory price)
-  81: 70,    // Vulcan Feu
-
-  // ==================== AFNAN ====================
-  82: 54,    // Supremacy Not Only Intense (Turathi Blue price)
-  83: 54,    // Supremacy Silver (Turathi Blue price)
-  84: 54,    // Supremacy Incense (Supremacy Tapis Rouge price)
-  85: 58,    // Supremacy In Heaven (Turathi Electric price)
-  86: null,  // 9PM Rebel
-  87: null,  // 9PM Pour Femme
-  137: 47,   // 9PM
-  138: 74,   // 9PM Nite Out
-  139: null, // 9PM Elixir
-  140: null, // 9AM Dive
-  152: 58,   // Turathi Electric
-  153: 54,   // Turathi Blue
-
-  // ==================== RAVE ====================
-  88: 34,    // Rave Now
-  89: 34,    // Rave Now Women
-  90: 34,    // Rave Rage
-
-  // ==================== MAISON ALHAMBRA ====================
-  92: null,  // Baroque Rouge 540
-  93: 41,    // Cassius (Fakhar Rose price)
-  94: 54,    // The Tux (Turathi Blue price)
-  95: 30,    // Glacier Le Noir (Ramz Gold price)
-  96: null,  // Céleste
-  97: 54,    // Tobacco Touch (Turathi Blue price)
-
-  // ==================== DUMONT ====================
-  98: 54,    // Nitro Pour Homme
-  99: 54,    // Nitro Blue
-  100: 54,   // Nitro Red
-  101: 54,   // Nitro White
-  102: 61,   // Nitro Platinum
-
-  // ==================== RASASI ====================
-  122: 54,   // Hawas For Him
-  123: 54,   // Hawas Tropical
-  124: 54,   // Hawas Fire
-  125: 54,   // Hawas Malibu
-  126: 54,   // Hawas Ice
-  127: 61,   // Hawas Elixir
-
-  // ==================== DAVIDOFF ====================
-  155: 43,   // Cool Water
-  156: 46,   // Cool Water Woman
-  157: 57,   // Cool Water Intense
-
-  // ==================== MAISON ALHAMBRA ====================
-  158: 41,   // Glacier Bella (Fakhar Rose price)
-  167: 54,   // Sceptre Malachite (Turathi Blue price)
-
-  // ==================== JEAN PAUL GAULTIER ====================
-  159: 61,   // Le Male Le Parfum
-  160: 74,   // Le Beau Le Parfum
-  161: 74,   // Le Male Elixir
-  162: 54,   // Scandal Pour Homme
-  163: 74,   // Le Beau
-  164: 74,   // Scandal
-  165: 61,   // Scandal Pour Homme Le Parfum
-  166: 74,   // Scandal Le Parfum
-
-  // ==================== KHADLAJ ====================
-  168: 62,   // Island (Island Bliss price)
-  169: 62,   // Island Dreams
-  170: 62,   // Island Vanilla Dunes
-
-  // ==================== BHARARA ====================
-  176: 54,   // Rome Pour Homme
-  178: 61,   // Bharara King
-  180: 74,   // Bharara Queen
-  181: 74,   // Viking Rio
-  182: 61,   // Viking Dubai
-  183: 61,   // Viking Cairo
-  184: 61,   // Viking Kashmir
-
-  // ==================== LATTAFA ====================
-  185: 54,   // Sherif
-
-  // ==================== CAROLINA HERRERA ====================
-  186: 108,  // Good Girl
-  187: 108,  // Good Girl Blush
-  188: 108,  // Very Good Girl
-  189: 108,  // Very Good Girl Elixir
-  190: 108,  // Good Girl Blush Elixir
-  191: 236,  // La Bomba
-  192: 108,  // Bad Boy Cobalt Parfum Electrique
-  193: 108,  // Bad Boy
-  194: 108,  // Bad Boy Cobalt Elixir
-  195: 108,  // Bad Boy Extreme
-  196: 108,  // Bad Boy Le Parfum
-  197: 108,  // Bad Boy Elixir
-  198: 108,  // CH Men
-  199: 108,  // 212 VIP Men
-  200: 108,  // 212 Men
-  201: 108,  // 212 VIP Black
+  1: 50,
+  2: null,
+  3: 43,
+  4: null,
+  5: 41,
+  6: 88,
+  7: 88,
+  8: 78,
+  9: 84,
+  10: null,
+  11: null,
+  14: 41,
+  15: 41,
+  16: 41,
+  18: 58,
+  19: 58,
+  20: 36,
+  21: null,
+  22: 41,
+  25: 36,
+  26: 34,
+  27: null,
+  28: 61,
+  29: 53,
+  30: null,
+  31: null,
+  32: null,
+  33: null,
+  34: null,
+  35: null,
+  36: null,
+  37: null,
+  38: 54,
+  39: null,
+  40: 51,
+  41: null,
+  42: 68,
+  43: 68,
+  44: 68,
+  45: 68,
+  46: 68,
+  47: 42,
+  48: null,
+  49: 54,
+  50: null,
+  51: 41,
+  52: null,
+  53: null,
+  54: 61,
+  55: null,
+  56: 61,
+  57: 65,
+  58: null,
+  59: null,
+  60: 50,
+  61: null,
+  62: 34,
+  63: null,
+  64: null,
+  65: 41,
+  66: null,
+  67: 30,
+  68: null,
+  69: null,
+  70: null,
+  71: null,
+  72: null,
+  73: 30,
+  74: null,
+  75: null,
+  76: 68,
+  77: null,
+  78: null,
+  79: null,
+  80: null,
+  81: 70,
+  82: 54,
+  83: null,
+  84: null,
+  85: null,
+  86: null,
+  87: null,
+  88: 34,
+  89: 34,
+  90: null,
+  91: 42,
+  92: null,
+  93: null,
+  94: null,
+  95: null,
+  96: null,
+  97: null,
+  98: null,
+  99: 54,
+  100: 54,
+  101: 54,
+  102: 61,
+  103: 34,
+  104: 47,
+  105: 54,
+  106: 57,
+  107: 63,
+  108: 41,
+  109: null,
+  110: 41,
+  111: 63,
+  112: 70,
+  113: 41,
+  114: 43,
+  115: 68,
+  116: 54,
+  117: null,
+  118: 45,
+  119: 61,
+  120: null,
+  121: 74,
+  122: null,
+  123: 68,
+  124: 65,
+  125: null,
+  126: null,
+  127: 57,
+  128: 47,
+  129: 47,
+  130: 54,
+  131: 38,
+  132: 38,
+  133: 38,
+  134: null,
+  135: 47,
+  136: 38,
+  137: 47,
+  138: 74,
+  139: null,
+  140: null,
+  141: null,
+  142: 34,
+  143: 54,
+  144: 62,
+  145: 68,
+  146: 34,
+  147: null,
+  148: 47,
+  149: 61,
+  150: 38,
+  151: null,
+  152: 58,
+  153: 54,
+  154: null,
+  155: 43,
+  156: 46,
+  157: 57,
+  158: null,
+  159: null,
+  160: null,
+  161: null,
+  162: null,
+  163: null,
+  164: null,
+  165: null,
+  166: null,
+  167: 41,
+  168: 62,
+  169: null,
+  170: null,
+  176: 53,
+  178: null,
+  180: 92,
+  181: 109,
+  182: null,
+  183: null,
+  184: null,
+  185: null,
+  186: null,
+  187: null,
+  188: null,
+  189: null,
+  190: null,
+  191: null,
+  192: null,
+  193: null,
+  194: null,
+  195: null,
+  196: null,
+  197: null,
+  198: null,
+  199: null,
+  200: null,
+  201: null,
 };
 
 /**
