@@ -289,22 +289,22 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   185: ["Especiado", "Amaderado"], // Sherif
 
   // ==================== CAROLINA HERRERA ====================
-  186: ["Dulce", "Floral"], // Good Girl
-  187: ["Floral", "Dulce"], // Good Girl Blush
-  188: ["Frutal", "Floral"], // Very Good Girl
-  189: ["Frutal", "Dulce"], // Very Good Girl Elixir
-  190: ["Floral", "Ámbar"], // Good Girl Blush Elixir EdP
-  191: ["Frutal", "Floral"], // La Bomba
-  192: ["Amaderado", "Especiado"], // Bad Boy Cobalt PE
-  193: ["Especiado", "Amaderado"], // Bad Boy
-  194: ["Ahumado", "Especiado"], // Bad Boy Cobalt Elixir
-  195: ["Amaderado", "Ahumado"], // Bad Boy Extreme
-  196: ["Amaderado", "Especiado"], // Bad Boy Le Parfum
-  197: ["Ahumado", "Amaderado"], // Bad Boy Elixir
-  198: ["Amaderado", "Especiado"], // CH Men
-  199: ["Cítrico", "Especiado"], // 212 VIP Men
-  200: ["Cítrico", "Amaderado"], // 212 Men
-  201: ["Especiado", "Amaderado"], // 212 VIP Black
+  186: ["Almendra", "Café", "Bergamota", "Limón", "Tuberosa", "Jazmín Sambac", "Naranjo", "Rosa Búlgara", "Lirio", "Tonka", "Cacao", "Vainilla", "Praline", "Sándalo", "Almizcle", "Ámbar", "Madera de Cashmere", "Pachulí", "Canela", "Cedro"], // Good Girl
+  187: ["Bergamota", "Almendra Amarga", "Peonía", "Ylang-Ylang", "Vainilla", "Cumaro"], // Good Girl Blush
+  188: ["Lichi", "Grosella", "Rosa", "Vainilla", "Vetiver"], // Very Good Girl
+  189: ["Cereza Negra", "Almendra Amarga", "Rosa", "Tuberosa", "Vainilla", "Cacao"], // Very Good Girl Elixir
+  190: ["Bergamota", "Mandarina", "Ylang-Ylang", "Rosa", "Vainilla", "Pachulí"], // Good Girl Blush Elixir EdP
+  191: ["Pitahaya", "Frangipani", "Peonía Roja", "Vainilla", "Pachulí"], // La Bomba
+  192: ["Lavanda", "Pimienta Rosa", "Ciruela", "Geranio", "Cedro", "Vetiver", "Trufa", "Roble"], // Bad Boy Cobalt PE
+  193: ["Pimienta Blanca", "Bergamota", "Pimienta Rosa", "Cedro", "Salvia", "Tonka", "Cacao"], // Bad Boy
+  194: ["Pimienta Negra", "Salvia", "Trufa", "Notas Amaderadas", "Vainilla", "Incienso"], // Bad Boy Cobalt Elixir
+  195: ["Bergamota", "Jengibre", "Ciruela", "Salvia", "Opoponaco", "Davana", "Cacao", "Tonka", "Pachulí", "Incienso", "Olibano", "Vetiver", "Ládano"], // Bad Boy Extreme
+  196: ["Cáñamo", "Toronja", "Pimienta Negra", "Geranio", "Cuero", "Vetiver"], // Bad Boy Le Parfum
+  197: ["Salvia", "Lavanda", "Cuero", "Lirio", "Cedro", "Incienso"], // Bad Boy Elixir
+  198: ["Césped", "Bergamota", "Toronja", "Notas Amaderadas", "Nuez Moscada", "Violeta", "Azafrán", "Jazmín", "Azúcar", "Cuero", "Vainilla", "Ante", "Ámbar", "Madera de Cashmere", "Sándalo", "Musgo de Roble", "Vetiver"], // CH Men
+  199: ["Maracuyá", "Lima", "Pimienta", "Jengibre", "Vodka", "Ginebra", "Menta", "Especias", "Ámbar", "Cuero", "Notas Amaderadas"], // 212 VIP Men
+  200: ["Notas Verdes", "Toronja", "Especias", "Bergamota", "Lavanda", "Petitgrain", "Jengibre", "Violeta", "Gardenia", "Salvia", "Almizcle", "Sándalo", "Incienso", "Vetiver", "Madera de Guayaco", "Ládano"], // 212 Men
+  201: ["Absenta", "Anís", "Hinojo", "Lavanda", "Vainilla Negra", "Almizcle"], // 212 VIP Black
   202: ["Dulce", "Floral"], // Club de Nuit Precieux Woman
   203: ["Cítrico", "Dulce"], // Club de Nuit Bling
   204: ["Acuático", "Cítrico"], // Club de Nuit Milestone
@@ -333,54 +333,14 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   226: ["Amaderado", "Especiado"], // Khair Fusion
   227: ["Dulce", "Especiado"], // Khair Confection
   228: ["Dulce", "Frutal"], // Yara Candy
-  230: ["Dulce", "Floral"], // Yara Elixir
-  231: ["Amaderado", "Ámbar"], // Bade'e Al Oud Sublime
-  232: ["Amaderado", "Especiado"], // Indomitable
-  233: ["Dulce", "Floral"], // Marshmallow Blush
-  234: ["Dulce", "Floral"], // Khair
-  235: ["Floral", "Dulce"], // Khair Felicity
-  236: ["Dulce", "Ámbar"], // December
-  237: ["Frutal", "Floral"], // Emir Memories of Summer
-  238: ["Dulce", "Frutal"], // Taskeen
-  239: ["Acuático", "Frutal"], // Taskeen Marina
-  240: ["Dulce", "Frutal"], // Lactea Divina
-  241: ["Floral", "Dulce"], // Fayora
-  242: ["Frutal", "Dulce"], // Mango Punch
-  243: ["Frutal", "Cítrico"], // Juice Melange
-  244: ["Frutal", "Dulce"], // Pear Potion
-  245: ["Floral", "Dulce"], // Qissa Pink
-  246: ["Dulce", "Frutal"], // Qissa Delicius
-  247: ["Floral", "Amaderado"], // Qissa Blue
 
-  // ==================== ZIMAYA ====================
-  248: ["Cítrico", "Amaderado"], // Evolution
-  249: ["Dulce", "Ámbar"], // Tiramisu Coco
-  250: ["Amaderado", "Especiado"], // Charisma
-  251: ["Amaderado", "Ámbar"], // Grandeur
-  252: ["Amaderado", "Especiado"], // Is Great
-  253: ["Amaderado", "Ahumado"], // Happy Oud
-  254: ["Floral", "Dulce"], // Fatima Pink
-  255: ["Floral", "Ámbar"], // Fatima Velvet
-  256: ["Floral", "Dulce"], // Only You
-  257: ["Floral", "Ámbar"], // Hayam
-  258: ["Amaderado", "Frutal"], // Anhaar Valley
-  259: ["Amaderado", "Especiado"], // Hawwa Red
-
-  // ==================== ARABIYAT ====================
-  260: ["Dulce", "Ámbar"], // Coconut Chiffon
-  261: ["Frutal", "Dulce"], // Berries Cream Macaron
-  262: ["Frutal", "Dulce"], // Strawberry Tres Leches
-  263: ["Dulce", "Ámbar"], // Vanilla Cream Macaron
-  264: ["Frutal", "Dulce"], // Mango Affogato
-  265: ["Dulce", "Ámbar"], // Caramel Chocolate Macaron
-  266: ["Dulce", "Ámbar"], // Dulce de Leche
-  267: ["Dulce", "Frutal"], // Sugar Cotton
-  268: ["Dulce", "Ámbar"], // Pecan Butter
-  269: ["Cítrico", "Dulce"], // Lemon Sorbet
-  270: ["Dulce", "Ámbar"], // Cookie Dough
-  271: ["Dulce", "Amaderado"], // Matcha Latte
-  272: ["Dulce", "Ámbar"], // Toffe Ganache
-  273: ["Floral", "Dulce"], // Marwa
+  // ==================== LATTAFA (from Excel inventory) ====================
+  229: ["Amaderado", "Especiado"], // Atlas
+  230: ["Floral", "Dulce"], // Angham
+  231: ["Amaderado", "Ámbar"], // Liam
+  232: ["Floral", "Frutal"], // Haya
+  233: ["Amaderado", "Especiado"], // Pisa
+  234: ["Dulce", "Floral"], // Mayar
 
 };
 
@@ -398,10 +358,7 @@ export type Brand =
   | "Carolina Herrera"
   | "Khadlaj"
   | "Bharara"
-  | "Jean Paul Gaultier"
-  | "Paris Corner"
-  | "Zimaya"
-  | "Arabiyat";
+  | "Jean Paul Gaultier";
 
 export type Concentration = "Parfum" | "Elixir" | "Eau de Parfum" | "Eau de Toilette" | "Eau de Cologne" | "Eau Fraîche";
 
@@ -454,9 +411,6 @@ export const BRANDS: Brand[] = [
   "Khadlaj",
   "Bharara",
   "Jean Paul Gaultier",
-  "Paris Corner",
-  "Zimaya",
-  "Arabiyat",
 ];
 
 export const GENDERS: Gender[] = ["Dama", "Caballero", "Unisex"];
@@ -475,10 +429,7 @@ export const BRAND_SLUGS: Record<Brand, string> = {
   "Carolina Herrera": "Carolina-Herrera",
   Khadlaj: "Khadlaj-Perfumes",
   Bharara: "Bharara",
-  "Jean Paul Gaultier": "Jean-Paul-Gaultier",
-  "Paris Corner": "Paris-Corner",
-  "Zimaya": "Zimaya",
-  "Arabiyat": "Arabiyat-Sugar"
+  "Jean Paul Gaultier": "Jean-Paul-Gaultier"
 };
 
 export function getImageUrl(fragranticaId: number): string {
@@ -1278,7 +1229,7 @@ export const perfumes: Perfume[] = [
     gender: "Unisex",
     price: 61,
     size: "100ml",
-    fragranticaId: 85091,
+    fragranticaId: 113906,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Nebras-Elixir",
     available: true
@@ -1709,7 +1660,7 @@ export const perfumes: Perfume[] = [
     id: 66,
     name: "Emaan",
     brand: "Lattafa",
-    gender: "Dama",
+    gender: "Unisex",
     price: 34,
     size: "100ml",
     fragranticaId: 85091,
@@ -2574,27 +2525,25 @@ export const perfumes: Perfume[] = [
 {
     id: 226,
     name: "Khair Fusion",
-    brand: "Paris Corner",
-    gender: "Dama",
+    brand: "Khadlaj",
+    gender: "Unisex",
     price: 41,
     size: "100ml",
     fragranticaId: 92768,
-    brandSlug: "Paris-Corner",
+    brandSlug: "Khadlaj-Perfumes",
     perfumeSlug: "Khair-Fusion",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Khair-Fusion-92768.html",
     available: true
   },
 {
     id: 227,
     name: "Khair Confection",
-    brand: "Paris Corner",
-    gender: "Dama",
+    brand: "Khadlaj",
+    gender: "Unisex",
     price: 41,
     size: "100ml",
     fragranticaId: 99069,
-    brandSlug: "Paris-Corner",
+    brandSlug: "Khadlaj-Perfumes",
     perfumeSlug: "Khair-Confection",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Khair-Confection-99069.html",
     available: true
   },
 {
@@ -2786,26 +2735,25 @@ export const perfumes: Perfume[] = [
 {
     id: 223,
     name: "Tiramisu Caramel",
-    brand: "Zimaya",
+    brand: "Lattafa",
     gender: "Dama",
     price: 47,
     size: "100ml",
     fragranticaId: 98691,
-    brandSlug: "Zimaya",
+    brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Tiramisu-Caramel",
     available: true
   },
 {
     id: 224,
     name: "Caramel Cascade",
-    brand: "Paris Corner",
+    brand: "Lattafa",
     gender: "Dama",
     price: 41,
     size: "100ml",
     fragranticaId: 95545,
-    brandSlug: "Paris-Corner",
+    brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Caramel-Cascade",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Caramel-Cascade-95545.html",
     available: true
   },
 {
@@ -3000,584 +2948,72 @@ export const perfumes: Perfume[] = [
     concentration: "Eau de Parfum",
     available: false
   },
-
+{
+    id: 229,
+    name: "Atlas",
+    brand: "Lattafa",
+    gender: "Caballero",
+    price: 47,
+    size: "75ml",
+    fragranticaId: 89765,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Atlas",
+    available: true
+  },
 {
     id: 230,
-    name: "Yara Elixir",
+    name: "Angham",
     brand: "Lattafa",
     gender: "Dama",
-    price: 47,
+    price: 54,
     size: "100ml",
-    fragranticaId: 117615,
+    fragranticaId: 96768,
     brandSlug: "Lattafa-Perfumes",
-    perfumeSlug: "Yara-Elixir",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Lattafa-Perfumes/Yara-Elixir-117615.html",
+    perfumeSlug: "Angham",
     available: true
   },
 {
     id: 231,
-    name: "Bade'e Al Oud Sublime",
+    name: "Liam",
     brand: "Lattafa",
     gender: "Unisex",
-    price: 47,
     size: "100ml",
-    fragranticaId: 83309,
+    fragranticaId: 85097,
     brandSlug: "Lattafa-Perfumes",
-    perfumeSlug: "Bade-e-Al-Oud-Sublime",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Lattafa-Perfumes/Bade-e-Al-Oud-Sublime-83309.html",
-    available: true
+    perfumeSlug: "Liam",
+    available: false
   },
-
-  // ═══════════════════════════════════════════════════════
-  // 🏛️ PARIS CORNER
-  // ═══════════════════════════════════════════════════════
 {
     id: 232,
-    name: "Indomitable",
-    brand: "Paris Corner",
+    name: "Haya",
+    brand: "Lattafa",
     gender: "Dama",
-    price: 55,
     size: "100ml",
-    fragranticaId: 106231,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Indomitable",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Indomitable-106231.html",
-    available: true
+    fragranticaId: 85031,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Haya",
+    available: false
   },
 {
     id: 233,
-    name: "Marshmallow Blush",
-    brand: "Paris Corner",
-    gender: "Dama",
-    price: 72,
+    name: "Pisa",
+    brand: "Lattafa",
+    gender: "Caballero",
     size: "100ml",
-    fragranticaId: 102791,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Marshmallow-Blush",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Marshmallow-Blush-102791.html",
-    available: true
+    fragranticaId: 99140,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Pisa",
+    available: false
   },
 {
     id: 234,
-    name: "Khair",
-    brand: "Paris Corner",
+    name: "Mayar",
+    brand: "Lattafa",
     gender: "Dama",
-    price: 32,
     size: "100ml",
-    fragranticaId: 92767,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Khair",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Khair-92767.html",
-    available: true
-  },
-{
-    id: 235,
-    name: "Khair Felicity",
-    brand: "Paris Corner",
-    gender: "Dama",
-    price: 45,
-    size: "100ml",
-    fragranticaId: 102874,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Khair-Felicity",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Khair-Felicity-102874.html",
-    available: true
-  },
-{
-    id: 236,
-    name: "December",
-    brand: "Paris Corner",
-    gender: "Dama",
-    price: 57,
-    size: "100ml",
-    fragranticaId: 96254,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "December-Vanilla",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/December-Vanilla-96254.html",
-    available: true
-  },
-{
-    id: 237,
-    name: "Emir Memories of Summer",
-    brand: "Paris Corner",
-    gender: "Unisex",
-    price: 57,
-    size: "100ml",
-    fragranticaId: 111166,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Emir-Memories-of-Summer",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Lueur-d-Espoir-Memories-of-Summer-111166.html",
-    available: true
-  },
-{
-    id: 238,
-    name: "Taskeen",
-    brand: "Paris Corner",
-    gender: "Dama",
-    price: 54,
-    size: "100ml",
-    fragranticaId: 97355,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Taskeen",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Taskeen-97355.html",
-    available: true
-  },
-{
-    id: 239,
-    name: "Taskeen Marina",
-    brand: "Paris Corner",
-    gender: "Dama",
-    price: 41,
-    size: "100ml",
-    fragranticaId: 97356,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Taskeen-Marina",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Taskeen-Marina-97356.html",
-    available: true
-  },
-{
-    id: 240,
-    name: "Lactea Divina",
-    brand: "Paris Corner",
-    gender: "Dama",
-    price: 41,
-    size: "100ml",
-    fragranticaId: 99799,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Lactea-Divina",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Taskeen-Lactea-Divina-99799.html",
-    available: true
-  },
-{
-    id: 241,
-    name: "Fayora",
-    brand: "Paris Corner",
-    gender: "Dama",
-    price: 53,
-    size: "100ml",
-    fragranticaId: 109930,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Fayora",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Fayora-109930.html",
-    available: true
-  },
-{
-    id: 242,
-    name: "Mango Punch",
-    brand: "Paris Corner",
-    gender: "Dama",
-    price: 43,
-    size: "100ml",
-    fragranticaId: 102678,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Mango-Punch",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Mango-Punch-102678.html",
-    available: true
-  },
-{
-    id: 243,
-    name: "Juice Melange",
-    brand: "Paris Corner",
-    gender: "Dama",
-    price: 43,
-    size: "100ml",
-    fragranticaId: 104124,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Juice-Melange",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Juicy-Melange-104124.html",
-    available: true
-  },
-{
-    id: 244,
-    name: "Pear Potion",
-    brand: "Paris Corner",
-    gender: "Dama",
-    price: 43,
-    size: "100ml",
-    fragranticaId: 100625,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Pear-Potion",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Pear-Potion-100625.html",
-    available: true
-  },
-{
-    id: 245,
-    name: "Qissa Pink",
-    brand: "Paris Corner",
-    gender: "Dama",
-    price: 38,
-    size: "100ml",
-    fragranticaId: 98578,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Qissa-Pink",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Qissa-Pink-98578.html",
-    available: true
-  },
-{
-    id: 246,
-    name: "Qissa Delicius",
-    brand: "Paris Corner",
-    gender: "Dama",
-    price: 38,
-    size: "100ml",
-    fragranticaId: 98552,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Qissa-Delicius",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Qissa-Delicious-98552.html",
-    available: true
-  },
-{
-    id: 247,
-    name: "Qissa Blue",
-    brand: "Paris Corner",
-    gender: "Dama",
-    price: 38,
-    size: "100ml",
-    fragranticaId: 98579,
-    brandSlug: "Paris-Corner",
-    perfumeSlug: "Qissa-Blue",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Qissa-Blue-98579.html",
-    available: true
-  },
-
-  // ═══════════════════════════════════════════════════════
-  // 🏜️ ZIMAYA
-  // ═══════════════════════════════════════════════════════
-{
-    id: 248,
-    name: "Evolution",
-    brand: "Zimaya",
-    gender: "Caballero",
-    price: 32,
-    size: "100ml",
-    fragranticaId: 103823,
-    brandSlug: "Zimaya",
-    perfumeSlug: "Evolution",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Evolution-103823.html",
-    available: true
-  },
-{
-    id: 249,
-    name: "Tiramisu Coco",
-    brand: "Zimaya",
-    gender: "Dama",
-    price: 47,
-    size: "100ml",
-    fragranticaId: 98690,
-    brandSlug: "Zimaya",
-    perfumeSlug: "Tiramisu-Coco",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Tiramisu-Coco-98690.html",
-    available: true
-  },
-{
-    id: 250,
-    name: "Charisma",
-    brand: "Zimaya",
-    gender: "Caballero",
-    price: 36,
-    size: "100ml",
-    fragranticaId: 103119,
-    brandSlug: "Zimaya",
-    perfumeSlug: "Charisma-Pour-Homme",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Charisma-Pour-Homme-103119.html",
-    available: true
-  },
-{
-    id: 251,
-    name: "Grandeur",
-    brand: "Zimaya",
-    gender: "Caballero",
-    price: 31,
-    size: "100ml",
-    fragranticaId: 92578,
-    brandSlug: "Zimaya",
-    perfumeSlug: "Grandeur",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Grandeur-92578.html",
-    available: true
-  },
-{
-    id: 252,
-    name: "Is Great",
-    brand: "Zimaya",
-    gender: "Caballero",
-    size: "100ml",
-    fragranticaId: 92588,
-    brandSlug: "Zimaya",
-    perfumeSlug: "Is-Great",
+    fragranticaId: 84309,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Mayar",
     available: false
   },
-{
-    id: 253,
-    name: "Happy Oud",
-    brand: "Zimaya",
-    gender: "Unisex",
-    size: "100ml",
-    fragranticaId: 95992,
-    brandSlug: "Zimaya",
-    perfumeSlug: "Happy-Oud",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Happy-Oud-95992.html",
-    available: false
-  },
-{
-    id: 254,
-    name: "Fatima Pink",
-    brand: "Zimaya",
-    gender: "Dama",
-    price: 38,
-    size: "100ml",
-    fragranticaId: 92817,
-    brandSlug: "Zimaya",
-    perfumeSlug: "Fatima-Pink",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Fatima-Pink-92817.html",
-    available: true
-  },
-{
-    id: 255,
-    name: "Fatima Velvet",
-    brand: "Zimaya",
-    gender: "Dama",
-    price: 38,
-    size: "100ml",
-    fragranticaId: 120898,
-    brandSlug: "Zimaya",
-    perfumeSlug: "Fatima-Velvet-Love",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Fatima-Velvet-Love-120898.html",
-    available: true
-  },
-{
-    id: 256,
-    name: "Only You",
-    brand: "Zimaya",
-    gender: "Dama",
-    price: 32,
-    size: "100ml",
-    fragranticaId: 92819,
-    brandSlug: "Zimaya",
-    perfumeSlug: "Only-You",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Only-You-92819.html",
-    available: true
-  },
-{
-    id: 257,
-    name: "Hayam",
-    brand: "Zimaya",
-    gender: "Dama",
-    price: 38,
-    size: "100ml",
-    fragranticaId: 92593,
-    brandSlug: "Zimaya",
-    perfumeSlug: "Hayam",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Hayam-92593.html",
-    available: true
-  },
-{
-    id: 258,
-    name: "Anhaar Valley",
-    brand: "Zimaya",
-    gender: "Unisex",
-    price: 35,
-    size: "100ml",
-    fragranticaId: 97032,
-    brandSlug: "Zimaya",
-    perfumeSlug: "Anhaar-Valley",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Anhaar-Valley-97032.html",
-    available: true
-  },
-{
-    id: 259,
-    name: "Hawwa Red",
-    brand: "Zimaya",
-    gender: "Unisex",
-    size: "100ml",
-    fragranticaId: 92588,
-    brandSlug: "Zimaya",
-    perfumeSlug: "Hawwa-Red",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Hawwa-Red-92588.html",
-    available: false
-  },
-
-  // ═══════════════════════════════════════════════════════
-  // 🧁 ARABIYAT (línea gourmand / Arabiyat Sugar)
-  // ═══════════════════════════════════════════════════════
-{
-    id: 260,
-    name: "Coconut Chiffon",
-    brand: "Arabiyat",
-    gender: "Dama",
-    price: 54,
-    size: "100ml",
-    fragranticaId: 118599,
-    brandSlug: "Arabiyat-Sugar",
-    perfumeSlug: "Coconut-Chiffon",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Coconut-Chiffon-118599.html",
-    available: true
-  },
-{
-    id: 261,
-    name: "Berries Cream Macaron",
-    brand: "Arabiyat",
-    gender: "Dama",
-    price: 54,
-    size: "100ml",
-    fragranticaId: 118602,
-    brandSlug: "Arabiyat-Sugar",
-    perfumeSlug: "Berries-Cream-Macaron",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Berries-Cream-Macaron-118602.html",
-    available: true
-  },
-{
-    id: 262,
-    name: "Strawberry Tres Leches",
-    brand: "Arabiyat",
-    gender: "Dama",
-    price: 54,
-    size: "100ml",
-    fragranticaId: 118598,
-    brandSlug: "Arabiyat-Sugar",
-    perfumeSlug: "Strawberry-Tres-Leches",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Strawberry-Tres-Leches-118598.html",
-    available: true
-  },
-{
-    id: 263,
-    name: "Vanilla Cream Macaron",
-    brand: "Arabiyat",
-    gender: "Dama",
-    price: 54,
-    size: "100ml",
-    fragranticaId: 118601,
-    brandSlug: "Arabiyat-Sugar",
-    perfumeSlug: "Vanilla-Cream-Macaron",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Vanilla-Cream-Macaron-118601.html",
-    available: true
-  },
-{
-    id: 264,
-    name: "Mango Affogato",
-    brand: "Arabiyat",
-    gender: "Dama",
-    price: 54,
-    size: "100ml",
-    fragranticaId: 118592,
-    brandSlug: "Arabiyat-Sugar",
-    perfumeSlug: "Mango-Affogato",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Mango-Affogato-118592.html",
-    available: true
-  },
-{
-    id: 265,
-    name: "Caramel Chocolate Macaron",
-    brand: "Arabiyat",
-    gender: "Dama",
-    price: 54,
-    size: "100ml",
-    fragranticaId: 118600,
-    brandSlug: "Arabiyat-Sugar",
-    perfumeSlug: "Caramel-Chocolate-Macaron",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Caramel-Chocolate-Macaron-118600.html",
-    available: true
-  },
-{
-    id: 266,
-    name: "Dulce de Leche",
-    brand: "Arabiyat",
-    gender: "Dama",
-    price: 54,
-    size: "100ml",
-    fragranticaId: 118595,
-    brandSlug: "Arabiyat-Sugar",
-    perfumeSlug: "Dulce-de-Leche",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Dulce-de-Leche-118595.html",
-    available: true
-  },
-{
-    id: 267,
-    name: "Sugar Cotton",
-    brand: "Arabiyat",
-    gender: "Dama",
-    price: 54,
-    size: "100ml",
-    fragranticaId: 118597,
-    brandSlug: "Arabiyat-Sugar",
-    perfumeSlug: "Cotton-Blush",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Cotton-Blush-118597.html",
-    available: true
-  },
-{
-    id: 268,
-    name: "Pecan Butter",
-    brand: "Arabiyat",
-    gender: "Unisex",
-    price: 54,
-    size: "100ml",
-    fragranticaId: 118603,
-    brandSlug: "Arabiyat-Sugar",
-    perfumeSlug: "Pecan-Butter-Cookie",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Pecan-Butter-Cookie-118603.html",
-    available: true
-  },
-{
-    id: 269,
-    name: "Lemon Sorbet",
-    brand: "Arabiyat",
-    gender: "Unisex",
-    price: 54,
-    size: "100ml",
-    fragranticaId: 118596,
-    brandSlug: "Arabiyat-Sugar",
-    perfumeSlug: "Lemon-Sorbet",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Lemon-Sorbet-118596.html",
-    available: true
-  },
-{
-    id: 270,
-    name: "Cookie Dough",
-    brand: "Arabiyat",
-    gender: "Dama",
-    price: 54,
-    size: "100ml",
-    fragranticaId: 118604,
-    brandSlug: "Arabiyat-Sugar",
-    perfumeSlug: "Cookie-Dough",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Cookie-Dough-118604.html",
-    available: true
-  },
-{
-    id: 271,
-    name: "Matcha Latte",
-    brand: "Arabiyat",
-    gender: "Dama",
-    price: 54,
-    size: "100ml",
-    fragranticaId: 118608,
-    brandSlug: "Arabiyat-Sugar",
-    perfumeSlug: "Matcha-Latte",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Matcha-Latte-118608.html",
-    available: true
-  },
-{
-    id: 272,
-    name: "Toffe Ganache",
-    brand: "Arabiyat",
-    gender: "Dama",
-    price: 54,
-    size: "100ml",
-    fragranticaId: 118605,
-    brandSlug: "Arabiyat-Sugar",
-    perfumeSlug: "Toffee-Ganache",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Toffee-Ganache-118605.html",
-    available: true
-  },
-{
-    id: 273,
-    name: "Marwa",
-    brand: "Arabiyat",
-    gender: "Dama",
-    price: 74,
-    size: "100ml",
-    fragranticaId: 107084,
-    brandSlug: "Arabiyat-Prestige",
-    perfumeSlug: "Marwa",
-    available: true
-  }
 ];
