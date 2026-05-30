@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Tag } from "lucide-react";
+import { Sparkles, Tag, Star } from "lucide-react";
 import { combos, type Combo } from "@/lib/combosData";
 import ComboCard from "@/components/ComboCard";
 
@@ -65,41 +65,83 @@ export default function ComboShowcase() {
   }, []);
 
   return (
-    <section className="relative z-10 border-t border-[rgba(212,175,55,0.08)] bg-[#0a0a0a]">
+    <section className="relative z-10 border-t border-[rgba(212,175,55,0.08)] bg-[#0a0a0a] overflow-hidden">
       {/* Top gold accent line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      {/* ─── Background ambient glow ─── */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-0 left-1/4 w-[500px] h-[500px] opacity-[0.03]"
+          style={{
+            background: "radial-gradient(circle, rgba(212,175,55,0.6) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute bottom-0 right-1/4 w-[400px] h-[400px] opacity-[0.02]"
+          style={{
+            background: "radial-gradient(circle, rgba(212,175,55,0.5) 0%, transparent 70%)",
+          }}
+        />
+      </div>
+
+      {/* ─── Floating sparkles ─── */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[15, 35, 55, 75, 90, 25, 65, 45].map((left, i) => (
+          <div
+            key={i}
+            className="absolute combo-sparkle"
+            style={{
+              left: `${left}%`,
+              top: `${10 + (i * 12) % 70}%`,
+              animationDelay: `${(i * 1.2) % 5}s`,
+              animationDuration: `${3 + (i * 0.7) % 3}s`,
+            }}
+          >
+            <Star className="w-1.5 h-1.5 text-[#d4af37]/15" />
+          </div>
+        ))}
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18 lg:py-24">
         {/* ─── Section Header ─── */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, type: "spring", stiffness: 100, damping: 20 }}
-          className="text-center mb-10"
+          className="text-center mb-12"
         >
           {/* Small label */}
-          <div className="inline-flex items-center gap-2 mb-4">
-            <Tag className="w-4 h-4 text-[#d4af37]/70" />
-            <span className="text-[10px] sm:text-xs text-[#d4af37]/70 tracking-[0.25em] uppercase font-[family-name:var(--font-inter)] font-semibold">
-              Combos Exclusivos
-            </span>
-            <Tag className="w-4 h-4 text-[#d4af37]/70" />
+          <div className="inline-flex items-center gap-2.5 mb-5">
+            <div className="w-8 h-px bg-gradient-to-r from-transparent to-[#d4af37]/40" />
+            <div className="flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-[#d4af37]/70" />
+              <span className="text-[10px] sm:text-xs text-[#d4af37]/70 tracking-[0.25em] uppercase font-[family-name:var(--font-inter)] font-semibold">
+                Combos Exclusivos
+              </span>
+              <Sparkles className="w-3.5 h-3.5 text-[#d4af37]/70" />
+            </div>
+            <div className="w-8 h-px bg-gradient-to-l from-transparent to-[#d4af37]/40" />
           </div>
 
           {/* Main title */}
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-[family-name:var(--font-playfair)] text-white/95 mb-3 leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-[family-name:var(--font-playfair)] text-white/95 mb-4 leading-tight">
             Experiencias en Combo:{" "}
             <span className="bg-gradient-to-r from-[#d4af37] via-[#f0d060] to-[#d4af37] bg-clip-text text-transparent">
               Lleva más, ahorra más
             </span>
           </h2>
 
-          {/* Gold divider */}
-          <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent mx-auto mb-4" />
+          {/* Gold divider with diamond */}
+          <div className="flex items-center justify-center gap-3 mb-5">
+            <div className="w-16 sm:w-24 h-px bg-gradient-to-r from-transparent to-[#d4af37]/40" />
+            <div className="w-2 h-2 rotate-45 bg-[#d4af37]/30 border border-[#d4af37]/40" />
+            <div className="w-16 sm:w-24 h-px bg-gradient-to-l from-transparent to-[#d4af37]/40" />
+          </div>
 
           {/* Subtitle */}
-          <p className="text-sm sm:text-base text-white/40 font-[family-name:var(--font-inter)] max-w-xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base text-white/40 font-[family-name:var(--font-inter)] max-w-lg mx-auto leading-relaxed">
             Perfumes seleccionados para cada momento de tu vida.{" "}
             <span className="text-emerald-400/80 font-semibold">10% de descuento automático</span>
           </p>
@@ -111,7 +153,7 @@ export default function ComboShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10"
+          className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12"
         >
           {FILTER_TABS.map((tab) => {
             const isActive = activeCategory === tab.key;
@@ -177,8 +219,12 @@ export default function ComboShowcase() {
           </motion.div>
         )}
 
-        {/* ─── Bottom decorative divider ─── */}
-        <div className="mt-12 w-full h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.12)] to-transparent" />
+        {/* ─── Bottom decorative divider with diamond ─── */}
+        <div className="mt-14 flex items-center justify-center gap-3">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.12)] to-[rgba(212,175,55,0.12)]" />
+          <div className="w-1.5 h-1.5 rotate-45 bg-[#d4af37]/15" />
+          <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[rgba(212,175,55,0.12)] to-[rgba(212,175,55,0.12)]" />
+        </div>
       </div>
     </section>
   );

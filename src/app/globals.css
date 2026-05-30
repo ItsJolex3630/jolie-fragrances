@@ -312,8 +312,22 @@
   .fathers-day-shimmer,
   .fathers-day-shimmer-subtle,
   .fathers-day-gift-pulse,
-  .fathers-day-border-glow {
+  .fathers-day-border-glow,
+  .combo-plus-pulse,
+  .combo-sparkle {
     animation: none !important;
+  }
+  .combo-card-shimmer::after {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+  .combo-card-glow:hover {
+    box-shadow: none;
+    border-color: rgba(212, 175, 55, 0.2);
+  }
+  .group:hover .combo-bottle-lift {
+    transform: none;
+    filter: none;
   }
   .card-fade-in {
     opacity: 1 !important;
@@ -445,4 +459,95 @@
 
 .fathers-day-border-glow {
   animation: fathersDayBorderGlow 3s ease-in-out infinite;
+}
+
+/* ─── Combo Card: Shimmer sweep on hover ─── */
+@keyframes comboShimmerSweep {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+.combo-card-shimmer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.combo-card-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.06) 40%,
+    rgba(212, 175, 55, 0.12) 50%,
+    rgba(212, 175, 55, 0.06) 60%,
+    transparent 100%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.group:hover .combo-card-shimmer::after {
+  opacity: 1;
+  animation: comboShimmerSweep 0.8s ease-out forwards;
+}
+
+/* ─── Combo Card: Border glow on hover ─── */
+.combo-card-glow {
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.combo-card-glow:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+  box-shadow:
+    0 0 20px rgba(212, 175, 55, 0.12),
+    0 0 40px rgba(212, 175, 55, 0.06),
+    inset 0 1px 0 rgba(212, 175, 55, 0.1);
+}
+
+/* ─── Combo Card: "+" badge pulse ─── */
+@keyframes comboPlusPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.3); }
+  50% { box-shadow: 0 0 0 6px rgba(212, 175, 55, 0); }
+}
+
+.combo-plus-pulse {
+  animation: comboPlusPulse 2.5s ease-in-out infinite;
+}
+
+/* ─── Combo Card: Bottle reflection ─── */
+.combo-bottle-reflection {
+  transform: scaleY(-1) translateY(-2px);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, transparent 60%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, transparent 60%);
+  filter: blur(1px) brightness(0.6);
+  pointer-events: none;
+}
+
+/* ─── Combo Card: Bottle hover lift ─── */
+.combo-bottle-lift {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.4s ease;
+}
+
+.group:hover .combo-bottle-lift {
+  transform: translateY(-6px) scale(1.03);
+  filter: drop-shadow(0 8px 25px rgba(0,0,0,0.5)) brightness(1.1);
+}
+
+/* ─── Combo Section: Floating sparkle ─── */
+@keyframes comboSparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+.combo-sparkle {
+  animation: comboSparkle 3s ease-in-out infinite;
 }
