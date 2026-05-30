@@ -117,9 +117,9 @@ export const combos: Combo[] = [
     name: 'Trío El Caballero Completo',
     category: 'Todo Terreno',
     description:
-      'Tres fragancias, un solo propósito: dominar cualquier ocasión. Glacier Por Homme refresca con su elegancia fresca y acuática para el día, Qaed Al Fursan Untamed desata la fiereza en la fiesta, y Oud For Glory cierra con la majestuosidad del oud oriental para las ocasiones formales. De la oficina al restaurante, este trío lo tiene todo cubierto.',
+      'Tres fragancias, un solo propósito: dominar cualquier ocasión. Glacier Pour Homme refresca con su elegancia fresca y acuática para el día, Qaed Al Fursan Untamed desata la fiereza en la fiesta, y Oud For Glory cierra con la majestuosidad del oud oriental para las ocasiones formales. De la oficina al restaurante, este trío lo tiene todo cubierto.',
     perfumes: [
-      { name: 'Glacier Por Homme', volume: '100ML', fragranticaId: 93648 },
+      { name: 'Glacier Pour Homme', volume: '100ML', fragranticaId: 93648 },
       { name: 'Qaed Al Fursan Untamed', volume: '90ML', fragranticaId: 105383 },
       { name: 'Oud For Glory', volume: '100ML', fragranticaId: 64948 },
     ],

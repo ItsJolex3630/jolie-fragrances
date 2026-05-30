@@ -76,11 +76,17 @@ function saveCart(items: CartItem[]) {
   }
 }
 
-// ─── Find combo suggestions based on cart perfume names ───
+// ─── Find combo suggestions based on cart perfume fragranticaIds ───
 function computeSuggestions(items: CartItem[]): ComboSuggestion[] {
   const perfumeItems = items.filter((i): i is CartPerfumeItem => i.type === "perfume");
   if (perfumeItems.length === 0) return [];
 
+  // Use fragranticaId for matching (more reliable than name comparison)
+  const cartFragranticaIds = new Set(
+    perfumeItems.map((i) => i.perfume.fragranticaId)
+  );
+
+  // Also keep a name-based fallback for any edge cases
   const cartPerfumeNames = new Set(
     perfumeItems.map((i) => i.perfume.name.toLowerCase().trim())
   );
@@ -96,6 +102,7 @@ function computeSuggestions(items: CartItem[]): ComboSuggestion[] {
     if (cartComboIds.has(combo.id)) continue;
 
     const matching = combo.perfumes.filter((p) =>
+      cartFragranticaIds.has(p.fragranticaId) ||
       cartPerfumeNames.has(p.name.toLowerCase().trim())
     );
 

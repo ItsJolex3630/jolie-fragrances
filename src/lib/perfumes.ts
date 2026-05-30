@@ -198,7 +198,7 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   135: ["Dulce", "Amaderado"], // Asad Bourbon
   136: ["Especiado", "Frutal"], // Asad Zanzibar
   128: ["Dulce", "Especiado"], // Khamrah
-  129: ["Dulce", "Especiado"], // Khamrah Qwah
+  129: ["Dulce", "Especiado"], // Khamrah Qawha
   130: ["Ahumado", "Dulce"], // Khamrah Dukhan
   150: ["Frutal", "Amaderado"], // Opulent Dubai
 
@@ -318,6 +318,22 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   213: ["Dulce", "Especiado"], // Odyssey Dubai Chocolate
   214: ["Floral", "Amaderado"], // Eter Desert Flower
 
+  // ==================== NEW COMBO PERFUMES ====================
+  215: ["Cítrico", "Amaderado"], // Fakhar Silver
+  216: ["Floral", "Ámbar"], // Veneno Bianco
+  217: ["Frutal", "Floral"], // Ana Abiyedh Coral
+  218: ["Frutal", "Dulce"], // Mayar Cherry
+  219: ["Dulce"], // Eclaire
+  220: ["Cítrico", "Amaderado"], // Tharwah Silver
+  221: ["Amaderado", "Ahumado"], // Shaghaf Oud Azraq
+  222: ["Amaderado", "Floral"], // Casablanca
+  223: ["Dulce", "Ámbar"], // Tiramisu Caramel
+  224: ["Dulce", "Ámbar"], // Caramel Cascade
+  225: ["Cítrico", "Acuático"], // Glacier Pour Homme
+  226: ["Amaderado", "Especiado"], // Khair Fusion
+  227: ["Dulce", "Especiado"], // Khair Confection
+  228: ["Dulce", "Frutal"], // Yara Candy
+
 };
 
 export type Brand =
@@ -331,7 +347,10 @@ export type Brand =
   | "Dumont"
   | "Rasasi"
   | "Davidoff"
-  | "Carolina Herrera";
+  | "Carolina Herrera"
+  | "Khadlaj"
+  | "Bharara"
+  | "Jean Paul Gaultier";
 
 export type Concentration = "Parfum" | "Elixir" | "Eau de Parfum" | "Eau de Toilette" | "Eau de Cologne" | "Eau Fraîche";
 
@@ -381,6 +400,9 @@ export const BRANDS: Brand[] = [
   "Rasasi",
   "Davidoff",
   "Carolina Herrera",
+  "Khadlaj",
+  "Bharara",
+  "Jean Paul Gaultier",
 ];
 
 export const GENDERS: Gender[] = ["Dama", "Caballero", "Unisex"];
@@ -396,7 +418,10 @@ export const BRAND_SLUGS: Record<Brand, string> = {
   Dumont: "Dumont",
   Rasasi: "Rasasi",
   Davidoff: "Davidoff",
-  "Carolina Herrera": "Carolina-Herrera"
+  "Carolina Herrera": "Carolina-Herrera",
+  Khadlaj: "Khadlaj-Perfumes",
+  Bharara: "Bharara",
+  "Jean Paul Gaultier": "Jean-Paul-Gaultier"
 };
 
 export function getImageUrl(fragranticaId: number): string {
@@ -1773,6 +1798,18 @@ export const perfumes: Perfume[] = [
     available: true
   },
 {
+    id: 228,
+    name: "Yara Candy",
+    brand: "Lattafa",
+    gender: "Dama",
+    price: 38,
+    size: "100ml",
+    fragranticaId: 95752,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Yara-Candy",
+    available: true
+  },
+{
     id: 134,
     name: "Asad",
     brand: "Lattafa",
@@ -1821,7 +1858,7 @@ export const perfumes: Perfume[] = [
   },
 {
     id: 129,
-    name: "Khamrah Qwah",
+    name: "Khamrah Qawha",
     brand: "Lattafa",
     gender: "Unisex",
     price: 47,
@@ -2433,6 +2470,18 @@ export const perfumes: Perfume[] = [
     available: true
   },
 {
+    id: 225,
+    name: "Glacier Pour Homme",
+    brand: "Maison Alhambra",
+    gender: "Caballero",
+    price: 30,
+    size: "100ml",
+    fragranticaId: 93648,
+    brandSlug: "Maison-Alhambra",
+    perfumeSlug: "Glacier-Pour-Homme",
+    available: true
+  },
+{
     id: 168,
     name: "Island",
     brand: "Khadlaj",
@@ -2464,6 +2513,30 @@ export const perfumes: Perfume[] = [
     brandSlug: "Khadlaj-Perfumes",
     perfumeSlug: "Island-Vanilla-Dunes",
     available: false
+  },
+{
+    id: 226,
+    name: "Khair Fusion",
+    brand: "Khadlaj",
+    gender: "Unisex",
+    price: 41,
+    size: "100ml",
+    fragranticaId: 92768,
+    brandSlug: "Khadlaj-Perfumes",
+    perfumeSlug: "Khair-Fusion",
+    available: true
+  },
+{
+    id: 227,
+    name: "Khair Confection",
+    brand: "Khadlaj",
+    gender: "Unisex",
+    price: 41,
+    size: "100ml",
+    fragranticaId: 99069,
+    brandSlug: "Khadlaj-Perfumes",
+    perfumeSlug: "Khair-Confection",
+    available: true
   },
 {
     id: 176,
@@ -2554,6 +2627,126 @@ export const perfumes: Perfume[] = [
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Sherif",
     available: false
+  },
+{
+    id: 215,
+    name: "Fakhar Silver",
+    brand: "Lattafa",
+    gender: "Caballero",
+    price: 41,
+    size: "100ml",
+    fragranticaId: 70465,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Fakhar-Silver",
+    available: true
+  },
+{
+    id: 216,
+    name: "Veneno Bianco",
+    brand: "Lattafa",
+    gender: "Dama",
+    price: 74,
+    size: "100ml",
+    fragranticaId: 105518,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Veneno-Bianco",
+    available: true
+  },
+{
+    id: 217,
+    name: "Ana Abiyedh Coral",
+    brand: "Lattafa",
+    gender: "Dama",
+    price: 34,
+    size: "60ml",
+    fragranticaId: 103256,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Ana-Abiyedh-Coral",
+    available: true
+  },
+{
+    id: 218,
+    name: "Mayar Cherry",
+    brand: "Lattafa",
+    gender: "Dama",
+    price: 45,
+    size: "100ml",
+    fragranticaId: 99872,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Mayar-Cherry",
+    available: true
+  },
+{
+    id: 219,
+    name: "Eclaire",
+    brand: "Lattafa",
+    gender: "Dama",
+    price: 47,
+    size: "100ml",
+    fragranticaId: 93628,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Eclaire",
+    available: true
+  },
+{
+    id: 220,
+    name: "Tharwah Silver",
+    brand: "Lattafa",
+    gender: "Caballero",
+    price: 51,
+    size: "100ml",
+    fragranticaId: 82005,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Tharwah-Silver",
+    available: true
+  },
+{
+    id: 221,
+    name: "Shaghaf Oud Azraq",
+    brand: "Lattafa",
+    gender: "Unisex",
+    price: 61,
+    size: "100ml",
+    fragranticaId: 82383,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Bade-e-Al-Oud-Shaghaf-Oud-Azraq",
+    available: true
+  },
+{
+    id: 222,
+    name: "Casablanca",
+    brand: "Lattafa",
+    gender: "Unisex",
+    price: 61,
+    size: "100ml",
+    fragranticaId: 91556,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Casablanca",
+    available: true
+  },
+{
+    id: 223,
+    name: "Tiramisu Caramel",
+    brand: "Lattafa",
+    gender: "Dama",
+    price: 47,
+    size: "100ml",
+    fragranticaId: 98691,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Tiramisu-Caramel",
+    available: true
+  },
+{
+    id: 224,
+    name: "Caramel Cascade",
+    brand: "Lattafa",
+    gender: "Dama",
+    price: 41,
+    size: "100ml",
+    fragranticaId: 95545,
+    brandSlug: "Lattafa-Perfumes",
+    perfumeSlug: "Caramel-Cascade",
+    available: true
   },
 {
     id: 186,
