@@ -1,8 +1,17 @@
 "use client";
 
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Check, ShoppingBag, Tag, Sparkles } from "lucide-react";
+import { Check, ShoppingBag, Tag, Sparkles, Gem } from "lucide-react";
 import type { Combo } from "@/lib/combosData";
+
+// ─── Fragrantica image URL builder ───
+function getAvifUrl(fragranticaId: number): string {
+  return `https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.${fragranticaId}.avif`;
+}
+function getJpgUrl(fragranticaId: number): string {
+  return `https://fimgs.net/mdimg/perfume/${fragranticaId}.jpg`;
+}
 
 // ─── Category badge colors ───
 const categoryStyles: Record<string, { bg: string; border: string; text: string; icon: string }> = {
@@ -32,6 +41,50 @@ const categoryStyles: Record<string, { bg: string; border: string; text: string;
   },
 };
 
+// ─── Single bottle image with fallback chain ───
+function PerfumeBottleImage({
+  fragranticaId,
+  alt,
+  className = "",
+}: {
+  fragranticaId: number;
+  alt: string;
+  className?: string;
+}) {
+  const [triedJpg, setTriedJpg] = useState(false);
+  const [imgError, setImgError] = useState(false);
+
+  const src = triedJpg ? getJpgUrl(fragranticaId) : getAvifUrl(fragranticaId);
+
+  const handleError = useCallback(() => {
+    if (!triedJpg) {
+      setTriedJpg(true);
+    } else {
+      setImgError(true);
+    }
+  }, [triedJpg]);
+
+  if (imgError) {
+    return (
+      <div className={`flex items-center justify-center ${className}`}>
+        <Gem className="w-8 h-8 text-[#d4af37]/20" />
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={`object-contain drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)] ${className}`}
+      onError={handleError}
+      loading="lazy"
+      decoding="async"
+      style={{ color: "transparent" }}
+    />
+  );
+}
+
 interface ComboCardProps {
   combo: Combo;
   onAddToCart?: (combo: Combo) => void;
@@ -44,6 +97,8 @@ export default function ComboCard({ combo, onAddToCart }: ComboCardProps) {
     text: "text-white/60",
     icon: "🎁",
   };
+
+  const perfumeCount = combo.perfumes.length;
 
   return (
     <motion.div
@@ -76,44 +131,166 @@ export default function ComboCard({ combo, onAddToCart }: ComboCardProps) {
         </span>
       </div>
 
-      {/* ─── Image placeholder area ─── */}
-      <div className="relative h-48 bg-gradient-to-b from-[#0a0a0a] to-[#0e0e0e] flex items-center justify-center overflow-hidden">
-        {/* Decorative background pattern */}
-        <div className="absolute inset-0 opacity-[0.03]">
+      {/* ─── Bottle Showcase Area ─── */}
+      <div className="relative h-56 sm:h-64 bg-gradient-to-b from-[#080808] via-[#0a0a0a] to-[#0e0e0e] flex items-center justify-center overflow-hidden">
+        {/* Ambient glow behind bottles */}
+        <div className="absolute inset-0 pointer-events-none">
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 opacity-[0.06]"
             style={{
               backgroundImage:
-                "radial-gradient(circle at 25% 50%, rgba(212,175,55,0.8) 0%, transparent 50%), radial-gradient(circle at 75% 50%, rgba(212,175,55,0.4) 0%, transparent 50%)",
+                "radial-gradient(ellipse at 50% 60%, rgba(212,175,55,0.6) 0%, transparent 60%)",
             }}
           />
         </div>
 
-        {combo.imageUrl ? (
-          <img
-            src={combo.imageUrl}
-            alt={combo.name}
-            className="w-full h-full object-cover"
-          />
+        {/* Subtle diagonal lines pattern */}
+        <div className="absolute inset-0 opacity-[0.015] pointer-events-none"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 20px,
+              rgba(212,175,55,0.3) 20px,
+              rgba(212,175,55,0.3) 21px
+            )`,
+          }}
+        />
+
+        {/* ─── Bottle arrangement ─── */}
+        {perfumeCount === 2 ? (
+          /* ── Duo layout: side by side with slight overlap ── */
+          <div className="relative flex items-end justify-center gap-0 px-6">
+            {/* Left bottle */}
+            <motion.div
+              initial={{ opacity: 0, x: -20, rotate: 3 }}
+              animate={{ opacity: 1, x: 0, rotate: -3 }}
+              transition={{ delay: 0.2, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative z-10 -mr-6"
+              style={{ transform: "rotate(-3deg)" }}
+            >
+              <div className="w-24 sm:w-28 h-36 sm:h-44">
+                <PerfumeBottleImage
+                  fragranticaId={combo.perfumes[0].fragranticaId}
+                  alt={combo.perfumes[0].name}
+                  className="w-full h-full"
+                />
+              </div>
+            </motion.div>
+
+            {/* Right bottle */}
+            <motion.div
+              initial={{ opacity: 0, x: 20, rotate: -3 }}
+              animate={{ opacity: 1, x: 0, rotate: 3 }}
+              transition={{ delay: 0.35, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative z-20 -ml-6"
+              style={{ transform: "rotate(3deg)" }}
+            >
+              <div className="w-24 sm:w-28 h-36 sm:h-44">
+                <PerfumeBottleImage
+                  fragranticaId={combo.perfumes[1].fragranticaId}
+                  alt={combo.perfumes[1].name}
+                  className="w-full h-full"
+                />
+              </div>
+            </motion.div>
+          </div>
+        ) : perfumeCount === 3 ? (
+          /* ── Trio layout: fan/staggered arrangement ── */
+          <div className="relative flex items-end justify-center px-4">
+            {/* Left bottle (background, tilted) */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative z-10 -mr-4"
+              style={{ transform: "rotate(-6deg) translateY(4px)" }}
+            >
+              <div className="w-20 sm:w-24 h-32 sm:h-40">
+                <PerfumeBottleImage
+                  fragranticaId={combo.perfumes[0].fragranticaId}
+                  alt={combo.perfumes[0].name}
+                  className="w-full h-full"
+                />
+              </div>
+            </motion.div>
+
+            {/* Center bottle (foreground, tallest) */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative z-30 -mx-2"
+            >
+              <div className="w-22 sm:w-26 h-38 sm:h-48">
+                <PerfumeBottleImage
+                  fragranticaId={combo.perfumes[1].fragranticaId}
+                  alt={combo.perfumes[1].name}
+                  className="w-full h-full"
+                />
+              </div>
+            </motion.div>
+
+            {/* Right bottle (background, tilted) */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative z-10 -ml-4"
+              style={{ transform: "rotate(6deg) translateY(4px)" }}
+            >
+              <div className="w-20 sm:w-24 h-32 sm:h-40">
+                <PerfumeBottleImage
+                  fragranticaId={combo.perfumes[2].fragranticaId}
+                  alt={combo.perfumes[2].name}
+                  className="w-full h-full"
+                />
+              </div>
+            </motion.div>
+          </div>
         ) : (
-          <motion.div
-            animate={{ opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-3"
-          >
-            <Sparkles className="w-10 h-10 text-[#d4af37]/25" />
-            <span className="text-[10px] text-[#d4af37]/30 font-[family-name:var(--font-inter)] tracking-widest uppercase">
-              Combo Exclusivo
-            </span>
-          </motion.div>
+          /* ── Fallback for 1 or 4+ perfumes: simple row ── */
+          <div className="relative flex items-end justify-center gap-2 px-4">
+            {combo.perfumes.map((perfume, i) => (
+              <motion.div
+                key={perfume.name}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.12 + 0.2, duration: 0.5 }}
+                className="relative z-10"
+              >
+                <div className="w-16 sm:w-20 h-28 sm:h-36">
+                  <PerfumeBottleImage
+                    fragranticaId={perfume.fragranticaId}
+                    alt={perfume.name}
+                    className="w-full h-full"
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* "X" connector label between bottles */}
+        {perfumeCount === 2 && (
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
+            <div className="w-7 h-7 rounded-full bg-[#d4af37]/20 border border-[#d4af37]/40 flex items-center justify-center backdrop-blur-sm shadow-lg shadow-black/40">
+              <span className="text-[9px] text-[#d4af37] font-bold font-[family-name:var(--font-inter)]">+</span>
+            </div>
+          </div>
+        )}
+        {perfumeCount === 3 && (
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5">
+            <span className="text-[9px] text-white/30 font-[family-name:var(--font-inter)]">×3</span>
+          </div>
         )}
 
         {/* Bottom gradient fade into content */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/80 to-transparent z-25" />
       </div>
 
       {/* ─── Content area ─── */}
-      <div className="flex flex-col flex-1 px-5 pb-5 pt-3">
+      <div className="flex flex-col flex-1 px-5 pb-5 pt-1">
         {/* Combo name */}
         <h3 className="text-xl sm:text-2xl font-bold text-white/95 font-[family-name:var(--font-playfair)] leading-snug mb-2 group-hover:text-[#d4af37] transition-colors duration-300">
           {combo.name}
