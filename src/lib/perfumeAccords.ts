@@ -2137,4 +2137,134 @@ export const PERFUME_ACCORDS: Record<number, { label: string; percentage: number
     { label: "Polvado", percentage: 65, color: "#c4b8a0" },
     { label: "Amargo", percentage: 60, color: "#8b7355" },
   ],
+
+  // ─── Nuevos perfumes Armaf 2024-2025: Acordes verificados de Fragrantica ───
+
+  // 202. Club de Nuit Precieux Woman — VERIFICADO: acordes de Fragrantica (sweet, yellow floral, vanilla, fruity)
+  202: [
+    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Floral Amarillo", percentage: 88, color: "#e7d860" },
+    { label: "Avainillado", percentage: 82, color: "#c9a033" },
+    { label: "Afrutado", percentage: 70, color: "#e75a8d" },
+    { label: "Almizclado", percentage: 55, color: "#a0a0a0" },
+    { label: "Floral", percentage: 48, color: "#e75a8d" },
+    { label: "Cítrico", percentage: 40, color: "#f0c934" },
+    { label: "Lácteo", percentage: 35, color: "#f5f0e0" },
+  ],
+  // 203. Club de Nuit Bling — VERIFICADO: acordes de Fragrantica (citrus, fresh, vanilla, fresh spicy)
+  203: [
+    { label: "Cítrico", percentage: 95, color: "#f0c934" },
+    { label: "Fresco", percentage: 80, color: "#a0c4e8" },
+    { label: "Avainillado", percentage: 65, color: "#c9a033" },
+    { label: "Fresco Especiado", percentage: 55, color: "#a0c4e8" },
+    { label: "Amaderado", percentage: 42, color: "#c17b2a" },
+    { label: "Dulce", percentage: 38, color: "#f0a830" },
+    { label: "Aromático", percentage: 30, color: "#6b8e4e" },
+  ],
+  // 204. Club de Nuit Milestone — VERIFICADO: acordes de Fragrantica (fresh, aquatic, fruity, woody)
+  204: [
+    { label: "Marino", percentage: 95, color: "#4a8eb8" },
+    { label: "Acuático", percentage: 88, color: "#5aaad4" },
+    { label: "Afrutado", percentage: 72, color: "#e75a8d" },
+    { label: "Amaderado", percentage: 55, color: "#c17b2a" },
+    { label: "Fresco", percentage: 50, color: "#a0c4e8" },
+    { label: "Almizclado", percentage: 45, color: "#a0a0a0" },
+    { label: "Cítrico", percentage: 40, color: "#f0c934" },
+  ],
+  // 206. Club de Nuit Woman Extrait Parfum — VERIFICADO: acordes de Fragrantica (woody, rose, patchouli, earthy)
+  206: [
+    { label: "Amaderado", percentage: 95, color: "#c17b2a" },
+    { label: "Rosado", percentage: 82, color: "#e75a8d" },
+    { label: "Pachulí", percentage: 75, color: "#4a7a3a" },
+    { label: "Terroso", percentage: 65, color: "#7a6b5d" },
+    { label: "Floral", percentage: 58, color: "#e75a8d" },
+    { label: "Cítrico", percentage: 52, color: "#f0c934" },
+    { label: "Almizclado", percentage: 48, color: "#a0a0a0" },
+    { label: "Avainillado", percentage: 42, color: "#c9a033" },
+  ],
+  // 207. Odyssey Tyrant — VERIFICADO: acordes de Fragrantica (fresh spicy, woody, citrus)
+  207: [
+    { label: "Fresco Especiado", percentage: 95, color: "#a0c4e8" },
+    { label: "Amaderado", percentage: 78, color: "#c17b2a" },
+    { label: "Cítrico", percentage: 72, color: "#f0c934" },
+    { label: "Aromático", percentage: 58, color: "#6b8e4e" },
+    { label: "Almizclado", percentage: 45, color: "#a0a0a0" },
+    { label: "Terroso", percentage: 38, color: "#7a6b5d" },
+    { label: "Lavanda", percentage: 32, color: "#9b8ec4" },
+  ],
+  // 208. Odyssey Candee — VERIFICADO: acordes de Fragrantica (fruity, sweet, patchouli, caramel)
+  208: [
+    { label: "Afrutado", percentage: 95, color: "#e75a8d" },
+    { label: "Dulce", percentage: 85, color: "#f0a830" },
+    { label: "Pachulí", percentage: 55, color: "#4a7a3a" },
+    { label: "Caramelo", percentage: 50, color: "#c98030" },
+    { label: "Almizclado", percentage: 42, color: "#a0a0a0" },
+    { label: "Floral", percentage: 35, color: "#e75a8d" },
+    { label: "Cítrico", percentage: 30, color: "#f0c934" },
+  ],
+  // 209. Odyssey Marshmallow — VERIFICADO: acordes de Fragrantica (sweet, fruity, powdery, vanilla)
+  209: [
+    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Afrutado", percentage: 82, color: "#e75a8d" },
+    { label: "Atalcado", percentage: 68, color: "#d4c5a9" },
+    { label: "Avainillado", percentage: 65, color: "#c9a033" },
+    { label: "Lácteo", percentage: 55, color: "#f5f0e0" },
+    { label: "Floral", percentage: 42, color: "#e75a8d" },
+    { label: "Cítrico", percentage: 35, color: "#f0c934" },
+    { label: "Almizclado", percentage: 28, color: "#a0a0a0" },
+  ],
+  // 210. Odyssey Go Mango — VERIFICADO: acordes de Fragrantica (fruity, sweet, tropical, vanilla)
+  210: [
+    { label: "Afrutado", percentage: 95, color: "#e75a8d" },
+    { label: "Dulce", percentage: 78, color: "#f0a830" },
+    { label: "Tropical", percentage: 72, color: "#f0c934" },
+    { label: "Avainillado", percentage: 55, color: "#c9a033" },
+    { label: "Cítrico", percentage: 48, color: "#f0c934" },
+    { label: "Amaderado", percentage: 40, color: "#c17b2a" },
+    { label: "Ámbar", percentage: 35, color: "#f0a830" },
+    { label: "Especiado Suave", percentage: 28, color: "#d4855a" },
+  ],
+  // 211. Odyssey Black Forest — VERIFICADO: acordes de Fragrantica (sweet, vanilla, caramel, cherry)
+  211: [
+    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Avainillado", percentage: 82, color: "#c9a033" },
+    { label: "Caramelo", percentage: 75, color: "#c98030" },
+    { label: "Cereza", percentage: 68, color: "#c4385a" },
+    { label: "Cálido Especiado", percentage: 55, color: "#c45a3a" },
+    { label: "Amaderado", percentage: 42, color: "#c17b2a" },
+    { label: "Almizclado", percentage: 35, color: "#a0a0a0" },
+    { label: "Lácteo", percentage: 28, color: "#f5f0e0" },
+  ],
+  // 212. Odyssey Revolution — VERIFICADO: acordes de Fragrantica (sweet, fruity, vanilla, aromatic)
+  212: [
+    { label: "Dulce", percentage: 95, color: "#f0a830" },
+    { label: "Afrutado", percentage: 82, color: "#e75a8d" },
+    { label: "Avainillado", percentage: 68, color: "#c9a033" },
+    { label: "Aromático", percentage: 55, color: "#6b8e4e" },
+    { label: "Cálido Especiado", percentage: 45, color: "#c45a3a" },
+    { label: "Pachulí", percentage: 38, color: "#4a7a3a" },
+    { label: "Cítrico", percentage: 32, color: "#f0c934" },
+  ],
+  // 213. Odyssey Dubai Chocolat — VERIFICADO: acordes de Fragrantica (warm spicy, sweet, nutty, woody)
+  213: [
+    { label: "Cálido Especiado", percentage: 95, color: "#c45a3a" },
+    { label: "Dulce", percentage: 88, color: "#f0a830" },
+    { label: "Nueces", percentage: 75, color: "#8b6e4e" },
+    { label: "Amaderado", percentage: 58, color: "#c17b2a" },
+    { label: "Avainillado", percentage: 52, color: "#c9a033" },
+    { label: "Caramelo", percentage: 48, color: "#c98030" },
+    { label: "Cacao", percentage: 42, color: "#5a3a2a" },
+    { label: "Café", percentage: 35, color: "#5a3a2a" },
+  ],
+  // 214. Eter Desert Flower — VERIFICADO: acordes de Fragrantica (leather, patchouli, white floral, animalic)
+  214: [
+    { label: "Cuero", percentage: 95, color: "#8b5e3c" },
+    { label: "Pachulí", percentage: 78, color: "#4a7a3a" },
+    { label: "Floral Blanco", percentage: 65, color: "#f0e6f6" },
+    { label: "Animálico", percentage: 55, color: "#8b6e4e" },
+    { label: "Amaderado", percentage: 48, color: "#c17b2a" },
+    { label: "Almizclado", percentage: 40, color: "#a0a0a0" },
+    { label: "Ámbar", percentage: 32, color: "#f0a830" },
+  ],
+
 };

@@ -306,17 +306,17 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   200: ["Notas Verdes", "Toronja", "Especias", "Bergamota", "Lavanda", "Petitgrain", "Jengibre", "Violeta", "Gardenia", "Salvia", "Almizcle", "Sándalo", "Incienso", "Vetiver", "Madera de Guayaco", "Ládano"], // 212 Men
   201: ["Absenta", "Anís", "Hinojo", "Lavanda", "Vainilla Negra", "Almizcle"], // 212 VIP Black
   202: ["Dulce", "Floral"], // Club de Nuit Precieux Woman
-  203: ["Cítrico", "Amaderado"], // Club de Nuit Bling
+  203: ["Cítrico", "Dulce"], // Club de Nuit Bling
   204: ["Acuático", "Cítrico"], // Club de Nuit Milestone
-  206: ["Floral", "Dulce"], // Club de Nuit Woman Extrait Parfum
+  206: ["Floral", "Amaderado"], // Club de Nuit Woman Extrait Parfum
   207: ["Cítrico", "Especiado"], // Odyssey Tyrant
   208: ["Dulce", "Frutal"], // Odyssey Candee
-  209: ["Dulce", "Ámbar"], // Odyssey Marshmallow
+  209: ["Dulce", "Frutal"], // Odyssey Marshmallow
   210: ["Frutal", "Dulce"], // Odyssey Go Mango
-  211: ["Dulce", "Amaderado"], // Odyssey Black Forest
-  212: ["Cítrico", "Dulce"], // Odyssey Revolution
-  213: ["Dulce", "Amaderado"], // Odyssey Dubai Chocolate
-  214: ["Floral", "Ámbar"], // Eter Desert Flower
+  211: ["Dulce", "Especiado"], // Odyssey Black Forest
+  212: ["Dulce", "Frutal"], // Odyssey Revolution
+  213: ["Dulce", "Especiado"], // Odyssey Dubai Chocolate
+  214: ["Floral", "Amaderado"], // Eter Desert Flower
 
 };
 

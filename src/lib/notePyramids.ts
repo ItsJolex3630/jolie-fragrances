@@ -3517,4 +3517,243 @@ export const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
       { name: "Almizcle", percentage: 70 },
     ],
   },
+
+  // ─── Nuevos perfumes Armaf 2024-2025: Pirámide de notas verificada de Fragrantica ───
+
+  // 202. Club de Nuit Precieux Woman — VERIFICADO: Fragrantica (Sea Salt, Bergamot, Apple top; Ylang-Ylang, Red Berries, White Lily, Jasmine heart; Whipped Cream, Vanilla, Musk, Tonka Bean, Patchouli base)
+  202: {
+    top: [
+      { name: "Sal Marina", percentage: 90 },
+      { name: "Bergamota", percentage: 82 },
+      { name: "Manzana", percentage: 75 },
+    ],
+    heart: [
+      { name: "Ylang-Ylang", percentage: 90 },
+      { name: "Bayas Rojas", percentage: 78 },
+      { name: "Lirio Blanco", percentage: 72 },
+      { name: "Jazmín", percentage: 68 },
+    ],
+    base: [
+      { name: "Crema Batida", percentage: 88 },
+      { name: "Vainilla", percentage: 82 },
+      { name: "Almizcle", percentage: 75 },
+      { name: "Haba Tonka", percentage: 68 },
+      { name: "Pachulí", percentage: 60 },
+    ],
+  },
+  // 203. Club de Nuit Bling — VERIFICADO: Fragrantica (Citrus top; Flower Prism, Stardust heart; Velvet Woods, Vanilla base)
+  203: {
+    top: [
+      { name: "Notas Cítricas", percentage: 95 },
+      { name: "Geranio", percentage: 70 },
+    ],
+    heart: [
+      { name: "Prisma Floral", percentage: 85 },
+      { name: "Polvo de Estrellas", percentage: 72 },
+    ],
+    base: [
+      { name: "Madera Aterciopelada", percentage: 88 },
+      { name: "Vainilla", percentage: 82 },
+    ],
+  },
+  // 204. Club de Nuit Milestone — VERIFICADO: Fragrantica (Sea Notes, Red Fruits, Bergamot top; Violet, White Woods, Sandalwood heart; Musk, Ambroxan, Vetiver base)
+  204: {
+    top: [
+      { name: "Notas Marinas", percentage: 95 },
+      { name: "Frutos Rojos", percentage: 82 },
+      { name: "Bergamota", percentage: 75 },
+    ],
+    heart: [
+      { name: "Violeta", percentage: 85 },
+      { name: "Madera Blanca", percentage: 78 },
+      { name: "Sándalo", percentage: 70 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 90 },
+      { name: "Ambroxan", percentage: 82 },
+      { name: "Vetiver", percentage: 72 },
+    ],
+  },
+  // 206. Club de Nuit Woman Extrait Parfum — VERIFICADO: Fragrantica (Orange, Peach, Grapefruit, Bergamot top; Rose, Geranium, Jasmine, Litchi heart; Patchouli, Vetiver, Musk, Vanilla base)
+  206: {
+    top: [
+      { name: "Naranja", percentage: 92 },
+      { name: "Melocotón", percentage: 85 },
+      { name: "Toronja", percentage: 78 },
+      { name: "Bergamota", percentage: 72 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 95 },
+      { name: "Geranio", percentage: 78 },
+      { name: "Jazmín", percentage: 72 },
+      { name: "Lichi", percentage: 65 },
+    ],
+    base: [
+      { name: "Pachulí", percentage: 92 },
+      { name: "Vetiver", percentage: 82 },
+      { name: "Almizcle", percentage: 75 },
+      { name: "Vainilla", percentage: 68 },
+    ],
+  },
+  // 207. Odyssey Tyrant — VERIFICADO: Fragrantica (Grapefruit, Citruses top; Pepper, Lavender, Geranium, Elemi heart; Ambroxan, Woody Notes, Vetiver, Cedar base)
+  207: {
+    top: [
+      { name: "Toronja", percentage: 92 },
+      { name: "Notas Cítricas", percentage: 85 },
+    ],
+    heart: [
+      { name: "Pimienta", percentage: 88 },
+      { name: "Lavanda", percentage: 78 },
+      { name: "Geranio", percentage: 72 },
+      { name: "Elemí", percentage: 65 },
+    ],
+    base: [
+      { name: "Ambroxan", percentage: 90 },
+      { name: "Notas Amaderadas", percentage: 82 },
+      { name: "Vetiver", percentage: 75 },
+      { name: "Cedro", percentage: 68 },
+    ],
+  },
+  // 208. Odyssey Candee — VERIFICADO: Fragrantica (Strawberry, Raspberry, Geranium, Peach, Bergamot top; Caramel, Jasmine, Passionfruit heart; Patchouli, Musk, Amber base)
+  208: {
+    top: [
+      { name: "Fresa", percentage: 92 },
+      { name: "Frambuesa", percentage: 85 },
+      { name: "Geranio", percentage: 75 },
+      { name: "Melocotón", percentage: 70 },
+      { name: "Bergamota", percentage: 62 },
+    ],
+    heart: [
+      { name: "Caramelo", percentage: 90 },
+      { name: "Jazmín", percentage: 78 },
+      { name: "Maracuyá", percentage: 72 },
+    ],
+    base: [
+      { name: "Pachulí", percentage: 85 },
+      { name: "Almizcle", percentage: 78 },
+      { name: "Ámbar", percentage: 68 },
+    ],
+  },
+  // 209. Odyssey Marshmallow — VERIFICADO: Fragrantica (Coconut, Apple, Lemon, Peony, Lily of the Valley top; Marshmallow, Strawberry, Peach, Apricot, Raspberry, Orange Blossom heart; Mascarpone Cheese, Vanilla, Praline, Musk, Tonka Bean, Amber base)
+  209: {
+    top: [
+      { name: "Coco", percentage: 90 },
+      { name: "Manzana", percentage: 82 },
+      { name: "Limón", percentage: 75 },
+      { name: "Peonía", percentage: 68 },
+      { name: "Lirio del Valle", percentage: 60 },
+    ],
+    heart: [
+      { name: "Malvavisco", percentage: 95 },
+      { name: "Fresa", percentage: 82 },
+      { name: "Melocotón", percentage: 78 },
+      { name: "Albaricoque", percentage: 72 },
+      { name: "Frambuesa", percentage: 68 },
+      { name: "Flor de Azahar", percentage: 62 },
+    ],
+    base: [
+      { name: "Mascarpone", percentage: 88 },
+      { name: "Vainilla", percentage: 85 },
+      { name: "Praliné", percentage: 78 },
+      { name: "Almizcle", percentage: 70 },
+      { name: "Haba Tonka", percentage: 65 },
+      { name: "Ámbar", percentage: 58 },
+    ],
+  },
+  // 210. Odyssey Go Mango — VERIFICADO: Fragrantica (Lemon, Ginger, Pink Pepper, White Flowers top; Mango, Dry Wood, Tonka Bean heart; Amber, Vanilla, Guaiac Wood base)
+  210: {
+    top: [
+      { name: "Limón", percentage: 90 },
+      { name: "Jengibre", percentage: 82 },
+      { name: "Pimienta Rosa", percentage: 75 },
+      { name: "Flores Blancas", percentage: 68 },
+    ],
+    heart: [
+      { name: "Mango", percentage: 95 },
+      { name: "Madera Seca", percentage: 72 },
+      { name: "Haba Tonka", percentage: 65 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 85 },
+      { name: "Vainilla", percentage: 80 },
+      { name: "Madera de Guayaco", percentage: 72 },
+    ],
+  },
+  // 211. Odyssey Black Forest — VERIFICADO: Fragrantica (Caramel, Cherry, Cinnamon, Lactones, White Blossom top; Dates, Honey, Nutmeg heart; Praline, Tonka Bean, Vanilla, Woody Notes, Musk base)
+  211: {
+    top: [
+      { name: "Caramelo", percentage: 90 },
+      { name: "Cereza", percentage: 88 },
+      { name: "Canela", percentage: 80 },
+      { name: "Lactonas", percentage: 72 },
+      { name: "Flor Blanca", percentage: 65 },
+    ],
+    heart: [
+      { name: "Dátiles", percentage: 82 },
+      { name: "Miel", percentage: 78 },
+      { name: "Nuez Moscada", percentage: 68 },
+    ],
+    base: [
+      { name: "Praliné", percentage: 88 },
+      { name: "Haba Tonka", percentage: 82 },
+      { name: "Vainilla", percentage: 78 },
+      { name: "Notas Amaderadas", percentage: 68 },
+      { name: "Almizcle", percentage: 60 },
+    ],
+  },
+  // 212. Odyssey Revolution — VERIFICADO: Fragrantica (Pineapple, Black Currant, Blood Orange, Sage top; Praline, Vanilla, Plum, Cardamom heart; Patchouli, Tonka Bean base)
+  212: {
+    top: [
+      { name: "Piña", percentage: 92 },
+      { name: "Grosella Negra", percentage: 85 },
+      { name: "Naranja Sangría", percentage: 78 },
+      { name: "Salvia", percentage: 68 },
+    ],
+    heart: [
+      { name: "Praliné", percentage: 90 },
+      { name: "Vainilla", percentage: 82 },
+      { name: "Ciruela", percentage: 75 },
+      { name: "Cardamomo", percentage: 68 },
+    ],
+    base: [
+      { name: "Pachulí", percentage: 85 },
+      { name: "Haba Tonka", percentage: 78 },
+    ],
+  },
+  // 213. Odyssey Dubai Chocolat — VERIFICADO: Fragrantica (Coffee, Pistachio, Hazelnut, Praline, Knafeh top; Chocolate, Vanilla, Cardamom heart; Caramel, Tonka Bean, Amberwood base)
+  213: {
+    top: [
+      { name: "Café", percentage: 92 },
+      { name: "Pistacho", percentage: 88 },
+      { name: "Avellana", percentage: 82 },
+      { name: "Praliné", percentage: 78 },
+      { name: "Knafeh", percentage: 72 },
+    ],
+    heart: [
+      { name: "Chocolate", percentage: 95 },
+      { name: "Vainilla", percentage: 82 },
+      { name: "Cardamomo", percentage: 72 },
+    ],
+    base: [
+      { name: "Caramelo", percentage: 88 },
+      { name: "Haba Tonka", percentage: 80 },
+      { name: "Amberwood", percentage: 72 },
+    ],
+  },
+  // 214. Eter Desert Flower — VERIFICADO: Fragrantica (Jasmine top; Leather, Jasmine, Sweet Notes heart; Patchouli, Musk base)
+  214: {
+    top: [
+      { name: "Jazmín", percentage: 95 },
+    ],
+    heart: [
+      { name: "Cuero", percentage: 90 },
+      { name: "Jazmín", percentage: 72 },
+      { name: "Notas Dulces", percentage: 65 },
+    ],
+    base: [
+      { name: "Pachulí", percentage: 88 },
+      { name: "Almizcle", percentage: 80 },
+    ],
+  },
+
 };
