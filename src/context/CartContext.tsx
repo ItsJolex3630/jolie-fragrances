@@ -46,7 +46,8 @@ interface CartContextType {
   subtotal: number;
   totalSavings: number;
   suggestions: ComboSuggestion[];
-  whatsappUrl: string;
+  whatsappCheckoutUrl: string;
+  whatsappQuoteUrl: string;
 }
 
 const CartContext = createContext<CartContextType | null>(null);
@@ -121,14 +122,9 @@ function computeSuggestions(items: CartItem[]): ComboSuggestion[] {
   return suggestions.slice(0, 3);
 }
 
-// ─── Build WhatsApp checkout URL ───
-function buildWhatsAppUrl(items: CartItem[], subtotal: number, totalSavings: number): string {
-  const phone = "584244055386";
+// ─── Build shared order lines ───
+function buildOrderLines(items: CartItem[], subtotal: number, totalSavings: number): string[] {
   const lines: string[] = [];
-
-  lines.push("🛒 *Pedido Jolie Fragrances*");
-  lines.push("");
-
   const perfumeItems = items.filter((i): i is CartPerfumeItem => i.type === "perfume");
   const comboItems = items.filter((i): i is CartComboItem => i.type === "combo");
 
@@ -161,8 +157,41 @@ function buildWhatsAppUrl(items: CartItem[], subtotal: number, totalSavings: num
   if (totalSavings > 0) {
     lines.push(`💚 *Ahorro total: $${totalSavings}*`);
   }
+
+  return lines;
+}
+
+// ─── Build WhatsApp checkout URL (purchase intent) ───
+function buildWhatsAppCheckoutUrl(items: CartItem[], subtotal: number, totalSavings: number): string {
+  const phone = "584244055386";
+  const lines: string[] = [];
+
+  lines.push("¡Hola Jolie Fragrances! 👋");
+  lines.push("Me gustaría hacer el siguiente pedido:");
   lines.push("");
-  lines.push("¡Gracias por tu compra! ✨");
+
+  lines.push(...buildOrderLines(items, subtotal, totalSavings));
+
+  lines.push("");
+  lines.push("¡Gracias! ✨");
+
+  const text = encodeURIComponent(lines.join("\n"));
+  return `https://wa.me/${phone}?text=${text}`;
+}
+
+// ─── Build WhatsApp quote URL (inquiry / availability check) ───
+function buildWhatsAppQuoteUrl(items: CartItem[], subtotal: number, totalSavings: number): string {
+  const phone = "584244055386";
+  const lines: string[] = [];
+
+  lines.push("¡Hola Jolie Fragrances! 👋");
+  lines.push("Estoy interesad@ en los siguientes perfumes y me gustaría saber la disponibilidad y confirmar los precios antes de comprar:");
+  lines.push("");
+
+  lines.push(...buildOrderLines(items, subtotal, totalSavings));
+
+  lines.push("");
+  lines.push("Quedo atent@ a su respuesta, ¡gracias! 🙏");
 
   const text = encodeURIComponent(lines.join("\n"));
   return `https://wa.me/${phone}?text=${text}`;
@@ -276,8 +305,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const suggestions = useMemo(() => computeSuggestions(items), [items]);
 
-  const whatsappUrl = useMemo(
-    () => buildWhatsAppUrl(items, subtotal, totalSavings),
+  const whatsappCheckoutUrl = useMemo(
+    () => buildWhatsAppCheckoutUrl(items, subtotal, totalSavings),
+    [items, subtotal, totalSavings]
+  );
+
+  const whatsappQuoteUrl = useMemo(
+    () => buildWhatsAppQuoteUrl(items, subtotal, totalSavings),
     [items, subtotal, totalSavings]
   );
 
@@ -297,12 +331,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       subtotal,
       totalSavings,
       suggestions,
-      whatsappUrl,
+      whatsappCheckoutUrl,
+      whatsappQuoteUrl,
     }),
     [
       items, isOpen, openCart, closeCart, toggleCart, addPerfume, addCombo,
       removeItem, updateQuantity, clearCart, itemCount, subtotal, totalSavings,
-      suggestions, whatsappUrl,
+      suggestions, whatsappCheckoutUrl, whatsappQuoteUrl,
     ]
   );
 

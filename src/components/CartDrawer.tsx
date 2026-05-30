@@ -277,7 +277,7 @@ function EmptyCart() {
 
 // ─── Main Cart Drawer ───
 export default function CartDrawer() {
-  const { items, isOpen, closeCart, itemCount, subtotal, totalSavings, suggestions, whatsappUrl, clearCart } = useCart();
+  const { items, isOpen, closeCart, itemCount, subtotal, totalSavings, suggestions, whatsappCheckoutUrl, whatsappQuoteUrl, clearCart } = useCart();
 
   const perfumeItems = useMemo(
     () => items.filter((i): i is CartItem & { type: "perfume" } => i.type === "perfume"),
@@ -432,9 +432,9 @@ export default function CartDrawer() {
 
                 {/* Checkout buttons */}
                 <div className="px-5 pb-5 space-y-2.5">
-                  {/* WhatsApp checkout */}
+                  {/* WhatsApp checkout (purchase intent) */}
                   <a
-                    href={whatsappUrl}
+                    href={whatsappCheckoutUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full flex items-center justify-center gap-2.5 py-3.5 rounded-xl bg-[#25D366] text-white font-bold text-sm font-[family-name:var(--font-inter)] hover:bg-[#20bd5a] transition-all shadow-lg shadow-[#25D366]/15 active:scale-[0.98]"
@@ -443,15 +443,15 @@ export default function CartDrawer() {
                     Finalizar Compra por WhatsApp
                   </a>
 
-                  {/* Quote button */}
+                  {/* Quote button (availability inquiry) */}
                   <a
-                    href={whatsappUrl}
+                    href={whatsappQuoteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-[rgba(212,175,55,0.2)] bg-[#111111]/50 text-[#d4af37]/80 hover:text-[#d4af37] hover:border-[#d4af37]/35 transition-all text-xs font-[family-name:var(--font-inter)] active:scale-[0.98]"
                   >
                     <Sparkles className="w-3.5 h-3.5" />
-                    Cotizar por WhatsApp
+                    Consultar Disponibilidad
                     <ChevronRight className="w-3 h-3" />
                   </a>
                 </div>
