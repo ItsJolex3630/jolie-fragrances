@@ -335,6 +335,22 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   228: ["Dulce", "Frutal"], // Yara Candy
   230: ["Dulce", "Floral"], // Yara Elixir
   231: ["Amaderado", "Ámbar"], // Bade'e Al Oud Sublime
+  232: ["Amaderado", "Especiado"], // Indomitable
+  233: ["Dulce", "Floral"], // Marshmallow Blush
+  234: ["Dulce", "Floral"], // Khair
+  235: ["Floral", "Dulce"], // Khair Felicity
+  236: ["Dulce", "Vainilla"], // December
+  237: ["Frutal", "Floral"], // Emir Memories of Summer
+  238: ["Dulce", "Frutal"], // Taskeen
+  239: ["Acuático", "Frutal"], // Taskeen Marina
+  240: ["Dulce", "Cremoso"], // Lactea Divina
+  241: ["Floral", "Dulce"], // Fayora
+  242: ["Frutal", "Dulce"], // Mango Punch
+  243: ["Frutal", "Cítrico"], // Juice Melange
+  244: ["Frutal", "Dulce"], // Pear Potion
+  245: ["Floral", "Dulce"], // Qissa Pink
+  246: ["Dulce", "Gourmand"], // Qissa Delicius
+  247: ["Floral", "Amaderado"], // Qissa Blue
 
 };
 
@@ -352,7 +368,8 @@ export type Brand =
   | "Carolina Herrera"
   | "Khadlaj"
   | "Bharara"
-  | "Jean Paul Gaultier";
+  | "Jean Paul Gaultier"
+  | "Paris Corner";
 
 export type Concentration = "Parfum" | "Elixir" | "Eau de Parfum" | "Eau de Toilette" | "Eau de Cologne" | "Eau Fraîche";
 
@@ -405,6 +422,7 @@ export const BRANDS: Brand[] = [
   "Khadlaj",
   "Bharara",
   "Jean Paul Gaultier",
+  "Paris Corner",
 ];
 
 export const GENDERS: Gender[] = ["Dama", "Caballero", "Unisex"];
@@ -423,7 +441,8 @@ export const BRAND_SLUGS: Record<Brand, string> = {
   "Carolina Herrera": "Carolina-Herrera",
   Khadlaj: "Khadlaj-Perfumes",
   Bharara: "Bharara",
-  "Jean Paul Gaultier": "Jean-Paul-Gaultier"
+  "Jean Paul Gaultier": "Jean-Paul-Gaultier",
+  "Paris Corner": "Paris-Corner"
 };
 
 export function getImageUrl(fragranticaId: number): string {
@@ -2519,25 +2538,27 @@ export const perfumes: Perfume[] = [
 {
     id: 226,
     name: "Khair Fusion",
-    brand: "Khadlaj",
-    gender: "Unisex",
-    price: 41,
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 32,
     size: "100ml",
     fragranticaId: 92768,
-    brandSlug: "Khadlaj-Perfumes",
+    brandSlug: "Paris-Corner",
     perfumeSlug: "Khair-Fusion",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Khair-Fusion-92768.html",
     available: true
   },
 {
     id: 227,
     name: "Khair Confection",
-    brand: "Khadlaj",
-    gender: "Unisex",
+    brand: "Paris Corner",
+    gender: "Dama",
     price: 41,
     size: "100ml",
     fragranticaId: 99069,
-    brandSlug: "Khadlaj-Perfumes",
+    brandSlug: "Paris-Corner",
     perfumeSlug: "Khair-Confection",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Khair-Confection-99069.html",
     available: true
   },
 {
@@ -2741,13 +2762,14 @@ export const perfumes: Perfume[] = [
 {
     id: 224,
     name: "Caramel Cascade",
-    brand: "Lattafa",
+    brand: "Paris Corner",
     gender: "Dama",
     price: 41,
     size: "100ml",
     fragranticaId: 95545,
-    brandSlug: "Lattafa-Perfumes",
+    brandSlug: "Paris-Corner",
     perfumeSlug: "Caramel-Cascade",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Caramel-Cascade-95545.html",
     available: true
   },
 {
@@ -2967,6 +2989,218 @@ export const perfumes: Perfume[] = [
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Bade-e-Al-Oud-Sublime",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Lattafa-Perfumes/Bade-e-Al-Oud-Sublime-83309.html",
+    available: true
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // 🏛️ PARIS CORNER
+  // ═══════════════════════════════════════════════════════
+{
+    id: 232,
+    name: "Indomitable",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 41,
+    size: "100ml",
+    fragranticaId: 106231,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Indomitable",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Indomitable-106231.html",
+    available: true
+  },
+{
+    id: 233,
+    name: "Marshmallow Blush",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 72,
+    size: "100ml",
+    fragranticaId: 102791,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Marshmallow-Blush",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Marshmallow-Blush-102791.html",
+    available: true
+  },
+{
+    id: 234,
+    name: "Khair",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 45,
+    size: "100ml",
+    fragranticaId: 92767,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Khair",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Khair-92767.html",
+    available: true
+  },
+{
+    id: 235,
+    name: "Khair Felicity",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 57,
+    size: "100ml",
+    fragranticaId: 102874,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Khair-Felicity",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Khair-Felicity-102874.html",
+    available: true
+  },
+{
+    id: 236,
+    name: "December",
+    brand: "Paris Corner",
+    gender: "Unisex",
+    price: 57,
+    size: "100ml",
+    fragranticaId: 96254,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "December-Vanilla",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/December-Vanilla-96254.html",
+    available: true
+  },
+{
+    id: 237,
+    name: "Emir Memories of Summer",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 55,
+    size: "100ml",
+    fragranticaId: 111166,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Emir-Memories-of-Summer",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Lueur-d-Espoir-Memories-of-Summer-111166.html",
+    available: true
+  },
+{
+    id: 238,
+    name: "Taskeen",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 97355,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Taskeen",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Taskeen-97355.html",
+    available: true
+  },
+{
+    id: 239,
+    name: "Taskeen Marina",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 53,
+    size: "100ml",
+    fragranticaId: 97356,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Taskeen-Marina",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Taskeen-Marina-97356.html",
+    available: true
+  },
+{
+    id: 240,
+    name: "Lactea Divina",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 41,
+    size: "100ml",
+    fragranticaId: 99799,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Lactea-Divina",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Taskeen-Lactea-Divina-99799.html",
+    available: true
+  },
+{
+    id: 241,
+    name: "Fayora",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 43,
+    size: "100ml",
+    fragranticaId: 109930,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Fayora",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Fayora-109930.html",
+    available: true
+  },
+{
+    id: 242,
+    name: "Mango Punch",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 43,
+    size: "100ml",
+    fragranticaId: 102678,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Mango-Punch",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Mango-Punch-102678.html",
+    available: true
+  },
+{
+    id: 243,
+    name: "Juice Melange",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 41,
+    size: "100ml",
+    fragranticaId: 104124,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Juice-Melange",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Juicy-Melange-104124.html",
+    available: true
+  },
+{
+    id: 244,
+    name: "Pear Potion",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 43,
+    size: "100ml",
+    fragranticaId: 100625,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Pear-Potion",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Pear-Potion-100625.html",
+    available: true
+  },
+{
+    id: 245,
+    name: "Qissa Pink",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 38,
+    size: "100ml",
+    fragranticaId: 98578,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Qissa-Pink",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Qissa-Pink-98578.html",
+    available: true
+  },
+{
+    id: 246,
+    name: "Qissa Delicius",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 38,
+    size: "100ml",
+    fragranticaId: 98552,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Qissa-Delicius",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Qissa-Delicious-98552.html",
+    available: true
+  },
+{
+    id: 247,
+    name: "Qissa Blue",
+    brand: "Paris Corner",
+    gender: "Dama",
+    price: 32,
+    size: "100ml",
+    fragranticaId: 98579,
+    brandSlug: "Paris-Corner",
+    perfumeSlug: "Qissa-Blue",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Qissa-Blue-98579.html",
     available: true
   }
 ];
