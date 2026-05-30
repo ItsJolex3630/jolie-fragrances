@@ -11,10 +11,10 @@ type ComboCategory = "Todos" | Combo["category"];
 
 const FILTER_TABS: { key: ComboCategory; label: string; icon: string }[] = [
   { key: "Todos", label: "Todos", icon: "✨" },
-  { key: "Pareja", label: "Pareja", icon: "💖" },
-  { key: "Todo Terreno", label: "Todo Terreno", icon: "🏔️" },
-  { key: "Árabe", label: "Árabe", icon: "✨" },
-  { key: "Gourmand", label: "Gourmand", icon: "🍫" },
+  { key: "Pareja", label: "💑 Pareja", icon: "💑" },
+  { key: "Todo Terreno", label: "🧭 Todo Terreno", icon: "🧭" },
+  { key: "Árabe", label: "☕ Cita en Dubai", icon: "☕" },
+  { key: "Gourmand", label: "🍓 Dulce Tentación", icon: "🍓" },
 ];
 
 // ─── Animation variants ───
