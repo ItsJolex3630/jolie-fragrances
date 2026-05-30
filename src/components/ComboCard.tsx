@@ -124,7 +124,7 @@ export default function ComboCard({ combo, onAddToCart }: ComboCardProps) {
         <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/90 border border-emerald-400/50 shadow-lg shadow-emerald-500/25 backdrop-blur-sm">
           <Tag className="w-3.5 h-3.5 text-white" />
           <span className="text-xs font-bold text-white font-[family-name:var(--font-inter)] tracking-wide">
-            AHORRA ${combo.savings.toFixed(2)}
+            AHORRA ${combo.savings}
           </span>
         </div>
       </div>
@@ -392,7 +392,7 @@ export default function ComboCard({ combo, onAddToCart }: ComboCardProps) {
           {/* Original price (strikethrough) */}
           <div className="flex items-center gap-2 mb-1.5">
             <span className="text-sm text-white/30 font-[family-name:var(--font-inter)] line-through decoration-white/20">
-              ${combo.originalTotalPrice.toFixed(2)}
+              ${combo.originalTotalPrice}
             </span>
             <span className="text-[10px] text-white/20 font-[family-name:var(--font-inter)]">
               precio individual
@@ -402,7 +402,7 @@ export default function ComboCard({ combo, onAddToCart }: ComboCardProps) {
           {/* Combo price (giant, gold) */}
           <div className="flex items-baseline gap-2">
             <span className="text-4xl sm:text-5xl font-extrabold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] via-[#f0d060] to-[#d4af37] bg-clip-text text-transparent leading-none tracking-tight">
-              ${combo.comboPrice.toFixed(2)}
+              ${combo.comboPrice}
             </span>
             <span className="text-xs text-[#d4af37]/60 font-[family-name:var(--font-inter)] font-semibold">
               USD

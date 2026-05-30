@@ -32,8 +32,8 @@ export const combos: Combo[] = [
     ],
     originalTotalPrice: 76,
     discountPercentage: 10,
-    comboPrice: 68.4,
-    savings: 7.6,
+    comboPrice: 68,
+    savings: 8,
     imageUrl: '',
   },
   {
@@ -50,8 +50,8 @@ export const combos: Combo[] = [
     ],
     originalTotalPrice: 107,
     discountPercentage: 10,
-    comboPrice: 96.3,
-    savings: 10.7,
+    comboPrice: 96,
+    savings: 11,
     imageUrl: '',
   },
   {
@@ -67,8 +67,8 @@ export const combos: Combo[] = [
     ],
     originalTotalPrice: 94,
     discountPercentage: 10,
-    comboPrice: 84.6,
-    savings: 9.4,
+    comboPrice: 85,
+    savings: 9,
     imageUrl: '',
   },
   {
@@ -84,8 +84,8 @@ export const combos: Combo[] = [
     ],
     originalTotalPrice: 122,
     discountPercentage: 10,
-    comboPrice: 109.8,
-    savings: 12.2,
+    comboPrice: 110,
+    savings: 12,
     imageUrl: '',
   },
 ];
