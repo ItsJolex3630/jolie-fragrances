@@ -208,3 +208,28 @@ Stage Summary:
 - All features restored: cart system (CartContext + CartDrawer), combo system (combosData + ComboCard + ComboShowcase), all perfumes with notes/accords
 - Project compiles and runs successfully
 - Pushed to GitHub (commit 422d985), Vercel will auto-deploy
+---
+Task ID: 2
+Agent: main
+Task: Restore original combos + add new Asad/Yara couple combos + new perfumes
+
+Work Log:
+- Analyzed all Asad and Yara perfumes in database with prices and fragranticaIds
+- Added 3 new perfumes: Asad Black (id:229, $47, fragranticaId:102905), Yara Elixir (id:230, $47, fragranticaId:117615), Bade'e Al Oud Sublime (id:231, $47, fragranticaId:84301)
+- Added PERFUME_NOTES entries for new perfumes
+- Restored original combo: Fakhar Black + Fakhar Rose as "Dúo Rosa y Sombra"
+- Changed Bade'e Al Oud + Honor & Glory → Bade'e Al Oud Oud for Glory + Bade'e Al Oud Sublime as "Dúo Oud Imperial"
+- Added new Asad + Yara couple combos:
+  1. Asad Elixir + Yara Elixir = "Dúo Deseo Prohibido" ($90)
+  2. Asad Bourbon + Yara Candy = "Dúo Noche de Bourbon" ($76)
+  3. Asad Black + Yara = "Dúo Sombra y Seda" ($76)
+  4. Asad Zanzibar + Yara Tous = "Dúo Fascinación Arábiga" ($68) [already existed]
+  5. Asad Bourbon + Yara Moi = "Dúo Dulce Pecado" ($76) [modified from Turathi Blue]
+- Removed "Dúo Élite de Plata" (Asad Bourbon + Fakhar Rose) - replaced by better themed combos
+- Build succeeded, pushed to GitHub
+
+Stage Summary:
+- Total combos: 20 (9 Pareja, 5 Todo Terreno, 5 Árabe, 5 Gourmand)
+- 3 new perfumes added to database
+- New Asad+Yara combo theme with attractive names
+- Pushed commit 4b13a99 to GitHub
