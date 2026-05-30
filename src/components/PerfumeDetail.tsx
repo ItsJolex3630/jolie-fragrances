@@ -13,7 +13,9 @@ import {
   Star,
   Instagram,
   Clock,
+  ShoppingCart,
 } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 import {
   getImageUrl,
   perfumes as allPerfumesData,
@@ -224,6 +226,7 @@ export default function PerfumeDetail({
   // ─── Price integration ───
   const { getPrice: getPriceFromHook } = usePrices();
   const retailPrice = getPriceFromHook(perfume.id);
+  const { addPerfume, openCart } = useCart();
 
   const [imgTriedJpg, setImgTriedJpg] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -625,6 +628,19 @@ export default function PerfumeDetail({
 
             {/* ─── Action Buttons ─── */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-4 pt-4 border-t border-white/5">
+              {/* Add to Cart button */}
+              {retailPrice !== null && perfume.available !== false && (
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => { addPerfume(perfume, retailPrice); openCart(); }}
+                  className="group flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold text-sm font-[family-name:var(--font-inter)] hover:from-emerald-400 hover:to-emerald-500 transition-all duration-200 shadow-lg shadow-emerald-500/15"
+                >
+                  <ShoppingCart className="w-4 h-4" />
+                  Agregar al Carrito
+                </motion.button>
+              )}
+
               {/* Gold gradient button - Consultar Disponibilidad */}
               <a
                 href={`https://wa.me/584244055386?text=${encodeURIComponent(`Hola Jolie Fragances! Me gustaría consultar la disponibilidad de ${perfume.name} - ${perfume.brand}`)}`}
