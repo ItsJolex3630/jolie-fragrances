@@ -20,8 +20,59 @@ export interface Combo {
 
 export const combos: Combo[] = [
   // ═══════════════════════════════════════════════════════
-  // 💑 PAREJA — Dúo Jolie
+  // 💑 PAREJA — Dúos Asad & Yara
   // ═══════════════════════════════════════════════════════
+  {
+    id: 'combo-duo-deseo-prohibido',
+    slug: 'duo-deseo-prohibido',
+    name: 'Dúo Deseo Prohibido',
+    category: 'Pareja',
+    description:
+      'El león y la flor más codiciados en un solo pack. Asad Elixir despliega una potencia especiada y amaderada que impone respeto con cada paso, mientras Yara Elixir responde con una dulzura floral y luminosa que hipnotiza a quien la rodea. Dos elixirs que se buscan, se complementan y se vuelven irresistibles juntos. La química perfecta entre fuerza y delicadeza.',
+    perfumes: [
+      { name: 'Asad Elixir', volume: '100ML', fragranticaId: 117616 },
+      { name: 'Yara Elixir', volume: '100ML', fragranticaId: 117615 },
+    ],
+    originalTotalPrice: 100,
+    discountPercentage: 10,
+    comboPrice: 90,
+    savings: 10,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-duo-noche-de-bourbon',
+    slug: 'duo-noche-de-bourbon',
+    name: 'Dúo Noche de Bourbon',
+    category: 'Pareja',
+    description:
+      'Calidez bourbon y dulzura candy para una noche que no se olvida. Asad Bourbon irradia una elegancia ahumada y amaderada con notas de bourbon que envuelven al caballero en misterio, mientras Yara Candy estalla con su dulzura juguetona de caramelo y frutas que vuelve locos a los sentidos. El maridaje perfecto entre lo intenso y lo adictivo. Una noche, dos adicciones.',
+    perfumes: [
+      { name: 'Asad Bourbon', volume: '100ML', fragranticaId: 101124 },
+      { name: 'Yara Candy', volume: '100ML', fragranticaId: 95752 },
+    ],
+    originalTotalPrice: 85,
+    discountPercentage: 10,
+    comboPrice: 76,
+    savings: 9,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-duo-sombra-y-seda',
+    slug: 'duo-sombra-y-seda',
+    name: 'Dúo Sombra y Seda',
+    category: 'Pareja',
+    description:
+      'La oscuridad más elegante y la suavidad más seductora en un solo dúo. Asad Black es pura sombra: amaderado, especiado y magnético como la noche misma, mientras Yara es seda pura: floral, dulce y delicada como un susurro que se queda en la memoria. Juntos crean el contraste más irresistible — lo profundo y lo etéreo, lo oscuro y lo luminoso.',
+    perfumes: [
+      { name: 'Asad Black', volume: '100ML', fragranticaId: 102905 },
+      { name: 'Yara', volume: '100ML', fragranticaId: 76880 },
+    ],
+    originalTotalPrice: 85,
+    discountPercentage: 10,
+    comboPrice: 76,
+    savings: 9,
+    imageUrl: '',
+  },
   {
     id: 'combo-duo-fascinacion-arabiga',
     slug: 'duo-fascinacion-arabiga',
@@ -40,15 +91,49 @@ export const combos: Combo[] = [
     imageUrl: '',
   },
   {
-    id: 'combo-duo-elite-de-plata',
-    slug: 'duo-elite-de-plata',
-    name: 'Dúo Élite de Plata',
+    id: 'combo-duo-dulce-pecado',
+    slug: 'duo-dulce-pecado',
+    name: 'Dúo Dulce Pecado',
     category: 'Pareja',
     description:
-      'Elegancia de firma en su máxima expresión. Asad Bourbon irradia una calidez bourbon y amaderada perfecta para el caballero distinguido, mientras Fakhar Rose despliega un ramo de rosas y frutos rojos que enamora a primera impresión. La dupla ideal para quienes buscan sofisticación sin perder intensidad.',
+      'Los más coquetos y elogiados en un solo combo. Asad Bourbon es esa fragancia amaderada y bourbon que detiene el tiempo en la pista, mientras Yara Moi envuelve con su mezcla irresistible de vainilla, caramelo y notas frutales. Juntos son el pecado más dulce que cometerás.',
     perfumes: [
       { name: 'Asad Bourbon', volume: '100ML', fragranticaId: 101124 },
+      { name: 'Yara Moi', volume: '100ML', fragranticaId: 80722 },
+    ],
+    originalTotalPrice: 85,
+    discountPercentage: 10,
+    comboPrice: 76,
+    savings: 9,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-duo-rosa-y-sombra',
+    slug: 'duo-rosa-y-sombra',
+    name: 'Dúo Rosa y Sombra',
+    category: 'Pareja',
+    description:
+      'La dualidad perfecta de la línea Fakhar en un solo pack. Fakhar Black es la fuerza oscura y amaderada del caballero que impone con elegancia, mientras Fakhar Rose despliega un ramo de rosas y frutos rojos que enamora a primera impresión. Dos caras de la misma nobleza árabe, dos fragancias que juntas cuentan una historia de contraste y armonía.',
+    perfumes: [
+      { name: 'Fakhar Black', volume: '100ML', fragranticaId: 70465 },
       { name: 'Fakhar Rose', volume: '100ML', fragranticaId: 70466 },
+    ],
+    originalTotalPrice: 82,
+    discountPercentage: 10,
+    comboPrice: 74,
+    savings: 8,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-duo-oud-imperial',
+    slug: 'duo-oud-imperial',
+    name: 'Dúo Oud Imperial',
+    category: 'Pareja',
+    description:
+      'Dos joyas de la línea Bade\'e Al Oud que huelen a verdadero poder. Bade\'e Al Oud Oud for Glory despliega la profundidad amaderada del oud más premium con un sillage legendario, y Bade\'e Al Oud Sublime eleva la experiencia con una sublimidad amaderada y ambarada que evoca los palacios más exclusivos de Arabia. Dos ouds, un imperio.',
+    perfumes: [
+      { name: "Bade'e Al Oud Oud for Glory", volume: '100ML', fragranticaId: 64948 },
+      { name: "Bade'e Al Oud Sublime", volume: '100ML', fragranticaId: 84301 },
     ],
     originalTotalPrice: 88,
     discountPercentage: 10,
@@ -71,23 +156,6 @@ export const combos: Combo[] = [
     discountPercentage: 10,
     comboPrice: 89,
     savings: 10,
-    imageUrl: '',
-  },
-  {
-    id: 'combo-duo-dulce-pecado',
-    slug: 'duo-dulce-pecado',
-    name: 'Dúo Dulce Pecado',
-    category: 'Pareja',
-    description:
-      'Los más coquetos y elogiados en un solo combo. Turathi Blue es esa fragancia amaderada y magnética que detiene el tiempo en la pista, mientras Yara Moi envuelve con su mezcla irresistible de vainilla, caramelo y notas frutales. Juntos son el pecado más dulce que cometerás.',
-    perfumes: [
-      { name: 'Turathi Blue', volume: '100ML', fragranticaId: 70839 },
-      { name: 'Yara Moi', volume: '100ML', fragranticaId: 80722 },
-    ],
-    originalTotalPrice: 92,
-    discountPercentage: 10,
-    comboPrice: 83,
-    savings: 9,
     imageUrl: '',
   },
   {
@@ -211,7 +279,7 @@ export const combos: Combo[] = [
     name: 'Dúo Oud Ancestral',
     category: 'Árabe',
     description:
-      'Dos leyendas del oud que huelen a dinero y tradición. Oud For Glory delivers la profundidad amaderada del oud más premium, y Shaghaf Oud Azraq eleva la experiencia con un oud azulado y misterioso que evoca las noches más profundas de Arabia. Para quienes quieren sillage inmenso y presencia legendaria.',
+      'Dos leyendas del oud que huelen a dinero y tradición. Oud For Glory despliega la profundidad amaderada del oud más premium, y Shaghaf Oud Azraq eleva la experiencia con un oud azulado y misterioso que evoca las noches más profundas de Arabia. Para quienes quieren sillage inmenso y presencia legendaria.',
     perfumes: [
       { name: 'Oud For Glory', volume: '100ML', fragranticaId: 64948 },
       { name: 'Shaghaf Oud Azraq', volume: '100ML', fragranticaId: 82383 },
