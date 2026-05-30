@@ -18,10 +18,8 @@ interface TopBarProps {
 }
 
 export default function TopBar({ onSearch, onCompare, onSimilar }: TopBarProps) {
-  const [isVisible, setIsVisible] = useState(true);
   const [isAtTop, setIsAtTop] = useState(true);
   const [fathersDayInfo, setFathersDayInfo] = useState<FathersDayInfo | null>(null);
-  const lastScrollY = useRef(0);
   const ticking = useRef(false);
 
   // Check Father's Day status
@@ -32,7 +30,7 @@ export default function TopBar({ onSearch, onCompare, onSimilar }: TopBarProps) 
   const isFathersDay = fathersDayInfo?.status === "exact_day";
   const isFathersMonth = fathersDayInfo?.status === "fathers_month";
 
-  // Smart scroll: hide on scroll DOWN (mobile), show on scroll UP or at top
+  // Track scroll position only for background blur effect
   useEffect(() => {
     function handleScroll() {
       if (ticking.current) return;
@@ -42,19 +40,6 @@ export default function TopBar({ onSearch, onCompare, onSimilar }: TopBarProps) 
         const currentScrollY = window.scrollY;
         const atTop = currentScrollY < 10;
         setIsAtTop(atTop);
-
-        // Determine scroll direction
-        if (atTop) {
-          setIsVisible(true);
-        } else if (currentScrollY > lastScrollY.current + 5) {
-          // Scrolling DOWN
-          setIsVisible(false);
-        } else if (currentScrollY < lastScrollY.current - 5) {
-          // Scrolling UP
-          setIsVisible(true);
-        }
-
-        lastScrollY.current = currentScrollY;
         ticking.current = false;
       });
     }
@@ -77,9 +62,9 @@ export default function TopBar({ onSearch, onCompare, onSimilar }: TopBarProps) 
 
   return (
     <nav
-      className={`top-bar fixed top-0 left-0 right-0 z-40 ${
-        isVisible ? "top-bar-visible" : "top-bar-hidden"
-      } ${isAtTop ? "bg-transparent" : "bg-[#0a0a0a]/85 backdrop-blur-xl border-b border-[rgba(212,175,55,0.08)]"}`}
+      className={`top-bar fixed top-0 left-0 right-0 z-40 top-bar-always-visible ${
+        isAtTop ? "bg-transparent" : "bg-[#0a0a0a]/85 backdrop-blur-xl border-b border-[rgba(212,175,55,0.08)]"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 h-[52px] lg:h-[56px] flex items-center justify-between">
         {/* Left: Logo */}
