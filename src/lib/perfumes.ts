@@ -308,7 +308,6 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   202: ["Dulce", "Floral"], // Club de Nuit Precieux Woman
   203: ["Cítrico", "Amaderado"], // Club de Nuit Bling
   204: ["Acuático", "Cítrico"], // Club de Nuit Milestone
-  205: ["Floral", "Dulce"], // Club de Nuit Imperial
   206: ["Floral", "Dulce"], // Club de Nuit Woman Extrait Parfum
   207: ["Cítrico", "Especiado"], // Odyssey Tyrant
   208: ["Dulce", "Frutal"], // Odyssey Candee
@@ -572,18 +571,6 @@ export const perfumes: Perfume[] = [
     fragranticaId: 64104,
     brandSlug: "Armaf",
     perfumeSlug: "Club-de-Nuit-Milestone",
-    available: true
-  },
-{
-    id: 205,
-    name: "Club de Nuit Imperial",
-    brand: "Armaf",
-    gender: "Dama",
-    price: 57,
-    size: "105ml",
-    fragranticaId: 106170,
-    brandSlug: "Armaf",
-    perfumeSlug: "Club-De-Nuit-Imperial",
     available: true
   },
 {
@@ -2176,11 +2163,12 @@ export const perfumes: Perfume[] = [
     name: "Nitro Pour Homme",
     brand: "Dumont",
     gender: "Caballero",
+    price: 54,
     size: "100ml",
     fragranticaId: 73020,
     brandSlug: "Dumont",
     perfumeSlug: "Nitro-Pour-Homme",
-    available: false
+    available: true
   },
 {
     id: 99,
@@ -2449,12 +2437,11 @@ export const perfumes: Perfume[] = [
     name: "Island",
     brand: "Khadlaj",
     gender: "Unisex",
-    price: 62,
     size: "100ml",
     fragranticaId: 102362,
     brandSlug: "Khadlaj-Perfumes",
     perfumeSlug: "Island",
-    available: true
+    available: false
   },
 {
     id: 169,
@@ -2759,5 +2746,5 @@ export const perfumes: Perfume[] = [
     perfumeSlug: "212-VIP-Black",
     concentration: "Eau de Parfum",
     available: false
-  },
+  }
 ];
