@@ -188,3 +188,23 @@ Stage Summary:
 - 96 perfumes now have correct sugerido prices from Excel
 - 93 perfumes marked as unavailable (not in Excel or Sin precio)
 - All changes committed and pushed to main branch
+---
+Task ID: 1
+Agent: main
+Task: Restore entire Jolie Fragrances project from user-provided ZIP
+
+Work Log:
+- Extracted jolie-fragrances-website.zip from /home/z/my-project/upload/
+- Analyzed ZIP structure: found all source files including CartDrawer, ComboCard, ComboShowcase, CartContext, combosData
+- Compared ZIP vs current project: ZIP had 5 missing files and larger versions of existing files (perfumes.ts: 2943 vs 2381 lines)
+- Copied all src/ files from ZIP to project
+- Copied config files (package.json, tailwind.config.ts, tsconfig.json, etc.)
+- Verified build: `bunx next build` compiled successfully
+- Started dev server: HTTP 200 on localhost:3000
+- Committed changes (56 files, +7260/-1081 lines)
+- Resolved rebase conflict on Excel file, pushed to GitHub
+
+Stage Summary:
+- All features restored: cart system (CartContext + CartDrawer), combo system (combosData + ComboCard + ComboShowcase), all perfumes with notes/accords
+- Project compiles and runs successfully
+- Pushed to GitHub (commit 422d985), Vercel will auto-deploy
