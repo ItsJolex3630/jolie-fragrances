@@ -333,7 +333,6 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   226: ["Amaderado", "Especiado"], // Khair Fusion
   227: ["Dulce", "Especiado"], // Khair Confection
   228: ["Dulce", "Frutal"], // Yara Candy
-  229: ["Amaderado", "Especiado"], // Asad Black
   230: ["Dulce", "Floral"], // Yara Elixir
   231: ["Amaderado", "Ámbar"], // Bade'e Al Oud Sublime
 
@@ -2943,19 +2942,7 @@ export const perfumes: Perfume[] = [
     concentration: "Eau de Parfum",
     available: false
   },
-{
-    id: 229,
-    name: "Asad Black",
-    brand: "Lattafa",
-    gender: "Caballero",
-    price: 47,
-    size: "100ml",
-    fragranticaId: 102905,
-    brandSlug: "Lattafa-Perfumes",
-    perfumeSlug: "Asad-Black",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Lattafa-Perfumes/Asad-Black-102905.html",
-    available: true
-  },
+
 {
     id: 230,
     name: "Yara Elixir",
@@ -2976,10 +2963,10 @@ export const perfumes: Perfume[] = [
     gender: "Unisex",
     price: 47,
     size: "100ml",
-    fragranticaId: 84301,
+    fragranticaId: 83309,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Bade-e-Al-Oud-Sublime",
-    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Lattafa-Perfumes/Bade-e-Al-Oud-Sublime-84301.html",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Lattafa-Perfumes/Bade-e-Al-Oud-Sublime-83309.html",
     available: true
   }
 ];

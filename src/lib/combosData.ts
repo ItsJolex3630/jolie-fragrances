@@ -62,15 +62,15 @@ export const combos: Combo[] = [
     name: 'Dúo Sombra y Seda',
     category: 'Pareja',
     description:
-      'La oscuridad más elegante y la suavidad más seductora en un solo dúo. Asad Black es pura sombra: amaderado, especiado y magnético como la noche misma, mientras Yara es seda pura: floral, dulce y delicada como un susurro que se queda en la memoria. Juntos crean el contraste más irresistible — lo profundo y lo etéreo, lo oscuro y lo luminoso.',
+      'La oscuridad más elegante y la suavidad más seductora en un solo dúo. Asad es pura presencia: amaderado, especiado y magnético como la noche misma, mientras Yara es seda pura: floral, dulce y delicada como un susurro que se queda en la memoria. Juntos crean el contraste más irresistible — lo profundo y lo etéreo, lo oscuro y lo luminoso.',
     perfumes: [
-      { name: 'Asad Black', volume: '100ML', fragranticaId: 102905 },
+      { name: 'Asad', volume: '100ML', fragranticaId: 72821 },
       { name: 'Yara', volume: '100ML', fragranticaId: 76880 },
     ],
-    originalTotalPrice: 85,
+    originalTotalPrice: 76,
     discountPercentage: 10,
-    comboPrice: 76,
-    savings: 9,
+    comboPrice: 68,
+    savings: 8,
     imageUrl: '',
   },
   {
@@ -330,10 +330,10 @@ export const combos: Combo[] = [
     name: 'Dúo Sultán y Sultana',
     category: 'Árabe',
     description:
-      'Realeza en cada gota. Honor & Glory despliega su oud noble y especiado con la dignidad de un sultán, mientras Vintage Radio complementa con una elegancia retro y amaderada que proyecta la gracia de una sultana. Dos fragancias unisex pesadas, con sillage monumental, ideales para quienes quieren destacar y oler a verdadero poder.',
+      'Realeza en cada gota. Honor & Glory despliega su oud noble y especiado con la dignidad de un sultán, mientras Bade\'e Al Oud Sublime complementa con una sublimidad amaderada y ambarada de botella roja y dorada que proyecta la gracia de una sultana. Dos fragancias de la línea Bade\'e Al Oud, pesadas y con sillage monumental, ideales para quienes quieren destacar y oler a verdadero poder.',
     perfumes: [
       { name: 'Honor & Glory', volume: '100ML', fragranticaId: 84302 },
-      { name: 'Vintage Radio', volume: '100ML', fragranticaId: 89454 },
+      { name: "Bade'e Al Oud Sublime", volume: '100ML', fragranticaId: 83309 },
     ],
     originalTotalPrice: 88,
     discountPercentage: 10,
