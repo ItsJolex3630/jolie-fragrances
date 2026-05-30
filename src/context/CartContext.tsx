@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useState, useCallback, useMemo, useEffect } from "react";
 import { combos, type Combo } from "@/lib/combosData";
 import type { Perfume } from "@/lib/perfumes";
+import { toast } from "@/hooks/use-toast";
 
 // ─── Cart item types ───
 export interface CartPerfumeItem {
@@ -221,35 +222,73 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const toggleCart = useCallback(() => setIsOpen((prev) => !prev), []);
 
   const addPerfume = useCallback((perfume: Perfume, price: number) => {
+    let wasNew = false;
+    let newQuantity = 1;
     setItems((prev) => {
       const existing = prev.find(
         (i): i is CartPerfumeItem => i.type === "perfume" && i.perfume.id === perfume.id
       );
       if (existing) {
+        newQuantity = existing.quantity + 1;
         return prev.map((i) =>
           i.type === "perfume" && i.perfume.id === perfume.id
             ? { ...i, quantity: i.quantity + 1 }
             : i
         );
       }
+      wasNew = true;
       return [...prev, { type: "perfume", perfume, price, quantity: 1 }];
     });
+
+    // Show toast notification
+    setTimeout(() => {
+      if (wasNew) {
+        toast({
+          title: `🛒 ${perfume.name}`,
+          description: `Agregado al carrito — $${price}`,
+        });
+      } else {
+        toast({
+          title: `🛒 ${perfume.name}`,
+          description: `Cantidad actualizada (${newQuantity}) — $${price * newQuantity}`,
+        });
+      }
+    }, 50);
   }, []);
 
   const addCombo = useCallback((combo: Combo) => {
+    let wasNew = false;
+    let newQuantity = 1;
     setItems((prev) => {
       const existing = prev.find(
         (i): i is CartComboItem => i.type === "combo" && i.combo.id === combo.id
       );
       if (existing) {
+        newQuantity = existing.quantity + 1;
         return prev.map((i) =>
           i.type === "combo" && i.combo.id === combo.id
             ? { ...i, quantity: i.quantity + 1 }
             : i
         );
       }
+      wasNew = true;
       return [...prev, { type: "combo", combo, price: combo.comboPrice, quantity: 1 }];
     });
+
+    // Show toast notification
+    setTimeout(() => {
+      if (wasNew) {
+        toast({
+          title: `🎁 ${combo.name}`,
+          description: `Combo agregado al carrito — $${combo.comboPrice} (ahorras $${combo.savings})`,
+        });
+      } else {
+        toast({
+          title: `🎁 ${combo.name}`,
+          description: `Cantidad actualizada (${newQuantity}) — $${combo.comboPrice * newQuantity}`,
+        });
+      }
+    }, 50);
   }, []);
 
   const removeItem = useCallback((itemType: "perfume" | "combo", id: number | string) => {
