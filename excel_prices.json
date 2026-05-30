@@ -1,0 +1,2284 @@
+{
+  "YARA ELIXIR": {
+    "name": "YARA ELIXIR",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 39.0,
+    "suggested": 53.0
+  },
+  "ASAD ELIXIR": {
+    "name": "ASAD ELIXIR",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 39.0,
+    "suggested": 53.0
+  },
+  "VICTORIA": {
+    "name": "VICTORIA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 38.0,
+    "suggested": 51.0
+  },
+  "ECLAIRE LATTAFA": {
+    "name": "ECLAIRE LATTAFA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "YARA LATTAFA": {
+    "name": "YARA LATTAFA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "YARA TOUS": {
+    "name": "YARA TOUS",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "YARA CANDY": {
+    "name": "YARA CANDY",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "YARA MOI": {
+    "name": "YARA MOI",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "ASAD ZANZIBAR": {
+    "name": "ASAD ZANZIBAR",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "ASAD BOURBON": {
+    "name": "ASAD BOURBON",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "LAYAAN": {
+    "name": "LAYAAN",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "KHAMRAH": {
+    "name": "KHAMRAH",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "MAYAR CHERRY": {
+    "name": "MAYAR CHERRY",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 33.0,
+    "suggested": 45.0
+  },
+  "KHAMRAH DUKHAN": {
+    "name": "KHAMRAH DUKHAN",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "MAYAR NATURAL INTENSE": {
+    "name": "MAYAR NATURAL INTENSE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 27.0,
+    "suggested": 36.0
+  },
+  "KHAMRAH QAWHA": {
+    "name": "KHAMRAH QAWHA",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "AL NOBLE SAFER": {
+    "name": "AL NOBLE SAFER",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "EMEER LATTAFA": {
+    "name": "EMEER LATTAFA",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 45.0,
+    "suggested": 61.0
+  },
+  "ECLAIRE BANOFFI": {
+    "name": "ECLAIRE BANOFFI",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 43.0,
+    "suggested": 58.0
+  },
+  "ECLAIRE PISTACHE": {
+    "name": "ECLAIRE PISTACHE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 43.0,
+    "suggested": 58.0
+  },
+  "BERRY ON TOP (CHOCOLATE)": {
+    "name": "BERRY ON TOP (Chocolate)",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 50.0,
+    "suggested": 68.0
+  },
+  "CHOCO OVERDOSE": {
+    "name": "CHOCO OVERDOSE",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 50.0,
+    "suggested": 68.0
+  },
+  "MALLOW MADNESS": {
+    "name": "MALLOW MADNESS",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 50.0,
+    "suggested": 68.0
+  },
+  "VANILLA FREAK": {
+    "name": "VANILLA FREAK",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 50.0,
+    "suggested": 68.0
+  },
+  "WHIPPED PLEASURE": {
+    "name": "WHIPPED PLEASURE",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 50.0,
+    "suggested": 68.0
+  },
+  "AJWAA LATTAFA": {
+    "name": "AJWAA LATTAFA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 45.0,
+    "suggested": 61.0
+  },
+  "SEHR": {
+    "name": "SEHR",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 48.0,
+    "suggested": 65.0
+  },
+  "TERIAQ": {
+    "name": "TERIAQ",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 42.0,
+    "suggested": 57.0
+  },
+  "TERIAQ INTENSE": {
+    "name": "TERIAQ INTENSE",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "JASSOR LATTAFA": {
+    "name": "JASSOR LATTAFA",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 37.0,
+    "suggested": 50.0
+  },
+  "VINTAGE RADIO": {
+    "name": "VINTAGE RADIO",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "ATLAS LATTAFA": {
+    "name": "ATLAS LATTAFA",
+    "volume": "75ML",
+    "gender": "CABALLERO",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "QAED AL FURSAN": {
+    "name": "QAED AL FURSAN",
+    "volume": "90ML",
+    "gender": "CABALLERO",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "QAED AL FURSAN UNTAMED": {
+    "name": "QAED AL FURSAN UNTAMED",
+    "volume": "90ML",
+    "gender": "CABALLERO",
+    "wholesale": 27.0,
+    "suggested": 36.0
+  },
+  "QAED AL FURSAN LIMITED": {
+    "name": "QAED AL FURSAN LIMITED",
+    "volume": "90ML",
+    "gender": "UNISEX",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "VELVET ROSE": {
+    "name": "VELVET ROSE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "HAYAATI": {
+    "name": "HAYAATI",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "NEBRAS": {
+    "name": "NEBRAS",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "NEBRAS ELIXIR": {
+    "name": "NEBRAS ELIXIR",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 45.0,
+    "suggested": 61.0
+  },
+  "SAKEENA LATTAFA": {
+    "name": "SAKEENA LATTAFA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "EMAAN LATTAFA": {
+    "name": "EMAAN LATTAFA",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "QIMMAH": {
+    "name": "QIMMAH",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 22.0,
+    "suggested": 30.0
+  },
+  "ANGHAN LATTAFA": {
+    "name": "ANGHAN LATTAFA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "THARWAH SILVER": {
+    "name": "THARWAH SILVER",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 38.0,
+    "suggested": 51.0
+  },
+  "OUD FOR GLORY": {
+    "name": "OUD FOR GLORY",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "SUBLIME": {
+    "name": "SUBLIME",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "NOBLE BLUSH": {
+    "name": "NOBLE BLUSH",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 33.0,
+    "suggested": 45.0
+  },
+  "AMETHYST": {
+    "name": "AMETHYST",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "HONOR Y GLORY": {
+    "name": "HONOR Y GLORY",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "FIRE ON ICE": {
+    "name": "FIRE ON ICE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "RAMZ GOLD": {
+    "name": "RAMZ GOLD",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 22.0,
+    "suggested": 30.0
+  },
+  "FAKHAR SILVER": {
+    "name": "FAKHAR SILVER",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "FAKHAR ROSE": {
+    "name": "FAKHAR ROSE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "FAKHAR GOLD": {
+    "name": "FAKHAR GOLD",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "FHAKAR PLATIN": {
+    "name": "FHAKAR PLATIN",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 38.0,
+    "suggested": 51.0
+  },
+  "OPULENT DUBAI": {
+    "name": "OPULENT DUBAI",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "MANDARIN SKY": {
+    "name": "MANDARIN SKY",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "MANDARIN SKY ELIXIR": {
+    "name": "MANDARIN SKY ELIXIR",
+    "volume": "200ML",
+    "gender": "CABALLERO",
+    "wholesale": 52.0,
+    "suggested": 70.0
+  },
+  "ODYSSEY ARTISTO": {
+    "name": "ODYSSEY ARTISTO",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "ODYSSEY SPECTRA": {
+    "name": "ODYSSEY SPECTRA",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "ODYSSEY HOMME BLACK": {
+    "name": "ODYSSEY HOMME BLACK",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "ODYSSEY HOMME WHITE": {
+    "name": "ODYSSEY HOMME WHITE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "ANA ABIYEDH ROUGE": {
+    "name": "ANA ABIYEDH ROUGE",
+    "volume": "60ML",
+    "gender": "UNISEX",
+    "wholesale": 20.0,
+    "suggested": 27.0
+  },
+  "ANA ABIYEDH CORAL": {
+    "name": "ANA ABIYEDH CORAL",
+    "volume": "60ML",
+    "gender": "DAMA",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "ANA ABIYEDH POUDREE": {
+    "name": "ANA ABIYEDH POUDREE",
+    "volume": "60ML",
+    "gender": "DAMA",
+    "wholesale": 20.0,
+    "suggested": 27.0
+  },
+  "SET GAGHBA": {
+    "name": "SET GAGHBA",
+    "volume": "-",
+    "gender": "UNISEX",
+    "wholesale": 15.0,
+    "suggested": 20.0
+  },
+  "ANA ABIYEDH SCARLET": {
+    "name": "ANA ABIYEDH SCARLET",
+    "volume": "60ML",
+    "gender": "DAMA",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "ODYSSEY TYRANT": {
+    "name": "ODYSSEY TYRANT",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 31.0,
+    "suggested": 42.0
+  },
+  "ODYSSEE CANDEE": {
+    "name": "ODYSSEE CANDEE",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "ODYSEEY MARSHMALLOW": {
+    "name": "ODYSEEY MARSHMALLOW",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 45.0,
+    "suggested": 61.0
+  },
+  "ODYSSEY TOFFEE COFFE": {
+    "name": "ODYSSEY TOFFEE COFFE",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 47.0,
+    "suggested": 63.0
+  },
+  "ODYSSEY GO MANGO": {
+    "name": "ODYSSEY GO MANGO",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 42.0,
+    "suggested": 57.0
+  },
+  "ODYSSEY BAHAMA": {
+    "name": "ODYSSEY BAHAMA",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 42.0,
+    "suggested": 57.0
+  },
+  "ODYSSEY BLACK FOREST": {
+    "name": "ODYSSEY BLACK FOREST",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 45.0,
+    "suggested": 61.0
+  },
+  "CLUB DE NUIT PRECIEUX": {
+    "name": "CLUB DE NUIT PRECIEUX",
+    "volume": "55ML",
+    "gender": "CABALLERO",
+    "wholesale": 55.0,
+    "suggested": 74.0
+  },
+  "CLUB DE NUIT PRECIEUX DAMA": {
+    "name": "CLUB DE NUIT PRECIEUX DAMA",
+    "volume": "55ML",
+    "gender": "DAMA",
+    "wholesale": 55.0,
+    "suggested": 74.0
+  },
+  "CLUB DE NUIT BLING": {
+    "name": "CLUB DE NUIT BLING",
+    "volume": "105ML",
+    "gender": "CABALLERO",
+    "wholesale": 55.0,
+    "suggested": 74.0
+  },
+  "CLUB DE NUIT SILLAGE": {
+    "name": "CLUB DE NUIT SILLAGE",
+    "volume": "105ML",
+    "gender": "UNISEX",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "CLUB DE NUIT MALEKA": {
+    "name": "CLUB DE NUIT MALEKA",
+    "volume": "105ML",
+    "gender": "DAMA",
+    "wholesale": 45.0,
+    "suggested": 61.0
+  },
+  "ISLAND BLISS": {
+    "name": "ISLAND BLISS",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 46.0,
+    "suggested": 62.0
+  },
+  "ISLAND BREEZE": {
+    "name": "ISLAND BREEZE",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 50.0,
+    "suggested": 68.0
+  },
+  "MISS ACTITUDE": {
+    "name": "MISS ACTITUDE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 38.0,
+    "suggested": 51.0
+  },
+  "MISS MACNIFIQ": {
+    "name": "MISS MACNIFIQ",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 37.0,
+    "suggested": 50.0
+  },
+  "BEACH PARTY": {
+    "name": "BEACH PARTY",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 47.0,
+    "suggested": 63.0
+  },
+  "SPACE AGE": {
+    "name": "SPACE AGE",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 34.0,
+    "suggested": 46.0
+  },
+  "TAG NERO": {
+    "name": "TAG NERO",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "CHECKMATE": {
+    "name": "CHECKMATE",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 46.0,
+    "suggested": 62.0
+  },
+  "VENTANA": {
+    "name": "VENTANA",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "ODYSSEY LIMONI": {
+    "name": "ODYSSEY LIMONI",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 32.0,
+    "suggested": 43.0
+  },
+  "ODYSSEY MEGA": {
+    "name": "ODYSSEY MEGA",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "ODYSSEY REVOLUTION": {
+    "name": "ODYSSEY REVOLUTION",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 45.0,
+    "suggested": 61.0
+  },
+  "ODYSEEY DUBAI CHOCOLATE": {
+    "name": "ODYSEEY DUBAI CHOCOLATE",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "ODYSSEY AOUD": {
+    "name": "ODYSSEY AOUD",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 31.0,
+    "suggested": 42.0
+  },
+  "LA ROSA": {
+    "name": "LA ROSA",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 34.0,
+    "suggested": 46.0
+  },
+  "CLUB DE NUIT MILESTONE": {
+    "name": "CLUB DE NUIT MILESTONE",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 41.0,
+    "suggested": 55.0
+  },
+  "CLUB DE NUIT ICONIC": {
+    "name": "CLUB DE NUIT ICONIC",
+    "volume": "105ML",
+    "gender": "CABALLERO",
+    "wholesale": 50.0,
+    "suggested": 68.0
+  },
+  "CLUB DE NUIT IMPERIAL": {
+    "name": "CLUB DE NUIT IMPERIAL",
+    "volume": "105ML",
+    "gender": "DAMA",
+    "wholesale": 42.0,
+    "suggested": 57.0
+  },
+  "CLUB DE NUIT INTENSE WOMAN": {
+    "name": "CLUB DE NUIT INTENSE WOMAN",
+    "volume": "105ML",
+    "gender": "UNISEX",
+    "wholesale": 32.0,
+    "suggested": 43.0
+  },
+  "CLUB DE NUIT WOMAN EXTRAIT PARFUM": {
+    "name": "CLUB DE NUIT WOMAN EXTRAIT PARFUM",
+    "volume": "-",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "9PM AFNAN": {
+    "name": "9PM AFNAN",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "9PM NITE OUT": {
+    "name": "9PM NITE OUT",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 55.0,
+    "suggested": 74.0
+  },
+  "9AM AFNAN": {
+    "name": "9AM AFNAN",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "NITRO BLACK": {
+    "name": "NITRO BLACK",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "NITRO RED INTENSELY": {
+    "name": "NITRO RED INTENSELY",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 55.0,
+    "suggested": 74.0
+  },
+  "NITRO INTENSE": {
+    "name": "NITRO INTENSE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "NITRO GREEN": {
+    "name": "NITRO GREEN",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "NITRO BLUE": {
+    "name": "NITRO BLUE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "NITRO PLATINUM": {
+    "name": "NITRO PLATINUM",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 45.0,
+    "suggested": 61.0
+  },
+  "AL HARAMAIN GOLD EDITION": {
+    "name": "AL HARAMAIN GOLD EDITION",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 65.0,
+    "suggested": 88.0
+  },
+  "AL HARAMAIN RUBY": {
+    "name": "AL HARAMAIN RUBY",
+    "volume": "120ML",
+    "gender": "UNISEX",
+    "wholesale": 65.0,
+    "suggested": 88.0
+  },
+  "AL HARAMAIN CARBON": {
+    "name": "AL HARAMAIN CARBON",
+    "volume": "60ML",
+    "gender": "UNISEX",
+    "wholesale": 58.0,
+    "suggested": 78.0
+  },
+  "AL HARAMAIN OUD WHITE": {
+    "name": "AL HARAMAIN OUD WHITE",
+    "volume": "60ML",
+    "gender": "UNISEX",
+    "wholesale": 62.0,
+    "suggested": 84.0
+  },
+  "ORIENTICA ROYAL AMBER": {
+    "name": "ORIENTICA ROYAL AMBER",
+    "volume": "80ML",
+    "gender": "UNISEX",
+    "wholesale": 80.0,
+    "suggested": 108.0
+  },
+  "ORIENTICA AMBER ROUGE": {
+    "name": "ORIENTICA AMBER ROUGE",
+    "volume": "80ML",
+    "gender": "UNISEX",
+    "wholesale": 80.0,
+    "suggested": 108.0
+  },
+  "ETER DESERT FLOWER": {
+    "name": "ETER DESERT FLOWER",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 55.0,
+    "suggested": 74.0
+  },
+  "HUNTER": {
+    "name": "HUNTER",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "HISTORY SAHARA": {
+    "name": "HISTORY SAHARA",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "LE PARFAIT AZURE": {
+    "name": "LE PARFAIT AZURE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 24.0,
+    "suggested": 32.0
+  },
+  "TURATHI BLUE": {
+    "name": "TURATHI BLUE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "TRIBUTE BLUE": {
+    "name": "TRIBUTE BLUE",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 45.0,
+    "suggested": 61.0
+  },
+  "TURATHI ELECTRIC": {
+    "name": "TURATHI ELECTRIC",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 43.0,
+    "suggested": 58.0
+  },
+  "TRIBUTE PINK": {
+    "name": "TRIBUTE PINK",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "TURATHI PURPLE": {
+    "name": "TURATHI PURPLE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "SUPREMACY TAPIS ROUGE": {
+    "name": "SUPREMACY TAPIS ROUGE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "TURATHI RED": {
+    "name": "TURATHI RED",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "RARE": {
+    "name": "RARE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 45.0,
+    "suggested": 61.0
+  },
+  "MISS ACTTITUDE": {
+    "name": "MISS ACTTITUDE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 38.0,
+    "suggested": 51.0
+  },
+  "MISS MAGNIFIQ": {
+    "name": "MISS MAGNIFIQ",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 37.0,
+    "suggested": 50.0
+  },
+  "WILDCARD GAME OF SPADES": {
+    "name": "WILDCARD GAME OF SPADES",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 85.0,
+    "suggested": 115.0
+  },
+  "ROUGE GAME OF SPADES": {
+    "name": "ROUGE GAME OF SPADES",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 79.0,
+    "suggested": 107.0
+  },
+  "WIN GAME OF SPADES": {
+    "name": "WIN GAME OF SPADES",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 85.0,
+    "suggested": 115.0
+  },
+  "DIAMOND GAME OF SPADES": {
+    "name": "DIAMOND GAME OF SPADES",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 95.0,
+    "suggested": 128.0
+  },
+  "SPECTRE": {
+    "name": "SPECTRE",
+    "volume": "8ML",
+    "gender": "CABALLERO",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "SPECTRE GHOST": {
+    "name": "SPECTRE GHOST",
+    "volume": "8ML",
+    "gender": "CABALLERO",
+    "wholesale": 47.0,
+    "suggested": 63.0
+  },
+  "PINNACE WHITE": {
+    "name": "PINNACE WHITE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 50.0,
+    "suggested": 68.0
+  },
+  "VULCAN FEU": {
+    "name": "VULCAN FEU",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 52.0,
+    "suggested": 70.0
+  },
+  "VULCAN BAIE": {
+    "name": "VULCAN BAIE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 47.0,
+    "suggested": 63.0
+  },
+  "VULCAN SABLE": {
+    "name": "VULCAN SABLE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 50.0,
+    "suggested": 68.0
+  },
+  "LIQUID BRUN": {
+    "name": "LIQUID BRUN",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 50.0,
+    "suggested": 68.0
+  },
+  "AZZURE AOUD": {
+    "name": "AZZURE AOUD",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 42.0,
+    "suggested": 57.0
+  },
+  "SWEET PARADISE": {
+    "name": "SWEET PARADISE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 48.0,
+    "suggested": 65.0
+  },
+  "ECLAIR AFFAIR": {
+    "name": "ECLAIR AFFAIR",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 45.0,
+    "suggested": 61.0
+  },
+  "SHMALLOW FLUFF": {
+    "name": "SHMALLOW FLUFF",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 48.0,
+    "suggested": 65.0
+  },
+  "CHAOS": {
+    "name": "CHAOS",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 52.0,
+    "suggested": 70.0
+  },
+  "VENENO SCARLET": {
+    "name": "VENENO SCARLET",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 58.0,
+    "suggested": 78.0
+  },
+  "VENENO BIANCO": {
+    "name": "VENENO BIANCO",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 55.0,
+    "suggested": 74.0
+  },
+  "BHARARA QUEEN": {
+    "name": "BHARARA QUEEN",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 68.0,
+    "suggested": 92.0
+  },
+  "BHARARVIKING RIO": {
+    "name": "BHARARVIKING RIO",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 81.0,
+    "suggested": 109.0
+  },
+  "ROME IVORY": {
+    "name": "ROME IVORY",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 43.0,
+    "suggested": 58.0
+  },
+  "HAWAS FIRE": {
+    "name": "HAWAS FIRE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 48.0,
+    "suggested": 65.0
+  },
+  "HAWAS ELIXIR": {
+    "name": "HAWAS ELIXIR",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 42.0,
+    "suggested": 57.0
+  },
+  "HAWAS KOBRA": {
+    "name": "HAWAS KOBRA",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 55.0,
+    "suggested": 74.0
+  },
+  "HAWAS TROPICAL": {
+    "name": "HAWAS TROPICAL",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 50.0,
+    "suggested": 68.0
+  },
+  "HAWAS PINK": {
+    "name": "HAWAS PINK",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 42.0,
+    "suggested": 57.0
+  },
+  "HAWAS DIVA": {
+    "name": "HAWAS DIVA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 55.0,
+    "suggested": 74.0
+  },
+  "HAWAS FOR HER": {
+    "name": "HAWAS FOR HER",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "HAWAS VIPER": {
+    "name": "HAWAS VIPER",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 50.0,
+    "suggested": 68.0
+  },
+  "HAWAS ATLANTIS": {
+    "name": "HAWAS ATLANTIS",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 50.0,
+    "suggested": 68.0
+  },
+  "SHUHRAH": {
+    "name": "SHUHRAH",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 22.0,
+    "suggested": 30.0
+  },
+  "CASABLANCA": {
+    "name": "CASABLANCA",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 45.0,
+    "suggested": 61.0
+  },
+  "SHAGHAF OUD AHMAR": {
+    "name": "SHAGHAF OUD AHMAR",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 60.0,
+    "suggested": 81.0
+  },
+  "OPULENT OF DUBAI": {
+    "name": "OPULENT OF DUBAI",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 72.0,
+    "suggested": 97.0
+  },
+  "SHAGHAF OUD AZRAQ": {
+    "name": "SHAGHAF OUD AZRAQ",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 45.0,
+    "suggested": 61.0
+  },
+  "PASSION OF VENICE": {
+    "name": "PASSION OF VENICE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 72.0,
+    "suggested": 97.0
+  },
+  "SHAGHAF OUD ELIXIR": {
+    "name": "SHAGHAF OUD ELIXIR",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "MARSHMALLOW BLUSH": {
+    "name": "MARSHMALLOW BLUSH",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 53.0,
+    "suggested": 72.0
+  },
+  "INDOMITABLE": {
+    "name": "INDOMITABLE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 41.0,
+    "suggested": 55.0
+  },
+  "KHAIR CONFECTION": {
+    "name": "KHAIR CONFECTION",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "KHAIR FUSION": {
+    "name": "KHAIR FUSION",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "KHAIR": {
+    "name": "KHAIR",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 24.0,
+    "suggested": 32.0
+  },
+  "KHAIR FELICITY": {
+    "name": "KHAIR FELICITY",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 33.0,
+    "suggested": 45.0
+  },
+  "EMIR MEMORIES OF SUMMER": {
+    "name": "EMIR MEMORIES OF SUMMER",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 42.0,
+    "suggested": 57.0
+  },
+  "DECEMBER": {
+    "name": "DECEMBER",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 42.0,
+    "suggested": 57.0
+  },
+  "TASKEEN": {
+    "name": "TASKEEN",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "CARAMEL CASCADE": {
+    "name": "CARAMEL CASCADE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "LACTEA DIVINA": {
+    "name": "LACTEA DIVINA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "TASKEEN MARINA": {
+    "name": "TASKEEN MARINA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "FAYORA": {
+    "name": "FAYORA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 39.0,
+    "suggested": 53.0
+  },
+  "MANGO PUNCH": {
+    "name": "MANGO PUNCH",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 32.0,
+    "suggested": 43.0
+  },
+  "JUICE MELANGE": {
+    "name": "JUICE MELANGE",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 32.0,
+    "suggested": 43.0
+  },
+  "PEAR POTION": {
+    "name": "PEAR POTION",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 32.0,
+    "suggested": 43.0
+  },
+  "QISSA PINK": {
+    "name": "QISSA PINK",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "QISSA DELICIUS": {
+    "name": "QISSA DELICIUS",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "QISSA BLUE": {
+    "name": "QISSA BLUE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "EVOLUTION": {
+    "name": "EVOLUTION",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 24.0,
+    "suggested": 32.0
+  },
+  "TIRAMISU CARAMEL": {
+    "name": "TIRAMISU CARAMEL",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "TIRAMISU COCO": {
+    "name": "TIRAMISU COCO",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "ZIMAYA CHARISMA": {
+    "name": "ZIMAYA CHARISMA",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 27.0,
+    "suggested": 36.0
+  },
+  "GRANDEUR": {
+    "name": "GRANDEUR",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 23.0,
+    "suggested": 31.0
+  },
+  "FATIMA PINK": {
+    "name": "FATIMA PINK",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "FATIMA VELVET": {
+    "name": "FATIMA VELVET",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "ONLY YOU": {
+    "name": "ONLY YOU",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 24.0,
+    "suggested": 32.0
+  },
+  "HAYAM": {
+    "name": "HAYAM",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "ANHAAR VALLEY": {
+    "name": "ANHAAR VALLEY",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 26.0,
+    "suggested": 35.0
+  },
+  "COCONUT CHIFFON": {
+    "name": "COCONUT CHIFFON",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "BERRIES CREAM MACARON": {
+    "name": "BERRIES CREAM MACARON",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "STRAWBERRY TRES LECHES": {
+    "name": "STRAWBERRY TRES LECHES",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "VANILLA CREAM MACARON": {
+    "name": "VANILLA CREAM MACARON",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "MANGO AFFOGATO": {
+    "name": "MANGO AFFOGATO",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "CARAMEL CHOCOLATE MACARON": {
+    "name": "CARAMEL CHOCOLATE MACARON",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "DULCE DE LECHE": {
+    "name": "DULCE DE LECHE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "SUGAR COTTON": {
+    "name": "SUGAR COTTON",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "PECAN BUTTER": {
+    "name": "PECAN BUTTER",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "LEMON SORBET": {
+    "name": "LEMON SORBET",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "COOKIE DOUGH": {
+    "name": "COOKIE DOUGH",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "MATCHA LATTE": {
+    "name": "MATCHA LATTE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "TOFFE GANACHE": {
+    "name": "TOFFE GANACHE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "PRESTIGE BLUEBERRY MUSK": {
+    "name": "PRESTIGE BLUEBERRY MUSK",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "PRESTIGE NYLA VANI-ELLE": {
+    "name": "PRESTIGE NYLA VANI-ELLE",
+    "volume": "75ML",
+    "gender": "DAMA",
+    "wholesale": 41.0,
+    "suggested": 55.0
+  },
+  "PRESTIGE MARWA": {
+    "name": "PRESTIGE MARWA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 55.0,
+    "suggested": 74.0
+  },
+  "PRESTIGE NYLA": {
+    "name": "PRESTIGE NYLA",
+    "volume": "75ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "TUBBEES COTON CANDY": {
+    "name": "TUBBEES COTON CANDY",
+    "volume": "50ML",
+    "gender": "DAMA",
+    "wholesale": 17.0,
+    "suggested": 23.0
+  },
+  "TUBBEES STRAWBERRY CHEESECAKE": {
+    "name": "TUBBEES STRAWBERRY CHEESECAKE",
+    "volume": "50ML",
+    "gender": "DAMA",
+    "wholesale": 17.0,
+    "suggested": 23.0
+  },
+  "TUBBEES BUBBLEGUM": {
+    "name": "TUBBEES BUBBLEGUM",
+    "volume": "50ML",
+    "gender": "DAMA",
+    "wholesale": 17.0,
+    "suggested": 23.0
+  },
+  "TUBBEES DREAMY TREATS": {
+    "name": "TUBBEES DREAMY TREATS",
+    "volume": "50ML",
+    "gender": "DAMA",
+    "wholesale": 17.0,
+    "suggested": 23.0
+  },
+  "TUBBEES CHOCOLATE FUDGE": {
+    "name": "TUBBEES CHOCOLATE FUDGE",
+    "volume": "50ML",
+    "gender": "DAMA",
+    "wholesale": 17.0,
+    "suggested": 23.0
+  },
+  "TUBBEES BERRY BLAST": {
+    "name": "TUBBEES BERRY BLAST",
+    "volume": "50ML",
+    "gender": "DAMA",
+    "wholesale": 17.0,
+    "suggested": 23.0
+  },
+  "TUBBEES CANDY POP": {
+    "name": "TUBBEES CANDY POP",
+    "volume": "50ML",
+    "gender": "DAMA",
+    "wholesale": 17.0,
+    "suggested": 23.0
+  },
+  "TUBBEES CHERRY LUXE": {
+    "name": "TUBBEES CHERRY LUXE",
+    "volume": "50ML",
+    "gender": "DAMA",
+    "wholesale": 17.0,
+    "suggested": 23.0
+  },
+  "PHILOS CENTRO": {
+    "name": "PHILOS CENTRO",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 20.0,
+    "suggested": 27.0
+  },
+  "PHILOS OPUS NOIR": {
+    "name": "PHILOS OPUS NOIR",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 24.0,
+    "suggested": 32.0
+  },
+  "ROSE PETALS": {
+    "name": "ROSE PETALS",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 23.0,
+    "suggested": 31.0
+  },
+  "JEAN LOWE FRAICHE": {
+    "name": "JEAN LOWE FRAICHE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "REYNA": {
+    "name": "REYNA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "SALVO INTENSE": {
+    "name": "SALVO INTENSE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 22.0,
+    "suggested": 30.0
+  },
+  "BELLA GLACIER": {
+    "name": "BELLA GLACIER",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "GLACIER POR HOMME": {
+    "name": "GLACIER POR HOMME",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 22.0,
+    "suggested": 30.0
+  },
+  "GLACIER ULTRA": {
+    "name": "GLACIER ULTRA",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 22.0,
+    "suggested": 30.0
+  },
+  "LOVELY CHERRIE": {
+    "name": "LOVELY CHERRIE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 20.0,
+    "suggested": 27.0
+  },
+  "BRUGHT PEACH": {
+    "name": "BRUGHT PEACH",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 20.0,
+    "suggested": 27.0
+  },
+  "VICTORIOSO": {
+    "name": "VICTORIOSO",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 22.0,
+    "suggested": 30.0
+  },
+  "VICTORIOSO NERO": {
+    "name": "VICTORIOSO NERO",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 22.0,
+    "suggested": 30.0
+  },
+  "VICTORIA FLOWER ROSA LILIUM": {
+    "name": "VICTORIA FLOWER ROSA LILIUM",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "VICTORIOSO FEARLESS": {
+    "name": "VICTORIOSO FEARLESS",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 22.0,
+    "suggested": 30.0
+  },
+  "PRECIOUS GOLD": {
+    "name": "PRECIOUS GOLD",
+    "volume": "80ML",
+    "gender": "UNISEX",
+    "wholesale": 22.0,
+    "suggested": 30.0
+  },
+  "YOUR TOUCH": {
+    "name": "YOUR TOUCH",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 24.0,
+    "suggested": 32.0
+  },
+  "LEONIE INTENSE": {
+    "name": "LEONIE INTENSE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 22.0,
+    "suggested": 30.0
+  },
+  "SCEPTRE MALACHITE": {
+    "name": "SCEPTRE MALACHITE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "SCEPTRE OCEANA": {
+    "name": "SCEPTRE OCEANA",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 26.0,
+    "suggested": 35.0
+  },
+  "AMEERAT AL ARAB": {
+    "name": "AMEERAT AL ARAB",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 23.0,
+    "suggested": 31.0
+  },
+  "AMEERAT PRIVE ROSE": {
+    "name": "AMEERAT PRIVE ROSE",
+    "volume": "-",
+    "gender": "DAMA",
+    "wholesale": 24.0,
+    "suggested": 32.0
+  },
+  "BARAA": {
+    "name": "BARAA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "CASTILLA": {
+    "name": "CASTILLA",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 20.0,
+    "suggested": 27.0
+  },
+  "WATANI PURPLE": {
+    "name": "WATANI PURPLE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 23.0,
+    "suggested": 31.0
+  },
+  "SOPHIA": {
+    "name": "SOPHIA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "WATANI INTENSE GOLD": {
+    "name": "WATANI INTENSE GOLD",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 27.0,
+    "suggested": 36.0
+  },
+  "WATANI NOIR": {
+    "name": "WATANI NOIR",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 24.0,
+    "suggested": 32.0
+  },
+  "DURRAT AL AROOS": {
+    "name": "DURRAT AL AROOS",
+    "volume": "80ML",
+    "gender": "DAMA",
+    "wholesale": 23.0,
+    "suggested": 31.0
+  },
+  "MALIKA PINK MUSK": {
+    "name": "MALIKA PINK MUSK",
+    "volume": "-",
+    "gender": "DAMA",
+    "wholesale": 33.0,
+    "suggested": 45.0
+  },
+  "HAREEM AL SULTAN GOLD 20ML": {
+    "name": "HAREEM AL SULTAN GOLD 20ML",
+    "volume": "20ML",
+    "gender": "UNISEX",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "HAREEM AL SULTAN GOLD": {
+    "name": "HAREEM AL SULTAN GOLD",
+    "volume": "-",
+    "gender": "DAMA",
+    "wholesale": 26.0,
+    "suggested": 35.0
+  },
+  "FURSAN WHITE 100ML": {
+    "name": "FURSAN WHITE 100ML",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "HAREEM AL SULTAN SILVER": {
+    "name": "HAREEM AL SULTAN SILVER",
+    "volume": "-",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "ROSE COUTURE 100ML": {
+    "name": "ROSE COUTURE 100ML",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "HAREEM SULTAN ANTIQUE BLUE": {
+    "name": "HAREEM SULTAN ANTIQUE BLUE",
+    "volume": "-",
+    "gender": "DAMA",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "OPERA ROSE LOR 100ML": {
+    "name": "OPERA ROSE LOR 100ML",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "SOVEREIGN CANDY FLORA": {
+    "name": "SOVEREIGN CANDY FLORA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "SECRET OF ARNIA": {
+    "name": "SECRET OF ARNIA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "SECRET OF DIANA": {
+    "name": "SECRET OF DIANA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "SOVEREIGN PARADINE": {
+    "name": "SOVEREIGN PARADINE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "SOVEREIGN LADY OF WISDOM": {
+    "name": "SOVEREIGN LADY OF WISDOM",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "CAPTCHA": {
+    "name": "CAPTCHA",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "PHANTOM MY HERO": {
+    "name": "PHANTOM MY HERO",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 26.0,
+    "suggested": 35.0
+  },
+  "GENIUS VESPER": {
+    "name": "GENIUS VESPER",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "ARABIA MADAME": {
+    "name": "ARABIA MADAME",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "CHERRY ILUSION": {
+    "name": "CHERRY ILUSION",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 20.0,
+    "suggested": 27.0
+  },
+  "ARABIA HAYA CRUSH": {
+    "name": "ARABIA HAYA CRUSH",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "CHERRY GHOST": {
+    "name": "CHERRY GHOST",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 20.0,
+    "suggested": 27.0
+  },
+  "ARABIA HAMAD": {
+    "name": "ARABIA HAMAD",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "ARABIA MALAK": {
+    "name": "ARABIA MALAK",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "ARABIA QALAA": {
+    "name": "ARABIA QALAA",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 26.0,
+    "suggested": 35.0
+  },
+  "MILLIONAIRE 100ML": {
+    "name": "MILLIONAIRE 100ML",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "MILLONAIRE WHITE 100ML": {
+    "name": "MILLONAIRE WHITE 100ML",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "STRONGER WITH YOU": {
+    "name": "STRONGER WITH YOU",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 155.0,
+    "suggested": 209.0
+  },
+  "LA VIE EST BELLA": {
+    "name": "LA VIE EST BELLA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 130.0,
+    "suggested": 176.0
+  },
+  "SCANDAL LE PARFUM": {
+    "name": "SCANDAL LE PARFUM",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 140.0,
+    "suggested": 189.0
+  },
+  "OLYMPEA": {
+    "name": "OLYMPEA",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 75.0,
+    "suggested": 101.0
+  },
+  "DEVOTION": {
+    "name": "DEVOTION",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 75.0,
+    "suggested": 101.0
+  },
+  "LIBRE INTENSE": {
+    "name": "LIBRE INTENSE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 175.0,
+    "suggested": 236.0
+  },
+  "INVICTUS": {
+    "name": "INVICTUS",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 95.0,
+    "suggested": 128.0
+  },
+  "INVICTUS PARFUM": {
+    "name": "INVICTUS PARFUM",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 110.0,
+    "suggested": 149.0
+  },
+  "SAUVAGE": {
+    "name": "SAUVAGE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 185.0,
+    "suggested": 250.0
+  },
+  "SAUVAGE ELIXIR": {
+    "name": "SAUVAGE ELIXIR",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 210.0,
+    "suggested": 284.0
+  },
+  "ULTRA MALE": {
+    "name": "ULTRA MALE",
+    "volume": "125ML",
+    "gender": "CABALLERO",
+    "wholesale": 120.0,
+    "suggested": 162.0
+  },
+  "LE MALE ELIXIR": {
+    "name": "LE MALE ELIXIR",
+    "volume": "125ML",
+    "gender": "CABALLERO",
+    "wholesale": 142.0,
+    "suggested": 192.0
+  },
+  "VALENTINO BORN IN ROMA MEN 100ML": {
+    "name": "VALENTINO BORN IN ROMA MEN 100ML",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 140.0,
+    "suggested": 189.0
+  },
+  "VALENTINO UOMO 100ML": {
+    "name": "VALENTINO UOMO 100ML",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 82.0,
+    "suggested": 111.0
+  },
+  "BORN IN ROMA EXTRADOSE DONNA 100ML": {
+    "name": "BORN IN ROMA EXTRADOSE DONNA 100ML",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 205.0,
+    "suggested": 277.0
+  },
+  "BORN IN ROMA EXTRADOSE UOMO 100ML": {
+    "name": "BORN IN ROMA EXTRADOSE UOMO 100ML",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 165.0,
+    "suggested": 223.0
+  },
+  "1 MILLION 100ML": {
+    "name": "1 MILLION 100ML",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 100.0,
+    "suggested": 135.0
+  },
+  "PRADA VIRTUAL FLOWER": {
+    "name": "PRADA VIRTUAL FLOWER",
+    "volume": "-",
+    "gender": "DAMA",
+    "wholesale": 135.0,
+    "suggested": 182.0
+  },
+  "POLO BLUE": {
+    "name": "POLO BLUE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 80.0,
+    "suggested": 108.0
+  },
+  "POLO RED": {
+    "name": "POLO RED",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 60.0,
+    "suggested": 81.0
+  },
+  "LIGHT BLUE MEN": {
+    "name": "LIGHT BLUE MEN",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 70.0,
+    "suggested": 95.0
+  },
+  "LIGHT BLUE WOMAN": {
+    "name": "LIGHT BLUE WOMAN",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 80.0,
+    "suggested": 108.0
+  },
+  "BLACK XS": {
+    "name": "BLACK XS",
+    "volume": "100ML",
+    "gender": "UNISEX",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "LEGEND": {
+    "name": "LEGEND",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 60.0,
+    "suggested": 81.0
+  },
+  "STARWALKER": {
+    "name": "STARWALKER",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "LA BOMBA": {
+    "name": "LA BOMBA",
+    "volume": "80ML",
+    "gender": "DAMA",
+    "wholesale": 175.0,
+    "suggested": 236.0
+  },
+  "CH": {
+    "name": "CH",
+    "volume": "105ML",
+    "gender": "UNISEX",
+    "wholesale": 98.0,
+    "suggested": 132.0
+  },
+  "BAD BOY": {
+    "name": "BAD BOY",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 115.0,
+    "suggested": 155.0
+  },
+  "GOOD GIRL": {
+    "name": "GOOD GIRL",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 155.0,
+    "suggested": 209.0
+  },
+  "212 VIP WOMAN": {
+    "name": "212 VIP WOMAN",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 110.0,
+    "suggested": 149.0
+  },
+  "212 VIP MEN": {
+    "name": "212 VIP MEN",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 95.0,
+    "suggested": 128.0
+  },
+  "CHORME": {
+    "name": "CHORME",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 50.0,
+    "suggested": 68.0
+  },
+  "WANTED": {
+    "name": "WANTED",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 67.0,
+    "suggested": 90.0
+  },
+  "VOYAGE NAUTICA": {
+    "name": "VOYAGE NAUTICA",
+    "volume": "200ML",
+    "gender": "CABALLERO",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "NAUTICA BLUE": {
+    "name": "NAUTICA BLUE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 23.0,
+    "suggested": 31.0
+  },
+  "COOL WATER WOMAN": {
+    "name": "COOL WATER WOMAN",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 34.0,
+    "suggested": 46.0
+  },
+  "COOL WATER": {
+    "name": "COOL WATER",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 32.0,
+    "suggested": 43.0
+  },
+  "COOL WATER INTENSE": {
+    "name": "COOL WATER INTENSE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 42.0,
+    "suggested": 57.0
+  },
+  "GUESS GOLD WOMAN": {
+    "name": "GUESS GOLD WOMAN",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "GUESS MARCIANO WOMAN": {
+    "name": "GUESS MARCIANO WOMAN",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "GUESS GOLD MEN": {
+    "name": "GUESS GOLD MEN",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 32.0,
+    "suggested": 43.0
+  },
+  "GUESS MARCIANO MEN": {
+    "name": "GUESS MARCIANO MEN",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 28.0,
+    "suggested": 38.0
+  },
+  "GUESS GIRL": {
+    "name": "GUESS GIRL",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 30.0,
+    "suggested": 41.0
+  },
+  "PINK RUSH": {
+    "name": "PINK RUSH",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 40.0,
+    "suggested": 54.0
+  },
+  "CAN CAN BURLESQUE": {
+    "name": "CAN CAN BURLESQUE",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 34.0,
+    "suggested": 46.0
+  },
+  "360 PERRY ELLIS RED WOMAN": {
+    "name": "360 PERRY ELLIS RED WOMAN",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 35.0,
+    "suggested": 47.0
+  },
+  "360 PERRY ELLIS WOMAN": {
+    "name": "360 PERRY ELLIS WOMAN",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 38.0,
+    "suggested": 51.0
+  },
+  "BLUE SEDUCTION": {
+    "name": "BLUE SEDUCTION",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 26.0,
+    "suggested": 35.0
+  },
+  "KING OF SEDUCTION": {
+    "name": "KING OF SEDUCTION",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 26.0,
+    "suggested": 35.0
+  },
+  "ICON MEN": {
+    "name": "ICON MEN",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 29.0,
+    "suggested": 39.0
+  },
+  "ICON BLUE": {
+    "name": "ICON BLUE",
+    "volume": "100ML",
+    "gender": "CABALLERO",
+    "wholesale": 29.0,
+    "suggested": 39.0
+  },
+  "QUEEN OF SEDUCTION": {
+    "name": "QUEEN OF SEDUCTION",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 25.0,
+    "suggested": 34.0
+  },
+  "ICON WOMAN": {
+    "name": "ICON WOMAN",
+    "volume": "100ML",
+    "gender": "DAMA",
+    "wholesale": 29.0,
+    "suggested": 39.0
+  }
+}
