@@ -28,10 +28,10 @@ export const combos: Combo[] = [
     name: 'Dúo Fascinación Arábiga',
     category: 'Pareja',
     description:
-      'Un encuentro místico entre lo masculino y lo femenino. Asad Zanzibar despliega su fuerza especiada y amaderada, mientras Yara Lattafa envuelve con su dulzura vainillada y floral. Juntos, crean una experiencia olfativa que captura la magia de las noches árabes. El combo perfecto para compartir.',
+      'Un encuentro místico entre lo masculino y lo femenino. Asad Zanzibar despliega su fuerza especiada y amaderada, mientras Yara Tous envuelve con su dulzura vainillada y tropical. Juntos, crean una experiencia olfativa que captura la magia de las noches árabes. El combo perfecto para compartir.',
     perfumes: [
       { name: 'Asad Zanzibar', volume: '100ML', fragranticaId: 90713 },
-      { name: 'Yara Lattafa', volume: '100ML', fragranticaId: 76880 },
+      { name: 'Yara Tous', volume: '100ML', fragranticaId: 83320 },
     ],
     originalTotalPrice: 76,
     discountPercentage: 10,
@@ -45,15 +45,15 @@ export const combos: Combo[] = [
     name: 'Dúo Élite de Plata',
     category: 'Pareja',
     description:
-      'Elegancia de firma en su máxima expresión. Fakhar Silver irradia una frescura plateada y acuática perfecta para el caballero distinguido, mientras Fakhar Rose despliega un ramo de rosas y frutos rojos que enamora a primera impresión. La dupla ideal para quienes buscan sofisticación sin perder intensidad.',
+      'Elegancia de firma en su máxima expresión. Asad Bourbon irradia una calidez bourbon y amaderada perfecta para el caballero distinguido, mientras Fakhar Rose despliega un ramo de rosas y frutos rojos que enamora a primera impresión. La dupla ideal para quienes buscan sofisticación sin perder intensidad.',
     perfumes: [
-      { name: 'Fakhar Silver', volume: '100ML', fragranticaId: 70465 },
+      { name: 'Asad Bourbon', volume: '100ML', fragranticaId: 101124 },
       { name: 'Fakhar Rose', volume: '100ML', fragranticaId: 70466 },
     ],
-    originalTotalPrice: 82,
+    originalTotalPrice: 88,
     discountPercentage: 10,
-    comboPrice: 74,
-    savings: 8,
+    comboPrice: 79,
+    savings: 9,
     imageUrl: '',
   },
   {
@@ -62,15 +62,15 @@ export const combos: Combo[] = [
     name: 'Dúo Cita en el Desierto',
     category: 'Pareja',
     description:
-      'Oud y especias para una noche inolvidable. Oud For Glory aporta la majestuosidad del oud oriental con un sillage imponente de caballero, y Teriaq Intense entrega una profundidad ambarada y especiada que desafía el género. Perfecto para clima templado y noches donde la elegancia árabe es la protagonista.',
+      'Oud y gourmand para una noche inolvidable. Oud For Glory aporta la majestuosidad del oud oriental con un sillage imponente de caballero, y Eclaire Pistache entrega una dulzura pistache y cremosa que desafía el género. Perfecto para clima templado y noches donde la elegancia árabe se funde con lo goloso.',
     perfumes: [
       { name: 'Oud For Glory', volume: '100ML', fragranticaId: 64948 },
-      { name: 'Teriaq Intense', volume: '100ML', fragranticaId: 99586 },
+      { name: 'Eclaire Pistache', volume: '100ML', fragranticaId: 113777 },
     ],
-    originalTotalPrice: 95,
+    originalTotalPrice: 99,
     discountPercentage: 10,
-    comboPrice: 86,
-    savings: 9,
+    comboPrice: 89,
+    savings: 10,
     imageUrl: '',
   },
   {
@@ -79,15 +79,15 @@ export const combos: Combo[] = [
     name: 'Dúo Dulce Pecado',
     category: 'Pareja',
     description:
-      'Los más coquetos y elogiados en un solo combo. 9PM Afnan es esa fragancia dulce y seductora que detiene el tiempo en la pista, mientras Yara Moi envuelve con su mezcla irresistible de vainilla, caramelo y notas frutales. Juntos son el pecado más dulce que cometerás.',
+      'Los más coquetos y elogiados en un solo combo. Turathi Blue es esa fragancia amaderada y magnética que detiene el tiempo en la pista, mientras Yara Moi envuelve con su mezcla irresistible de vainilla, caramelo y notas frutales. Juntos son el pecado más dulce que cometerás.',
     perfumes: [
-      { name: '9PM Afnan', volume: '100ML', fragranticaId: 65414 },
+      { name: 'Turathi Blue', volume: '100ML', fragranticaId: 70839 },
       { name: 'Yara Moi', volume: '100ML', fragranticaId: 80722 },
     ],
-    originalTotalPrice: 85,
+    originalTotalPrice: 92,
     discountPercentage: 10,
-    comboPrice: 77,
-    savings: 8,
+    comboPrice: 83,
+    savings: 9,
     imageUrl: '',
   },
   {
@@ -96,15 +96,15 @@ export const combos: Combo[] = [
     name: 'Dúo Majestad Imperial',
     category: 'Pareja',
     description:
-      'Para los clientes más exigentes. Hawas Elixir es el epítome del lujo masculino con su oud y frutas tropicales, mientras Veneno Bianco es una obra maestra blanca y floral que proyecta poder y sofisticación femenina. Un combo de ticket alto que grita estatus y exclusividad en cada gota.',
+      'Para los clientes más exigentes. Hawas Fire es el epítome del lujo con su fuego especiado e imponente, mientras Veneno Bianco es una obra maestra blanca y floral que proyecta poder y sofisticación femenina. Un combo de ticket alto que grita estatus y exclusividad en cada gota.',
     perfumes: [
-      { name: 'Hawas Elixir', volume: '100ML', fragranticaId: 110808 },
+      { name: 'Hawas Fire', volume: '100ML', fragranticaId: 101665 },
       { name: 'Veneno Bianco', volume: '100ML', fragranticaId: 105518 },
     ],
-    originalTotalPrice: 131,
+    originalTotalPrice: 139,
     discountPercentage: 10,
-    comboPrice: 118,
-    savings: 13,
+    comboPrice: 125,
+    savings: 14,
     imageUrl: '',
   },
 
@@ -153,11 +153,11 @@ export const combos: Combo[] = [
     name: 'Trío Unisex Versátil',
     category: 'Todo Terreno',
     description:
-      'La tendencia actual en un solo pack: fragancias que rompen géneros y conquistan cualquier ocasión. Odyssey Spectra abre fresco y versátil para el diario, Opulent Dubai trae la opulencia dorada para la noche, y Khair Fusion cierra con una fusión amaderada e imponente para lo formal. Tres perfumes, cero límites.',
+      'La tendencia actual en un solo pack: fragancias que rompen géneros y conquistan cualquier ocasión. Odyssey Spectra abre fresco y versátil para el diario, Opulent Dubai trae la opulencia dorada para la noche, y Al Noble Safeer cierra con una nobleza amaderada y ambarada para lo formal. Tres perfumes, cero límites.',
     perfumes: [
       { name: 'Odyssey Spectra', volume: '100ML', fragranticaId: 98692 },
       { name: 'Opulent Dubai', volume: '100ML', fragranticaId: 105609 },
-      { name: 'Khair Fusion', volume: '100ML', fragranticaId: 92768 },
+      { name: 'Al Noble Safeer', volume: '100ML', fragranticaId: 82795 },
     ],
     originalTotalPrice: 120,
     discountPercentage: 10,
@@ -189,16 +189,16 @@ export const combos: Combo[] = [
     name: 'Trío Jefe de Jefes',
     category: 'Todo Terreno',
     description:
-      'Exclusivo, alto impacto, sin concesiones. Tharwah Silver marca presencia con su frescura plateada para el diario ejecutivo, Hawas Tropical trae la exuberancia tropical y seductora para las noches de poder, y Khamrah Dukhan cierra con un humo especiado y amaderado que impone autoridad en cada reunión. Manda el que huele así.',
+      'Exclusivo, alto impacto, sin concesiones. Tharwah Silver marca presencia con su frescura plateada para el diario ejecutivo, Odyssey Go Mango trae la exuberancia tropical y frutal para las noches de poder, y Khamrah Dukhan cierra con un humo especiado y amaderado que impone autoridad en cada reunión. Manda el que huele así.',
     perfumes: [
       { name: 'Tharwah Silver', volume: '100ML', fragranticaId: 82005 },
-      { name: 'Hawas Tropical', volume: '100ML', fragranticaId: 108054 },
+      { name: 'Odyssey Go Mango', volume: '100ML', fragranticaId: 115130 },
       { name: 'Khamrah Dukhan', volume: '100ML', fragranticaId: 104529 },
     ],
-    originalTotalPrice: 173,
+    originalTotalPrice: 162,
     discountPercentage: 10,
-    comboPrice: 156,
-    savings: 17,
+    comboPrice: 146,
+    savings: 16,
     imageUrl: '',
   },
 
@@ -262,15 +262,15 @@ export const combos: Combo[] = [
     name: 'Dúo Sultán y Sultana',
     category: 'Árabe',
     description:
-      'Realeza en cada gota. Honor & Glory despliega su oud noble y especiado con la dignidad de un sultán, mientras Amethyst complementa con una joya de ámbar y resinas que proyecta la gracia de una sultana. Dos fragancias unisex pesadas, con sillage monumental, ideales para quienes quieren destacar y oler a verdadero poder.',
+      'Realeza en cada gota. Honor & Glory despliega su oud noble y especiado con la dignidad de un sultán, mientras Vintage Radio complementa con una elegancia retro y amaderada que proyecta la gracia de una sultana. Dos fragancias unisex pesadas, con sillage monumental, ideales para quienes quieren destacar y oler a verdadero poder.',
     perfumes: [
       { name: 'Honor & Glory', volume: '100ML', fragranticaId: 84302 },
-      { name: 'Amethyst', volume: '100ML', fragranticaId: 68214 },
+      { name: 'Vintage Radio', volume: '100ML', fragranticaId: 89454 },
     ],
-    originalTotalPrice: 82,
+    originalTotalPrice: 88,
     discountPercentage: 10,
-    comboPrice: 74,
-    savings: 8,
+    comboPrice: 79,
+    savings: 9,
     imageUrl: '',
   },
   {
@@ -317,9 +317,9 @@ export const combos: Combo[] = [
     name: 'Dúo Nube de Azúcar',
     category: 'Gourmand',
     description:
-      'Cielo dulce en cada pulverización. Vanilla Freak es una explosión de vainilla pura y cremosa que envuelve como un manto de algodón de azúcar, y Whipped Pleasure sube la apuesta con su mezcla de crema batida, dulce de leche y praliné. Dos fragancias que convierten cualquier día en un festival de azúcar.',
+      'Cielo dulce en cada pulverización. Mallow Madness es una explosión de malvavisco cremoso y dulce que envuelve como un manto de algodón de azúcar, y Whipped Pleasure sube la apuesta con su mezcla de crema batida, dulce de leche y praliné. Dos fragancias que convierten cualquier día en un festival de azúcar.',
     perfumes: [
-      { name: 'Vanilla Freak', volume: '100ML', fragranticaId: 114400 },
+      { name: 'Mallow Madness', volume: '100ML', fragranticaId: 114396 },
       { name: 'Whipped Pleasure', volume: '100ML', fragranticaId: 114397 },
     ],
     originalTotalPrice: 136,
