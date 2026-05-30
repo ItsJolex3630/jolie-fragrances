@@ -8,8 +8,10 @@ import {
   Instagram,
   MessageCircle,
   Gift,
+  ShoppingCart,
 } from "lucide-react";
 import { getFathersDayInfo, type FathersDayInfo } from "@/lib/fathersDay";
+import { useCart } from "@/context/CartContext";
 
 interface TopBarProps {
   onSearch: () => void;
@@ -18,6 +20,7 @@ interface TopBarProps {
 }
 
 export default function TopBar({ onSearch, onCompare, onSimilar }: TopBarProps) {
+  const { itemCount, openCart } = useCart();
   const [isAtTop, setIsAtTop] = useState(true);
   const [fathersDayInfo, setFathersDayInfo] = useState<FathersDayInfo | null>(null);
   const ticking = useRef(false);
@@ -126,6 +129,21 @@ export default function TopBar({ onSearch, onCompare, onSimilar }: TopBarProps) 
           >
             <Sparkles className="w-4 h-4" />
             <span className="hidden lg:inline text-[11px] font-[family-name:var(--font-inter)]">Similares</span>
+          </button>
+
+          {/* Cart */}
+          <button
+            onClick={openCart}
+            className="relative flex items-center justify-center lg:gap-1.5 w-9 h-9 lg:w-auto lg:h-auto lg:px-3 lg:py-1.5 rounded-full bg-[#111111]/60 border border-[rgba(212,175,55,0.1)] text-[#d4af37]/60 hover:text-[#d4af37] hover:border-[#d4af37]/30 hover:bg-[#d4af37]/5 transition-all duration-200"
+            title="Mi Carrito"
+          >
+            <ShoppingCart className="w-4 h-4" />
+            <span className="hidden lg:inline text-[11px] font-[family-name:var(--font-inter)]">Carrito</span>
+            {itemCount > 0 && (
+              <span className="absolute -top-1 -right-1 lg:static lg:ml-0 w-4.5 h-4.5 min-w-[18px] flex items-center justify-center rounded-full bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-[9px] text-black font-bold font-[family-name:var(--font-inter)]">
+                {itemCount > 99 ? '99+' : itemCount}
+              </span>
+            )}
           </button>
 
           {/* Separator */}

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Playfair_Display, Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { CartProvider } from "@/context/CartContext";
+import CartDrawer from "@/components/CartDrawer";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -61,7 +63,10 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${cormorant.variable} ${inter.variable} antialiased bg-[#0a0a0a] text-white`}
       >
-        {children}
+        <CartProvider>
+          {children}
+          <CartDrawer />
+        </CartProvider>
         <Toaster />
       </body>
     </html>

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Tag, Star, ChevronDown, ChevronUp, Eye, EyeOff } from "lucide-react";
 import { combos, type Combo } from "@/lib/combosData";
 import ComboCard from "@/components/ComboCard";
+import { useCart } from "@/context/CartContext";
 
 // ─── Category filter tabs config ───
 type ComboCategory = "Todos" | Combo["category"];
@@ -49,6 +50,7 @@ const cardItemVariants = {
 export default function ComboShowcase() {
   const [activeCategory, setActiveCategory] = useState<ComboCategory>("Todos");
   const [isMobileHidden, setIsMobileHidden] = useState(false);
+  const { addCombo, openCart } = useCart();
 
   // Filter combos by selected category
   const filteredCombos = useMemo(() => {
@@ -239,7 +241,7 @@ export default function ComboShowcase() {
                       variants={cardItemVariants}
                       layout
                     >
-                      <ComboCard combo={combo} />
+                      <ComboCard combo={combo} onAddToCart={(c) => { addCombo(c); openCart(); }} />
                     </motion.div>
                   ))}
                 </motion.div>

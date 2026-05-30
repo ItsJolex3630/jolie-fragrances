@@ -89,7 +89,9 @@ import {
   Gem,
   Clock,
   ArrowLeftRight,
+  ShoppingCart,
 } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 import dynamic from "next/dynamic";
 import {
   GENDERS,
@@ -171,11 +173,13 @@ const PerfumeCard = memo(function PerfumeCard({
   index,
   onSelect,
   retailPrice,
+  onAddToCart,
 }: {
   perfume: Perfume;
   index: number;
   onSelect: (perfume: Perfume) => void;
   retailPrice: number | null;
+  onAddToCart: (perfume: Perfume, price: number) => void;
 }) {
   const [imgTriedJpg, setImgTriedJpg] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -277,6 +281,20 @@ const PerfumeCard = memo(function PerfumeCard({
             </div>
           )}
 
+          {/* Add to cart floating button (appears on hover) */}
+          {retailPrice !== null && perfume.available !== false && (
+            <div className="absolute top-2 left-2 z-20 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-1 group-hover:translate-y-0">
+              <button
+                onClick={(e) => { e.stopPropagation(); onAddToCart(perfume, retailPrice); }}
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#d4af37] text-black text-[10px] font-bold font-[family-name:var(--font-inter)] shadow-lg shadow-[#d4af37]/20 hover:bg-[#e0c04a] transition-all active:scale-95"
+                aria-label={`Agregar ${perfume.name} al carrito`}
+              >
+                <ShoppingCart className="w-3 h-3" />
+                <span className="hidden sm:inline">Agregar</span>
+              </button>
+            </div>
+          )}
+
           {/* Hover text overlay */}
           <div className="absolute bottom-8 left-0 right-0 text-center z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
             <p className="text-[9px] text-[#d4af37]/80 font-[family-name:var(--font-inter)] tracking-wider">
@@ -304,12 +322,23 @@ const PerfumeCard = memo(function PerfumeCard({
             <h3 className="text-sm sm:text-[15px] font-semibold text-white/90 leading-snug font-[family-name:var(--font-playfair)] line-clamp-2 min-h-[2.5rem]">
               {perfume.name}
             </h3>
-            {/* Price */}
-            {retailPrice !== null && (
-              <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent">
-                {formatPrice(retailPrice)}
-              </p>
-            )}
+            {/* Price + Add to cart */}
+            <div className="flex items-center justify-between gap-2">
+              {retailPrice !== null && (
+                <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent">
+                  {formatPrice(retailPrice)}
+                </p>
+              )}
+              {retailPrice !== null && perfume.available !== false && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); onAddToCart(perfume, retailPrice); }}
+                  className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#d4af37]/10 border border-[#d4af37]/15 text-[#d4af37]/70 hover:text-[#d4af37] hover:bg-[#d4af37]/20 hover:border-[#d4af37]/30 transition-all active:scale-90"
+                  aria-label={`Agregar ${perfume.name} al carrito`}
+                >
+                  <ShoppingCart className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
           </div>
         </button>
       </div>
@@ -350,6 +379,7 @@ function BrandCard({
 export default function Home() {
   // ─── Price integration ───
   const { getPrice } = usePrices();
+  const { addPerfume, openCart: openCartDrawer } = useCart();
 
   const [selectedBrand, setSelectedBrand] = useState<Brand | "Todas">("Todas");
   const [selectedGender, setSelectedGender] = useState<Gender | "Todos">("Todos");
@@ -1278,6 +1308,7 @@ export default function Home() {
                   index={index}
                   onSelect={() => setSelectedPerfume(perfume)}
                   retailPrice={getPrice(perfume.id)}
+                  onAddToCart={(p, price) => { addPerfume(p, price); openCartDrawer(); }}
                 />
               ))}
             </motion.div>
