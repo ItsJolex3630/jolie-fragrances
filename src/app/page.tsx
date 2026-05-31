@@ -246,9 +246,10 @@ const PerfumeCard = memo(function PerfumeCard({
             </div>
           )}
 
-          {/* Add to cart floating button (appears on hover) */}
-          {retailPrice !== null && perfume.available !== false && (
-            <div className="absolute top-2 left-2 z-20 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-1 group-hover:translate-y-0">
+          {/* Floating action buttons (appear on hover) */}
+          <div className="absolute top-2 left-2 z-20 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-1 group-hover:translate-y-0 flex flex-col gap-1.5">
+            {/* Add to cart */}
+            {retailPrice !== null && perfume.available !== false && (
               <button
                 onClick={(e) => { e.stopPropagation(); onAddToCart(perfume, retailPrice); }}
                 className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#d4af37] text-black text-[10px] font-bold font-[family-name:var(--font-inter)] shadow-lg shadow-[#d4af37]/20 hover:bg-[#e0c04a] transition-all active:scale-95"
@@ -257,8 +258,20 @@ const PerfumeCard = memo(function PerfumeCard({
                 <ShoppingCart className="w-3 h-3" />
                 <span className="hidden sm:inline">Agregar</span>
               </button>
-            </div>
-          )}
+            )}
+            {/* Consult availability via WhatsApp */}
+            <a
+              href={`https://wa.me/584244055386?text=${encodeURIComponent(`Hola Jolie Fragrances! Me gustaría consultar la disponibilidad de ${perfume.name} - ${perfume.brand}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#25D366] text-white text-[10px] font-bold font-[family-name:var(--font-inter)] shadow-lg shadow-[#25D366]/20 hover:bg-[#2ee071] transition-all active:scale-95"
+              aria-label={`Consultar disponibilidad de ${perfume.name}`}
+            >
+              <MessageCircle className="w-3 h-3" />
+              <span className="hidden sm:inline">Consultar</span>
+            </a>
+          </div>
 
           {/* Hover text overlay */}
           <div className="absolute bottom-8 left-0 right-0 text-center z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
@@ -287,7 +300,7 @@ const PerfumeCard = memo(function PerfumeCard({
             <h3 className="text-sm sm:text-[15px] font-semibold text-white/90 leading-snug font-[family-name:var(--font-playfair)] line-clamp-2 min-h-[2.5rem]">
               {perfume.name}
             </h3>
-            {/* Price + Add to cart */}
+            {/* Price + Action buttons */}
             <div className="flex items-center justify-between gap-2 mt-1">
               {retailPrice !== null ? (
                 <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent">
@@ -298,15 +311,29 @@ const PerfumeCard = memo(function PerfumeCard({
                   Consultar
                 </p>
               )}
-              {retailPrice !== null && perfume.available !== false && (
-                <button
-                  onClick={(e) => { e.stopPropagation(); onAddToCart(perfume, retailPrice); }}
-                  className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#d4af37]/10 border border-[#d4af37]/15 text-[#d4af37]/70 hover:text-[#d4af37] hover:bg-[#d4af37]/20 hover:border-[#d4af37]/30 transition-all active:scale-90"
-                  aria-label={`Agregar ${perfume.name} al carrito`}
+              <div className="flex items-center gap-1.5">
+                {/* Cart button (available perfumes only) */}
+                {retailPrice !== null && perfume.available !== false && (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); onAddToCart(perfume, retailPrice); }}
+                    className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#d4af37]/10 border border-[#d4af37]/15 text-[#d4af37]/70 hover:text-[#d4af37] hover:bg-[#d4af37]/20 hover:border-[#d4af37]/30 transition-all active:scale-90"
+                    aria-label={`Agregar ${perfume.name} al carrito`}
+                  >
+                    <ShoppingCart className="w-3.5 h-3.5" />
+                  </button>
+                )}
+                {/* WhatsApp consult button */}
+                <a
+                  href={`https://wa.me/584244055386?text=${encodeURIComponent(`Hola Jolie Fragrances! Me gustaría consultar la disponibilidad de ${perfume.name} - ${perfume.brand}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#25D366]/10 border border-[#25D366]/15 text-[#25D366]/70 hover:text-[#25D366] hover:bg-[#25D366]/20 hover:border-[#25D366]/30 transition-all active:scale-90"
+                  aria-label={`Consultar disponibilidad de ${perfume.name}`}
                 >
-                  <ShoppingCart className="w-3.5 h-3.5" />
-                </button>
-              )}
+                  <MessageCircle className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
           </div>
         </button>
