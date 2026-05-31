@@ -151,28 +151,6 @@
   animation: shimmer 3s linear infinite;
 }
 
-/* ─── Cursor glow effect (GPU-composited with transform) ─── */
-.cursor-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 400px;
-  height: 400px;
-  margin-left: -200px;
-  margin-top: -200px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  will-change: transform;
-}
-
-.cursor-glow.visible {
-  opacity: 1;
-}
-
 /* ─── Gold border glow (GPU-accelerated) ─── */
 .gold-glow {
   box-shadow: 0 0 15px rgba(212, 175, 55, 0.15),

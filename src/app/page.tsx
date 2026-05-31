@@ -35,41 +35,6 @@ function ScrollRevealDiv({ children, className = "", variant = "up" }: { childre
   );
 }
 
-// ─── Cursor Glow Component (lightweight mouse follower) ───
-function CursorGlow() {
-  const glowRef = useRef<HTMLDivElement>(null);
-  const visibleRef = useRef(false);
-
-  useEffect(() => {
-    // Only on non-touch devices
-    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
-
-    function handleMove(e: MouseEvent) {
-      if (glowRef.current) {
-        glowRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-        if (!visibleRef.current) {
-          visibleRef.current = true;
-          glowRef.current.classList.add('visible');
-        }
-      }
-    }
-
-    function handleLeave() {
-      visibleRef.current = false;
-      glowRef.current?.classList.remove('visible');
-    }
-
-    document.addEventListener('mousemove', handleMove, { passive: true });
-    document.addEventListener('mouseleave', handleLeave);
-
-    return () => {
-      document.removeEventListener('mousemove', handleMove);
-      document.removeEventListener('mouseleave', handleLeave);
-    };
-  }, []);
-
-  return <div ref={glowRef} className="cursor-glow" />;
-}
 import {
   Search,
   X,
@@ -639,9 +604,6 @@ export default function Home() {
       ref={topRef}
       className="min-h-screen flex flex-col bg-[#0a0a0a] relative"
     >
-      {/* ─── Cursor Glow Effect ─── */}
-      <CursorGlow />
-
       {/* ─── Top Bar ─── */}
       <TopBar
         onSearch={() => {
