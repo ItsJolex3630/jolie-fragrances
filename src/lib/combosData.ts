@@ -577,7 +577,7 @@ export const combos: Combo[] = [
     description:
       'Dos caras de la vainilla más adictiva. Vanilla Freak de Lattafa es una obsesión vainillada pura y sin complejos que envuelve como un manto cálido de vainilla de Madagascar, y December de Paris Corner responde con una vainilla invernal y ambarada que evoca las noches de diciembre frente a la chimenea. Dos vainillas que juntas crean un bucle infinito de dulzura adictiva.',
     perfumes: [
-      { name: 'Vanilla Freak', volume: '100ML', fragranticaId: 114394 },
+      { name: 'Vanilla Freak', volume: '100ML', fragranticaId: 114400 },
       { name: 'December', volume: '100ML', fragranticaId: 96254 },
     ],
     originalTotalPrice: 125,
@@ -654,9 +654,9 @@ export const combos: Combo[] = [
     description:
       'Tres postres de Arabiyat Sugar que endulzan cualquier ocasión. Dulce de Leche abre con su caramelo suave y adictivo para el día a día, Berries Cream Macaron sube la intensidad con sus frutos rojos y crema para las salidas de tarde, y Vanilla Cream Macaron cierra con una vainilla cremosa y sofisticada para las noches especiales. Un trío que convierte cada momento en un festival de dulzura.',
     perfumes: [
-      { name: 'Dulce de Leche', volume: '80ML', fragranticaId: 107084 },
-      { name: 'Berries Cream Macaron', volume: '80ML', fragranticaId: 107087 },
-      { name: 'Vanilla Cream Macaron', volume: '80ML', fragranticaId: 107089 },
+      { name: 'Dulce de Leche', volume: '80ML', fragranticaId: 118595 },
+      { name: 'Berries Cream Macaron', volume: '80ML', fragranticaId: 118602 },
+      { name: 'Vanilla Cream Macaron', volume: '80ML', fragranticaId: 118601 },
     ],
     originalTotalPrice: 162,
     discountPercentage: 10,
@@ -714,8 +714,8 @@ export const combos: Combo[] = [
     description:
       'Frescura tropical y cítrica en clave gourmand. Coconut Chiffon de Arabiyat envuelve con su coco esponjoso y dulce que transporta a una playa caribeña, y Lemon Sorbet responde con un limón helado y refrescante que despierta los sentidos como un postre de verano. El dúo perfecto para quienes quieren oler dulce sin perder frescura, ideal para climas cálidos.',
     perfumes: [
-      { name: 'Coconut Chiffon', volume: '80ML', fragranticaId: 107082 },
-      { name: 'Lemon Sorbet', volume: '80ML', fragranticaId: 107090 },
+      { name: 'Coconut Chiffon', volume: '80ML', fragranticaId: 118599 },
+      { name: 'Lemon Sorbet', volume: '80ML', fragranticaId: 118596 },
     ],
     originalTotalPrice: 108,
     discountPercentage: 10,
@@ -732,7 +732,7 @@ export const combos: Combo[] = [
       'Dos versiones del postre italiano más adictivo en un solo pack. Tiramisu Caramel de Lattafa despliega su tiramisú bañado en caramelo con notas de café y vainilla que derriten voluntades, y Tiramisu Coco de Zimaya responde con una variante tropical que suma coco cremoso al clásico italiano creando una fusión irresistible. Dos tiramisús que compiten en adicción y ganan ambos.',
     perfumes: [
       { name: 'Tiramisu Caramel', volume: '100ML', fragranticaId: 98691 },
-      { name: 'Tiramisu Coco', volume: '100ML', fragranticaId: 117296 },
+      { name: 'Tiramisu Coco', volume: '100ML', fragranticaId: 98690 },
     ],
     originalTotalPrice: 88,
     discountPercentage: 10,

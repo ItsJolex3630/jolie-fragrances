@@ -2694,7 +2694,7 @@ export const perfumes: Perfume[] = [
     gender: "Caballero",
     price: 41,
     size: "100ml",
-    fragranticaId: 70465,
+    fragranticaId: 70467,
     brandSlug: "Lattafa-Perfumes",
     perfumeSlug: "Fakhar-Silver",
     available: true
