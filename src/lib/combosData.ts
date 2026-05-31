@@ -124,23 +124,7 @@ export const combos: Combo[] = [
     savings: 8,
     imageUrl: '',
   },
-  {
-    id: 'combo-duo-oud-imperial',
-    slug: 'duo-oud-imperial',
-    name: 'Dúo Oud Imperial',
-    category: 'Pareja',
-    description:
-      'Dos joyas de la línea Bade\'e Al Oud que huelen a verdadero poder. Bade\'e Al Oud Oud for Glory despliega la profundidad amaderada del oud más premium con un sillage legendario, y Bade\'e Al Oud Sublime eleva la experiencia con una sublimidad amaderada y ambarada que evoca los palacios más exclusivos de Arabia. Dos ouds, un imperio.',
-    perfumes: [
-      { name: "Bade'e Al Oud Oud for Glory", volume: '100ML', fragranticaId: 64948 },
-      { name: "Bade'e Al Oud Sublime", volume: '100ML', fragranticaId: 84301 },
-    ],
-    originalTotalPrice: 88,
-    discountPercentage: 10,
-    comboPrice: 79,
-    savings: 9,
-    imageUrl: '',
-  },
+
   {
     id: 'combo-duo-cita-en-el-desierto',
     slug: 'duo-cita-en-el-desierto',
@@ -273,23 +257,7 @@ export const combos: Combo[] = [
   // ═══════════════════════════════════════════════════════
   // ☕ ÁRABE — Cita en Dubai
   // ═══════════════════════════════════════════════════════
-  {
-    id: 'combo-duo-oud-ancestral',
-    slug: 'duo-oud-ancestral',
-    name: 'Dúo Oud Ancestral',
-    category: 'Árabe',
-    description:
-      'Dos leyendas del oud que huelen a dinero y tradición. Oud For Glory despliega la profundidad amaderada del oud más premium, y Shaghaf Oud Azraq eleva la experiencia con un oud azulado y misterioso que evoca las noches más profundas de Arabia. Para quienes quieren sillage inmenso y presencia legendaria.',
-    perfumes: [
-      { name: 'Oud For Glory', volume: '100ML', fragranticaId: 64948 },
-      { name: 'Shaghaf Oud Azraq', volume: '100ML', fragranticaId: 82383 },
-    ],
-    originalTotalPrice: 102,
-    discountPercentage: 10,
-    comboPrice: 92,
-    savings: 10,
-    imageUrl: '',
-  },
+
   {
     id: 'combo-duo-noche-de-ambar',
     slug: 'duo-noche-de-ambar',
@@ -307,23 +275,7 @@ export const combos: Combo[] = [
     savings: 9,
     imageUrl: '',
   },
-  {
-    id: 'combo-duo-tesoro-del-desierto',
-    slug: 'duo-tesoro-del-desierto',
-    name: 'Dúo Tesoro del Desierto',
-    category: 'Árabe',
-    description:
-      'Un cofre con las dos gemas más codiciadas del desierto. Emeer Lattafa irradia la nobleza del oud y el ámbar con una elegancia que recuerda a los palacios árabes, y Casablanca complementa con su sofisticación floral amaderada que evoca la brisa nocturna del Mediterráneo. Dos tesoros que valen más que el oro.',
-    perfumes: [
-      { name: 'Emeer Lattafa', volume: '100ML', fragranticaId: 89761 },
-      { name: 'Casablanca', volume: '100ML', fragranticaId: 91556 },
-    ],
-    originalTotalPrice: 122,
-    discountPercentage: 10,
-    comboPrice: 110,
-    savings: 12,
-    imageUrl: '',
-  },
+
   {
     id: 'combo-duo-sultan-y-sultana',
     slug: 'duo-sultan-y-sultana',
