@@ -964,11 +964,11 @@ export default function Home() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Mobile filter toggle */}
-        <div className="lg:hidden mb-4">
+        {/* Filter toggle (mobile + desktop) */}
+        <div className="mb-4">
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-[rgba(212,175,55,0.15)] bg-[#111111] text-[#d4af37] transition-all duration-300 font-[family-name:var(--font-inter)] text-sm"
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-[rgba(212,175,55,0.15)] bg-[#111111] text-[#d4af37] transition-all duration-300 font-[family-name:var(--font-inter)] text-sm hover:border-[#d4af37]/30 hover:bg-[#111111]/80"
           >
             <Filter className="w-4 h-4" />
             {showFilters ? "Ocultar filtros" : "Mostrar filtros"}
@@ -986,7 +986,7 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           className={`mb-8 space-y-5 ${
-            showFilters ? "block" : "hidden lg:block"
+            showFilters ? "block" : "hidden"
           }`}
         >
           {/* Brand filters */}
