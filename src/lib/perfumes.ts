@@ -352,6 +352,33 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   246: ["Dulce", "Gourmand"], // Qissa Delicius
   247: ["Floral", "Amaderado"], // Qissa Blue
 
+  // ==================== ZIMAYA ====================
+  248: ["Cítrico", "Amaderado"], // Evolution
+  249: ["Dulce", "Coco"], // Tiramisu Coco
+  250: ["Amaderado", "Especiado"], // Charisma
+  251: ["Amaderado", "Ámbar"], // Grandeur
+  252: ["Amaderado", "Especiado"], // Is Great
+  253: ["Amaderado", "Ahumado"], // Happy Oud
+  254: ["Floral", "Dulce"], // Fatima Pink
+  255: ["Floral", "Ámbar"], // Fatima Velvet
+  256: ["Floral", "Dulce"], // Only You
+  257: ["Floral", "Ámbar"], // Hayam
+  258: ["Amaderado", "Frutal"], // Anhaar Valley
+  259: ["Amaderado", "Especiado"], // Hawwa Red
+  260: ["Dulce", "Coco"], // Coconut Chiffon
+  261: ["Frutal", "Dulce"], // Berries Cream Macaron
+  262: ["Frutal", "Dulce"], // Strawberry Tres Leches
+  263: ["Dulce", "Vainilla"], // Vanilla Cream Macaron
+  264: ["Frutal", "Dulce"], // Mango Affogato
+  265: ["Dulce", "Caramelo"], // Caramel Chocolate Macaron
+  266: ["Dulce", "Caramelo"], // Dulce de Leche
+  267: ["Dulce", "Algodón"], // Sugar Cotton
+  268: ["Dulce", "Frutos Secos"], // Pecan Butter
+  269: ["Cítrico", "Dulce"], // Lemon Sorbet
+  270: ["Dulce", "Galleta"], // Cookie Dough
+  271: ["Dulce", "Té"], // Matcha Latte
+  272: ["Dulce", "Caramelo"], // Toffe Ganache
+
 };
 
 export type Brand =
@@ -369,7 +396,8 @@ export type Brand =
   | "Khadlaj"
   | "Bharara"
   | "Jean Paul Gaultier"
-  | "Paris Corner";
+  | "Paris Corner"
+  | "Zimaya";
 
 export type Concentration = "Parfum" | "Elixir" | "Eau de Parfum" | "Eau de Toilette" | "Eau de Cologne" | "Eau Fraîche";
 
@@ -423,6 +451,7 @@ export const BRANDS: Brand[] = [
   "Bharara",
   "Jean Paul Gaultier",
   "Paris Corner",
+  "Zimaya",
 ];
 
 export const GENDERS: Gender[] = ["Dama", "Caballero", "Unisex"];
@@ -442,7 +471,8 @@ export const BRAND_SLUGS: Record<Brand, string> = {
   Khadlaj: "Khadlaj-Perfumes",
   Bharara: "Bharara",
   "Jean Paul Gaultier": "Jean-Paul-Gaultier",
-  "Paris Corner": "Paris-Corner"
+  "Paris Corner": "Paris-Corner",
+  "Zimaya": "Zimaya"
 };
 
 export function getImageUrl(fragranticaId: number): string {
@@ -2750,12 +2780,12 @@ export const perfumes: Perfume[] = [
 {
     id: 223,
     name: "Tiramisu Caramel",
-    brand: "Lattafa",
+    brand: "Zimaya",
     gender: "Dama",
     price: 47,
     size: "100ml",
     fragranticaId: 98691,
-    brandSlug: "Lattafa-Perfumes",
+    brandSlug: "Zimaya",
     perfumeSlug: "Tiramisu-Caramel",
     available: true
   },
@@ -3201,6 +3231,333 @@ export const perfumes: Perfume[] = [
     brandSlug: "Paris-Corner",
     perfumeSlug: "Qissa-Blue",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Paris-Corner/Qissa-Blue-98579.html",
+    available: true
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // 🏜️ ZIMAYA
+  // ═══════════════════════════════════════════════════════
+{
+    id: 248,
+    name: "Evolution",
+    brand: "Zimaya",
+    gender: "Caballero",
+    price: 32,
+    size: "100ml",
+    fragranticaId: 103823,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Evolution",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Evolution-103823.html",
+    available: true
+  },
+{
+    id: 249,
+    name: "Tiramisu Coco",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 47,
+    size: "100ml",
+    fragranticaId: 98690,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Tiramisu-Coco",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Tiramisu-Coco-98690.html",
+    available: true
+  },
+{
+    id: 250,
+    name: "Charisma",
+    brand: "Zimaya",
+    gender: "Caballero",
+    price: 36,
+    size: "100ml",
+    fragranticaId: 103119,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Charisma-Pour-Homme",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Charisma-Pour-Homme-103119.html",
+    available: true
+  },
+{
+    id: 251,
+    name: "Grandeur",
+    brand: "Zimaya",
+    gender: "Caballero",
+    price: 31,
+    size: "100ml",
+    fragranticaId: 92578,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Grandeur",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Grandeur-92578.html",
+    available: true
+  },
+{
+    id: 252,
+    name: "Is Great",
+    brand: "Zimaya",
+    gender: "Caballero",
+    size: "100ml",
+    fragranticaId: 92588,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Is-Great",
+    available: false
+  },
+{
+    id: 253,
+    name: "Happy Oud",
+    brand: "Zimaya",
+    gender: "Unisex",
+    size: "100ml",
+    fragranticaId: 95992,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Happy-Oud",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Happy-Oud-95992.html",
+    available: false
+  },
+{
+    id: 254,
+    name: "Fatima Pink",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 38,
+    size: "100ml",
+    fragranticaId: 92817,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Fatima-Pink",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Fatima-Pink-92817.html",
+    available: true
+  },
+{
+    id: 255,
+    name: "Fatima Velvet",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 38,
+    size: "100ml",
+    fragranticaId: 120898,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Fatima-Velvet-Love",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Fatima-Velvet-Love-120898.html",
+    available: true
+  },
+{
+    id: 256,
+    name: "Only You",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 32,
+    size: "100ml",
+    fragranticaId: 92819,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Only-You",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Only-You-92819.html",
+    available: true
+  },
+{
+    id: 257,
+    name: "Hayam",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 38,
+    size: "100ml",
+    fragranticaId: 92593,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Hayam",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Hayam-92593.html",
+    available: true
+  },
+{
+    id: 258,
+    name: "Anhaar Valley",
+    brand: "Zimaya",
+    gender: "Unisex",
+    price: 35,
+    size: "100ml",
+    fragranticaId: 97032,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Anhaar-Valley",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Anhaar-Valley-97032.html",
+    available: true
+  },
+{
+    id: 259,
+    name: "Hawwa Red",
+    brand: "Zimaya",
+    gender: "Unisex",
+    size: "100ml",
+    fragranticaId: 92588,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Hawwa-Red",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Zimaya/Hawwa-Red-92588.html",
+    available: false
+  },
+
+  // ── ZIMAYA / ARABIYAT SUGAR (línea gourmand) ──
+{
+    id: 260,
+    name: "Coconut Chiffon",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 118599,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Coconut-Chiffon",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Coconut-Chiffon-118599.html",
+    available: true
+  },
+{
+    id: 261,
+    name: "Berries Cream Macaron",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 118602,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Berries-Cream-Macaron",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Berries-Cream-Macaron-118602.html",
+    available: true
+  },
+{
+    id: 262,
+    name: "Strawberry Tres Leches",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 118598,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Strawberry-Tres-Leches",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Strawberry-Tres-Leches-118598.html",
+    available: true
+  },
+{
+    id: 263,
+    name: "Vanilla Cream Macaron",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 118601,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Vanilla-Cream-Macaron",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Vanilla-Cream-Macaron-118601.html",
+    available: true
+  },
+{
+    id: 264,
+    name: "Mango Affogato",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 118592,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Mango-Affogato",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Mango-Affogato-118592.html",
+    available: true
+  },
+{
+    id: 265,
+    name: "Caramel Chocolate Macaron",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 118600,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Caramel-Chocolate-Macaron",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Caramel-Chocolate-Macaron-118600.html",
+    available: true
+  },
+{
+    id: 266,
+    name: "Dulce de Leche",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 118595,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Dulce-de-Leche",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Dulce-de-Leche-118595.html",
+    available: true
+  },
+{
+    id: 267,
+    name: "Sugar Cotton",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 118597,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Cotton-Blush",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Cotton-Blush-118597.html",
+    available: true
+  },
+{
+    id: 268,
+    name: "Pecan Butter",
+    brand: "Zimaya",
+    gender: "Unisex",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 118603,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Pecan-Butter-Cookie",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Pecan-Butter-Cookie-118603.html",
+    available: true
+  },
+{
+    id: 269,
+    name: "Lemon Sorbet",
+    brand: "Zimaya",
+    gender: "Unisex",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 118596,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Lemon-Sorbet",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Lemon-Sorbet-118596.html",
+    available: true
+  },
+{
+    id: 270,
+    name: "Cookie Dough",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 118604,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Cookie-Dough",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Cookie-Dough-118604.html",
+    available: true
+  },
+{
+    id: 271,
+    name: "Matcha Latte",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 118608,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Matcha-Latte",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Matcha-Latte-118608.html",
+    available: true
+  },
+{
+    id: 272,
+    name: "Toffe Ganache",
+    brand: "Zimaya",
+    gender: "Dama",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 118605,
+    brandSlug: "Zimaya",
+    perfumeSlug: "Toffee-Ganache",
+    fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Toffee-Ganache-118605.html",
     available: true
   }
 ];

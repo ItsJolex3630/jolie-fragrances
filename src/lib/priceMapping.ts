@@ -246,6 +246,33 @@ export const RETAIL_PRICES: Record<number, number | null> = {
   245: 38,  // Qissa Pink (catálogo $28 → +35% = $38)
   246: 38,  // Qissa Delicius (catálogo $28 → +35% = $38)
   247: 38,  // Qissa Blue (catálogo $28 → +35% = $38)
+
+  // ==================== ZIMAYA ====================
+  248: 32,  // Evolution (catálogo $24 → +35% = $32)
+  249: 47,  // Tiramisu Coco (catálogo $35 → +35% = $47)
+  250: 36,  // Charisma (catálogo $27 → +35% = $36)
+  251: 31,  // Grandeur (catálogo $23 → +35% = $31)
+  252: null, // Is Great (No Disponible)
+  253: null, // Happy Oud (No Disponible)
+  254: 38,  // Fatima Pink (catálogo $28 → +35% = $38)
+  255: 38,  // Fatima Velvet (catálogo $28 → +35% = $38)
+  256: 32,  // Only You (catálogo $24 → +35% = $32)
+  257: 38,  // Hayam (catálogo $28 → +35% = $38)
+  258: 35,  // Anhaar Valley (catálogo $26 → +35% = $35)
+  259: null, // Hawwa Red (No Disponible)
+  260: 54,  // Coconut Chiffon (catálogo $40 → +35% = $54)
+  261: 54,  // Berries Cream Macaron (catálogo $40 → +35% = $54)
+  262: 54,  // Strawberry Tres Leches (catálogo $40 → +35% = $54)
+  263: 54,  // Vanilla Cream Macaron (catálogo $40 → +35% = $54)
+  264: 54,  // Mango Affogato (catálogo $40 → +35% = $54)
+  265: 54,  // Caramel Chocolate Macaron (catálogo $40 → +35% = $54)
+  266: 54,  // Dulce de Leche (catálogo $40 → +35% = $54)
+  267: 54,  // Sugar Cotton (catálogo $40 → +35% = $54)
+  268: 54,  // Pecan Butter (catálogo $40 → +35% = $54)
+  269: 54,  // Lemon Sorbet (catálogo $40 → +35% = $54)
+  270: 54,  // Cookie Dough (catálogo $40 → +35% = $54)
+  271: 54,  // Matcha Latte (catálogo $40 → +35% = $54)
+  272: 54,  // Toffe Ganache (catálogo $40 → +35% = $54)
 };
 
 /**
