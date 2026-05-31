@@ -20,7 +20,7 @@ export interface Combo {
 
 export const combos: Combo[] = [
   // ═══════════════════════════════════════════════════════
-  // 💑 PAREJA — Dúos Románticos (8 combos)
+  // 💑 PAREJA — Dúos Románticos (10 combos)
   // ═══════════════════════════════════════════════════════
   {
     id: 'combo-duo-deseo-prohibido',
@@ -160,7 +160,7 @@ export const combos: Combo[] = [
   },
 
   // ═══════════════════════════════════════════════════════
-  // 🧭 TODO TERRENO — Tríos Versátiles (8 combos)
+  // 🧭 TODO TERRENO — Tríos Versátiles (10 combos)
   // ═══════════════════════════════════════════════════════
   {
     id: 'combo-trio-caballero-completo',
@@ -308,7 +308,7 @@ export const combos: Combo[] = [
   },
 
   // ═══════════════════════════════════════════════════════
-  // ☕ ÁRABE — Cita en Dubai (8 combos)
+  // ☕ ÁRABE — Cita en Dubai (10 combos)
   // ═══════════════════════════════════════════════════════
   {
     id: 'combo-duo-noche-de-ambar',
@@ -448,7 +448,7 @@ export const combos: Combo[] = [
   },
 
   // ═══════════════════════════════════════════════════════
-  // 🍓 GOURMAND — Dulce Tentación (8 combos)
+  // 🍓 GOURMAND — Dulce Tentación (10 combos)
   // ═══════════════════════════════════════════════════════
   {
     id: 'combo-duo-chocomaniaticos',
@@ -584,6 +584,160 @@ export const combos: Combo[] = [
     discountPercentage: 10,
     comboPrice: 112,
     savings: 13,
+    imageUrl: '',
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // 💑 PAREJA — 2 combos nuevos (#9 y #10)
+  // ═══════════════════════════════════════════════════════
+  {
+    id: 'combo-duo-fuego-y-rosa',
+    slug: 'duo-fuego-y-rosa',
+    name: 'Dúo Fuego y Rosa',
+    category: 'Pareja',
+    description:
+      'Potencia masculina y elegancia floral en un solo pack. Club de Nuit Iconic despliega su frescura cítrica y amaderada con la confianza de un caballero que no pasa desapercibido, mientras Club de Nuit Maleka responde con un ramo floral dulce y envolvente que enamora a primera impresión. El dúo perfecto para la pareja que quiere complementarse sin perder su esencia.',
+    perfumes: [
+      { name: 'Club de Nuit Iconic', volume: '100ML', fragranticaId: 78475 },
+      { name: 'Club de Nuit Maleka', volume: '100ML', fragranticaId: 106168 },
+    ],
+    originalTotalPrice: 129,
+    discountPercentage: 10,
+    comboPrice: 116,
+    savings: 13,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-duo-plata-y-rosa',
+    slug: 'duo-plata-y-rosa',
+    name: 'Dúo Plata y Rosa',
+    category: 'Pareja',
+    description:
+      'Nobleza árabe en dos botellas icónicas. Fakhar Silver irradia una frescura plateada y cítrica con la elegancia de un caballero de alcurnia, mientras Fakhar Rose despliega su ramo de rosas y frutos rojos que captura la esencia de la feminidad más sofisticada. Dos joyas de la línea Fakhar que juntas brillan con luz propia.',
+    perfumes: [
+      { name: 'Fakhar Silver', volume: '100ML', fragranticaId: 70467 },
+      { name: 'Fakhar Rose', volume: '100ML', fragranticaId: 70466 },
+    ],
+    originalTotalPrice: 82,
+    discountPercentage: 10,
+    comboPrice: 74,
+    savings: 8,
+    imageUrl: '',
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // 🧭 TODO TERRENO — 2 combos nuevos (#9 y #10)
+  // ═══════════════════════════════════════════════════════
+  {
+    id: 'combo-trio-odisea-dulce',
+    slug: 'trio-odisea-dulce',
+    name: 'Trío Odisea Dulce',
+    category: 'Todo Terreno',
+    description:
+      'Tres paradas dulces de la línea Odyssey que conquistan cualquier momento del día. Odyssey Candee abre con su dulzor afrutado y juguetón para las mañanas informales, Odyssey Dubai Chocolate sube la apuesta con su chocolate cremoso y praliné para las tardes de antojo, y Odyssey Black Forest cierra con un chocolate oscuro e imponente para las noches que exigen presencia gourmand. Un trío que es un menú de postres para el olfato.',
+    perfumes: [
+      { name: 'Odyssey Candee', volume: '100ML', fragranticaId: 96990 },
+      { name: 'Odyssey Dubai Chocolate', volume: '100ML', fragranticaId: 102117 },
+      { name: 'Odyssey Black Forest', volume: '100ML', fragranticaId: 115125 },
+    ],
+    originalTotalPrice: 156,
+    discountPercentage: 10,
+    comboPrice: 140,
+    savings: 16,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-trio-arabiyat-dessert',
+    slug: 'trio-arabiyat-dessert',
+    name: 'Trío Arabiyat Dessert',
+    category: 'Todo Terreno',
+    description:
+      'Tres postres de Arabiyat Sugar que endulzan cualquier ocasión. Dulce de Leche abre con su caramelo suave y adictivo para el día a día, Berries Cream Macaron sube la intensidad con sus frutos rojos y crema para las salidas de tarde, y Vanilla Cream Macaron cierra con una vainilla cremosa y sofisticada para las noches especiales. Un trío que convierte cada momento en un festival de dulzura.',
+    perfumes: [
+      { name: 'Dulce de Leche', volume: '80ML', fragranticaId: 107084 },
+      { name: 'Berries Cream Macaron', volume: '80ML', fragranticaId: 107087 },
+      { name: 'Vanilla Cream Macaron', volume: '80ML', fragranticaId: 107089 },
+    ],
+    originalTotalPrice: 162,
+    discountPercentage: 10,
+    comboPrice: 146,
+    savings: 16,
+    imageUrl: '',
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // ☕ ÁRABE — 2 combos nuevos (#9 y #10)
+  // ═══════════════════════════════════════════════════════
+  {
+    id: 'combo-duo-oud-carbon-y-blanco',
+    slug: 'duo-oud-carbon-y-blanco',
+    name: 'Dúo Oud Carbon & Blanco',
+    category: 'Árabe',
+    description:
+      'Dos caras del oud más exclusivo de Al Haramain en un solo cofre. Amber Oud Carbon despliega su oscuridad ahumada y amaderada con la profundidad del carbón que evoca las noches más misteriosas del desierto, mientras Amber Oud White responde con una luminosidad ambarada y floral que recuerda los amaneceres dorados de Dubai. Dos fragancias de la línea Amber Oud que juntas abarcan todo el espectro del oud noble.',
+    perfumes: [
+      { name: 'Amber Oud Carbon', volume: '100ML', fragranticaId: 73207 },
+      { name: 'Amber Oud White', volume: '100ML', fragranticaId: 73210 },
+    ],
+    originalTotalPrice: 162,
+    discountPercentage: 10,
+    comboPrice: 146,
+    savings: 16,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-duo-hechizo-oriental',
+    slug: 'duo-hechizo-oriental',
+    name: 'Dúo Hechizo Oriental',
+    category: 'Árabe',
+    description:
+      'Magia y misterio del Oriente árabe en dos fragancias encantadoras. Ajwaa despliega su dulzura amaderada con notas de dátiles y sándalo que evocan los oasis más sagrados del desierto, mientras Sehr responde con un hechizo ámbar y especiado que envuelve como las noches de luna llena sobre las dunas. Dos fragancias que hechizan a quien las huele, con un sillage que se queda en la memoria para siempre.',
+    perfumes: [
+      { name: 'Ajwaa', volume: '100ML', fragranticaId: 85368 },
+      { name: 'Sehr', volume: '100ML', fragranticaId: 94967 },
+    ],
+    originalTotalPrice: 126,
+    discountPercentage: 10,
+    comboPrice: 113,
+    savings: 13,
+    imageUrl: '',
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // 🍓 GOURMAND — 2 combos nuevos (#9 y #10)
+  // ═══════════════════════════════════════════════════════
+  {
+    id: 'combo-duo-coco-y-limon',
+    slug: 'duo-coco-y-limon',
+    name: 'Dúo Coco y Limón',
+    category: 'Gourmand',
+    description:
+      'Frescura tropical y cítrica en clave gourmand. Coconut Chiffon de Arabiyat envuelve con su coco esponjoso y dulce que transporta a una playa caribeña, y Lemon Sorbet responde con un limón helado y refrescante que despierta los sentidos como un postre de verano. El dúo perfecto para quienes quieren oler dulce sin perder frescura, ideal para climas cálidos.',
+    perfumes: [
+      { name: 'Coconut Chiffon', volume: '80ML', fragranticaId: 107082 },
+      { name: 'Lemon Sorbet', volume: '80ML', fragranticaId: 107090 },
+    ],
+    originalTotalPrice: 108,
+    discountPercentage: 10,
+    comboPrice: 97,
+    savings: 11,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-duo-tiramisu-locura',
+    slug: 'duo-tiramisu-locura',
+    name: 'Dúo Tiramisú Locura',
+    category: 'Gourmand',
+    description:
+      'Dos versiones del postre italiano más adictivo en un solo pack. Tiramisu Caramel de Lattafa despliega su tiramisú bañado en caramelo con notas de café y vainilla que derriten voluntades, y Tiramisu Coco de Zimaya responde con una variante tropical que suma coco cremoso al clásico italiano creando una fusión irresistible. Dos tiramisús que compiten en adicción y ganan ambos.',
+    perfumes: [
+      { name: 'Tiramisu Caramel', volume: '100ML', fragranticaId: 98691 },
+      { name: 'Tiramisu Coco', volume: '100ML', fragranticaId: 117296 },
+    ],
+    originalTotalPrice: 88,
+    discountPercentage: 10,
+    comboPrice: 79,
+    savings: 9,
     imageUrl: '',
   },
 ];
