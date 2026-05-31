@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Tag, Star, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Eye, EyeOff } from "lucide-react";
 import { combos, type Combo } from "@/lib/combosData";
@@ -53,7 +53,19 @@ export default function ComboShowcase() {
   const [comboPage, setComboPage] = useState(1);
   const { addCombo, openCart } = useCart();
 
-  const COMBOS_PER_PAGE = 8;
+  // ─── Responsive combos per page: 8 on desktop (lg+), 4 on mobile ───
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => {
+      setIsDesktop(e.matches);
+      setComboPage(1); // Reset page on breakpoint change
+    };
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+  const COMBOS_PER_PAGE = isDesktop ? 8 : 4;
 
   // Filter combos by selected category
   const filteredCombos = useMemo(() => {
