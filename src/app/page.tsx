@@ -207,10 +207,10 @@ const PerfumeCard = memo(function PerfumeCard({
 
   return (
     <div
-      className="perfume-card group relative card-fade-in"
+      className="perfume-card group relative card-fade-in rounded-xl"
       style={{ animationDelay: `${Math.min(index * 0.03, 0.5)}s` }}
     >
-      <div className={`card-shimmer-border relative overflow-hidden border border-[rgba(212,175,55,0.12)] bg-[#111111] transition-all duration-500 group-hover:border-[rgba(212,175,55,0.35)] gold-glow-hover ${perfume.available === false ? 'opacity-75' : ''}`}>
+      <div className={`card-shimmer-border relative overflow-hidden rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111] transition-all duration-500 group-hover:border-[rgba(212,175,55,0.35)] gold-glow-hover h-full flex flex-col ${perfume.available === false ? 'opacity-75' : ''}`}>
         {/* Image container - dark background for the bottle */}
         <div className="relative aspect-[3/4] overflow-hidden bg-[#0a0a0a] flex items-center justify-center">
           {/* Loading skeleton */}
@@ -323,10 +323,14 @@ const PerfumeCard = memo(function PerfumeCard({
               {perfume.name}
             </h3>
             {/* Price + Add to cart */}
-            <div className="flex items-center justify-between gap-2">
-              {retailPrice !== null && (
+            <div className="flex items-center justify-between gap-2 mt-1">
+              {retailPrice !== null ? (
                 <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent">
                   {formatPrice(retailPrice)}
+                </p>
+              ) : (
+                <p className="text-[10px] sm:text-xs font-medium font-[family-name:var(--font-inter)] text-white/25 tracking-wider uppercase">
+                  Consultar
                 </p>
               )}
               {retailPrice !== null && perfume.available !== false && (

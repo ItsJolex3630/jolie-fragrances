@@ -219,16 +219,14 @@
 
 /* ─── Perfume card hover effect (GPU-composited) ─── */
 .perfume-card {
-  border-radius: 0.75rem;
-  overflow: hidden;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .perfume-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.2),
-    0 0 1px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15),
+    0 0 1px rgba(212, 175, 55, 0.3);
 }
 
 /* ─── Floating particles (optimized) ─── */
