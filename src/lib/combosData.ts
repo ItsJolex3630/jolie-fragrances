@@ -20,7 +20,7 @@ export interface Combo {
 
 export const combos: Combo[] = [
   // ═══════════════════════════════════════════════════════
-  // 💑 PAREJA — Dúos Asad & Yara
+  // 💑 PAREJA — Dúos Románticos (8 combos)
   // ═══════════════════════════════════════════════════════
   {
     id: 'combo-duo-deseo-prohibido',
@@ -124,7 +124,6 @@ export const combos: Combo[] = [
     savings: 8,
     imageUrl: '',
   },
-
   {
     id: 'combo-duo-cita-en-el-desierto',
     slug: 'duo-cita-en-el-desierto',
@@ -161,7 +160,7 @@ export const combos: Combo[] = [
   },
 
   // ═══════════════════════════════════════════════════════
-  // 🧭 TODO TERRENO — Trío Maestro
+  // 🧭 TODO TERRENO — Tríos Versátiles (8 combos)
   // ═══════════════════════════════════════════════════════
   {
     id: 'combo-trio-caballero-completo',
@@ -253,11 +252,64 @@ export const combos: Combo[] = [
     savings: 16,
     imageUrl: '',
   },
+  {
+    id: 'combo-trio-reina-completa',
+    slug: 'trio-reina-completa',
+    name: 'Trío La Reina Completa',
+    category: 'Todo Terreno',
+    description:
+      'Tres coronas para la mujer que lo domina todo. Mayar Natural Intense abre el día con su frescura floral y luminosa perfecta para la rutina diaria, Yara Moi conquista la noche con su caramelo tropical y vainilla que detiene miradas, y Eclaire Pistache cierra con una cremosidad pistache de alta gama para las ocasiones que exigen sofisticación absoluta. La reina no se prepara, siempre está lista.',
+    perfumes: [
+      { name: 'Mayar Natural Intense', volume: '100ML', fragranticaId: 89759 },
+      { name: 'Yara Moi', volume: '100ML', fragranticaId: 80722 },
+      { name: 'Eclaire Pistache', volume: '100ML', fragranticaId: 113777 },
+    ],
+    originalTotalPrice: 132,
+    discountPercentage: 10,
+    comboPrice: 118,
+    savings: 14,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-trio-odisea-caribe',
+    slug: 'trio-odisea-caribe',
+    name: 'Trío Odisea del Caribe',
+    category: 'Todo Terreno',
+    description:
+      'Tres paradas tropicales en un solo viaje. Odyssey Bahamas transporta con su brisa acuática y frutal para las mañanas de sol, Odyssey Go Mango enciende la fiesta con su mango exuberante y jugoso para las tardes de calor, y Odyssey Marshmallow cierra con una dulzura esponjosa y adictiva para las noches de playa. Vacaciones permanentes en cada pulverización.',
+    perfumes: [
+      { name: 'Odyssey Bahamas', volume: '100ML', fragranticaId: 115127 },
+      { name: 'Odyssey Go Mango', volume: '100ML', fragranticaId: 115130 },
+      { name: 'Odyssey Marshmallow', volume: '100ML', fragranticaId: 115132 },
+    ],
+    originalTotalPrice: 175,
+    discountPercentage: 10,
+    comboPrice: 157,
+    savings: 18,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-trio-paris-corner-elegance',
+    slug: 'trio-paris-corner-elegance',
+    name: 'Trío Paris Corner Elegance',
+    category: 'Todo Terreno',
+    description:
+      'Lo mejor de Paris Corner en un solo trío. Taskeen abre con una dulzura afrutada y moderna para el día a día, Khair Felicity sube la apuesta con su elegancia floral y ambarada para las noches de gala, y Emir Memories of Summer cierra con una sofisticación fresca y veraniega de alta gama para las ocasiones especiales. Tres joyas de la maison que brillan en cualquier momento.',
+    perfumes: [
+      { name: 'Taskeen', volume: '100ML', fragranticaId: 97355 },
+      { name: 'Khair Felicity', volume: '100ML', fragranticaId: 102874 },
+      { name: 'Emir Memories of Summer', volume: '100ML', fragranticaId: 111166 },
+    ],
+    originalTotalPrice: 156,
+    discountPercentage: 10,
+    comboPrice: 140,
+    savings: 16,
+    imageUrl: '',
+  },
 
   // ═══════════════════════════════════════════════════════
-  // ☕ ÁRABE — Cita en Dubai
+  // ☕ ÁRABE — Cita en Dubai (8 combos)
   // ═══════════════════════════════════════════════════════
-
   {
     id: 'combo-duo-noche-de-ambar',
     slug: 'duo-noche-de-ambar',
@@ -275,7 +327,6 @@ export const combos: Combo[] = [
     savings: 9,
     imageUrl: '',
   },
-
   {
     id: 'combo-duo-sultan-y-sultana',
     slug: 'duo-sultan-y-sultana',
@@ -310,9 +361,94 @@ export const combos: Combo[] = [
     savings: 10,
     imageUrl: '',
   },
+  {
+    id: 'combo-duo-amethyst-glory',
+    slug: 'duo-amethyst-glory',
+    name: 'Dúo Amethyst & Glory',
+    category: 'Árabe',
+    description:
+      'Las dos gemas de la línea Bade\'e Al Oud que todo coleccionista quiere. Amethyst despliega una majestuosidad amaderada y ambarada con la profundidad del lapislázuli, y Oud for Glory responde con el oud más legendario y premium que ha conquistado el mundo árabe. Dos botellas icónicas, un solo imperio olfativo. Para quienes entienden que el oud es el oro líquido de la perfumería.',
+    perfumes: [
+      { name: "Bade'e Al Oud Amethyst", volume: '100ML', fragranticaId: 68214 },
+      { name: "Bade'e Al Oud Oud for Glory", volume: '100ML', fragranticaId: 64948 },
+    ],
+    originalTotalPrice: 82,
+    discountPercentage: 10,
+    comboPrice: 73,
+    savings: 9,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-duo-fuego-y-oro',
+    slug: 'duo-fuego-y-oro',
+    name: 'Dúo Fuego y Oro',
+    category: 'Árabe',
+    description:
+      'Las dos ediciones más codiciadas de Al Haramain en un solo cofre. Amber Oud Rouge arde con un ámbar rojo especiado y azafrán que evoca los atardeceres del desierto, mientras Amber Oud Gold irradia un ámbar dorado y luminoso que recuerda los palacios bañados en oro de Dubai. Dos colores, una misma nobleza. El combo más lujoso para los que quieren oler a riqueza pura.',
+    perfumes: [
+      { name: 'Amber Oud Rouge', volume: '100ML', fragranticaId: 66100 },
+      { name: 'Amber Oud Gold', volume: '100ML', fragranticaId: 51816 },
+    ],
+    originalTotalPrice: 176,
+    discountPercentage: 10,
+    comboPrice: 158,
+    savings: 18,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-duo-cafe-de-medina',
+    slug: 'duo-cafe-de-medina',
+    name: 'Dúo Café de Medina',
+    category: 'Árabe',
+    description:
+      'El humo y el café de las medinas árabes en un solo pack. Khamrah Dukhan envuelve con su humo especiado e incienso que evoca las callejuelas más místicas de Marrakech, y Khamrah Qawha responde con su café árabe infusionado con cacao y canela que transporta a las cafeterías ancestrales de Estambul. Dos fragancias que son un viaje a Oriente con cada pulverización.',
+    perfumes: [
+      { name: 'Khamrah Dukhan', volume: '100ML', fragranticaId: 104529 },
+      { name: 'Khamrah Qawha', volume: '100ML', fragranticaId: 88175 },
+    ],
+    originalTotalPrice: 101,
+    discountPercentage: 10,
+    comboPrice: 90,
+    savings: 11,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-duo-emir-del-oud',
+    slug: 'duo-emir-del-oud',
+    name: 'Dúo Emir del Oud',
+    category: 'Árabe',
+    description:
+      'Nobleza y nostalgia en cada gota. Emeer despliega la dignidad de un emir con su oud regio y ámbar profundo que impone respeto desde el primer instante, y Vintage Radio complementa con una calidez amaderada y retro que evoca los salones_privados de los palacios donde se fumaba pipa y se escuchaba jazz. Dos fragancias con carácter y sillage monumental para quienes quieren dejar huella.',
+    perfumes: [
+      { name: 'Emeer', volume: '100ML', fragranticaId: 89761 },
+      { name: 'Vintage Radio', volume: '100ML', fragranticaId: 89454 },
+    ],
+    originalTotalPrice: 108,
+    discountPercentage: 10,
+    comboPrice: 97,
+    savings: 11,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-duo-especias-del-sultanato',
+    slug: 'duo-especias-del-sultanato',
+    name: 'Dúo Especias del Sultanato',
+    category: 'Árabe',
+    description:
+      'Especias y fiereza del desierto profundo. Asad Elixir despliega una concentración elixir de especias amaderadas y oud que ruge como un león en la noche, y Qaed Al Fursan Untamed responde con una ferocidad incontrolable de cuero y sándalo que evoca a los guerreros más temidos del sultanato. Dos fragancias indomables con sillage que se siente a kilómetros. Para quienes no piden permiso.',
+    perfumes: [
+      { name: 'Asad Elixir', volume: '100ML', fragranticaId: 117616 },
+      { name: 'Qaed Al Fursan Untamed', volume: '100ML', fragranticaId: 105383 },
+    ],
+    originalTotalPrice: 89,
+    discountPercentage: 10,
+    comboPrice: 80,
+    savings: 9,
+    imageUrl: '',
+  },
 
   // ═══════════════════════════════════════════════════════
-  // 🍓 GOURMAND — Dulce Tentación
+  // 🍓 GOURMAND — Dulce Tentación (8 combos)
   // ═══════════════════════════════════════════════════════
   {
     id: 'combo-duo-chocomaniaticos',
@@ -397,6 +533,57 @@ export const combos: Combo[] = [
     discountPercentage: 10,
     comboPrice: 71,
     savings: 8,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-duo-pistache-lovers',
+    slug: 'duo-pistache-lovers',
+    name: 'Dúo Pistache Lovers',
+    category: 'Gourmand',
+    description:
+      'Dos cremosidades pistache que derriten corazones. Eclaire Pistache abre con un pistache tostado y dulce envuelto en una crema aterciopelada que parece un postre de alta pastelería, y Eclaire Banoffi responde con un banoffi cálido de caramelo y plátano que hace agua la boca. Dos fragancias de la línea Eclaire que convierten cada salida en un banquete de postres infinitos.',
+    perfumes: [
+      { name: 'Eclaire Pistache', volume: '100ML', fragranticaId: 113777 },
+      { name: 'Eclaire Banoffi', volume: '100ML', fragranticaId: 113778 },
+    ],
+    originalTotalPrice: 116,
+    discountPercentage: 10,
+    comboPrice: 104,
+    savings: 12,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-duo-marshmallow-dream',
+    slug: 'duo-marshmallow-dream',
+    name: 'Dúo Marshmallow Dream',
+    category: 'Gourmand',
+    description:
+      'Un sueño de malvavisco en dos versiones irresistibles. Odyssey Marshmallow envuelve con su dulzura esponjosa de malvavisco tostado y vainilla que parece recién salido del fuego, y Marshmallow Blush de Paris Corner eleva la experiencia con un blush rosado de malvavisco y frutos rojos que tiñe de dulzura cada rincón. El dúo definitivo para los que sueñan con oler a nube.',
+    perfumes: [
+      { name: 'Odyssey Marshmallow', volume: '100ML', fragranticaId: 115132 },
+      { name: 'Marshmallow Blush', volume: '100ML', fragranticaId: 102791 },
+    ],
+    originalTotalPrice: 133,
+    discountPercentage: 10,
+    comboPrice: 119,
+    savings: 14,
+    imageUrl: '',
+  },
+  {
+    id: 'combo-duo-vainilla-infinita',
+    slug: 'duo-vainilla-infinita',
+    name: 'Dúo Vainilla Infinita',
+    category: 'Gourmand',
+    description:
+      'Dos caras de la vainilla más adictiva. Vanilla Freak de Lattafa es una obsesión vainillada pura y sin complejos que envuelve como un manto cálido de vainilla de Madagascar, y December de Paris Corner responde con una vainilla invernal y ambarada que evoca las noches de diciembre frente a la chimenea. Dos vainillas que juntas crean un bucle infinito de dulzura adictiva.',
+    perfumes: [
+      { name: 'Vanilla Freak', volume: '100ML', fragranticaId: 114394 },
+      { name: 'December', volume: '100ML', fragranticaId: 96254 },
+    ],
+    originalTotalPrice: 125,
+    discountPercentage: 10,
+    comboPrice: 112,
+    savings: 13,
     imageUrl: '',
   },
 ];
