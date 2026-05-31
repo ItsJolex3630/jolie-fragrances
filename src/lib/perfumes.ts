@@ -365,6 +365,8 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   257: ["Floral", "Ámbar"], // Hayam
   258: ["Amaderado", "Frutal"], // Anhaar Valley
   259: ["Amaderado", "Especiado"], // Hawwa Red
+
+  // ==================== ARABIYAT ====================
   260: ["Dulce", "Coco"], // Coconut Chiffon
   261: ["Frutal", "Dulce"], // Berries Cream Macaron
   262: ["Frutal", "Dulce"], // Strawberry Tres Leches
@@ -378,6 +380,7 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   270: ["Dulce", "Galleta"], // Cookie Dough
   271: ["Dulce", "Té"], // Matcha Latte
   272: ["Dulce", "Caramelo"], // Toffe Ganache
+  273: ["Floral", "Dulce"], // Marwa
 
 };
 
@@ -397,7 +400,8 @@ export type Brand =
   | "Bharara"
   | "Jean Paul Gaultier"
   | "Paris Corner"
-  | "Zimaya";
+  | "Zimaya"
+  | "Arabiyat";
 
 export type Concentration = "Parfum" | "Elixir" | "Eau de Parfum" | "Eau de Toilette" | "Eau de Cologne" | "Eau Fraîche";
 
@@ -452,6 +456,7 @@ export const BRANDS: Brand[] = [
   "Jean Paul Gaultier",
   "Paris Corner",
   "Zimaya",
+  "Arabiyat",
 ];
 
 export const GENDERS: Gender[] = ["Dama", "Caballero", "Unisex"];
@@ -472,7 +477,8 @@ export const BRAND_SLUGS: Record<Brand, string> = {
   Bharara: "Bharara",
   "Jean Paul Gaultier": "Jean-Paul-Gaultier",
   "Paris Corner": "Paris-Corner",
-  "Zimaya": "Zimaya"
+  "Zimaya": "Zimaya",
+  "Arabiyat": "Arabiyat-Sugar"
 };
 
 export function getImageUrl(fragranticaId: number): string {
@@ -3390,16 +3396,18 @@ export const perfumes: Perfume[] = [
     available: false
   },
 
-  // ── ZIMAYA / ARABIYAT SUGAR (línea gourmand) ──
+  // ═══════════════════════════════════════════════════════
+  // 🧁 ARABIYAT (línea gourmand / Arabiyat Sugar)
+  // ═══════════════════════════════════════════════════════
 {
     id: 260,
     name: "Coconut Chiffon",
-    brand: "Zimaya",
+    brand: "Arabiyat",
     gender: "Dama",
     price: 54,
     size: "100ml",
     fragranticaId: 118599,
-    brandSlug: "Zimaya",
+    brandSlug: "Arabiyat-Sugar",
     perfumeSlug: "Coconut-Chiffon",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Coconut-Chiffon-118599.html",
     available: true
@@ -3407,12 +3415,12 @@ export const perfumes: Perfume[] = [
 {
     id: 261,
     name: "Berries Cream Macaron",
-    brand: "Zimaya",
+    brand: "Arabiyat",
     gender: "Dama",
     price: 54,
     size: "100ml",
     fragranticaId: 118602,
-    brandSlug: "Zimaya",
+    brandSlug: "Arabiyat-Sugar",
     perfumeSlug: "Berries-Cream-Macaron",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Berries-Cream-Macaron-118602.html",
     available: true
@@ -3420,12 +3428,12 @@ export const perfumes: Perfume[] = [
 {
     id: 262,
     name: "Strawberry Tres Leches",
-    brand: "Zimaya",
+    brand: "Arabiyat",
     gender: "Dama",
     price: 54,
     size: "100ml",
     fragranticaId: 118598,
-    brandSlug: "Zimaya",
+    brandSlug: "Arabiyat-Sugar",
     perfumeSlug: "Strawberry-Tres-Leches",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Strawberry-Tres-Leches-118598.html",
     available: true
@@ -3433,12 +3441,12 @@ export const perfumes: Perfume[] = [
 {
     id: 263,
     name: "Vanilla Cream Macaron",
-    brand: "Zimaya",
+    brand: "Arabiyat",
     gender: "Dama",
     price: 54,
     size: "100ml",
     fragranticaId: 118601,
-    brandSlug: "Zimaya",
+    brandSlug: "Arabiyat-Sugar",
     perfumeSlug: "Vanilla-Cream-Macaron",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Vanilla-Cream-Macaron-118601.html",
     available: true
@@ -3446,12 +3454,12 @@ export const perfumes: Perfume[] = [
 {
     id: 264,
     name: "Mango Affogato",
-    brand: "Zimaya",
+    brand: "Arabiyat",
     gender: "Dama",
     price: 54,
     size: "100ml",
     fragranticaId: 118592,
-    brandSlug: "Zimaya",
+    brandSlug: "Arabiyat-Sugar",
     perfumeSlug: "Mango-Affogato",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Mango-Affogato-118592.html",
     available: true
@@ -3459,12 +3467,12 @@ export const perfumes: Perfume[] = [
 {
     id: 265,
     name: "Caramel Chocolate Macaron",
-    brand: "Zimaya",
+    brand: "Arabiyat",
     gender: "Dama",
     price: 54,
     size: "100ml",
     fragranticaId: 118600,
-    brandSlug: "Zimaya",
+    brandSlug: "Arabiyat-Sugar",
     perfumeSlug: "Caramel-Chocolate-Macaron",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Caramel-Chocolate-Macaron-118600.html",
     available: true
@@ -3472,12 +3480,12 @@ export const perfumes: Perfume[] = [
 {
     id: 266,
     name: "Dulce de Leche",
-    brand: "Zimaya",
+    brand: "Arabiyat",
     gender: "Dama",
     price: 54,
     size: "100ml",
     fragranticaId: 118595,
-    brandSlug: "Zimaya",
+    brandSlug: "Arabiyat-Sugar",
     perfumeSlug: "Dulce-de-Leche",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Dulce-de-Leche-118595.html",
     available: true
@@ -3485,12 +3493,12 @@ export const perfumes: Perfume[] = [
 {
     id: 267,
     name: "Sugar Cotton",
-    brand: "Zimaya",
+    brand: "Arabiyat",
     gender: "Dama",
     price: 54,
     size: "100ml",
     fragranticaId: 118597,
-    brandSlug: "Zimaya",
+    brandSlug: "Arabiyat-Sugar",
     perfumeSlug: "Cotton-Blush",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Cotton-Blush-118597.html",
     available: true
@@ -3498,12 +3506,12 @@ export const perfumes: Perfume[] = [
 {
     id: 268,
     name: "Pecan Butter",
-    brand: "Zimaya",
+    brand: "Arabiyat",
     gender: "Unisex",
     price: 54,
     size: "100ml",
     fragranticaId: 118603,
-    brandSlug: "Zimaya",
+    brandSlug: "Arabiyat-Sugar",
     perfumeSlug: "Pecan-Butter-Cookie",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Pecan-Butter-Cookie-118603.html",
     available: true
@@ -3511,12 +3519,12 @@ export const perfumes: Perfume[] = [
 {
     id: 269,
     name: "Lemon Sorbet",
-    brand: "Zimaya",
+    brand: "Arabiyat",
     gender: "Unisex",
     price: 54,
     size: "100ml",
     fragranticaId: 118596,
-    brandSlug: "Zimaya",
+    brandSlug: "Arabiyat-Sugar",
     perfumeSlug: "Lemon-Sorbet",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Lemon-Sorbet-118596.html",
     available: true
@@ -3524,12 +3532,12 @@ export const perfumes: Perfume[] = [
 {
     id: 270,
     name: "Cookie Dough",
-    brand: "Zimaya",
+    brand: "Arabiyat",
     gender: "Dama",
     price: 54,
     size: "100ml",
     fragranticaId: 118604,
-    brandSlug: "Zimaya",
+    brandSlug: "Arabiyat-Sugar",
     perfumeSlug: "Cookie-Dough",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Cookie-Dough-118604.html",
     available: true
@@ -3537,12 +3545,12 @@ export const perfumes: Perfume[] = [
 {
     id: 271,
     name: "Matcha Latte",
-    brand: "Zimaya",
+    brand: "Arabiyat",
     gender: "Dama",
     price: 54,
     size: "100ml",
     fragranticaId: 118608,
-    brandSlug: "Zimaya",
+    brandSlug: "Arabiyat-Sugar",
     perfumeSlug: "Matcha-Latte",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Matcha-Latte-118608.html",
     available: true
@@ -3550,14 +3558,27 @@ export const perfumes: Perfume[] = [
 {
     id: 272,
     name: "Toffe Ganache",
-    brand: "Zimaya",
+    brand: "Arabiyat",
     gender: "Dama",
     price: 54,
     size: "100ml",
     fragranticaId: 118605,
-    brandSlug: "Zimaya",
+    brandSlug: "Arabiyat-Sugar",
     perfumeSlug: "Toffee-Ganache",
     fragranticaSearchUrl: "https://www.fragrantica.es/perfume/Arabiyat-Sugar/Toffee-Ganache-118605.html",
+    available: true
+  },
+{
+    id: 273,
+    name: "Marwa",
+    brand: "Arabiyat",
+    gender: "Dama",
+    price: 54,
+    size: "100ml",
+    fragranticaId: 119462,
+    brandSlug: "Arabiyat-Sugar",
+    perfumeSlug: "Marwa",
+    fragranticaSearchUrl: "https://www.fragrantica.es/search/?query=Arabiyat+Marwa",
     available: true
   }
 ];

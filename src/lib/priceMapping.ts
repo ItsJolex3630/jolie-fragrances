@@ -260,6 +260,8 @@ export const RETAIL_PRICES: Record<number, number | null> = {
   257: 38,  // Hayam (catálogo $28 → +35% = $38)
   258: 35,  // Anhaar Valley (catálogo $26 → +35% = $35)
   259: null, // Hawwa Red (No Disponible)
+
+  // ==================== ARABIYAT (Arabiyat Sugar) ====================
   260: 54,  // Coconut Chiffon (catálogo $40 → +35% = $54)
   261: 54,  // Berries Cream Macaron (catálogo $40 → +35% = $54)
   262: 54,  // Strawberry Tres Leches (catálogo $40 → +35% = $54)
@@ -273,6 +275,9 @@ export const RETAIL_PRICES: Record<number, number | null> = {
   270: 54,  // Cookie Dough (catálogo $40 → +35% = $54)
   271: 54,  // Matcha Latte (catálogo $40 → +35% = $54)
   272: 54,  // Toffe Ganache (catálogo $40 → +35% = $54)
+
+  // ==================== ARABIYAT ====================
+  273: 54,  // Marwa (catálogo $40 → +35% = $54)
 };
 
 /**
