@@ -53,7 +53,7 @@ export default function ComboShowcase() {
   const [comboPage, setComboPage] = useState(1);
   const { addCombo, openCart } = useCart();
 
-  const COMBOS_PER_PAGE = 12;
+  const COMBOS_PER_PAGE = 8;
 
   // Filter combos by selected category
   const filteredCombos = useMemo(() => {
@@ -261,6 +261,66 @@ export default function ComboShowcase() {
                 })}
               </motion.div>
 
+              {/* ─── Top Pagination Bar ─── */}
+              {comboTotalPages > 1 && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  className="mb-8"
+                >
+                  <div className="relative rounded-2xl border border-[rgba(212,175,55,0.10)] bg-[#0d0d0d]/80 backdrop-blur-sm overflow-hidden">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
+                    <div className="px-4 sm:px-6 py-3 flex items-center justify-center gap-2 sm:gap-3">
+                      <button
+                        onClick={() => goToComboPage(Math.max(1, safeComboPage - 1))}
+                        disabled={safeComboPage === 1}
+                        className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111]/60 text-white/45 hover:text-[#d4af37] hover:border-[#d4af37]/30 hover:bg-[#111111] disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:text-white/45 disabled:hover:border-[rgba(212,175,55,0.12)] disabled:hover:bg-[#111111]/60 transition-all duration-300 font-[family-name:var(--font-inter)] text-xs"
+                      >
+                        <ChevronLeft className="w-3.5 h-3.5" />
+                        <span className="hidden sm:inline">Anterior</span>
+                      </button>
+                      <div className="flex items-center gap-1">
+                        {comboVisiblePages.map((page, i) =>
+                          page === -1 ? (
+                            <span
+                              key={`top-combo-ellipsis-${i}`}
+                              className="w-7 h-9 flex items-center justify-center text-white/15 text-[10px] font-[family-name:var(--font-inter)] tracking-wider"
+                            >
+                              ···
+                            </span>
+                          ) : (
+                            <button
+                              key={`top-combo-page-${page}`}
+                              onClick={() => goToComboPage(page)}
+                              className={`relative min-w-[2.25rem] h-9 flex items-center justify-center rounded-xl text-xs font-semibold transition-all duration-300 font-[family-name:var(--font-inter)] ${
+                                safeComboPage === page
+                                  ? "bg-gradient-to-br from-[#d4af37] via-[#c9a430] to-[#b8941e] text-[#0a0a0a] shadow-lg shadow-[#d4af37]/25 scale-105"
+                                  : "border border-[rgba(212,175,55,0.08)] bg-[#111111]/40 text-white/40 hover:text-[#d4af37] hover:border-[#d4af37]/25 hover:bg-[#111111]/80"
+                              }`}
+                            >
+                              {safeComboPage === page && (
+                                <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
+                              )}
+                              <span className="relative">{page}</span>
+                            </button>
+                          )
+                        )}
+                      </div>
+                      <button
+                        onClick={() => goToComboPage(Math.min(comboTotalPages, safeComboPage + 1))}
+                        disabled={safeComboPage === comboTotalPages}
+                        className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111]/60 text-white/45 hover:text-[#d4af37] hover:border-[#d4af37]/30 hover:bg-[#111111] disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:text-white/45 disabled:hover:border-[rgba(212,175,55,0.12)] disabled:hover:bg-[#111111]/60 transition-all duration-300 font-[family-name:var(--font-inter)] text-xs"
+                      >
+                        <span className="hidden sm:inline">Siguiente</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
+                  </div>
+                </motion.div>
+              )}
+
               {/* ─── Combo Cards Grid ─── */}
               <AnimatePresence mode="wait">
                 <motion.div
@@ -283,7 +343,7 @@ export default function ComboShowcase() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* ─── Pagination Bar ─── */}
+              {/* ─── Bottom Pagination Bar ─── */}
               {comboTotalPages > 1 && (
                 <div className="mt-10 flex items-center justify-center">
                   <div className="relative rounded-2xl border border-[rgba(212,175,55,0.10)] bg-[#0d0d0d]/80 backdrop-blur-sm overflow-hidden">
@@ -301,14 +361,14 @@ export default function ComboShowcase() {
                         {comboVisiblePages.map((page, i) =>
                           page === -1 ? (
                             <span
-                              key={`combo-ellipsis-${i}`}
+                              key={`bottom-combo-ellipsis-${i}`}
                               className="w-7 h-9 flex items-center justify-center text-white/15 text-[10px] font-[family-name:var(--font-inter)] tracking-wider"
                             >
                               ···
                             </span>
                           ) : (
                             <button
-                              key={`combo-page-${page}`}
+                              key={`bottom-combo-page-${page}`}
                               onClick={() => goToComboPage(page)}
                               className={`relative min-w-[2.25rem] h-9 flex items-center justify-center rounded-xl text-xs font-semibold transition-all duration-300 font-[family-name:var(--font-inter)] ${
                                 safeComboPage === page
