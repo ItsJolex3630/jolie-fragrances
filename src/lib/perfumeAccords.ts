@@ -2269,13 +2269,16 @@ export const PERFUME_ACCORDS: Record<number, { label: string; percentage: number
 
   // ==================== COMBO PERFUMES (215-247) ====================
   215: [
-    { label: "Aromático", percentage: 95, color: "#6b8e4e" },
-    { label: "Fresco Especiado", percentage: 88, color: "#a0c4e8" },
-    { label: "Amaderado", percentage: 72, color: "#c17b2a" },
-    { label: "Cítrico", percentage: 68, color: "#f0c934" },
-    { label: "Almizclado", percentage: 55, color: "#a0a0a0" },
-    { label: "Lavanda", percentage: 48, color: "#9b8ec4" },
-    { label: "Ámbar", percentage: 42, color: "#f0a830" },
+    { label: "Amaderado", percentage: 100, color: "#c17b2a" },
+    { label: "Fresco Especiado", percentage: 100, color: "#a0c4e8" },
+    { label: "Cítrico", percentage: 92, color: "#f0c934" },
+    { label: "Aromático", percentage: 92, color: "#6b8e4e" },
+    { label: "Lavanda", percentage: 90, color: "#9b8ec4" },
+    { label: "Frutal", percentage: 87, color: "#e85a8d" },
+    { label: "Cálido Especiado", percentage: 83, color: "#d4654a" },
+    { label: "Tropical", percentage: 73, color: "#4ecdc4" },
+    { label: "Fresco", percentage: 72, color: "#7bc8e8" },
+    { label: "Ámbar", percentage: 68, color: "#f0a830" },
   ],
   216: [
     { label: "Floral Blanco", percentage: 95, color: "#e75a8d" },
