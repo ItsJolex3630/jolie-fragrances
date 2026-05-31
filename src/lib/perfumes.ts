@@ -289,22 +289,22 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   185: ["Especiado", "Amaderado"], // Sherif
 
   // ==================== CAROLINA HERRERA ====================
-  186: ["Almendra", "Café", "Bergamota", "Limón", "Tuberosa", "Jazmín Sambac", "Naranjo", "Rosa Búlgara", "Lirio", "Tonka", "Cacao", "Vainilla", "Praline", "Sándalo", "Almizcle", "Ámbar", "Madera de Cashmere", "Pachulí", "Canela", "Cedro"], // Good Girl
-  187: ["Bergamota", "Almendra Amarga", "Peonía", "Ylang-Ylang", "Vainilla", "Cumaro"], // Good Girl Blush
-  188: ["Lichi", "Grosella", "Rosa", "Vainilla", "Vetiver"], // Very Good Girl
-  189: ["Cereza Negra", "Almendra Amarga", "Rosa", "Tuberosa", "Vainilla", "Cacao"], // Very Good Girl Elixir
-  190: ["Bergamota", "Mandarina", "Ylang-Ylang", "Rosa", "Vainilla", "Pachulí"], // Good Girl Blush Elixir EdP
-  191: ["Pitahaya", "Frangipani", "Peonía Roja", "Vainilla", "Pachulí"], // La Bomba
-  192: ["Lavanda", "Pimienta Rosa", "Ciruela", "Geranio", "Cedro", "Vetiver", "Trufa", "Roble"], // Bad Boy Cobalt PE
-  193: ["Pimienta Blanca", "Bergamota", "Pimienta Rosa", "Cedro", "Salvia", "Tonka", "Cacao"], // Bad Boy
-  194: ["Pimienta Negra", "Salvia", "Trufa", "Notas Amaderadas", "Vainilla", "Incienso"], // Bad Boy Cobalt Elixir
-  195: ["Bergamota", "Jengibre", "Ciruela", "Salvia", "Opoponaco", "Davana", "Cacao", "Tonka", "Pachulí", "Incienso", "Olibano", "Vetiver", "Ládano"], // Bad Boy Extreme
-  196: ["Cáñamo", "Toronja", "Pimienta Negra", "Geranio", "Cuero", "Vetiver"], // Bad Boy Le Parfum
-  197: ["Salvia", "Lavanda", "Cuero", "Lirio", "Cedro", "Incienso"], // Bad Boy Elixir
-  198: ["Césped", "Bergamota", "Toronja", "Notas Amaderadas", "Nuez Moscada", "Violeta", "Azafrán", "Jazmín", "Azúcar", "Cuero", "Vainilla", "Ante", "Ámbar", "Madera de Cashmere", "Sándalo", "Musgo de Roble", "Vetiver"], // CH Men
-  199: ["Maracuyá", "Lima", "Pimienta", "Jengibre", "Vodka", "Ginebra", "Menta", "Especias", "Ámbar", "Cuero", "Notas Amaderadas"], // 212 VIP Men
-  200: ["Notas Verdes", "Toronja", "Especias", "Bergamota", "Lavanda", "Petitgrain", "Jengibre", "Violeta", "Gardenia", "Salvia", "Almizcle", "Sándalo", "Incienso", "Vetiver", "Madera de Guayaco", "Ládano"], // 212 Men
-  201: ["Absenta", "Anís", "Hinojo", "Lavanda", "Vainilla Negra", "Almizcle"], // 212 VIP Black
+  186: ["Dulce", "Floral"], // Good Girl
+  187: ["Floral", "Dulce"], // Good Girl Blush
+  188: ["Frutal", "Floral"], // Very Good Girl
+  189: ["Frutal", "Dulce"], // Very Good Girl Elixir
+  190: ["Floral", "Ámbar"], // Good Girl Blush Elixir EdP
+  191: ["Frutal", "Floral"], // La Bomba
+  192: ["Amaderado", "Especiado"], // Bad Boy Cobalt PE
+  193: ["Especiado", "Amaderado"], // Bad Boy
+  194: ["Ahumado", "Especiado"], // Bad Boy Cobalt Elixir
+  195: ["Amaderado", "Ahumado"], // Bad Boy Extreme
+  196: ["Amaderado", "Especiado"], // Bad Boy Le Parfum
+  197: ["Ahumado", "Amaderado"], // Bad Boy Elixir
+  198: ["Amaderado", "Especiado"], // CH Men
+  199: ["Cítrico", "Especiado"], // 212 VIP Men
+  200: ["Cítrico", "Amaderado"], // 212 Men
+  201: ["Especiado", "Amaderado"], // 212 VIP Black
   202: ["Dulce", "Floral"], // Club de Nuit Precieux Woman
   203: ["Cítrico", "Dulce"], // Club de Nuit Bling
   204: ["Acuático", "Cítrico"], // Club de Nuit Milestone
@@ -339,22 +339,22 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   233: ["Dulce", "Floral"], // Marshmallow Blush
   234: ["Dulce", "Floral"], // Khair
   235: ["Floral", "Dulce"], // Khair Felicity
-  236: ["Dulce", "Vainilla"], // December
+  236: ["Dulce", "Ámbar"], // December
   237: ["Frutal", "Floral"], // Emir Memories of Summer
   238: ["Dulce", "Frutal"], // Taskeen
   239: ["Acuático", "Frutal"], // Taskeen Marina
-  240: ["Dulce", "Cremoso"], // Lactea Divina
+  240: ["Dulce", "Frutal"], // Lactea Divina
   241: ["Floral", "Dulce"], // Fayora
   242: ["Frutal", "Dulce"], // Mango Punch
   243: ["Frutal", "Cítrico"], // Juice Melange
   244: ["Frutal", "Dulce"], // Pear Potion
   245: ["Floral", "Dulce"], // Qissa Pink
-  246: ["Dulce", "Gourmand"], // Qissa Delicius
+  246: ["Dulce", "Frutal"], // Qissa Delicius
   247: ["Floral", "Amaderado"], // Qissa Blue
 
   // ==================== ZIMAYA ====================
   248: ["Cítrico", "Amaderado"], // Evolution
-  249: ["Dulce", "Coco"], // Tiramisu Coco
+  249: ["Dulce", "Ámbar"], // Tiramisu Coco
   250: ["Amaderado", "Especiado"], // Charisma
   251: ["Amaderado", "Ámbar"], // Grandeur
   252: ["Amaderado", "Especiado"], // Is Great
@@ -367,19 +367,19 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   259: ["Amaderado", "Especiado"], // Hawwa Red
 
   // ==================== ARABIYAT ====================
-  260: ["Dulce", "Coco"], // Coconut Chiffon
+  260: ["Dulce", "Ámbar"], // Coconut Chiffon
   261: ["Frutal", "Dulce"], // Berries Cream Macaron
   262: ["Frutal", "Dulce"], // Strawberry Tres Leches
-  263: ["Dulce", "Vainilla"], // Vanilla Cream Macaron
+  263: ["Dulce", "Ámbar"], // Vanilla Cream Macaron
   264: ["Frutal", "Dulce"], // Mango Affogato
-  265: ["Dulce", "Caramelo"], // Caramel Chocolate Macaron
-  266: ["Dulce", "Caramelo"], // Dulce de Leche
-  267: ["Dulce", "Algodón"], // Sugar Cotton
-  268: ["Dulce", "Frutos Secos"], // Pecan Butter
+  265: ["Dulce", "Ámbar"], // Caramel Chocolate Macaron
+  266: ["Dulce", "Ámbar"], // Dulce de Leche
+  267: ["Dulce", "Frutal"], // Sugar Cotton
+  268: ["Dulce", "Ámbar"], // Pecan Butter
   269: ["Cítrico", "Dulce"], // Lemon Sorbet
-  270: ["Dulce", "Galleta"], // Cookie Dough
-  271: ["Dulce", "Té"], // Matcha Latte
-  272: ["Dulce", "Caramelo"], // Toffe Ganache
+  270: ["Dulce", "Ámbar"], // Cookie Dough
+  271: ["Dulce", "Amaderado"], // Matcha Latte
+  272: ["Dulce", "Ámbar"], // Toffe Ganache
   273: ["Floral", "Dulce"], // Marwa
 
 };
