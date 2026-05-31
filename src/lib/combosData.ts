@@ -613,9 +613,9 @@ export const combos: Combo[] = [
     name: 'Dúo Plata y Rosa',
     category: 'Pareja',
     description:
-      'Nobleza árabe en dos botellas icónicas. Fakhar Silver irradia una frescura plateada y cítrica con la elegancia de un caballero de alcurnia, mientras Fakhar Rose despliega su ramo de rosas y frutos rojos que captura la esencia de la feminidad más sofisticada. Dos joyas de la línea Fakhar que juntas brillan con luz propia.',
+      'Nobleza árabe en dos botellas icónicas. Fakhar Platin irradia una frescura plateada y cítrica con la elegancia de un caballero de alcurnia, mientras Fakhar Rose despliega su ramo de rosas y frutos rojos que captura la esencia de la feminidad más sofisticada. Dos joyas de la línea Fakhar que juntas brillan con luz propia.',
     perfumes: [
-      { name: 'Fakhar Silver', volume: '100ML', fragranticaId: 107363 },
+      { name: 'Fakhar Platin', volume: '100ML', fragranticaId: 107363 },
       { name: 'Fakhar Rose', volume: '100ML', fragranticaId: 70466 },
     ],
     originalTotalPrice: 82,

@@ -213,7 +213,7 @@ export const RETAIL_PRICES: Record<number, number | null> = {
   214: 74,
 
   // ==================== LATTAFA (combos/nuevos) ====================
-  215: 41,  // Fakhar Silver
+  215: 41,  // Fakhar Platin
   216: 74,  // Veneno Bianco
   217: 34,  // Ana Abiyedh Coral
   218: 45,  // Mayar Cherry

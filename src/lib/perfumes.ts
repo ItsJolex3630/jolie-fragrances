@@ -319,7 +319,7 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   214: ["Floral", "Amaderado"], // Eter Desert Flower
 
   // ==================== NEW COMBO PERFUMES ====================
-  215: ["Cítrico", "Amaderado"], // Fakhar Silver
+  215: ["Cítrico", "Amaderado"], // Fakhar Platin
   216: ["Floral", "Ámbar"], // Veneno Bianco
   217: ["Frutal", "Floral"], // Ana Abiyedh Coral
   218: ["Frutal", "Dulce"], // Mayar Cherry
@@ -2689,7 +2689,7 @@ export const perfumes: Perfume[] = [
   },
 {
     id: 215,
-    name: "Fakhar Silver",
+    name: "Fakhar Platin",
     brand: "Lattafa",
     gender: "Caballero",
     price: 41,
