@@ -3573,12 +3573,11 @@ export const perfumes: Perfume[] = [
     name: "Marwa",
     brand: "Arabiyat",
     gender: "Dama",
-    price: 54,
+    price: 74,
     size: "100ml",
-    fragranticaId: 119462,
-    brandSlug: "Arabiyat-Sugar",
+    fragranticaId: 107084,
+    brandSlug: "Arabiyat-Prestige",
     perfumeSlug: "Marwa",
-    fragranticaSearchUrl: "https://www.fragrantica.es/search/?query=Arabiyat+Marwa",
     available: true
   }
 ];

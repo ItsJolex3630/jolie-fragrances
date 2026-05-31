@@ -277,7 +277,7 @@ export const RETAIL_PRICES: Record<number, number | null> = {
   272: 54,  // Toffe Ganache (catálogo $40 → +35% = $54)
 
   // ==================== ARABIYAT ====================
-  273: 54,  // Marwa (catálogo $40 → +35% = $54)
+  273: 74,  // Marwa (compra $55 → +35% = $74)
 };
 
 /**
