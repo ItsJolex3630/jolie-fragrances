@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Tag, Star, ChevronDown, ChevronUp, Eye, EyeOff } from "lucide-react";
+import { Sparkles, Tag, Star, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Eye, EyeOff } from "lucide-react";
 import { combos, type Combo } from "@/lib/combosData";
 import ComboCard from "@/components/ComboCard";
 import { useCart } from "@/context/CartContext";
@@ -50,7 +50,10 @@ const cardItemVariants = {
 export default function ComboShowcase() {
   const [activeCategory, setActiveCategory] = useState<ComboCategory>("Todos");
   const [isMobileHidden, setIsMobileHidden] = useState(false);
+  const [comboPage, setComboPage] = useState(1);
   const { addCombo, openCart } = useCart();
+
+  const COMBOS_PER_PAGE = 12;
 
   // Filter combos by selected category
   const filteredCombos = useMemo(() => {
@@ -65,6 +68,39 @@ export default function ComboShowcase() {
       counts[c.category] = (counts[c.category] || 0) + 1;
     });
     return counts;
+  }, []);
+
+  // Pagination
+  const comboTotalPages = Math.max(1, Math.ceil(filteredCombos.length / COMBOS_PER_PAGE));
+  const safeComboPage = comboPage > comboTotalPages ? 1 : comboPage;
+  const paginatedCombos = useMemo(() => {
+    const start = (safeComboPage - 1) * COMBOS_PER_PAGE;
+    return filteredCombos.slice(start, start + COMBOS_PER_PAGE);
+  }, [filteredCombos, safeComboPage]);
+
+  const goToComboPage = useCallback((page: number) => {
+    setComboPage(page);
+  }, []);
+
+  // Generate visible page numbers
+  const comboVisiblePages = useMemo(() => {
+    if (comboTotalPages <= 7) {
+      return Array.from({ length: comboTotalPages }, (_, i) => i + 1);
+    }
+    const pages: number[] = [1];
+    const start = Math.max(2, safeComboPage - 1);
+    const end = Math.min(comboTotalPages - 1, safeComboPage + 1);
+    if (start > 2) pages.push(-1);
+    for (let i = start; i <= end; i++) pages.push(i);
+    if (end < comboTotalPages - 1) pages.push(-1);
+    pages.push(comboTotalPages);
+    return pages;
+  }, [comboTotalPages, safeComboPage]);
+
+  // Reset page on category change
+  const handleCategoryChange = useCallback((category: ComboCategory) => {
+    setActiveCategory(category);
+    setComboPage(1);
   }, []);
 
   return (
@@ -204,7 +240,7 @@ export default function ComboShowcase() {
                   return (
                     <button
                       key={tab.key}
-                      onClick={() => setActiveCategory(tab.key)}
+                      onClick={() => handleCategoryChange(tab.key)}
                       className={`filter-pill flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
                         isActive
                           ? "active border-[#d4af37] shadow-lg shadow-[#d4af37]/10"
@@ -228,14 +264,14 @@ export default function ComboShowcase() {
               {/* ─── Combo Cards Grid ─── */}
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={activeCategory}
+                  key={`${activeCategory}-${safeComboPage}`}
                   variants={cardContainerVariants}
                   initial="hidden"
                   animate="visible"
                   exit="hidden"
                   className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7"
                 >
-                  {filteredCombos.map((combo) => (
+                  {paginatedCombos.map((combo) => (
                     <motion.div
                       key={combo.id}
                       variants={cardItemVariants}
@@ -246,6 +282,61 @@ export default function ComboShowcase() {
                   ))}
                 </motion.div>
               </AnimatePresence>
+
+              {/* ─── Pagination Bar ─── */}
+              {comboTotalPages > 1 && (
+                <div className="mt-10 flex items-center justify-center">
+                  <div className="relative rounded-2xl border border-[rgba(212,175,55,0.10)] bg-[#0d0d0d]/80 backdrop-blur-sm overflow-hidden">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
+                    <div className="px-4 sm:px-6 py-3 flex items-center justify-center gap-2 sm:gap-3">
+                      <button
+                        onClick={() => goToComboPage(Math.max(1, safeComboPage - 1))}
+                        disabled={safeComboPage === 1}
+                        className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111]/60 text-white/45 hover:text-[#d4af37] hover:border-[#d4af37]/30 hover:bg-[#111111] disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:text-white/45 disabled:hover:border-[rgba(212,175,55,0.12)] disabled:hover:bg-[#111111]/60 transition-all duration-300 font-[family-name:var(--font-inter)] text-xs"
+                      >
+                        <ChevronLeft className="w-3.5 h-3.5" />
+                        <span className="hidden sm:inline">Anterior</span>
+                      </button>
+                      <div className="flex items-center gap-1">
+                        {comboVisiblePages.map((page, i) =>
+                          page === -1 ? (
+                            <span
+                              key={`combo-ellipsis-${i}`}
+                              className="w-7 h-9 flex items-center justify-center text-white/15 text-[10px] font-[family-name:var(--font-inter)] tracking-wider"
+                            >
+                              ···
+                            </span>
+                          ) : (
+                            <button
+                              key={`combo-page-${page}`}
+                              onClick={() => goToComboPage(page)}
+                              className={`relative min-w-[2.25rem] h-9 flex items-center justify-center rounded-xl text-xs font-semibold transition-all duration-300 font-[family-name:var(--font-inter)] ${
+                                safeComboPage === page
+                                  ? "bg-gradient-to-br from-[#d4af37] via-[#c9a430] to-[#b8941e] text-[#0a0a0a] shadow-lg shadow-[#d4af37]/25 scale-105"
+                                  : "border border-[rgba(212,175,55,0.08)] bg-[#111111]/40 text-white/40 hover:text-[#d4af37] hover:border-[#d4af37]/25 hover:bg-[#111111]/80"
+                              }`}
+                            >
+                              {safeComboPage === page && (
+                                <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
+                              )}
+                              <span className="relative">{page}</span>
+                            </button>
+                          )
+                        )}
+                      </div>
+                      <button
+                        onClick={() => goToComboPage(Math.min(comboTotalPages, safeComboPage + 1))}
+                        disabled={safeComboPage === comboTotalPages}
+                        className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111]/60 text-white/45 hover:text-[#d4af37] hover:border-[#d4af37]/30 hover:bg-[#111111] disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:text-white/45 disabled:hover:border-[rgba(212,175,55,0.12)] disabled:hover:bg-[#111111]/60 transition-all duration-300 font-[family-name:var(--font-inter)] text-xs"
+                      >
+                        <span className="hidden sm:inline">Siguiente</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
+                  </div>
+                </div>
+              )}
 
               {/* ─── Empty state ─── */}
               {filteredCombos.length === 0 && (
