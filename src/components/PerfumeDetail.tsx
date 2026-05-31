@@ -633,7 +633,7 @@ export default function PerfumeDetail({
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => { addPerfume(perfume, retailPrice); openCart(); }}
+                  onClick={() => { addPerfume(perfume, retailPrice); onClose(); openCart(); }}
                   className="group flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold text-sm font-[family-name:var(--font-inter)] hover:from-emerald-400 hover:to-emerald-500 transition-all duration-200 shadow-lg shadow-emerald-500/15"
                 >
                   <ShoppingCart className="w-4 h-4" />
