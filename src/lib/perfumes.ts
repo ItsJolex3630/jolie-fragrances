@@ -319,7 +319,7 @@ export const PERFUME_NOTES: Record<number, Note[]> = {
   214: ["Floral", "Amaderado"], // Eter Desert Flower
 
   // ==================== NEW COMBO PERFUMES ====================
-  215: ["Cítrico", "Aromático"], // Fakhar Platin
+  215: ["Cítrico", "Especiado"], // Fakhar Platin
   216: ["Floral", "Ámbar"], // Veneno Bianco
   217: ["Frutal", "Floral"], // Ana Abiyedh Coral
   218: ["Frutal", "Dulce"], // Mayar Cherry
