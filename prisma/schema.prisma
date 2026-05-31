@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String     @id @default(cuid())
+  email     String     @unique
+  name      String?
+  password  String
+  role      String     @default("user")
+  favorites Favorite[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Perfume {
+  id                   Int      @id
+  name                 String
+  brand                String
+  gender               String
+  size                 String
+  price                Float    @default(0)
+  fragranticaId        Int
+  brandSlug            String
+  perfumeSlug          String
+  fragranticaSearchUrl String?
+  notes                String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  favorites Favorite[]
+}
+
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String
+  perfumeId Int
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  perfume   Perfume  @relation(fields: [perfumeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, perfumeId])
+}
+
+// VULNERABILITY FIX #5: Token revocation for logout
+model RevokedToken {
+  id        String   @id @default(cuid())
+  tokenJti  String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+// VULNERABILITY FIX #3: Database-backed rate limiting
+model RateLimitEntry {
+  id         String   @id @default(cuid())
+  identifier String
+  timestamp  Float
+  createdAt  DateTime @default(now())
+
+  @@index([identifier, timestamp])
+}

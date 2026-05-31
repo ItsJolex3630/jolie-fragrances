@@ -3756,4 +3756,1012 @@ export const NOTE_PYRAMIDS: Record<number, NotePyramidDetailed> = {
     ],
   },
 
+  // ==================== COMBO PERFUMES (215-247) ====================
+  215: {
+    top: [
+      { name: "Bergamota", percentage: 90 },
+      { name: "Limón", percentage: 82 },
+      { name: "Pimienta Rosa", percentage: 70 },
+    ],
+    heart: [
+      { name: "Lavanda", percentage: 88 },
+      { name: "Jazmín", percentage: 72 },
+      { name: "Geranio", percentage: 65 },
+    ],
+    base: [
+      { name: "Cedro", percentage: 90 },
+      { name: "Vetiver", percentage: 78 },
+      { name: "Almizcle", percentage: 72 },
+      { name: "Ámbar", percentage: 65 },
+    ],
+  },
+  216: {
+    top: [
+      { name: "Bergamota", percentage: 90 },
+      { name: "Mandarina", percentage: 82 },
+      { name: "Notas Verdes", percentage: 70 },
+    ],
+    heart: [
+      { name: "Azucena", percentage: 88 },
+      { name: "Jazmín", percentage: 78 },
+      { name: "Rosa", percentage: 65 },
+    ],
+    base: [
+      { name: "Sándalo", percentage: 90 },
+      { name: "Almizcle", percentage: 82 },
+      { name: "Ámbar", percentage: 72 },
+      { name: "Vainilla", percentage: 60 },
+    ],
+  },
+  217: {
+    top: [
+      { name: "Mandarina", percentage: 90 },
+      { name: "Bergamota", percentage: 82 },
+      { name: "Frambuesa", percentage: 72 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 88 },
+      { name: "Jazmín", percentage: 78 },
+      { name: "Peonía", percentage: 65 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 90 },
+      { name: "Vainilla", percentage: 78 },
+      { name: "Ámbar", percentage: 65 },
+    ],
+  },
+  218: {
+    top: [
+      { name: "Cereza", percentage: 95 },
+      { name: "Bergamota", percentage: 82 },
+      { name: "Frambuesa", percentage: 72 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 88 },
+      { name: "Jazmín", percentage: 75 },
+      { name: "Lichi", percentage: 65 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 90 },
+      { name: "Almizcle", percentage: 78 },
+      { name: "Ámbar", percentage: 65 },
+    ],
+  },
+  219: {
+    top: [
+      { name: "Pistacho", percentage: 90 },
+      { name: "Bergamota", percentage: 78 },
+      { name: "Cardamomo", percentage: 68 },
+    ],
+    heart: [
+      { name: "Cacao", percentage: 88 },
+      { name: "Crema Batida", percentage: 78 },
+      { name: "Coco", percentage: 68 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 95 },
+      { name: "Leche", percentage: 78 },
+      { name: "Almizcle", percentage: 65 },
+    ],
+  },
+  220: {
+    top: [
+      { name: "Bergamota", percentage: 90 },
+      { name: "Pimienta Rosa", percentage: 82 },
+      { name: "Cedro", percentage: 72 },
+    ],
+    heart: [
+      { name: "Lavanda", percentage: 88 },
+      { name: "Salvia", percentage: 78 },
+      { name: "Geranio", percentage: 68 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 90 },
+      { name: "Almizcle", percentage: 82 },
+      { name: "Vetiver", percentage: 72 },
+      { name: "Pachulí", percentage: 60 },
+    ],
+  },
+  221: {
+    top: [
+      { name: "Azafrán", percentage: 90 },
+      { name: "Bergamota", percentage: 78 },
+    ],
+    heart: [
+      { name: "Madera de Oud", percentage: 95 },
+      { name: "Rosa", percentage: 72 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 90 },
+      { name: "Almizcle", percentage: 78 },
+      { name: "Pachulí", percentage: 68 },
+      { name: "Incienso", percentage: 60 },
+    ],
+  },
+  222: {
+    top: [
+      { name: "Azafrán", percentage: 90 },
+      { name: "Bergamota", percentage: 78 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 88 },
+      { name: "Jazmín", percentage: 78 },
+      { name: "Ámbar", percentage: 68 },
+    ],
+    base: [
+      { name: "Sándalo", percentage: 90 },
+      { name: "Almizcle", percentage: 82 },
+      { name: "Cedro", percentage: 72 },
+      { name: "Vainilla", percentage: 60 },
+    ],
+  },
+  223: {
+    top: [
+      { name: "Café", percentage: 90 },
+      { name: "Caramelo", percentage: 82 },
+      { name: "Bergamota", percentage: 68 },
+    ],
+    heart: [
+      { name: "Tiramisú", percentage: 88 },
+      { name: "Vainilla", percentage: 78 },
+      { name: "Flor Blanca", percentage: 65 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 90 },
+      { name: "Ámbar", percentage: 78 },
+      { name: "Almizcle", percentage: 68 },
+      { name: "Cacao", percentage: 60 },
+    ],
+  },
+  // 224 Caramel Cascade — Paris Corner (Fragrantica)
+  224: {
+    top: [
+      { name: "Caramelo", percentage: 95 },
+      { name: "Leche", percentage: 88 },
+    ],
+    heart: [
+      { name: "Haba Tonka", percentage: 95 },
+      { name: "Miel", percentage: 88 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 95 },
+      { name: "Almizcle Blanco", percentage: 70 },
+    ],
+  },
+  225: {
+    top: [
+      { name: "Bergamota", percentage: 90 },
+      { name: "Mandarina", percentage: 82 },
+      { name: "Pimienta Rosa", percentage: 72 },
+    ],
+    heart: [
+      { name: "Lavanda", percentage: 85 },
+      { name: "Jazmín", percentage: 75 },
+      { name: "Salvia", percentage: 68 },
+    ],
+    base: [
+      { name: "Cedro", percentage: 90 },
+      { name: "Vetiver", percentage: 78 },
+      { name: "Ámbar", percentage: 72 },
+      { name: "Almizcle", percentage: 65 },
+    ],
+  },
+  // 226 Khair Fusion — Paris Corner (Fragrantica)
+  226: {
+    top: [
+      { name: "Lichi", percentage: 100 },
+      { name: "Manzana Roja", percentage: 100 },
+      { name: "Grosella Negra", percentage: 95 },
+      { name: "Limón Italiano", percentage: 90 },
+    ],
+    heart: [
+      { name: "Jazmín Sambac", percentage: 100 },
+      { name: "Rosa de Taif", percentage: 95 },
+      { name: "Pensamiento", percentage: 92 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 100 },
+      { name: "Almizcle", percentage: 88 },
+      { name: "Sándalo", percentage: 82 },
+      { name: "Cedro", percentage: 75 },
+    ],
+  },
+  // 227 Khair Confection — Paris Corner (Fragrantica)
+  227: {
+    top: [
+      { name: "Pera", percentage: 100 },
+      { name: "Crema Batida", percentage: 95 },
+    ],
+    heart: [
+      { name: "Cashmeran", percentage: 100 },
+      { name: "Jazmín", percentage: 88 },
+      { name: "Ylang-Ylang", percentage: 82 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 100 },
+      { name: "Malvavisco", percentage: 100 },
+      { name: "Sándalo", percentage: 78 },
+    ],
+  },
+  228: {
+    top: [
+      { name: "Caramelo", percentage: 90 },
+      { name: "Frambuesa", percentage: 82 },
+      { name: "Bergamota", percentage: 72 },
+    ],
+    heart: [
+      { name: "Vainilla", percentage: 88 },
+      { name: "Rosa", percentage: 78 },
+      { name: "Jazmín", percentage: 65 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 90 },
+      { name: "Ámbar", percentage: 78 },
+      { name: "Sándalo", percentage: 68 },
+    ],
+  },
+  230: {
+    top: [
+      { name: "Caramelo", percentage: 90 },
+      { name: "Bergamota", percentage: 78 },
+      { name: "Frutas Rojas", percentage: 72 },
+    ],
+    heart: [
+      { name: "Vainilla", percentage: 90 },
+      { name: "Rosa", percentage: 78 },
+      { name: "Jazmín", percentage: 68 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 90 },
+      { name: "Almizcle", percentage: 82 },
+      { name: "Pachulí", percentage: 72 },
+    ],
+  },
+  231: {
+    top: [
+      { name: "Azafrán", percentage: 90 },
+      { name: "Pimienta Rosa", percentage: 82 },
+      { name: "Bergamota", percentage: 72 },
+    ],
+    heart: [
+      { name: "Madera de Oud", percentage: 95 },
+      { name: "Rosa Turca", percentage: 82 },
+      { name: "Jazmín", percentage: 68 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 90 },
+      { name: "Vainilla", percentage: 78 },
+      { name: "Sándalo", percentage: 72 },
+      { name: "Almizcle", percentage: 65 },
+    ],
+  },
+  // 232 Indomitable — Paris Corner (Fragrantica)
+  232: {
+    top: [
+      { name: "Clementina", percentage: 100 },
+      { name: "Naranja", percentage: 100 },
+    ],
+    heart: [
+      { name: "Manzana", percentage: 100 },
+      { name: "Pimienta Negra", percentage: 85 },
+      { name: "Notas Amaderadas", percentage: 80 },
+    ],
+    base: [
+      { name: "Neroli", percentage: 100 },
+      { name: "Almizcle Blanco", percentage: 95 },
+      { name: "Ámbar", percentage: 82 },
+    ],
+  },
+  // 233 Marshmallow Blush — Paris Corner (Fragrantica)
+  233: {
+    top: [
+      { name: "Fresa", percentage: 100 },
+      { name: "Frambuesa", percentage: 80 },
+      { name: "Limón", percentage: 72 },
+    ],
+    heart: [
+      { name: "Ambroxán", percentage: 100 },
+      { name: "Flor de Azahar", percentage: 88 },
+    ],
+    base: [
+      { name: "Malvavisco", percentage: 100 },
+      { name: "Almizcle", percentage: 82 },
+    ],
+  },
+  // 234 Khair — Paris Corner (Fragrantica)
+  234: {
+    top: [
+      { name: "Davana", percentage: 100 },
+      { name: "Bergamota", percentage: 100 },
+      { name: "Pimienta Rosa", percentage: 85 },
+    ],
+    heart: [
+      { name: "Agarwood", percentage: 100 },
+      { name: "Oud", percentage: 100 },
+      { name: "Ámbar", percentage: 88 },
+      { name: "Romero", percentage: 70 },
+    ],
+    base: [
+      { name: "Cuero", percentage: 100 },
+      { name: "Vetiver", percentage: 80 },
+      { name: "Almizcle", percentage: 75 },
+    ],
+  },
+  // 235 Khair Felicity — Paris Corner (Fragrantica)
+  235: {
+    top: [
+      { name: "Champán", percentage: 100 },
+      { name: "Freesia", percentage: 95 },
+      { name: "Cassis", percentage: 85 },
+    ],
+    heart: [
+      { name: "Almizcle", percentage: 100 },
+      { name: "Jazmín", percentage: 85 },
+      { name: "Rosa de Mayo", percentage: 70 },
+    ],
+    base: [
+      { name: "Azúcar", percentage: 100 },
+      { name: "Vainilla", percentage: 100 },
+      { name: "Almizcle", percentage: 100 },
+    ],
+  },
+  // 236 December Vanilla — Paris Corner (Fragrantica)
+  236: {
+    top: [
+      { name: "Ron", percentage: 90 },
+      { name: "Orquídea Vainilla", percentage: 90 },
+      { name: "Jazmín", percentage: 78 },
+    ],
+    heart: [
+      { name: "Vainilla", percentage: 90 },
+      { name: "Notas Especiadas", percentage: 82 },
+      { name: "Crème Brûlée", percentage: 82 },
+      { name: "Haba Tonka", percentage: 82 },
+      { name: "Cuero", percentage: 75 },
+      { name: "Rosa", percentage: 70 },
+    ],
+    base: [
+      { name: "Pachulí", percentage: 95 },
+      { name: "Azúcar Moreno", percentage: 88 },
+      { name: "Oud", percentage: 85 },
+      { name: "Ámbar", percentage: 78 },
+      { name: "Almizcle", percentage: 75 },
+    ],
+  },
+  // 237 Emir Memories of Summer — Paris Corner (Fragrantica)
+  237: {
+    top: [
+      { name: "Pomelo", percentage: 95 },
+      { name: "Bergamota", percentage: 85 },
+    ],
+    heart: [
+      { name: "Jengibre", percentage: 100 },
+    ],
+    base: [
+      { name: "Ámbar", percentage: 90 },
+      { name: "Almizcle", percentage: 80 },
+    ],
+  },
+  // 238 Taskeen — Paris Corner (Fragrantica)
+  238: {
+    top: [
+      { name: "Melocotón", percentage: 92 },
+      { name: "Naranja Sanguina", percentage: 85 },
+      { name: "Cardamomo", percentage: 72 },
+    ],
+    heart: [
+      { name: "Jazmín", percentage: 88 },
+      { name: "Coñac", percentage: 78 },
+      { name: "Davana", percentage: 78 },
+      { name: "Heliotropo", percentage: 68 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 90 },
+      { name: "Haba Tonka", percentage: 78 },
+      { name: "Benjuí", percentage: 75 },
+      { name: "Sándalo", percentage: 72 },
+      { name: "Cashmeran", percentage: 68 },
+      { name: "Pachulí", percentage: 65 },
+      { name: "Ládano", percentage: 62 },
+    ],
+  },
+  // 239 Taskeen Marina — Paris Corner (Fragrantica)
+  239: {
+    top: [
+      { name: "Pomelo", percentage: 95 },
+      { name: "Grosella Negra", percentage: 82 },
+    ],
+    heart: [
+      { name: "Lirio del Valle", percentage: 100 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 85 },
+    ],
+  },
+  // 240 Lactea Divina — Paris Corner (Fragrantica)
+  240: {
+    top: [
+      { name: "Cacao", percentage: 90 },
+      { name: "Incienso", percentage: 82 },
+    ],
+    heart: [
+      { name: "Tuberosa", percentage: 90 },
+      { name: "Jazmín", percentage: 82 },
+    ],
+    base: [
+      { name: "Leche", percentage: 88 },
+      { name: "Vainilla", percentage: 85 },
+      { name: "Haba Tonka", percentage: 72 },
+    ],
+  },
+  // 241 Fayora — Paris Corner (Fragrantica)
+  241: {
+    top: [
+      { name: "Fruta de la Pasión", percentage: 90 },
+      { name: "Rosa", percentage: 82 },
+    ],
+    heart: [
+      { name: "Violeta", percentage: 85 },
+      { name: "Iris", percentage: 82 },
+      { name: "Lirio del Valle", percentage: 78 },
+      { name: "Jazmín", percentage: 75 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 90 },
+      { name: "Almizcle", percentage: 82 },
+      { name: "Sándalo", percentage: 78 },
+      { name: "Cedro", percentage: 75 },
+    ],
+  },
+  // 242 Mango Punch — Paris Corner (Fragrantica)
+  242: {
+    top: [
+      { name: "Mango", percentage: 95 },
+      { name: "Pimienta Negra", percentage: 78 },
+      { name: "Zarzamora", percentage: 75 },
+    ],
+    heart: [
+      { name: "Loto", percentage: 88 },
+      { name: "Iris", percentage: 85 },
+      { name: "Jazmín", percentage: 82 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 90 },
+      { name: "Glacé", percentage: 78 },
+      { name: "Pachulí", percentage: 75 },
+    ],
+  },
+  // 243 Juice Melange — Paris Corner (Fragrantica)
+  243: {
+    top: [
+      { name: "Fresa", percentage: 100 },
+      { name: "Grosella Negra", percentage: 100 },
+      { name: "Ciruela", percentage: 100 },
+      { name: "Manzana", percentage: 100 },
+      { name: "Albahaca", percentage: 95 },
+      { name: "Melocotón", percentage: 92 },
+      { name: "Coco", percentage: 78 },
+      { name: "Nuez Moscada", percentage: 70 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 90 },
+      { name: "Iris", percentage: 88 },
+      { name: "Orquídea", percentage: 85 },
+      { name: "Jazmín", percentage: 80 },
+      { name: "Lirio del Valle", percentage: 75 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 100 },
+      { name: "Almizcle", percentage: 88 },
+      { name: "Sándalo", percentage: 82 },
+      { name: "Musgo", percentage: 82 },
+      { name: "Haba Tonka", percentage: 80 },
+      { name: "Ámbar Gris", percentage: 78 },
+      { name: "Cedro", percentage: 72 },
+    ],
+  },
+  // 244 Pear Potion — Paris Corner (Fragrantica)
+  244: {
+    top: [
+      { name: "Pera", percentage: 100 },
+      { name: "Manzana", percentage: 100 },
+    ],
+    heart: [
+      { name: "Caramelo", percentage: 88 },
+      { name: "Jazmín", percentage: 70 },
+    ],
+    base: [
+      { name: "Frambuesa", percentage: 90 },
+      { name: "Almizcle", percentage: 82 },
+    ],
+  },
+  // 245 Qissa Pink — Paris Corner (Fragrantica)
+  245: {
+    top: [
+      { name: "Coco", percentage: 100 },
+      { name: "Manzana", percentage: 92 },
+    ],
+    heart: [
+      { name: "Jazmín", percentage: 95 },
+      { name: "Violeta", percentage: 90 },
+      { name: "Rosa", percentage: 88 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 100 },
+      { name: "Azúcar", percentage: 100 },
+      { name: "Sándalo", percentage: 78 },
+      { name: "Cedro", percentage: 75 },
+      { name: "Pachulí", percentage: 70 },
+    ],
+  },
+  // 246 Qissa Delicius — Paris Corner (Fragrantica)
+  246: {
+    top: [
+      { name: "Crema Batida", percentage: 100 },
+      { name: "Chocolate Oscuro", percentage: 100 },
+      { name: "Naranja", percentage: 100 },
+    ],
+    heart: [
+      { name: "Malvavisco", percentage: 100 },
+      { name: "Coco", percentage: 85 },
+      { name: "Jazmín", percentage: 70 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 100 },
+      { name: "Almizcle Blanco", percentage: 92 },
+    ],
+  },
+  // 247 Qissa Blue — Paris Corner (Fragrantica)
+  247: {
+    top: [
+      { name: "Cítricos", percentage: 100 },
+      { name: "Bergamota", percentage: 100 },
+      { name: "Limón", percentage: 100 },
+      { name: "Ylang-Ylang", percentage: 95 },
+      { name: "Abrótano", percentage: 92 },
+      { name: "Cuero", percentage: 72 },
+      { name: "Incienso", percentage: 70 },
+    ],
+    heart: [
+      { name: "Naranja Dulce", percentage: 100 },
+      { name: "Jengibre", percentage: 100 },
+      { name: "Jazmín", percentage: 90 },
+      { name: "Magnolia", percentage: 80 },
+      { name: "Pachulí", percentage: 70 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 92 },
+      { name: "Musgo de Roble", percentage: 88 },
+      { name: "Azafrán", percentage: 78 },
+      { name: "Ámbar", percentage: 75 },
+    ],
+  },
+
+  // ==================== ZIMAYA (248-259) ====================
+  248: {
+    top: [
+      { name: "Especias", percentage: 100 },
+      { name: "Orégano", percentage: 83 },
+      { name: "Bergamota", percentage: 75 },
+    ],
+    heart: [
+      { name: "Ámbar", percentage: 100 },
+      { name: "Opoponax", percentage: 85 },
+      { name: "Ládano", percentage: 64 },
+    ],
+    base: [
+      { name: "Humo", percentage: 100 },
+      { name: "Cuero", percentage: 78 },
+      { name: "Oud", percentage: 66 },
+      { name: "Pachulí", percentage: 55 },
+    ],
+  },
+  249: {
+    top: [
+      { name: "Amaretto", percentage: 100 },
+      { name: "Café", percentage: 85 },
+    ],
+    heart: [
+      { name: "Helado", percentage: 100 },
+      { name: "Vainilla", percentage: 94 },
+      { name: "Galleta", percentage: 92 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 100 },
+      { name: "Azúcar Moreno", percentage: 88 },
+      { name: "Ámbar", percentage: 53 },
+    ],
+  },
+  250: {
+    top: [
+      { name: "Cereza Negra", percentage: 100 },
+      { name: "Azafrán", percentage: 82 },
+      { name: "Pimienta Rosa", percentage: 76 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 100 },
+      { name: "Peonía", percentage: 85 },
+      { name: "Violeta", percentage: 70 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 100 },
+      { name: "Incienso", percentage: 69 },
+      { name: "Ambroxan", percentage: 62 },
+    ],
+  },
+  251: {
+    top: [
+      { name: "Vainilla", percentage: 100 },
+      { name: "Rosa", percentage: 80 },
+      { name: "Sal", percentage: 50 },
+    ],
+    heart: [
+      { name: "Ámbar", percentage: 100 },
+      { name: "Rosa", percentage: 100 },
+      { name: "Notas Ozónicas", percentage: 81 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 100 },
+      { name: "Avellana Praliné", percentage: 95 },
+      { name: "Pachulí", percentage: 55 },
+    ],
+  },
+  252: {
+    top: [
+      { name: "Azafrán", percentage: 100 },
+      { name: "Nuez Moscada", percentage: 95 },
+      { name: "Lavanda", percentage: 69 },
+    ],
+    heart: [
+      { name: "Madera de Ámbar", percentage: 100 },
+      { name: "Oud", percentage: 100 },
+    ],
+    base: [
+      { name: "Pachulí", percentage: 100 },
+      { name: "Almizcle", percentage: 93 },
+    ],
+  },
+  253: {
+    top: [
+      { name: "Cuero", percentage: 100 },
+      { name: "Notas Amaderadas", percentage: 62 },
+    ],
+    heart: [
+      { name: "Tabaco", percentage: 100 },
+      { name: "Ámbar", percentage: 70 },
+    ],
+    base: [
+      { name: "Oud", percentage: 100 },
+      { name: "Pachulí", percentage: 66 },
+    ],
+  },
+  254: {
+    top: [
+      { name: "Ruibarbo", percentage: 100 },
+      { name: "Bergamota", percentage: 97 },
+      { name: "Toronja", percentage: 96 },
+      { name: "Nuez Moscada", percentage: 71 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 100 },
+      { name: "Jazmín", percentage: 62 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 100 },
+      { name: "Vainilla", percentage: 76 },
+      { name: "Vetiver", percentage: 74 },
+      { name: "Ámbar Gris", percentage: 69 },
+    ],
+  },
+  255: {
+    top: [
+      { name: "Maracuyá", percentage: 100 },
+      { name: "Notas Acuáticas", percentage: 92 },
+      { name: "Pera", percentage: 73 },
+      { name: "Melocotón", percentage: 54 },
+    ],
+    heart: [
+      { name: "Lirio del Valle", percentage: 100 },
+      { name: "Jazmín", percentage: 90 },
+      { name: "Ylang-Ylang", percentage: 80 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 100 },
+      { name: "Sándalo", percentage: 89 },
+      { name: "Caramelo", percentage: 72 },
+    ],
+  },
+  256: {
+    top: [
+      { name: "Azahar", percentage: 100 },
+      { name: "Naranja Amarga", percentage: 73 },
+      { name: "Bergamota", percentage: 62 },
+    ],
+    heart: [
+      { name: "Tuberosa", percentage: 100 },
+      { name: "Almizcle", percentage: 85 },
+    ],
+    base: [
+      { name: "Cedro", percentage: 100 },
+      { name: "Vainilla", percentage: 87 },
+    ],
+  },
+  257: {
+    top: [
+      { name: "Flores Blancas", percentage: 100 },
+      { name: "Ámbar", percentage: 64 },
+    ],
+    heart: [
+      { name: "Cítricos", percentage: 100 },
+      { name: "Notas Animálicas", percentage: 85 },
+    ],
+    base: [
+      { name: "Notas Dulces", percentage: 100 },
+      { name: "Almizcle", percentage: 66 },
+    ],
+  },
+  258: {
+    top: [
+      { name: "Notas Acuáticas", percentage: 100 },
+      { name: "Melón", percentage: 89 },
+      { name: "Manzana", percentage: 74 },
+      { name: "Melocotón", percentage: 50 },
+    ],
+    heart: [
+      { name: "Notas Ozónicas", percentage: 100 },
+      { name: "Rosa", percentage: 56 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 100 },
+      { name: "Ámbar Gris", percentage: 90 },
+    ],
+  },
+  259: {
+    top: [
+      { name: "Frutas Rojas", percentage: 90 },
+      { name: "Bergamota", percentage: 82 },
+      { name: "Azafrán", percentage: 72 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 88 },
+      { name: "Jazmín", percentage: 75 },
+      { name: "Especias", percentage: 65 },
+    ],
+    base: [
+      { name: "Amaderado", percentage: 90 },
+      { name: "Almizcle", percentage: 78 },
+      { name: "Ámbar", percentage: 68 },
+      { name: "Pachulí", percentage: 55 },
+    ],
+  },
+
+  // ==================== ARABIYAT (260-273) ====================
+  260: {
+    top: [
+      { name: "Coco", percentage: 95 },
+    ],
+    heart: [
+      { name: "Coco", percentage: 60 },
+      { name: "Jazmín", percentage: 40 },
+    ],
+    base: [
+      { name: "Mantequilla", percentage: 30 },
+      { name: "Azúcar", percentage: 25 },
+      { name: "Almizcle", percentage: 20 },
+      { name: "Vainilla", percentage: 15 },
+      { name: "Caramelo", percentage: 10 },
+    ],
+  },
+  261: {
+    top: [
+      { name: "Lichi", percentage: 95 },
+    ],
+    heart: [
+      { name: "Frambuesa", percentage: 45 },
+      { name: "Maltol", percentage: 35 },
+      { name: "Jazmín", percentage: 20 },
+    ],
+    base: [
+      { name: "Ambroxan", percentage: 45 },
+      { name: "Ámbar Gris", percentage: 35 },
+      { name: "Evernyl", percentage: 20 },
+    ],
+  },
+  262: {
+    top: [
+      { name: "Fresa", percentage: 35 },
+      { name: "Leche", percentage: 28 },
+      { name: "Nectarina", percentage: 22 },
+      { name: "Fresia", percentage: 15 },
+    ],
+    heart: [
+      { name: "Malvavisco", percentage: 35 },
+      { name: "Dulce de Leche", percentage: 28 },
+      { name: "Caramelo", percentage: 22 },
+      { name: "Azahar", percentage: 15 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 45 },
+      { name: "Almizcle Blanco", percentage: 35 },
+      { name: "Ámbar Gris", percentage: 20 },
+    ],
+  },
+  263: {
+    top: [
+      { name: "Plátano", percentage: 95 },
+    ],
+    heart: [
+      { name: "Crema Chantilly", percentage: 95 },
+    ],
+    base: [
+      { name: "Crema Pastelera", percentage: 95 },
+    ],
+  },
+  264: {
+    top: [
+      { name: "Mango", percentage: 45 },
+      { name: "Nuez Moscada", percentage: 35 },
+      { name: "Clavo", percentage: 20 },
+    ],
+    heart: [
+      { name: "Musgo", percentage: 35 },
+      { name: "Azafrán", percentage: 28 },
+      { name: "Cuero", percentage: 22 },
+      { name: "Ámbar", percentage: 15 },
+    ],
+    base: [
+      { name: "Cipriol", percentage: 35 },
+      { name: "Vetiver", percentage: 28 },
+      { name: "Akigalawood", percentage: 22 },
+      { name: "Pachulí", percentage: 15 },
+    ],
+  },
+  265: {
+    top: [
+      { name: "Cumarina", percentage: 60 },
+      { name: "Caramelo", percentage: 40 },
+    ],
+    heart: [
+      { name: "Miel", percentage: 60 },
+      { name: "Notas Florales", percentage: 40 },
+    ],
+    base: [
+      { name: "Almizcle", percentage: 95 },
+    ],
+  },
+  266: {
+    top: [
+      { name: "Caramelo", percentage: 45 },
+      { name: "Gofre", percentage: 35 },
+      { name: "Lirio del Valle", percentage: 20 },
+    ],
+    heart: [
+      { name: "Leche", percentage: 45 },
+      { name: "Sándalo", percentage: 35 },
+      { name: "Jazmín", percentage: 20 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 45 },
+      { name: "Haba Tonka", percentage: 35 },
+      { name: "Ámbar Gris", percentage: 20 },
+    ],
+  },
+  267: {
+    top: [
+      { name: "Coco", percentage: 45 },
+      { name: "Frambuesa", percentage: 35 },
+      { name: "Fresa", percentage: 20 },
+    ],
+    heart: [
+      { name: "Rosa", percentage: 45 },
+      { name: "Peonía", percentage: 35 },
+      { name: "Malvavisco", percentage: 20 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 45 },
+      { name: "Ámbar", percentage: 35 },
+      { name: "Almizcle", percentage: 20 },
+    ],
+  },
+  268: {
+    top: [
+      { name: "Nuez Pecana", percentage: 45 },
+      { name: "Leche de Coco", percentage: 35 },
+      { name: "Mantequilla", percentage: 20 },
+    ],
+    heart: [
+      { name: "Notas Atalcadas", percentage: 35 },
+      { name: "Avellana", percentage: 28 },
+      { name: "Almendra", percentage: 22 },
+      { name: "Frutos Secos Tostados", percentage: 15 },
+    ],
+    base: [
+      { name: "Ámbar Gris", percentage: 45 },
+      { name: "Avellana", percentage: 35 },
+      { name: "Vainilla", percentage: 20 },
+    ],
+  },
+  269: {
+    top: [
+      { name: "Limón", percentage: 60 },
+      { name: "Ron", percentage: 40 },
+    ],
+    heart: [
+      { name: "Acorde Gourmand", percentage: 95 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 95 },
+    ],
+  },
+  270: {
+    top: [
+      { name: "Mantequilla", percentage: 45 },
+      { name: "Leche de Coco", percentage: 35 },
+      { name: "Cacao", percentage: 20 },
+    ],
+    heart: [
+      { name: "Orquídea", percentage: 95 },
+    ],
+    base: [
+      { name: "Vainilla", percentage: 45 },
+      { name: "Sándalo", percentage: 35 },
+      { name: "Almizcle", percentage: 20 },
+    ],
+  },
+  271: {
+    top: [
+      { name: "Coco", percentage: 45 },
+      { name: "Melocotón", percentage: 35 },
+      { name: "Lirio del Valle", percentage: 20 },
+    ],
+    heart: [
+      { name: "Leche", percentage: 35 },
+      { name: "Arroz", percentage: 28 },
+      { name: "Caramelo", percentage: 22 },
+      { name: "Azahar", percentage: 15 },
+    ],
+    base: [
+      { name: "Haba Tonka", percentage: 45 },
+      { name: "Sándalo", percentage: 35 },
+      { name: "Almizcle", percentage: 20 },
+    ],
+  },
+  272: {
+    top: [
+      { name: "Avellana", percentage: 35 },
+      { name: "Clavo", percentage: 28 },
+      { name: "Leche", percentage: 22 },
+      { name: "Vainilla", percentage: 15 },
+    ],
+    heart: [
+      { name: "Canela", percentage: 45 },
+      { name: "Toffe", percentage: 35 },
+      { name: "Flores Blancas", percentage: 20 },
+    ],
+    base: [
+      { name: "Acorde Gourmand", percentage: 35 },
+      { name: "Leche", percentage: 28 },
+      { name: "Galleta", percentage: 22 },
+      { name: "Especias", percentage: 15 },
+    ],
+  },
+  273: {
+    top: [
+      { name: "Bergamota", percentage: 45 },
+      { name: "Limón", percentage: 35 },
+      { name: "Naranja", percentage: 20 },
+    ],
+    heart: [
+      { name: "Jengibre", percentage: 45 },
+      { name: "Canela", percentage: 35 },
+      { name: "Neroli", percentage: 20 },
+    ],
+    base: [
+      { name: "Ambroxan", percentage: 35 },
+      { name: "Té Negro", percentage: 28 },
+      { name: "Olíbano", percentage: 22 },
+      { name: "Guayaco", percentage: 15 },
+    ],
+  },
+
 };
