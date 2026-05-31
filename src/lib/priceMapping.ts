@@ -211,6 +211,41 @@ export const RETAIL_PRICES: Record<number, number | null> = {
   212: 61,
   213: 54,
   214: 74,
+
+  // ==================== LATTAFA (combos/nuevos) ====================
+  215: 41,  // Fakhar Silver
+  216: 74,  // Veneno Bianco
+  217: 34,  // Ana Abiyedh Coral
+  218: 45,  // Mayar Cherry
+  219: 47,  // Eclaire
+  220: 51,  // Tharwah Silver
+  221: 61,  // Shaghaf Oud Azraq
+  222: 61,  // Casablanca
+  223: 47,  // Tiramisu Caramel
+  228: 47,  // Yara Candy
+  230: 47,  // Yara Elixir
+  231: 47,  // Bade'e Al Oud Sublime
+
+  // ==================== PARIS CORNER ====================
+  224: 41,  // Caramel Cascade (catálogo $30 → +35% = $41)
+  226: 41,  // Khair Fusion (catálogo $30 → +35% = $41)
+  227: 41,  // Khair Confection (catálogo $30 → +35% = $41)
+  232: 55,  // Indomitable (catálogo $41 → +35% = $55)
+  233: 72,  // Marshmallow Blush (catálogo $53 → +35% = $72)
+  234: 32,  // Khair (catálogo $24 → +35% = $32)
+  235: 45,  // Khair Felicity (catálogo $33 → +35% = $45)
+  236: 57,  // December (catálogo $42 → +35% = $57)
+  237: 57,  // Emir Memories of Summer (catálogo $42 → +35% = $57)
+  238: 54,  // Taskeen (catálogo $40 → +35% = $54)
+  239: 41,  // Taskeen Marina (catálogo $30 → +35% = $41)
+  240: 41,  // Lactea Divina (catálogo $30 → +35% = $41)
+  241: 53,  // Fayora (catálogo $39 → +35% = $53)
+  242: 43,  // Mango Punch (catálogo $32 → +35% = $43)
+  243: 43,  // Juice Melange (catálogo $32 → +35% = $43)
+  244: 43,  // Pear Potion (catálogo $32 → +35% = $43)
+  245: 38,  // Qissa Pink (catálogo $28 → +35% = $38)
+  246: 38,  // Qissa Delicius (catálogo $28 → +35% = $38)
+  247: 38,  // Qissa Blue (catálogo $28 → +35% = $38)
 };
 
 /**
