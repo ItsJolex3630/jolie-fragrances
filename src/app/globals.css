@@ -219,6 +219,8 @@
 
 /* ─── Perfume card hover effect (GPU-composited) ─── */
 .perfume-card {
+  border-radius: 0.75rem;
+  overflow: hidden;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }

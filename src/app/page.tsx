@@ -210,7 +210,7 @@ const PerfumeCard = memo(function PerfumeCard({
       className="perfume-card group relative card-fade-in"
       style={{ animationDelay: `${Math.min(index * 0.03, 0.5)}s` }}
     >
-      <div className={`card-shimmer-border relative overflow-hidden rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111] transition-all duration-500 group-hover:border-[rgba(212,175,55,0.35)] gold-glow-hover ${perfume.available === false ? 'opacity-75' : ''}`}>
+      <div className={`card-shimmer-border relative overflow-hidden border border-[rgba(212,175,55,0.12)] bg-[#111111] transition-all duration-500 group-hover:border-[rgba(212,175,55,0.35)] gold-glow-hover ${perfume.available === false ? 'opacity-75' : ''}`}>
         {/* Image container - dark background for the bottle */}
         <div className="relative aspect-[3/4] overflow-hidden bg-[#0a0a0a] flex items-center justify-center">
           {/* Loading skeleton */}
