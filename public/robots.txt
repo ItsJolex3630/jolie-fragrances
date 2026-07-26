@@ -1,0 +1,1 @@
+User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: https://jolie-fragrances-seven.vercel.app/sitemap.xml

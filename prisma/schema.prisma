@@ -1,0 +1,326 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+  binaryTargets   = ["native", "rhel-openssl-3.0.x", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─── NextAuth Required Models ───
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String  @id @default(cuid())
+  sessionToken String  @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ─── Application Models ───
+
+model User {
+  id                String   @id @default(cuid())
+  email             String   @unique
+  emailVerified     DateTime?
+  name              String?
+  image             String?
+  ipHash            String?   // SHA-256 hash of IP for anti-multi-account
+  deviceFingerprint String?   // Browser fingerprint hash for anti-multi-account
+  authProvider      String    @default("otp") // "google" or "otp"
+  banned            Boolean  @default(false) // admin can ban users
+  bannedReason      String?  // optional reason for the ban
+  createdAt         DateTime  @default(now())
+
+  accounts       Account[]
+  sessions       Session[]
+  predictions    Prediction[]
+  discountCodes  DiscountCode[]
+  cartItems      CartItem[]
+  customers      Customer[]
+}
+
+model Match {
+  id              String   @id @default(cuid())
+  externalId      String?  @unique // API-Football fixture ID
+  homeTeam        String
+  awayTeam        String
+  homeFlag        String?  // Emoji or country code
+  awayFlag        String?
+  homeLogo        String?  // Team logo URL from API
+  awayLogo        String?  // Team logo URL from API
+  competition     String   // e.g. "Copa América 2026"
+  competitionLogo String?  // Competition logo URL
+  matchDate       DateTime // UTC kickoff time
+  status          String   @default("upcoming") // upcoming, live, finished
+  homeScore       Int?
+  awayScore       Int?
+  winner          String?  // home, away, draw
+  shortStatus     String?  // 1H, 2H, FT, NS, etc.
+  round           String?  // e.g. "Eliminatoria de 32"
+  lastSyncedAt    DateTime @default(now())
+  createdAt       DateTime @default(now())
+
+  predictions Prediction[]
+}
+
+model Prediction {
+  id                String   @id @default(cuid())
+  userId            String
+  matchId           String
+
+  // Regular time prediction
+  homeGoals         Int      // Predicted home goals in regular time
+  awayGoals         Int      // Predicted away goals in regular time
+
+  // Tiebreaker predictions (if user predicts a draw)
+  extraTimeHome     Int?     // Predicted home goals in extra time (only if draw)
+  extraTimeAway     Int?     // Predicted away goals in extra time (only if draw)
+  penaltiesHome     Int?     // Predicted home goals in penalties (only if draw after ET)
+  penaltiesAway     Int?     // Predicted away goals in penalties (only if draw after ET)
+
+  // Results
+  correct           Boolean?  // Did they get the winner right? (5% discount)
+  exactScore        Boolean?  // Did they get the exact score? (10% discount)
+  createdAt         DateTime  @default(now())
+
+  user       User     @relation(fields: [userId], references: [id])
+  match      Match    @relation(fields: [matchId], references: [id])
+
+  @@unique([userId, matchId]) // One prediction per match per user
+}
+
+model DiscountCode {
+  id            String   @id @default(cuid())
+  userId        String
+  predictionId  String?
+  code          String   @unique // The cryptographic barcode payload
+  discountPct   Int      @default(10) // percentage discount
+  verified      Boolean  @default(false) // Has Joel scanned it?
+  verifiedAt    DateTime?
+  expiresAt     DateTime
+  createdAt     DateTime @default(now())
+
+  user          User     @relation(fields: [userId], references: [id])
+}
+
+model OtpCode {
+  id        String   @id @default(cuid())
+  email     String
+  code      String   // 6-digit OTP
+  used      Boolean  @default(false)
+  attempts  Int      @default(0) // Track failed attempts
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+// ─── Cart (cross-device sync) ───
+// Stores cart items so a logged-in user sees the same cart on any device.
+// Only stores reference keys (perfumeId / comboId) + quantity + price;
+// the full Perfume/Combo objects are re-hydrated client-side from the
+// local catalog data (perfumes.ts / combosData.ts) on load.
+model CartItem {
+  id             String   @id @default(cuid())
+  userId         String
+  itemType       String   // "perfume" | "combo"
+  itemId         String   // perfume.id (number as string) or combo.id (string)
+  price          Int      // unit price in USD at time of add
+  quantity       Int      @default(1)
+  discountCodeId String?  // which DiscountCode is assigned to this item (null = none)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, itemType, itemId]) // one row per distinct item per user
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CRM MODELS - Jolie Fragrances
+// Tablas para gestión de clientes, ventas, decants, inventario y DMs.
+// El InventoryItem es el inventario FÍSICO de Joel (botellas completas para
+// venta directa) — separado del catálogo online (perfumes.ts). El Customer
+// puede o no estar vinculado a un User (algunos clientes solo compran por
+// WhatsApp / Instagram).
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ─── Cliente (extiende o referencia al User web) ───
+model Customer {
+  id              String   @id @default(cuid())
+  userId          String?  // Referencia a User si el cliente se registró en la web
+  name            String
+  email           String?  // Email de contacto (puede venir de User o ser manual)
+  phone           String?  // WhatsApp principal
+  instagram       String?  // @handle de Instagram
+  channel         String   @default("whatsapp") // whatsapp | instagram | web | referred | other
+  preferences     String?  // Notas de preferencias olfativas ("dulce", "fresco", "amaderado")
+  notes           String?  // Notas internas libres
+  tags            String?  // Tags separados por coma: "vip,profesor,madrina"
+  isVip           Boolean  @default(false)
+  isBlocked       Boolean  @default(false) // Cliente problemático
+  blockReason     String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user            User?    @relation(fields: [userId], references: [id])
+  sales           Sale[]
+  dms             Dm[]
+  decants         Decant[]
+}
+
+// ─── Producto de inventario (botella completa para venta directa) ───
+model InventoryItem {
+  id               String   @id @default(cuid())
+  name             String                          // "Cool Water", "Rasasi Hawas"
+  brand            String?                         // "Davidoff", "Rasasi"
+  olfativeProfile  String?                         // "Fresco / Acuático"
+  size             String?                         // "100ml", "200ml"
+  cost             Float?                          // Costo en USD
+  price            Float                           // Precio de venta en USD
+  status           String   @default("available")  // available | reserved | sold
+  customerInterest String?                         // "Padres (perfil fresco)"
+  notes            String?
+  acquiredAt       DateTime @default(now())
+  soldAt           DateTime?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  sales            Sale[]
+}
+
+// ─── Decant (10ml) ───
+model Decant {
+  id              String   @id @default(cuid())
+  sourcePerfume   String                          // "Qissa Pink", "Khamrah Dukhan"
+  sourceBrand     String?                         // "Paris Corner", "Lattafa"
+  olfativeProfile String?                         // "Dulce / Floral"
+  sizeMl          Int      @default(10)
+  cost            Float?                          // Costo del ml usado
+  price           Float    @default(12)           // Precio de venta
+  status          String   @default("pending")    // pending | filled | available | reserved | sold
+  filledAt        DateTime?
+  soldAt          DateTime?
+  customerId      String?                         // Cliente asignado (cuando se reserva/vende)
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  customer        Customer? @relation(fields: [customerId], references: [id])
+  sales           Sale[]
+  dropItems       DecantDropItem[]
+}
+
+// ─── Venta ───
+model Sale {
+  id              String   @id @default(cuid())
+  customerId      String                          // Cliente (obligatorio)
+  inventoryItemId String?                         // Si es venta de botella completa
+  decantId        String?                         // Si es venta de decant
+  itemType        String                          // "botella" | "decant" | "combo" | "asesoramiento"
+  itemName        String                          // Nombre legible: "Cool Water 100ml"
+  quantity        Int      @default(1)
+  unitPrice       Float                           // Precio por unidad
+  totalPrice      Float                           // unitPrice * quantity (con descuentos aplicados)
+  paid            Float                           // Cuánto se pagó
+  pending         Float    @default(0)            // Cuánto queda por cobrar
+  paymentMethod   String?                         // "efectivo" | "pago_movil" | "zelle" | "binance"
+  paymentStatus   String   @default("paid")       // paid | partial | pending
+  deliveryMethod  String?                         // "pickup" | "delivery" | "envio"
+  deliveryCost    Float?                          // Costo de envío si aplica
+  saleDate        DateTime @default(now())
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  customer        Customer      @relation(fields: [customerId], references: [id])
+  inventoryItem   InventoryItem? @relation(fields: [inventoryItemId], references: [id])
+  decant          Decant?       @relation(fields: [decantId], references: [id])
+}
+
+// ─── DM / Consulta (tracker de mensajes entrantes) ───
+model Dm {
+  id                String   @id @default(cuid())
+  customerId        String?                         // Puede o no estar vinculado a un Customer
+  platform          String                          // "instagram" | "whatsapp" | "web"
+  username          String?                         // @handle de Instagram o nombre
+  fragranceInterest String?                         // De qué perfume preguntó
+  inquiryType       String                          // "compra" | "recomendacion" | "precio" | "stock" | "asesoramiento" | "otro"
+  status            String   @default("new")        // new | in_conversation | pending | closed_sold | closed_no_sale | no_reply
+  nextStep          String?                         // "Enviar fotos de decants en 3 días"
+  followUpDate      DateTime?                       // Fecha de seguimiento programada
+  closedAt          DateTime?
+  result            String?                         // "Venta realizada $45" / "No compró - muy caro"
+  notes             String?
+  receivedAt        DateTime @default(now())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  customer          Customer? @relation(fields: [customerId], references: [id])
+}
+
+// ─── Drop temático (combos de decants) ───
+model DecantDrop {
+  id              String   @id @default(cuid())
+  name            String                          // "Damas - Dulces"
+  description     String?                         // "Combo de 3 decants para dama"
+  comboPrice      Float                           // Precio del combo (ej: 30)
+  regularPrice    Float                           // Precio individual sumado (ej: 36)
+  targetAudience  String?                         // "Tu red femenina"
+  status          String   @default("draft")      // draft | active | sold_out | archived
+  launchedAt      DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  items           DecantDropItem[]
+}
+
+model DecantDropItem {
+  id              String   @id @default(cuid())
+  dropId          String
+  decantId        String                          // Decant incluido en el drop
+  sortOrder       Int      @default(0)
+
+  drop            DecantDrop @relation(fields: [dropId], references: [id], onDelete: Cascade)
+  decant          Decant     @relation(fields: [decantId], references: [id])
+}
+
+// ─── Analytics ───
+model SiteVisit {
+  id        String   @id @default(cuid())
+  visitorId String   // Anonymous UUID stored in localStorage
+  path      String
+  ipHash    String?
+  country   String?
+  userAgent String?
+  visitedAt DateTime @default(now())
+}

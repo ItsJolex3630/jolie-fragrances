@@ -1,0 +1,2026 @@
+"use client";
+
+import { useState, useMemo, useRef, useEffect, useCallback, memo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// ─── Scroll Reveal Hook (lightweight IntersectionObserver) ───
+function useScrollReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("revealed");
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return ref;
+}
+
+// ─── ScrollRevealDiv component ───
+function ScrollRevealDiv({ children, className = "", variant = "up" }: { children: React.ReactNode; className?: string; variant?: "up" | "left" | "scale" }) {
+  const ref = useScrollReveal();
+  const variantClass = variant === "left" ? "scroll-reveal-left" : variant === "scale" ? "scroll-reveal-scale" : "scroll-reveal";
+  return (
+    <div ref={ref} className={`${variantClass} ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+import {
+  Search,
+  X,
+  MessageCircle,
+  Sparkles,
+  Filter,
+  Instagram,
+  Phone,
+  Crown,
+  Star,
+  ChevronDown,
+  ChevronUp,
+  ChevronLeft,
+  ChevronRight,
+  Heart,
+  Gem,
+  Clock,
+  ArrowLeftRight,
+  ShoppingCart,
+} from "lucide-react";
+import { useCart } from "@/context/CartContext";
+import dynamic from "next/dynamic";
+import {
+  GENDERS,
+  getImageUrl,
+  getFragranticaUrl,
+  NOTES,
+  NOTES_INFO,
+  type Perfume,
+  type Brand,
+  type Gender,
+  type Note,
+  type Concentration,
+} from "@/lib/perfumes";
+import { usePrices } from "@/hooks/usePrices";
+import { useBannedCheck } from "@/hooks/useBannedCheck";
+import { formatPrice, applyDiscount } from "@/lib/priceMapping";
+import { useCurrency, CurrencyToggle } from "@/hooks/useCurrency";
+import BannedNotice from "@/components/BannedNotice";
+import {
+  TIMES_OF_DAY,
+  CLIMATES,
+  OCCASIONS,
+  TIME_INFO,
+  CLIMATE_INFO,
+  OCCASION_INFO,
+  PERFUME_OCCASIONS,
+  type TimeOfDay,
+  type Climate,
+  type Occasion,
+} from "@/lib/perfumeOccasions";
+
+// ─── Dynamic imports for heavy modal components (only loaded when needed) ───
+const PerfumeDetail = dynamic(() => import("@/components/PerfumeDetail"), { ssr: false });
+const CompareModal = dynamic(() => import("@/components/CompareModal"), { ssr: false });
+const SimilarPerfumesModal = dynamic(() => import("@/components/SimilarPerfumesModal"), { ssr: false });
+const FathersDayBanner = dynamic(() => import("@/components/FathersDayBanner"), { ssr: false });
+const FathersDaySection = dynamic(() => import("@/components/FathersDaySection"), { ssr: false });
+const ComboShowcase = dynamic(() => import("@/components/ComboShowcase"), { ssr: false });
+import TopBar from "@/components/TopBar";
+
+// ─── Gender badge colors ───
+const genderStyles: Record<Gender, string> = {
+  Dama: "bg-pink-500/20 text-pink-300 border-pink-500/30",
+  Caballero: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+  Unisex: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+};
+
+const genderIcons: Record<Gender, string> = {
+  Dama: "♀",
+  Caballero: "♂",
+  Unisex: "⚥",
+};
+
+// ─── Animation variants (removed cardVariants — cards now use CSS fade-in) ───
+
+// ─── Skeleton Card Component (shown while loading) ───
+function SkeletonCard({ index }: { index: number }) {
+  return (
+    <div
+      className="card-fade-in"
+      style={{ animationDelay: `${Math.min(index * 0.03, 0.5)}s` }}
+    >
+      <div className="rounded-xl border border-[rgba(212,175,55,0.08)] bg-[#111111] overflow-hidden">
+        <div className="aspect-[3/4] bg-gradient-to-b from-[#0d0d0d] to-[#080808] flex items-center justify-center skeleton-pulse">
+          <div className="flex flex-col items-center gap-2">
+            <Sparkles className="w-8 h-8 text-[#d4af37]/15" />
+            <div className="w-12 h-1 rounded-full bg-[#d4af37]/8" />
+          </div>
+        </div>
+        <div className="p-3 sm:p-4 space-y-2">
+          <div className="h-2.5 w-16 rounded-full bg-[#d4af37]/10 skeleton-pulse" />
+          <div className="h-3.5 w-full rounded-full bg-white/5 skeleton-pulse" />
+          <div className="h-3.5 w-2/3 rounded-full bg-white/5 skeleton-pulse" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Perfume Price Block (dual-currency aware) ───
+// Renders the price for a perfume card in the current currency mode.
+//
+//  • USD mode + no discount   → `$38` (gold gradient, bold)
+//  • USD mode + discount      → strikethrough `$38` + `-X%` badge + `$34` (gold)
+//  • Bs.  mode + no discount  → `$45` (gold, large) + `Bs. 31.643,74` (white/60)
+//  • Bs.  mode + discount     → strikethrough `$38` + badge + `$34` (raw USD) +
+//                                `$40` (BCV eq, gold, large) + `Bs. 28.312,82` (white/60)
+//
+// The cart/discount logic ALWAYS works in USD. Currency conversion happens
+// only here, at display time, via `useCurrency().formatPrice`.
+function PerfumePriceBlock({
+  retailPrice,
+  discountPct,
+  useTemporal,
+  temporalLabel,
+}: {
+  retailPrice: number;
+  discountPct: number;
+  useTemporal: boolean;
+  temporalLabel: string | null;
+}) {
+  const { mode, formatPrice: formatCurrencyPrice } = useCurrency();
+  const hasDiscount = discountPct > 0;
+  const discountedUsd = hasDiscount
+    ? applyDiscount(retailPrice, discountPct)
+    : retailPrice;
+
+  // Format both original and discounted prices
+  const originalFormatted = formatCurrencyPrice(retailPrice);
+  const discountedFormatted = formatCurrencyPrice(discountedUsd);
+
+  // Amber/orange for temporal discount, emerald for prediction discount
+  const discountBadge = (
+    <span
+      className={`text-[8px] sm:text-[9px] px-1.5 py-0.5 rounded-full font-[family-name:var(--font-inter)] font-bold tracking-wide border ${
+        useTemporal
+          ? "bg-amber-500/15 text-amber-300 border-amber-500/30"
+          : "bg-emerald-500/15 text-emerald-400 border-emerald-500/20"
+      }`}
+      title={
+        useTemporal
+          ? temporalLabel || "Oferta temporal"
+          : "Descuento por predicción"
+      }
+    >
+      -{discountPct}%
+    </span>
+  );
+
+  // ─── USD mode ───
+  if (mode === "usd") {
+    if (hasDiscount) {
+      return (
+        <div className="flex flex-col leading-tight">
+          <div className="flex items-center gap-1.5">
+            <span className="text-[10px] sm:text-xs text-white/30 line-through font-[family-name:var(--font-inter)]">
+              {originalFormatted.primary}
+            </span>
+            {discountBadge}
+          </div>
+          <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent">
+            {discountedFormatted.primary}
+          </p>
+        </div>
+      );
+    }
+    return (
+      <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent">
+        {originalFormatted.primary}
+      </p>
+    );
+  }
+
+  // ─── Bs. mode ───
+  // Same layout as USD but with Bs. amount below.
+  // If there's a discount, the Bs. line is green (emerald) instead of white.
+  if (hasDiscount) {
+    return (
+      <div className="flex flex-col leading-tight">
+        <div className="flex items-center gap-1.5">
+          <span className="text-[10px] sm:text-xs text-white/30 line-through font-[family-name:var(--font-inter)]">
+            {originalFormatted.primary}
+          </span>
+          {discountBadge}
+        </div>
+        <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent">
+          {discountedFormatted.primary}
+        </p>
+        <p className={`text-[9px] sm:text-[10px] font-[family-name:var(--font-inter)] leading-tight font-semibold ${
+          useTemporal ? "text-amber-300" : "text-emerald-400"
+        }`}>
+          {discountedFormatted.secondary}
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col leading-tight">
+      <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent leading-tight">
+        {originalFormatted.primary}
+      </p>
+      <p className="text-[9px] sm:text-[10px] text-white/60 font-[family-name:var(--font-inter)] leading-tight">
+        {originalFormatted.secondary}
+      </p>
+    </div>
+  );
+}
+
+// ─── Perfume Card Component ───
+const PerfumeCard = memo(function PerfumeCard({
+  perfume,
+  index,
+  onSelect,
+  retailPrice,
+  dbAvailable,
+  temporalDiscountPct,
+  temporalDiscountLabel,
+  onAddToCart,
+  highestAvailableDiscountPct,
+}: {
+  perfume: Perfume;
+  index: number;
+  onSelect: (perfume: Perfume) => void;
+  retailPrice: number | null;
+  dbAvailable: boolean;
+  temporalDiscountPct: number;
+  temporalDiscountLabel: string | null;
+  onAddToCart: (perfume: Perfume, price: number) => void;
+  highestAvailableDiscountPct: number;
+}) {
+  const [imgTriedJpg, setImgTriedJpg] = useState(false);
+  const [imgError, setImgError] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
+
+  // Effective availability: the DB flag (admin-controlled via /admin → Catálogo)
+  // takes PRIORITY over the static `perfume.available` from perfumes.ts.
+  // This way, if Joel marks a perfume as "available" in the admin panel,
+  // it shows as available even if perfumes.ts had it as unavailable.
+  const effectiveAvailable = dbAvailable === true ? true : (dbAvailable === false ? false : perfume.available !== false);
+
+  // Effective discount: temporal (admin-controlled) wins over prediction
+  // when it is higher. The badge color is amber/orange for temporal,
+  // emerald for prediction.
+  const temporalPct = temporalDiscountPct > 0 ? temporalDiscountPct : 0;
+  const predictionPct = highestAvailableDiscountPct > 0 ? highestAvailableDiscountPct : 0;
+  const useTemporal = temporalPct > predictionPct;
+  const effectiveDiscountPct = useTemporal ? temporalPct : predictionPct;
+
+  // Primary: customImageUrl if available, then .avif URL, fallback to .jpg
+  const hasCustomImage = !!perfume.customImageUrl;
+  const imgSrc = hasCustomImage
+    ? perfume.customImageUrl!
+    : imgTriedJpg
+    ? `https://fimgs.net/mdimg/perfume/${perfume.fragranticaId}.jpg`
+    : getImageUrl(perfume.fragranticaId);
+
+  const handleImgError = useCallback(() => {
+    if (hasCustomImage) {
+      // For custom images, skip Fragrantica fallback and go directly to fallback icon
+      setImgError(true);
+    } else if (!imgTriedJpg) {
+      setImgTriedJpg(true);
+      setImgLoaded(false);
+    } else {
+      setImgError(true);
+    }
+  }, [imgTriedJpg, hasCustomImage]);
+
+  return (
+    <div
+      className="perfume-card group relative card-fade-in rounded-xl"
+      style={{ animationDelay: `${Math.min(index * 0.03, 0.5)}s` }}
+    >
+      <div className={`card-shimmer-border relative overflow-hidden rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111] transition-all duration-500 group-hover:border-[rgba(212,175,55,0.35)] gold-glow-hover h-full flex flex-col ${!effectiveAvailable ? 'opacity-75' : ''}`}>
+        {/* Image container - dark background for the bottle */}
+        <div className="relative aspect-[3/4] overflow-hidden bg-[#0a0a0a] flex items-center justify-center">
+          {/* Loading skeleton */}
+          {!imgLoaded && !imgError && (
+            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-[#0d0d0d] to-[#080808]">
+              <div className="skeleton-pulse flex flex-col items-center gap-2">
+                <Sparkles className="w-8 h-8 text-[#d4af37]/20" />
+                <div className="w-12 h-1 rounded-full bg-[#d4af37]/10" />
+              </div>
+            </div>
+          )}
+          {/* Fallback when image fails */}
+          {imgError ? (
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-[#0d0d0d] to-[#080808]">
+              <Gem className="w-10 h-10 text-[#d4af37]/20 mb-2" />
+              <span className="text-[#d4af37]/30 text-[10px] text-center px-4 font-[family-name:var(--font-inter)] leading-tight">
+                {perfume.name}
+              </span>
+            </div>
+          ) : (
+            <img
+              src={imgSrc}
+              alt={`${perfume.name} - ${perfume.brand}`}
+              className={`w-full h-full object-contain p-2 transition-all duration-700 group-hover:scale-105 ${
+                imgLoaded ? "opacity-100" : "opacity-0"
+              }`}
+              onLoad={() => setImgLoaded(true)}
+              onError={handleImgError}
+              loading="lazy"
+              decoding="async"
+              style={{ color: 'transparent' }}
+            />
+          )}
+
+          {/* Subtle gradient overlay on hover */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+          {/* Currency toggle (compact, per-card) — top-right, always visible.
+              Controls the SAME shared currency mode as the filter bar toggle. */}
+          <div className="absolute top-2 right-2 z-20" onClick={(e) => e.stopPropagation()}>
+            <CurrencyToggle variant="compact" />
+          </div>
+
+          {/* Gender badge */}
+          <div className="absolute bottom-2 left-2 z-10 pointer-events-none">
+            <span
+              className={`inline-flex items-center gap-1 text-[9px] sm:text-[10px] px-2 py-0.5 sm:py-1 rounded-full border font-[family-name:var(--font-inter)] ${genderStyles[perfume.gender]}`}
+            >
+              <span>{genderIcons[perfume.gender]}</span>
+              {perfume.gender}
+            </span>
+          </div>
+
+          {/* Size badge */}
+          <div className="absolute bottom-2 right-2 z-10 pointer-events-none">
+            <span className="text-[9px] sm:text-[10px] px-2 py-0.5 sm:py-1 rounded-full border border-white/10 bg-black/60 text-white/50 font-[family-name:var(--font-inter)]">
+              {perfume.size}
+            </span>
+          </div>
+
+          {/* Not available badge */}
+          {!effectiveAvailable && (
+            <div className="absolute top-2 left-2 z-10 pointer-events-none">
+              <span className="text-[8px] sm:text-[9px] px-2 py-0.5 sm:py-1 rounded-full border border-rose-500/30 bg-rose-500/15 text-rose-400 font-[family-name:var(--font-inter)] tracking-wide uppercase">
+                No disponible
+              </span>
+            </div>
+          )}
+
+          {/* Temporal discount badge (amber/orange) — only when active */}
+          {effectiveAvailable && useTemporal && temporalPct > 0 && (
+            <div className="absolute top-2 left-2 z-10 pointer-events-none">
+              <span
+                className="text-[8px] sm:text-[9px] px-2 py-0.5 sm:py-1 rounded-full border border-amber-500/40 bg-amber-500/20 text-amber-300 font-[family-name:var(--font-inter)] font-bold tracking-wide uppercase shadow-lg shadow-amber-500/10"
+                title={temporalDiscountLabel || "Oferta temporal"}
+              >
+                {temporalDiscountLabel || "Oferta"} -{temporalPct}%
+              </span>
+            </div>
+          )}
+
+          {/* Floating action buttons (appear on hover) */}
+          <div className="absolute top-2 left-2 z-20 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-1 group-hover:translate-y-0 flex flex-col gap-1.5"
+               style={{ marginLeft: effectiveAvailable && useTemporal && temporalPct > 0 ? '88px' : '0' }}>
+            {/* Add to cart */}
+            {retailPrice !== null && effectiveAvailable && (
+              <button
+                onClick={(e) => { e.stopPropagation(); onAddToCart(perfume, retailPrice); }}
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#d4af37] text-black text-[10px] font-bold font-[family-name:var(--font-inter)] shadow-lg shadow-[#d4af37]/20 hover:bg-[#e0c04a] transition-all active:scale-95"
+                aria-label={`Agregar ${perfume.name} al carrito`}
+              >
+                <ShoppingCart className="w-3 h-3" />
+                <span className="hidden sm:inline">Agregar</span>
+              </button>
+            )}
+            {/* Consult availability via WhatsApp */}
+            <a
+              href={`https://wa.me/584244055386?text=${encodeURIComponent(`Hola Jolie Fragrances! Me gustaría consultar la disponibilidad de ${perfume.name} - ${perfume.brand}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#25D366] text-white text-[10px] font-bold font-[family-name:var(--font-inter)] shadow-lg shadow-[#25D366]/20 hover:bg-[#2ee071] transition-all active:scale-95"
+              aria-label={`Consultar disponibilidad de ${perfume.name}`}
+            >
+              <MessageCircle className="w-3 h-3" />
+              <span className="hidden sm:inline">Consultar</span>
+            </a>
+          </div>
+
+          {/* Hover text overlay */}
+          <div className="absolute bottom-8 left-0 right-0 text-center z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            <p className="text-[9px] text-[#d4af37]/80 font-[family-name:var(--font-inter)] tracking-wider">
+              Ver detalles →
+            </p>
+          </div>
+
+          {/* Clickable overlay - opens detail view */}
+          <button
+            onClick={() => onSelect(perfume)}
+            className="absolute inset-0 z-10 cursor-pointer"
+            aria-label={`Ver detalles de ${perfume.name}`}
+          />
+        </div>
+
+        {/* Info section - also clickable */}
+        <button
+          onClick={() => onSelect(perfume)}
+          className="block w-full text-left cursor-pointer"
+        >
+          <div className="p-3 sm:p-4 space-y-1">
+            <p className="text-[10px] sm:text-xs text-[#d4af37]/80 font-semibold tracking-[0.12em] uppercase font-[family-name:var(--font-inter)]">
+              {perfume.brand}
+            </p>
+            <h3 className="text-sm sm:text-[15px] font-semibold text-white/90 leading-snug font-[family-name:var(--font-playfair)] line-clamp-2 min-h-[2.5rem]">
+              {perfume.name}
+            </h3>
+            {/* Price + Action buttons */}
+            <div className="flex items-center justify-between gap-2 mt-1">
+              {!effectiveAvailable ? (
+                <p className="text-[10px] sm:text-xs font-medium font-[family-name:var(--font-inter)] text-rose-400/80 tracking-wider uppercase">
+                  No disponible
+                </p>
+              ) : retailPrice !== null ? (
+                <PerfumePriceBlock
+                  retailPrice={retailPrice}
+                  discountPct={effectiveDiscountPct}
+                  useTemporal={useTemporal}
+                  temporalLabel={temporalDiscountLabel}
+                />
+              ) : (
+                <p className="text-[10px] sm:text-xs font-medium font-[family-name:var(--font-inter)] text-white/25 tracking-wider uppercase">
+                  Consultar
+                </p>
+              )}
+              <div className="flex items-center gap-1.5">
+                {/* Cart button (available perfumes only) */}
+                {retailPrice !== null && effectiveAvailable && (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); onAddToCart(perfume, retailPrice); }}
+                    className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#d4af37]/10 border border-[#d4af37]/15 text-[#d4af37]/70 hover:text-[#d4af37] hover:bg-[#d4af37]/20 hover:border-[#d4af37]/30 transition-all active:scale-90"
+                    aria-label={`Agregar ${perfume.name} al carrito`}
+                  >
+                    <ShoppingCart className="w-3.5 h-3.5" />
+                  </button>
+                )}
+                {/* WhatsApp consult button */}
+                <a
+                  href={`https://wa.me/584244055386?text=${encodeURIComponent(`Hola Jolie Fragrances! Me gustaría consultar la disponibilidad de ${perfume.name} - ${perfume.brand}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#25D366]/10 border border-[#25D366]/15 text-[#25D366]/70 hover:text-[#25D366] hover:bg-[#25D366]/20 hover:border-[#25D366]/30 transition-all active:scale-90"
+                  aria-label={`Consultar disponibilidad de ${perfume.name}`}
+                >
+                  <MessageCircle className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  );
+});
+
+// ─── Brand Card Component ───
+function BrandCard({
+  brand,
+  count,
+  isSelected,
+  onClick,
+}: {
+  brand: Brand | "Todas" | "Todos" | Gender;
+  count: number;
+  isSelected: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`filter-pill px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+        isSelected
+          ? "active border-[#d4af37] shadow-lg shadow-[#d4af37]/10"
+          : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+      }`}
+    >
+      <span className="font-medium">{brand}</span>
+      <span className={`ml-1.5 text-[10px] ${isSelected ? "text-[#0a0a0a]/60" : "text-white/30"}`}>
+        {count}
+      </span>
+    </button>
+  );
+}
+
+// ─── Main Page Component ───
+export default function Home() {
+  // ─── Price integration ───
+  const {
+    getPrice,
+    isAvailable,
+    getTemporalDiscount,
+    getTemporalDiscountLabel,
+    perfumeDetails,
+  } = usePrices();
+  const { addPerfume, openCart: openCartDrawer, highestAvailableDiscountPct } = useCart();
+
+  // ─── Banned-account check (defense-in-depth) ───
+  // The primary enforcement is in auth.ts::signIn (banned users can't log
+  // in). But if a user is banned WHILE they already have a valid session,
+  // we detect it here and show a "cuenta suspendida" notice instead of the
+  // catalog. See hooks/useBannedCheck.ts for the polling logic.
+  // NOTE: the conditional return is placed AFTER all other hooks (near the
+  // main return) so React's rules-of-hooks are respected.
+  const { banned, reason: bannedReason } = useBannedCheck();
+
+  const [selectedBrand, setSelectedBrand] = useState<Brand | "Todas">("Todas");
+  const [selectedGender, setSelectedGender] = useState<Gender | "Todos">("Todos");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showAutocomplete, setShowAutocomplete] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const topRef = useRef<HTMLDivElement>(null);
+  const catalogRef = useRef<HTMLDivElement>(null);
+
+  const [selectedPerfume, setSelectedPerfume] = useState<Perfume | null>(null);
+  const [showCompare, setShowCompare] = useState(false);
+  const [showSimilar, setShowSimilar] = useState(false);
+  const [compareViewPerfume, setCompareViewPerfume] = useState<Perfume | null>(null);
+  // Navigation stack for "back" button when navigating between similar perfumes
+  const [perfumeBackStack, setPerfumeBackStack] = useState<Perfume[]>([]);
+  // Navigation stack for "back" button when navigating from comparison view
+  const [compareBackStack, setCompareBackStack] = useState<Perfume[]>([]);
+  // Perfume viewed from Similar Perfumes Modal (with back navigation)
+  const [similarViewPerfume, setSimilarViewPerfume] = useState<Perfume | null>(null);
+  // Navigation stack for "back" button when navigating from similar perfumes modal
+  const [similarBackStack, setSimilarBackStack] = useState<Perfume[]>([]);
+
+  // ─── Perfume list (fetched from API) ───
+  const [allPerfumes, setAllPerfumes] = useState<Perfume[]>([]);
+  const [allBrands, setAllBrands] = useState<Brand[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedNote, setSelectedNote] = useState<Note | "Todas">("Todas");
+  const [selectedTime, setSelectedTime] = useState<TimeOfDay | "Todos">("Todos");
+  const [selectedClimate, setSelectedClimate] = useState<Climate | "Todos">("Todos");
+  const [selectedOccasion, setSelectedOccasion] = useState<Occasion | "Todos">("Todos");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // ─── Pagination config ───
+  const PERFUMES_PER_PAGE = 20;
+
+  // ─── Fetch perfumes on mount ───
+  useEffect(() => {
+    async function init() {
+      try {
+        const perfRes = await fetch("/api/perfumes");
+        if (perfRes.ok) {
+          const perfData = await perfRes.json();
+          if (perfData.perfumes && perfData.perfumes.length > 0) {
+            setAllPerfumes(perfData.perfumes);
+            const brandSet = new Set<string>();
+            perfData.perfumes.forEach((p: Perfume) => brandSet.add(p.brand));
+            setAllBrands([...brandSet] as Brand[]);
+          }
+        }
+      } catch {
+        // Fallback: empty list
+      }
+      setIsLoading(false);
+    }
+    init();
+  }, []);
+
+  // ─── Merge BD-only perfumes into the catalog (Task 30) ───
+  //
+  // The `/api/prices` response now includes a `perfumeDetails` map for
+  // perfumes that exist in the PerfumeCatalog DB table but NOT in the
+  // static `perfumes.ts` array (admin-added perfumes with id >= 10000).
+  //
+  // For each detail entry whose id isn't already in `allPerfumes`, we
+  // construct a Perfume object on the client and append it to the list.
+  // We also add any new brands to the brand filter. This effect re-runs
+  // whenever either `perfumeDetails` or `allPerfumes` changes (e.g.
+  // after the static `/api/perfumes` fetch replaces the array), and the
+  // functional updaters + existing-id check guard against duplicates.
+  useEffect(() => {
+    if (!perfumeDetails) return;
+    const bdIds = Object.keys(perfumeDetails).map(Number);
+    if (bdIds.length === 0) return;
+
+    const existingIds = new Set(allPerfumes.map((p) => p.id));
+    const toAdd: Perfume[] = [];
+    const newBrands = new Set<string>();
+
+    for (const id of bdIds) {
+      if (existingIds.has(id)) continue;
+      const d = perfumeDetails[id];
+      if (!d || !d.fragranticaId) continue;
+      toAdd.push({
+        id,
+        name: d.name,
+        brand: d.brand as Brand,
+        gender: (d.gender as Gender) || "Unisex",
+        size: d.size || "",
+        fragranticaId: d.fragranticaId,
+        brandSlug: d.brandSlug || d.brand,
+        perfumeSlug: d.perfumeSlug || d.name,
+        concentration: (d.concentration as Concentration | null) ?? undefined,
+        available: true,
+      });
+      newBrands.add(d.brand);
+    }
+
+    if (toAdd.length === 0) return;
+
+    setAllPerfumes((prev) => {
+      // Double-check inside the updater to avoid duplicates in React
+      // Strict Mode (which may invoke updaters twice).
+      const existing = new Set(prev.map((p) => p.id));
+      const filtered = toAdd.filter((p) => !existing.has(p.id));
+      return filtered.length > 0 ? [...prev, ...filtered] : prev;
+    });
+
+    setAllBrands((prev) => {
+      const set = new Set<string>(prev);
+      newBrands.forEach((b) => set.add(b));
+      return [...set] as Brand[];
+    });
+  }, [perfumeDetails, allPerfumes]);
+
+  // Close autocomplete on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
+        setShowAutocomplete(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Scroll to top button (throttled for performance)
+  useEffect(() => {
+    let ticking = false;
+    function handleScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setShowScrollTop(window.scrollY > 600);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Filter perfumes
+  const filteredPerfumes = useMemo(() => {
+    return allPerfumes.filter((p) => {
+      const matchesBrand =
+        selectedBrand === "Todas" || p.brand === selectedBrand;
+      const matchesGender =
+        selectedGender === "Todos" || p.gender === selectedGender;
+      const matchesNote =
+        selectedNote === "Todas" ||
+        (p.notes && p.notes.includes(selectedNote));
+      const matchesSearch =
+        searchQuery.trim() === "" ||
+        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.brand.toLowerCase().includes(searchQuery.toLowerCase());
+      // Occasion filters (time, climate, occasion)
+      const perfumeOccasion = PERFUME_OCCASIONS[p.id];
+      const matchesTime =
+        selectedTime === "Todos" ||
+        (perfumeOccasion && perfumeOccasion.time.includes(selectedTime));
+      const matchesClimate =
+        selectedClimate === "Todos" ||
+        (perfumeOccasion && perfumeOccasion.climate.includes(selectedClimate));
+      const matchesOccasion =
+        selectedOccasion === "Todos" ||
+        (perfumeOccasion && perfumeOccasion.occasion.includes(selectedOccasion));
+      return matchesBrand && matchesGender && matchesNote && matchesSearch && matchesTime && matchesClimate && matchesOccasion;
+    });
+  }, [allPerfumes, selectedBrand, selectedGender, selectedNote, searchQuery, selectedTime, selectedClimate, selectedOccasion]);
+
+  // Pagination
+  const totalPages = Math.max(1, Math.ceil(filteredPerfumes.length / PERFUMES_PER_PAGE));
+  // Clamp page if it exceeds total (e.g. after filter change)
+  const safePage = currentPage > totalPages ? 1 : currentPage;
+  const paginatedPerfumes = useMemo(() => {
+    const start = (safePage - 1) * PERFUMES_PER_PAGE;
+    return filteredPerfumes.slice(start, start + PERFUMES_PER_PAGE);
+  }, [filteredPerfumes, safePage, PERFUMES_PER_PAGE]);
+
+  // Change page with scroll to catalog
+  const goToPage = useCallback((page: number) => {
+    setCurrentPage(page);
+    // Smooth scroll to catalog section
+    catalogRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
+  // Filter handlers that also reset page
+  const handleBrandChange = useCallback((brand: Brand | "Todas") => {
+    setSelectedBrand(brand);
+    setCurrentPage(1);
+  }, []);
+  const handleGenderChange = useCallback((gender: Gender | "Todos") => {
+    setSelectedGender(gender);
+    setCurrentPage(1);
+  }, []);
+  const handleNoteChange = useCallback((note: Note | "Todas") => {
+    setSelectedNote(note);
+    setCurrentPage(1);
+  }, []);
+  const handleTimeChange = useCallback((time: TimeOfDay | "Todos") => {
+    setSelectedTime(time);
+    setCurrentPage(1);
+  }, []);
+  const handleClimateChange = useCallback((climate: Climate | "Todos") => {
+    setSelectedClimate(climate);
+    setCurrentPage(1);
+  }, []);
+  const handleOccasionChange = useCallback((occasion: Occasion | "Todos") => {
+    setSelectedOccasion(occasion);
+    setCurrentPage(1);
+  }, []);
+  const handleSearchChange = useCallback((value: string) => {
+    setSearchQuery(value);
+    setCurrentPage(1);
+  }, []);
+
+  // Generate visible page numbers (show max 5 pages around current)
+  const visiblePages = useMemo(() => {
+    if (totalPages <= 7) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+    const pages: number[] = [1];
+    const start = Math.max(2, safePage - 1);
+    const end = Math.min(totalPages - 1, safePage + 1);
+    if (start > 2) pages.push(-1); // ellipsis
+    for (let i = start; i <= end; i++) pages.push(i);
+    if (end < totalPages - 1) pages.push(-1); // ellipsis
+    pages.push(totalPages);
+    return pages;
+  }, [totalPages, safePage]);
+
+  // Autocomplete suggestions
+  const autocompleteSuggestions = useMemo(() => {
+    if (searchQuery.trim().length < 2) return [];
+    const query = searchQuery.toLowerCase();
+    const matches = allPerfumes.filter(
+      (p) =>
+        p.name.toLowerCase().includes(query) ||
+        p.brand.toLowerCase().includes(query)
+    );
+    return matches.slice(0, 8);
+  }, [allPerfumes, searchQuery]);
+
+  const handleSuggestionClick = useCallback((name: string) => {
+    setSearchQuery(name);
+    setCurrentPage(1);
+    setShowAutocomplete(false);
+  }, []);
+
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const scrollToCatalog = useCallback(() => {
+    catalogRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
+  const clearSearch = useCallback(() => {
+    setSearchQuery("");
+    setCurrentPage(1);
+    setShowAutocomplete(false);
+  }, []);
+
+  const clearAllFilters = useCallback(() => {
+    setSelectedBrand("Todas");
+    setSelectedGender("Todos");
+    setSelectedNote("Todas");
+    setSelectedTime("Todos");
+    setSelectedClimate("Todos");
+    setSelectedOccasion("Todos");
+    setSearchQuery("");
+    setCurrentPage(1);
+  }, []);
+
+  const brandCounts = useMemo(() => {
+    const counts: Record<string, number> = { Todas: allPerfumes.length };
+    allPerfumes.forEach((p) => {
+      counts[p.brand] = (counts[p.brand] || 0) + 1;
+    });
+    return counts;
+  }, [allPerfumes]);
+
+  const genderCounts = useMemo(() => {
+    const counts: Record<string, number> = { Todos: allPerfumes.length };
+    allPerfumes.forEach((p) => {
+      counts[p.gender] = (counts[p.gender] || 0) + 1;
+    });
+    return counts;
+  }, [allPerfumes]);
+
+  const activeFilterCount = useMemo(() => {
+    let count = 0;
+    if (selectedBrand !== "Todas") count++;
+    if (selectedGender !== "Todos") count++;
+    if (selectedNote !== "Todas") count++;
+    if (selectedTime !== "Todos") count++;
+    if (selectedClimate !== "Todos") count++;
+    if (selectedOccasion !== "Todos") count++;
+    if (searchQuery.trim()) count++;
+    return count;
+  }, [selectedBrand, selectedGender, selectedNote, selectedTime, selectedClimate, selectedOccasion, searchQuery]);
+
+  // ─── Banned-account gate (after all hooks, to respect rules-of-hooks) ───
+  if (banned) {
+    return <BannedNotice reason={bannedReason} />;
+  }
+
+  return (
+    <div
+      ref={topRef}
+      className="min-h-screen flex flex-col bg-[#0a0a0a] relative"
+    >
+      {/* ─── Top Bar ─── */}
+      <TopBar
+        onSearch={() => {
+          scrollToCatalog();
+          setTimeout(() => {
+            const input = document.querySelector('input[placeholder="Buscar perfume o marca..."]') as HTMLInputElement;
+            input?.focus();
+          }, 500);
+        }}
+        onCompare={() => setShowCompare(true)}
+        onSimilar={() => setShowSimilar(true)}
+      />
+
+      {/* ─── HERO SECTION ─── */}
+      <header
+        className="relative overflow-hidden"
+      >
+        {/* Background aurora blobs — with parallax */}
+        <div
+          className="hero-aurora"
+        >
+          <div className="hero-aurora-blob hero-aurora-blob-1" />
+          <div className="hero-aurora-blob hero-aurora-blob-2" />
+          <div className="hero-aurora-blob hero-aurora-blob-3" />
+        </div>
+
+        {/* Background gradient */}
+        <div className="absolute inset-0 hero-gradient" />
+
+        {/* Floating gold particles — with parallax — reduced for mobile performance */}
+        <div
+          className="absolute inset-0 overflow-hidden pointer-events-none"
+        >
+          {[10, 30, 50, 70, 85, 20, 45, 65, 40, 75].map((left, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-[#d4af37]/30 rounded-full floating-particle"
+              style={{
+                left: `${left}%`,
+                animationDuration: `${8 + (i * 1.7) % 12}s`,
+                animationDelay: `${(i * 0.9) % 8}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Shimmer line decorations */}
+        <div className="absolute top-0 left-0 right-0 h-px shimmer-line" />
+        <div className="absolute bottom-0 left-0 right-0 h-px shimmer-line" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 text-center">
+          {/* Logo / Brand */}
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-flex items-center gap-2 mb-6">
+              <Sparkles className="w-5 h-5 text-[#d4af37]" />
+              <span className="text-[#d4af37] text-xs sm:text-sm tracking-[0.3em] uppercase font-[family-name:var(--font-inter)]">
+                Consultora de Perfumes Premium
+              </span>
+              <Sparkles className="w-5 h-5 text-[#d4af37]" />
+            </div>
+          </motion.div>
+
+          {/* Main title */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-5xl sm:text-7xl lg:text-8xl font-bold mb-4 font-[family-name:var(--font-playfair)]"
+          >
+            <span className="shimmer-text">Jolie</span>
+          </motion.h1>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-2xl sm:text-3xl lg:text-4xl font-light tracking-[0.15em] text-white/90 mb-6 font-[family-name:var(--font-playfair)]"
+          >
+            FRAGRANCES
+          </motion.h2>
+
+          {/* Gold divider */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mx-auto mb-6"
+          />
+
+          {/* Tagline */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="text-white/60 text-sm sm:text-base max-w-xl mx-auto font-[family-name:var(--font-inter)] leading-relaxed mb-8"
+          >
+            Descubre fragancias árabes exclusivas que reflejan tu esencia.
+            Asesoría personalizada para encontrar tu perfume ideal.
+          </motion.p>
+
+          {/* ─── Father's Day Banner (dynamic - only renders during June) ─── */}
+          <div className="mb-8">
+            <FathersDayBanner />
+          </div>
+
+          {/* Feature pills */}
+          <div
+            className="flex flex-wrap items-center justify-center gap-3 mb-8"
+          >
+            {[
+              { icon: Crown, text: "Originales" },
+              { icon: Star, text: "Premium" },
+              { icon: Heart, text: "Asesoría" },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1 + i * 0.15, type: "spring", stiffness: 200, damping: 20 }}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[rgba(212,175,55,0.15)] bg-[rgba(212,175,55,0.05)]"
+              >
+                <item.icon className="w-3.5 h-3.5 text-[#d4af37]/70" />
+                <span className="text-xs text-white/50 font-[family-name:var(--font-inter)]">
+                  {item.text}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA + Social links */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.1 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-3"
+          >
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.2 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={scrollToCatalog}
+              className="cta-shimmer px-6 py-3 rounded-full bg-gradient-to-r from-[#d4af37] to-[#b8941e] text-[#0a0a0a] font-semibold text-sm font-[family-name:var(--font-inter)] shadow-lg shadow-[#d4af37]/20"
+            >
+              Explorar Catálogo
+            </motion.button>
+            <motion.a
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.35 }}
+              href="https://www.instagram.com/jolie.fragrances.ve/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-[rgba(212,175,55,0.25)] text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-300 text-sm font-[family-name:var(--font-inter)]"
+            >
+              <Instagram className="w-4 h-4" />
+              @jolie.fragrances.ve
+            </motion.a>
+            <motion.a
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.5 }}
+              href="https://wa.me/584244055386"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] hover:bg-[#25D366]/20 transition-all duration-300 text-sm font-[family-name:var(--font-inter)]"
+            >
+              <MessageCircle className="w-4 h-4" />
+              WhatsApp
+            </motion.a>
+          </motion.div>
+        </div>
+      </header>
+
+      {/* ─── BRAND SHOWCASE ─── */}
+      <section className="relative z-10 border-y border-[rgba(212,175,55,0.08)] bg-[#080808]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3"
+          >
+            <span className="text-[10px] text-[#555] tracking-[0.2em] uppercase font-[family-name:var(--font-inter)]">
+              Marcas disponibles
+            </span>
+            {allBrands.map((brand, i) => (
+              <motion.button
+                key={brand}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                onClick={() => {
+                  handleBrandChange(brand);
+                  scrollToCatalog();
+                }}
+                className="text-sm sm:text-base font-[family-name:var(--font-playfair)] text-white/40 hover:text-[#d4af37] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+              >
+                {brand}
+              </motion.button>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── FATHER'S DAY SECTION (dynamic - only renders during June) ─── */}
+      <FathersDaySection
+        allPerfumes={allPerfumes}
+        onPerfumeSelect={(perfume) => setSelectedPerfume(perfume)}
+      />
+
+      {/* ─── COMBOS PROMOCIONALES ─── */}
+      <ComboShowcase />
+
+      {/* ─── MAIN CONTENT ─── */}
+      <main ref={catalogRef} className="flex-1 relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 w-full">
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, type: "spring", stiffness: 100, damping: 20 }}
+          className="mb-8 text-center"
+        >
+          <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-playfair)] text-white mb-2">
+            Nuestro Catálogo
+          </h2>
+          <p className="text-sm text-white/40 font-[family-name:var(--font-inter)]">
+            Explora nuestra colección de fragancias árabes premium
+          </p>
+        </motion.div>
+
+        {/* Search bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-6 relative max-w-2xl mx-auto"
+          ref={searchRef}
+        >
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#d4af37]/50" />
+            <input
+              type="text"
+              placeholder="Buscar perfume o marca..."
+              value={searchQuery}
+              onChange={(e) => {
+                handleSearchChange(e.target.value);
+                setShowAutocomplete(true);
+              }}
+              onFocus={() => setShowAutocomplete(true)}
+              className="w-full pl-12 pr-24 py-3.5 bg-[#111111] border border-[rgba(212,175,55,0.15)] rounded-xl text-white placeholder:text-[#555] focus:border-[#d4af37]/40 focus:ring-1 focus:ring-[#d4af37]/20 transition-all duration-300 outline-none font-[family-name:var(--font-inter)] text-sm"
+            />
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+              {searchQuery && (
+                <button
+                  onClick={clearSearch}
+                  className="text-[#666] hover:text-white transition-colors p-1"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+              <button
+                onClick={() => setShowCompare(true)}
+                className="flex items-center gap-1.5 text-[10px] px-2.5 py-1.5 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/20 text-[#d4af37] hover:bg-[#d4af37]/20 transition-all font-[family-name:var(--font-inter)]"
+                title="Comparar perfumes"
+              >
+                <ArrowLeftRight className="w-3 h-3" />
+                <span className="hidden sm:inline">Comparar</span>
+              </button>
+              {activeFilterCount > 0 && (
+                <button
+                  onClick={clearAllFilters}
+                  className="text-[10px] px-2.5 py-1 rounded-full bg-[#d4af37]/15 text-[#d4af37] hover:bg-[#d4af37]/25 transition-all font-[family-name:var(--font-inter)]"
+                >
+                  Limpiar ({activeFilterCount})
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Autocomplete dropdown */}
+          <AnimatePresence>
+            {showAutocomplete && autocompleteSuggestions.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-full left-0 right-0 mt-2 bg-[#111111] border border-[rgba(212,175,55,0.15)] rounded-xl overflow-hidden z-50 shadow-2xl shadow-black/50"
+              >
+                {autocompleteSuggestions.map((perfume) => (
+                  <button
+                    key={perfume.id}
+                    onClick={() => handleSuggestionClick(perfume.name)}
+                    className="autocomplete-item w-full px-4 py-3 flex items-center gap-3 text-left transition-colors duration-200"
+                  >
+                    <div className="w-10 h-10 rounded-lg overflow-hidden bg-[#0d0d0d] flex-shrink-0 border border-[rgba(212,175,55,0.1)]">
+                      <img
+                        src={getImageUrl(perfume.fragranticaId)}
+                        alt=""
+                        className="w-full h-full object-contain"
+                        loading="lazy"
+                        decoding="async"
+                        style={{ color: 'transparent' }}
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = "none";
+                        }}
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm text-white truncate font-[family-name:var(--font-inter)]">
+                        {perfume.name}
+                      </p>
+                      <p className="text-xs text-[#d4af37]/60 font-[family-name:var(--font-inter)]">
+                        {perfume.brand} • {perfume.gender}
+                      </p>
+                    </div>
+                    <ChevronDown className="w-3 h-3 text-white/20 rotate-[-90deg]" />
+                  </button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Currency toggle (full) — centered in the filter bar.
+            On mobile it sits below the search input; on desktop it floats
+            next to the search bar. Controls the SAME shared mode as the
+            compact toggles on each perfume card. */}
+        <div className="mb-4 flex justify-center">
+          <CurrencyToggle variant="full" />
+        </div>
+
+        {/* Filter toggle (mobile + desktop) */}
+        <div className="mb-4">
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-[rgba(212,175,55,0.15)] bg-[#111111] text-[#d4af37] transition-all duration-300 font-[family-name:var(--font-inter)] text-sm hover:border-[#d4af37]/30 hover:bg-[#111111]/80"
+          >
+            <Filter className="w-4 h-4" />
+            {showFilters ? "Ocultar filtros" : "Mostrar filtros"}
+            {activeFilterCount > 0 && (
+              <span className="bg-[#d4af37] text-[#0a0a0a] rounded-full w-5 h-5 flex items-center justify-center text-[10px] font-bold">
+                {activeFilterCount}
+              </span>
+            )}
+          </button>
+        </div>
+
+        {/* Filters section */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className={`mb-8 space-y-5 ${
+            showFilters ? "block" : "hidden"
+          }`}
+        >
+          {/* Brand filters */}
+          <div>
+            <h3 className="text-[10px] text-[#555] tracking-[0.2em] uppercase mb-3 font-[family-name:var(--font-inter)]">
+              Marca
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              <BrandCard
+                brand="Todas"
+                count={brandCounts.Todas}
+                isSelected={selectedBrand === "Todas"}
+                onClick={() => handleBrandChange("Todas")}
+              />
+              {allBrands.map((brand) => (
+                <BrandCard
+                  key={brand}
+                  brand={brand}
+                  count={brandCounts[brand]}
+                  isSelected={selectedBrand === brand}
+                  onClick={() => handleBrandChange(brand)}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Gender filters */}
+          <div>
+            <h3 className="text-[10px] text-[#555] tracking-[0.2em] uppercase mb-3 font-[family-name:var(--font-inter)]">
+              Género
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              <BrandCard
+                brand="Todos"
+                count={genderCounts.Todos}
+                isSelected={selectedGender === "Todos"}
+                onClick={() => handleGenderChange("Todos")}
+              />
+              {GENDERS.map((gender) => (
+                <BrandCard
+                  key={gender}
+                  brand={gender}
+                  count={genderCounts[gender]}
+                  isSelected={selectedGender === gender}
+                  onClick={() => handleGenderChange(gender)}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Note filters */}
+          <div>
+            <h3 className="text-[10px] text-[#555] tracking-[0.2em] uppercase mb-3 font-[family-name:var(--font-inter)]">
+              Nota olfativa
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => handleNoteChange("Todas")}
+                className={`filter-pill px-3.5 py-2 rounded-xl text-xs border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+                  selectedNote === "Todas"
+                    ? "active border-[#d4af37] shadow-lg shadow-[#d4af37]/10"
+                    : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+                }`}
+              >
+                Todas
+              </button>
+              {NOTES.map((note) => {
+                const info = NOTES_INFO[note];
+                const isSelected = selectedNote === note;
+                return (
+                  <button
+                    key={note}
+                    onClick={() => handleNoteChange(isSelected ? "Todas" : note)}
+                    className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+                      isSelected
+                        ? `${info.bgColor} ${info.color} ${info.borderColor} shadow-sm`
+                        : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+                    }`}
+                  >
+                    <span className="text-sm">{info.emoji}</span>
+                    {note}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Time of Day filters */}
+          <div>
+            <h3 className="text-[10px] text-[#555] tracking-[0.2em] uppercase mb-3 font-[family-name:var(--font-inter)]">
+              Momento del día
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => handleTimeChange("Todos")}
+                className={`filter-pill px-3.5 py-2 rounded-xl text-xs border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+                  selectedTime === "Todos"
+                    ? "active border-[#d4af37] shadow-lg shadow-[#d4af37]/10"
+                    : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+                }`}
+              >
+                Todos
+              </button>
+              {TIMES_OF_DAY.map((time) => {
+                const info = TIME_INFO[time];
+                const isSelected = selectedTime === time;
+                return (
+                  <button
+                    key={time}
+                    onClick={() => handleTimeChange(isSelected ? "Todos" : time)}
+                    className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+                      isSelected
+                        ? `${info.bgColor} ${info.color} ${info.borderColor} shadow-sm`
+                        : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+                    }`}
+                  >
+                    <span className="text-sm">{info.emoji}</span>
+                    {time}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Climate filters */}
+          <div>
+            <h3 className="text-[10px] text-[#555] tracking-[0.2em] uppercase mb-3 font-[family-name:var(--font-inter)]">
+              Clima ideal
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => handleClimateChange("Todos")}
+                className={`filter-pill px-3.5 py-2 rounded-xl text-xs border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+                  selectedClimate === "Todos"
+                    ? "active border-[#d4af37] shadow-lg shadow-[#d4af37]/10"
+                    : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+                }`}
+              >
+                Todos
+              </button>
+              {CLIMATES.map((climate) => {
+                const info = CLIMATE_INFO[climate];
+                const isSelected = selectedClimate === climate;
+                return (
+                  <button
+                    key={climate}
+                    onClick={() => handleClimateChange(isSelected ? "Todos" : climate)}
+                    className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+                      isSelected
+                        ? `${info.bgColor} ${info.color} ${info.borderColor} shadow-sm`
+                        : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+                    }`}
+                  >
+                    <span className="text-sm">{info.emoji}</span>
+                    {climate}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Occasion filters */}
+          <div>
+            <h3 className="text-[10px] text-[#555] tracking-[0.2em] uppercase mb-3 font-[family-name:var(--font-inter)]">
+              Ocasión
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => handleOccasionChange("Todos")}
+                className={`filter-pill px-3.5 py-2 rounded-xl text-xs border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+                  selectedOccasion === "Todos"
+                    ? "active border-[#d4af37] shadow-lg shadow-[#d4af37]/10"
+                    : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+                }`}
+              >
+                Todos
+              </button>
+              {OCCASIONS.map((occasion) => {
+                const info = OCCASION_INFO[occasion];
+                const isSelected = selectedOccasion === occasion;
+                return (
+                  <button
+                    key={occasion}
+                    onClick={() => handleOccasionChange(isSelected ? "Todos" : occasion)}
+                    className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs border transition-all duration-300 font-[family-name:var(--font-inter)] whitespace-nowrap hover:scale-[1.03] active:scale-[0.97] ${
+                      isSelected
+                        ? `${info.bgColor} ${info.color} ${info.borderColor} shadow-sm`
+                        : "border-[rgba(212,175,55,0.15)] text-white/60 hover:border-[#d4af37]/40 hover:text-white/90 bg-[#111111]/50"
+                    }`}
+                  >
+                    <span className="text-sm">{info.emoji}</span>
+                    {occasion}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Results count + Filter actions */}
+        <div className="mb-4 flex items-center justify-between flex-wrap gap-3">
+          <p className="text-sm text-[#666] font-[family-name:var(--font-inter)]">
+            {isLoading ? (
+              <span className="text-white/30">Cargando perfumes...</span>
+            ) : (
+              <>
+                <span className="text-[#d4af37] font-semibold">
+                  {filteredPerfumes.length}
+                </span>{" "}
+                {filteredPerfumes.length === 1 ? "perfume encontrado" : "perfumes encontrados"}
+              </>
+            )}
+          </p>
+          <div className="flex items-center gap-2">
+            {(selectedBrand !== "Todas" ||
+              selectedGender !== "Todos" ||
+              searchQuery) && (
+              <button
+                onClick={clearAllFilters}
+                className="text-xs text-[#d4af37]/60 hover:text-[#d4af37] transition-colors font-[family-name:var(--font-inter)]"
+              >
+                Limpiar filtros
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* ─── Top Pagination Bar ─── */}
+        {!isLoading && totalPages > 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="mb-6"
+          >
+            <div className="relative rounded-2xl border border-[rgba(212,175,55,0.10)] bg-[#0d0d0d]/95 overflow-hidden">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
+              <div className="px-4 sm:px-6 py-3 flex items-center justify-center gap-2 sm:gap-3">
+                <button
+                  onClick={() => goToPage(Math.max(1, safePage - 1))}
+                  disabled={safePage === 1}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111]/60 text-white/45 hover:text-[#d4af37] hover:border-[#d4af37]/30 hover:bg-[#111111] disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:text-white/45 disabled:hover:border-[rgba(212,175,55,0.12)] disabled:hover:bg-[#111111]/60 transition-all duration-300 font-[family-name:var(--font-inter)] text-xs"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Anterior</span>
+                </button>
+                <div className="flex items-center gap-1">
+                  {visiblePages.map((page, i) =>
+                    page === -1 ? (
+                      <span
+                        key={`top-ellipsis-${i}`}
+                        className="w-7 h-9 flex items-center justify-center text-white/15 text-[10px] font-[family-name:var(--font-inter)] tracking-wider"
+                      >
+                        ···
+                      </span>
+                    ) : (
+                      <button
+                        key={`top-${page}`}
+                        onClick={() => goToPage(page)}
+                        className={`relative min-w-[2.25rem] h-9 flex items-center justify-center rounded-xl text-xs font-semibold transition-all duration-300 font-[family-name:var(--font-inter)] ${
+                          safePage === page
+                            ? "bg-gradient-to-br from-[#d4af37] via-[#c9a430] to-[#b8941e] text-[#0a0a0a] shadow-lg shadow-[#d4af37]/25 scale-105"
+                            : "border border-[rgba(212,175,55,0.08)] bg-[#111111]/40 text-white/40 hover:text-[#d4af37] hover:border-[#d4af37]/25 hover:bg-[#111111]/80"
+                        }`}
+                      >
+                        {safePage === page && (
+                          <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
+                        )}
+                        <span className="relative">{page}</span>
+                      </button>
+                    )
+                  )}
+                </div>
+                <button
+                  onClick={() => goToPage(Math.min(totalPages, safePage + 1))}
+                  disabled={safePage === totalPages}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111]/60 text-white/45 hover:text-[#d4af37] hover:border-[#d4af37]/30 hover:bg-[#111111] disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:text-white/45 disabled:hover:border-[rgba(212,175,55,0.12)] disabled:hover:bg-[#111111]/60 transition-all duration-300 font-[family-name:var(--font-inter)] text-xs"
+                >
+                  <span className="hidden sm:inline">Siguiente</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
+            </div>
+          </motion.div>
+        )}
+
+        {/* Loading skeleton grid */}
+        {isLoading && (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
+            {Array.from({ length: 20 }).map((_, i) => (
+              <SkeletonCard key={i} index={i} />
+            ))}
+          </div>
+        )}
+
+        {/* Perfume grid */}
+        <AnimatePresence mode="wait">
+          {!isLoading && (
+            <motion.div
+              key={`${selectedBrand}-${selectedGender}-${selectedNote}-${safePage}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5"
+            >
+              {paginatedPerfumes.map((perfume, index) => (
+                <PerfumeCard
+                  key={perfume.id}
+                  perfume={perfume}
+                  index={index}
+                  onSelect={() => setSelectedPerfume(perfume)}
+                  retailPrice={getPrice(perfume.id)}
+                  dbAvailable={isAvailable(perfume.id)}
+                  temporalDiscountPct={getTemporalDiscount(perfume.id)}
+                  temporalDiscountLabel={getTemporalDiscountLabel(perfume.id)}
+                  highestAvailableDiscountPct={highestAvailableDiscountPct}
+                  onAddToCart={(p, price) => { addPerfume(p, price); openCartDrawer(); }}
+                />
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ─── Bottom Pagination Bar ─── */}
+        {!isLoading && totalPages > 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="mt-10"
+          >
+            <p className="text-center text-xs text-white/25 font-[family-name:var(--font-inter)] mb-3">
+              Mostrando {(safePage - 1) * PERFUMES_PER_PAGE + 1}–{Math.min(safePage * PERFUMES_PER_PAGE, filteredPerfumes.length)} de {filteredPerfumes.length} perfumes
+            </p>
+            <div className="relative rounded-2xl border border-[rgba(212,175,55,0.10)] bg-[#0d0d0d]/95 overflow-hidden">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
+              <div className="px-4 sm:px-6 py-3 flex items-center justify-center gap-2 sm:gap-3">
+                {totalPages > 3 && (
+                  <button
+                    onClick={() => goToPage(1)}
+                    disabled={safePage === 1}
+                    className="flex items-center gap-1 px-2.5 py-2 rounded-xl border border-[rgba(212,175,55,0.10)] bg-[#111111]/40 text-white/30 hover:text-[#d4af37]/70 hover:border-[#d4af37]/20 disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-300 font-[family-name:var(--font-inter)] text-[10px] tracking-wider uppercase"
+                  >
+                    <ChevronLeft className="w-3 h-3" />
+                    <ChevronLeft className="w-3 h-3 -ml-2" />
+                  </button>
+                )}
+                <button
+                  onClick={() => goToPage(Math.max(1, safePage - 1))}
+                  disabled={safePage === 1}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111]/60 text-white/45 hover:text-[#d4af37] hover:border-[#d4af37]/30 hover:bg-[#111111] disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:text-white/45 disabled:hover:border-[rgba(212,175,55,0.12)] disabled:hover:bg-[#111111]/60 transition-all duration-300 font-[family-name:var(--font-inter)] text-xs"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Anterior</span>
+                </button>
+                <div className="flex items-center gap-1">
+                  {visiblePages.map((page, i) =>
+                    page === -1 ? (
+                      <span
+                        key={`bottom-ellipsis-${i}`}
+                        className="w-7 h-9 flex items-center justify-center text-white/15 text-[10px] font-[family-name:var(--font-inter)] tracking-wider"
+                      >
+                        ···
+                      </span>
+                    ) : (
+                      <button
+                        key={`bottom-${page}`}
+                        onClick={() => goToPage(page)}
+                        className={`relative min-w-[2.25rem] h-9 flex items-center justify-center rounded-xl text-xs font-semibold transition-all duration-300 font-[family-name:var(--font-inter)] ${
+                          safePage === page
+                            ? "bg-gradient-to-br from-[#d4af37] via-[#c9a430] to-[#b8941e] text-[#0a0a0a] shadow-lg shadow-[#d4af37]/25 scale-105"
+                            : "border border-[rgba(212,175,55,0.08)] bg-[#111111]/40 text-white/40 hover:text-[#d4af37] hover:border-[#d4af37]/25 hover:bg-[#111111]/80"
+                        }`}
+                      >
+                        {safePage === page && (
+                          <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
+                        )}
+                        <span className="relative">{page}</span>
+                      </button>
+                    )
+                  )}
+                </div>
+                <button
+                  onClick={() => goToPage(Math.min(totalPages, safePage + 1))}
+                  disabled={safePage === totalPages}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111]/60 text-white/45 hover:text-[#d4af37] hover:border-[#d4af37]/30 hover:bg-[#111111] disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:text-white/45 disabled:hover:border-[rgba(212,175,55,0.12)] disabled:hover:bg-[#111111]/60 transition-all duration-300 font-[family-name:var(--font-inter)] text-xs"
+                >
+                  <span className="hidden sm:inline">Siguiente</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+                {totalPages > 3 && (
+                  <button
+                    onClick={() => goToPage(totalPages)}
+                    disabled={safePage === totalPages}
+                    className="flex items-center gap-1 px-2.5 py-2 rounded-xl border border-[rgba(212,175,55,0.10)] bg-[#111111]/40 text-white/30 hover:text-[#d4af37]/70 hover:border-[#d4af37]/20 disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-300 font-[family-name:var(--font-inter)] text-[10px] tracking-wider uppercase"
+                  >
+                    <ChevronRight className="w-3 h-3" />
+                    <ChevronRight className="w-3 h-3 -ml-2" />
+                  </button>
+                )}
+              </div>
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent" />
+            </div>
+          </motion.div>
+        )}
+
+        {/* Empty state */}
+        {!isLoading && filteredPerfumes.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-20"
+          >
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <Sparkles className="w-16 h-16 text-[#d4af37]/20 mx-auto mb-6" />
+            </motion.div>
+            <p className="text-white/40 text-xl font-[family-name:var(--font-playfair)] mb-2">
+              No se encontraron perfumes
+            </p>
+            <p className="text-[#555] text-sm mb-6 font-[family-name:var(--font-inter)]">
+              Intenta ajustar los filtros o buscar otro término
+            </p>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={clearAllFilters}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-[#d4af37]/25 text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-300 text-sm font-[family-name:var(--font-inter)]"
+            >
+              Ver todos los perfumes
+            </motion.button>
+          </motion.div>
+        )}
+      </main>
+
+      {/* ─── CTA SECTION ─── */}
+      <section className="relative z-10 border-t border-[rgba(212,175,55,0.08)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <Crown className="w-10 h-10 text-[#d4af37]/40 mx-auto mb-4" />
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-playfair)] text-white mb-3">
+              ¿No encuentras tu fragancia ideal?
+            </h2>
+            <p className="text-white/40 text-sm sm:text-base max-w-lg mx-auto font-[family-name:var(--font-inter)] mb-8 leading-relaxed">
+              Contáctanos por WhatsApp y recibe asesoría personalizada.
+              Te ayudamos a encontrar el perfume perfecto para ti o para regalar.
+            </p>
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://wa.me/584244055386"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#25D366] text-white font-semibold text-sm font-[family-name:var(--font-inter)] shadow-lg shadow-[#25D366]/20 hover:shadow-[#25D366]/30 transition-shadow duration-300"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Consultar por WhatsApp
+            </motion.a>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── OTRAS MARCAS (PRÓXIMAMENTE) ─── */}
+      <section className="relative z-10 border-t border-[rgba(212,175,55,0.08)] bg-[#080808]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10"
+          >
+            <div className="inline-flex items-center gap-2 mb-4">
+              <Clock className="w-4 h-4 text-[#d4af37]/60" />
+              <span className="text-[10px] text-[#d4af37]/60 tracking-[0.25em] uppercase font-[family-name:var(--font-inter)]">
+                Próximamente
+              </span>
+              <Clock className="w-4 h-4 text-[#d4af37]/60" />
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-playfair)] text-white mb-2">
+              Otras Marcas
+            </h2>
+            <p className="text-white/35 text-sm max-w-md mx-auto font-[family-name:var(--font-inter)] leading-relaxed">
+              Estamos expandiendo nuestro catálogo. Estas marcas llegarán pronto a Jolie Fragrances.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
+            {[
+              {
+                name: "Valentino",
+                subtitle: "Alta Costura Italiana",
+                accent: "from-red-500/10 to-red-900/5",
+                border: "border-red-500/15",
+                hoverBorder: "hover:border-red-500/35",
+                icon: "◆",
+              },
+              {
+                name: "Jean Paul Gaultier",
+                subtitle: "Rebeldía Francesa",
+                accent: "from-blue-500/10 to-indigo-900/5",
+                border: "border-blue-500/15",
+                hoverBorder: "hover:border-blue-500/35",
+                icon: "⛵",
+              },
+              {
+                name: "Dior",
+                subtitle: "Luxe Français",
+                accent: "from-gray-300/10 to-gray-600/5",
+                border: "border-gray-400/15",
+                hoverBorder: "hover:border-gray-400/35",
+                icon: "✦",
+              },
+              {
+                name: "Prada",
+                subtitle: "Elegancia Milanesa",
+                accent: "from-emerald-500/10 to-emerald-900/5",
+                border: "border-emerald-500/15",
+                hoverBorder: "hover:border-emerald-500/35",
+                icon: "▲",
+              },
+              {
+                name: "Carolina Herrera",
+                subtitle: "Glamour Venezolano",
+                accent: "from-amber-500/10 to-amber-900/5",
+                border: "border-amber-500/15",
+                hoverBorder: "hover:border-amber-500/35",
+                icon: "◈",
+              },
+            ].map((brand, i) => (
+              <motion.div
+                key={brand.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className={`group relative rounded-xl border ${brand.border} ${brand.hoverBorder} bg-gradient-to-b ${brand.accent} transition-all duration-500 hover:scale-[1.03] hover:shadow-lg hover:shadow-black/30 overflow-hidden`}
+              >
+                {/* Subtle shimmer on top */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="p-5 sm:p-6 text-center flex flex-col items-center gap-3">
+                  {/* Decorative icon */}
+                  <div className="text-2xl sm:text-3xl text-white/15 group-hover:text-white/25 transition-colors duration-500">
+                    {brand.icon}
+                  </div>
+
+                  {/* Brand name */}
+                  <h3 className="text-sm sm:text-base font-semibold font-[family-name:var(--font-playfair)] text-white/80 group-hover:text-white transition-colors duration-300 leading-tight">
+                    {brand.name}
+                  </h3>
+
+                  {/* Subtitle */}
+                  <p className="text-[10px] sm:text-xs text-white/25 font-[family-name:var(--font-inter)] tracking-wider">
+                    {brand.subtitle}
+                  </p>
+
+                  {/* Coming soon badge */}
+                  <div className="mt-1 inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#d4af37]/15 bg-[#d4af37]/5">
+                    <Clock className="w-3 h-3 text-[#d4af37]/50" />
+                    <span className="text-[9px] sm:text-[10px] text-[#d4af37]/60 font-[family-name:var(--font-inter)] tracking-wider uppercase">
+                      Próximamente
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom decorative line */}
+          <div className="mt-10 flex items-center justify-center gap-4">
+            <div className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent to-[#d4af37]/15" />
+            <Sparkles className="w-4 h-4 text-[#d4af37]/20" />
+            <div className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent to-[#d4af37]/15" />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FOOTER ─── */}
+      <ScrollRevealDiv>
+      <footer className="relative z-10 border-t border-[rgba(212,175,55,0.1)] bg-[#060606] mt-auto">
+        <div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            {/* Brand */}
+            <div className="text-center md:text-left">
+              <h3 className="text-2xl font-bold font-[family-name:var(--font-playfair)] shimmer-text inline-block">
+                Jolie Fragrances
+              </h3>
+              <p className="text-[#666] text-sm mt-2 font-[family-name:var(--font-inter)]">
+                Tu consultora de perfumes premium en Venezuela
+              </p>
+            </div>
+
+            {/* Social links */}
+            <div className="flex items-center justify-center gap-3">
+              <a
+                href="https://www.instagram.com/jolie.fragrances.ve/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(212,175,55,0.15)] text-white/60 hover:text-[#d4af37] hover:border-[#d4af37]/40 transition-all duration-300 text-sm font-[family-name:var(--font-inter)]"
+              >
+                <Instagram className="w-4 h-4" />
+                <span className="hidden sm:inline">Instagram</span>
+              </a>
+              <a
+                href="https://wa.me/584244055386"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#25D366]/8 border border-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/15 transition-all duration-300 text-sm font-[family-name:var(--font-inter)]"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span className="hidden sm:inline">WhatsApp</span>
+              </a>
+            </div>
+
+            {/* Contact info */}
+            <div className="text-center md:text-right">
+              <div className="flex items-center justify-center md:justify-end gap-2 text-[#666] text-sm font-[family-name:var(--font-inter)]">
+                <Phone className="w-4 h-4" />
+                <span>+58 424-4055386</span>
+              </div>
+              <p className="text-[#444] text-xs mt-2 font-[family-name:var(--font-inter)]">
+                Asesoría personalizada • Envíos a todo el país
+              </p>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="mt-8 pt-6 border-t border-[rgba(212,175,55,0.06)] text-center">
+            <p className="text-[#444] text-xs font-[family-name:var(--font-inter)]">
+              © {new Date().getFullYear()} Jolie Fragrances. Todos los derechos
+              reservados. Las imágenes pertenecen a Fragrantica.
+            </p>
+          </div>
+        </div>
+      </footer>
+      </ScrollRevealDiv>
+
+      {/* ─── FLOATING WHATSAPP BUTTON ─── */}
+      <a
+        href="https://wa.me/584244055386"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white rounded-full p-4 shadow-lg whatsapp-pulse hover:scale-110 transition-transform duration-300"
+        aria-label="Contactar por WhatsApp"
+      >
+        <MessageCircle className="w-6 h-6" />
+      </a>
+
+      {/* ─── SCROLL TO TOP BUTTON ─── */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.85 }}
+            onClick={scrollToTop}
+            className="fixed bottom-6 left-6 z-50 bg-gradient-to-r from-[#d4af37] to-[#b8941e] text-[#0a0a0a] rounded-full p-3 shadow-lg shadow-[#d4af37]/30 hover:shadow-[#d4af37]/40 transition-shadow duration-300"
+            aria-label="Volver arriba"
+          >
+            <ChevronUp className="w-5 h-5" />
+          </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* ─── PERFUME DETAIL OVERLAY ─── */}
+      <AnimatePresence>
+        {selectedPerfume && (
+          <PerfumeDetail
+            key={selectedPerfume.id}
+            perfume={selectedPerfume}
+            isFavorited={false}
+            isLoggedIn={false}
+            onClose={() => { setSelectedPerfume(null); setPerfumeBackStack([]); }}
+            onToggleFavorite={() => {}}
+            onNavigateToPerfume={(p) => {
+              // Push current perfume to back stack, then navigate to new one
+              setPerfumeBackStack(prev => [...prev, selectedPerfume]);
+              setSelectedPerfume(p);
+            }}
+            returnLabel={perfumeBackStack.length > 0 ? (perfumeBackStack[perfumeBackStack.length - 1].name.length > 22 ? perfumeBackStack[perfumeBackStack.length - 1].name.slice(0, 22) + '…' : perfumeBackStack[perfumeBackStack.length - 1].name) : undefined}
+            onReturn={perfumeBackStack.length > 0 ? () => {
+              const prev = [...perfumeBackStack];
+              const lastPerfume = prev.pop()!;
+              setPerfumeBackStack(prev);
+              setSelectedPerfume(lastPerfume);
+            } : undefined}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* ─── PERFUME DETAIL FROM COMPARISON ─── */}
+      <AnimatePresence>
+        {compareViewPerfume && (
+          <PerfumeDetail
+            key={`compare-${compareViewPerfume.id}`}
+            perfume={compareViewPerfume}
+            isFavorited={false}
+            isLoggedIn={false}
+            onClose={() => { setCompareViewPerfume(null); setCompareBackStack([]); }}
+            onToggleFavorite={() => {}}
+            onNavigateToPerfume={(p) => {
+              // Push current perfume to compare back stack, then navigate
+              setCompareBackStack(prev => [...prev, compareViewPerfume]);
+              setCompareViewPerfume(p);
+            }}
+            returnLabel={compareBackStack.length > 0
+              ? (compareBackStack[compareBackStack.length - 1].name.length > 22
+                ? compareBackStack[compareBackStack.length - 1].name.slice(0, 22) + '…'
+                : compareBackStack[compareBackStack.length - 1].name)
+              : "Volver a comparación"}
+            onReturn={compareBackStack.length > 0
+              ? () => {
+                  const prev = [...compareBackStack];
+                  const lastPerfume = prev.pop()!;
+                  setCompareBackStack(prev);
+                  setCompareViewPerfume(lastPerfume);
+                }
+              : () => setCompareViewPerfume(null)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* ─── COMPARE MODAL ─── */}
+      <CompareModal
+        isOpen={showCompare}
+        onClose={() => setShowCompare(false)}
+        perfumes={allPerfumes}
+        initialPerfume1={null}
+        onViewPerfume={(perfume) => setCompareViewPerfume(perfume)}
+      />
+
+      {/* ─── PERFUME DETAIL FROM SIMILAR PERFUMES MODAL ─── */}
+      <AnimatePresence>
+        {similarViewPerfume && (
+          <PerfumeDetail
+            key={`similar-${similarViewPerfume.id}`}
+            perfume={similarViewPerfume}
+            isFavorited={false}
+            isLoggedIn={false}
+            onClose={() => { setSimilarViewPerfume(null); setSimilarBackStack([]); }}
+            onToggleFavorite={() => {}}
+            onNavigateToPerfume={(p) => {
+              // Push current perfume to similar back stack, then navigate
+              setSimilarBackStack(prev => [...prev, similarViewPerfume]);
+              setSimilarViewPerfume(p);
+            }}
+            returnLabel={similarBackStack.length > 0
+              ? (similarBackStack[similarBackStack.length - 1].name.length > 22
+                ? similarBackStack[similarBackStack.length - 1].name.slice(0, 22) + '…'
+                : similarBackStack[similarBackStack.length - 1].name)
+              : "Volver a similares"}
+            onReturn={similarBackStack.length > 0
+              ? () => {
+                  const prev = [...similarBackStack];
+                  const lastPerfume = prev.pop()!;
+                  setSimilarBackStack(prev);
+                  setSimilarViewPerfume(lastPerfume);
+                }
+              : () => {
+                  setSimilarViewPerfume(null);
+                  setShowSimilar(true);
+                }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* ─── SIMILAR PERFUMES MODAL ─── */}
+      <SimilarPerfumesModal
+        isOpen={showSimilar}
+        onClose={() => {
+          setShowSimilar(false);
+          setSimilarViewPerfume(null);
+          setSimilarBackStack([]);
+        }}
+        onSelectPerfume={(perfume) => {
+          setSimilarViewPerfume(perfume);
+          setSimilarBackStack([]);
+        }}
+        allPerfumes={allPerfumes}
+      />
+
+    </div>
+  );
+}

@@ -1,0 +1,74 @@
+/**
+ * Next.js 16 Proxy — Security Headers
+ *
+ * Replaces the deprecated middleware.ts convention.
+ * Adds security headers to ALL responses.
+ *
+ * @see https://nextjs.org/docs/messages/middleware-to-proxy
+ */
+
+import { NextRequest, NextResponse } from "next/server";
+
+/** Security headers applied to every response */
+const securityHeaders: Record<string, string> = {
+  "X-Content-Type-Options": "nosniff",
+  // SAMEORIGIN allows the Caddy reverse proxy iframe preview to work
+  // (DENY would break the preview panel)
+  "X-Frame-Options": "SAMEORIGIN",
+  "X-XSS-Protection": "1; mode=block",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+  "Content-Security-Policy": [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data: https://fimgs.net https://fragrantica.es https://www.fragrantica.es",
+    "font-src 'self' https://fonts.gstatic.com",
+    "connect-src 'self'",
+    "frame-ancestors 'self'",
+    "base-uri 'self'",
+    "form-action 'self'",
+  ].join("; "),
+};
+
+/** HSTS is only added in production (no self-signed cert issues in dev) */
+function getHstsHeader(): Record<string, string> {
+  if (process.env.NODE_ENV === "production") {
+    return {
+      "Strict-Transport-Security":
+        "max-age=31536000; includeSubDomains",
+    };
+  }
+  return {};
+}
+
+/**
+ * Next.js 16 proxy function — adds security headers to all responses.
+ */
+export function proxy(request: NextRequest) {
+  const response = NextResponse.next();
+
+  // Apply all security headers
+  for (const [key, value] of Object.entries(securityHeaders)) {
+    response.headers.set(key, value);
+  }
+
+  // Add HSTS in production only
+  for (const [key, value] of Object.entries(getHstsHeader())) {
+    response.headers.set(key, value);
+  }
+
+  return response;
+}
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    "/((?!_next/static|_next/image|favicon.ico).*)",
+  ],
+};
