@@ -37,10 +37,7 @@ import {
 } from "lucide-react";
 import { PerfumesTab } from "./PerfumesTab";
 import { toast } from "@/hooks/use-toast";
-
-// ─── Constants ──────────────────────────────────────────────────────────────
-
-const ADMIN_EMAIL = "joelmedina2009@gmail.com";
+import { ADMIN_EMAIL } from "@/lib/adminAuth";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 

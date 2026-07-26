@@ -24,8 +24,8 @@ import {
   Inbox, Sparkles, ArrowUpRight, ArrowDownRight,
 } from "lucide-react";
 
-// ─── Admin auth (mirror of src/lib/adminAuth.ts ADMIN_EMAIL) ───────────────
-const ADMIN_EMAIL = "joelmedina2009@gmail.com";
+import { ADMIN_EMAIL } from "@/lib/adminAuth";
+
 
 // ─── Tipos ──────────────────────────────────────────────────────────────────
 

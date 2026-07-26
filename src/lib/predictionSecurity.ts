@@ -1,7 +1,18 @@
 import crypto from "crypto";
 
-// ─── Secret key for HMAC signing (CHANGE IN PRODUCTION) ───
-const HMAC_SECRET = process.env.QR_HMAC_SECRET || "jolie-fragrances-prediction-secret-2026";
+// ─── Secret key for HMAC signing ───
+// MUST be set in Vercel environment variables. Fails loudly if missing so
+// a misconfigured deployment is caught at runtime, not silently degraded.
+function getHmacSecret(): string {
+  const secret = process.env.QR_HMAC_SECRET;
+  if (!secret) {
+    throw new Error(
+      "[predictionSecurity] QR_HMAC_SECRET env var is not set. " +
+      "Add it to your Vercel environment variables."
+    );
+  }
+  return secret;
+}
 
 /**
  * Hash an IP address with SHA-256 for privacy-compliant storage
@@ -23,7 +34,7 @@ export function hashFingerprint(fp: string): string {
  * This makes QR codes impossible to forge without the secret key
  */
 export function signPayload(payload: string): string {
-  return crypto.createHmac("sha256", HMAC_SECRET).update(payload).digest("hex").substring(0, 16);
+  return crypto.createHmac("sha256", getHmacSecret()).update(payload).digest("hex").substring(0, 16);
 }
 
 /**

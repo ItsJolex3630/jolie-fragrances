@@ -16,6 +16,7 @@ import { getFathersDayInfo, type FathersDayInfo } from "@/lib/fathersDay";
 import { useCart } from "@/context/CartContext";
 import GoogleLoginButton from "@/components/GoogleLoginButton";
 import DiscountReminder from "@/components/DiscountReminder";
+import { ADMIN_EMAIL } from "@/lib/adminAuth";
 
 interface TopBarProps {
   onSearch: () => void;
@@ -32,7 +33,6 @@ export default function TopBar({ onSearch, onCompare, onSimilar }: TopBarProps) 
 
   // Admin link is only shown when the logged-in user is the hard-coded admin.
   // We compare case-insensitively against the same constant the API uses.
-  const ADMIN_EMAIL = "joelmedina2009@gmail.com";
   const isAdmin =
     !!session?.user?.email &&
     session.user.email.trim().toLowerCase() === ADMIN_EMAIL.toLowerCase();

@@ -211,30 +211,22 @@ function saveLocalDiscounts(discounts: LocalDiscountCode[], email?: string) {
   localStorage.setItem(key, JSON.stringify(discounts));
 }
 
-// ─── Discount Code Generation (client-side HMAC via Web Crypto) ──────────────
-
+// ─── Discount Code Generation (server-side via API) ──────────────────────────
+// SECURITY: The HMAC secret must NEVER exist in client-side code.
+// This function calls a secure server endpoint that does the signing server-side.
 async function generateDiscountCode(
   email: string,
   predictionId: string,
   discountPct: number
 ): Promise<string> {
-  const timestamp = Date.now();
-  const rawPayload = `${email}:${predictionId}:${timestamp}:${discountPct}`;
-  const secret = "jolie-fragrances-prediction-secret-2026";
-  const encoder = new TextEncoder();
-  const key = await crypto.subtle.importKey(
-    "raw",
-    encoder.encode(secret),
-    { name: "HMAC", hash: "SHA-256" },
-    false,
-    ["sign"]
-  );
-  const sig = await crypto.subtle.sign("HMAC", key, encoder.encode(rawPayload));
-  const sigHex = Array.from(new Uint8Array(sig))
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("")
-    .substring(0, 16);
-  return `${rawPayload}:${sigHex}`;
+  const res = await fetch("/api/predictions/generate-code", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, predictionId, discountPct }),
+  });
+  if (!res.ok) throw new Error("No se pudo generar el código de descuento");
+  const data = await res.json();
+  return data.code as string;
 }
 
 // ─── WhatsApp Message Builder ────────────────────────────────────────────────
