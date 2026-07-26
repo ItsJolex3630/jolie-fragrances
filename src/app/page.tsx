@@ -716,8 +716,8 @@ export default function Home() {
       const params = new URLSearchParams(window.location.search);
       
       if (params.has('p')) {
-        const pVal = params.get('p') || "";
-        const found = allPerfumes.find((p) => p.perfumeSlug === pVal || p.id.toString() === pVal);
+        const pVal = (params.get('p') || "").toLowerCase();
+        const found = allPerfumes.find((p) => (p.perfumeSlug || "").toLowerCase() === pVal || p.id.toString() === pVal);
         if (found) setSelectedPerfume(found);
         else setSelectedPerfume(null);
       } else {

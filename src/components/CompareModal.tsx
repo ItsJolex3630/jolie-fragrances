@@ -314,11 +314,13 @@ export default function CompareModal({
     if (compareParam && compareParam !== "true") {
       const ids = compareParam.split(",");
       if (ids[0]) {
-        const p1 = perfumes.find(p => p.perfumeSlug === ids[0] || p.id.toString() === ids[0]);
+        const id0 = ids[0].toLowerCase();
+        const p1 = perfumes.find(p => (p.perfumeSlug || "").toLowerCase() === id0 || p.id.toString() === id0);
         if (p1) setPerfume1(p1);
       }
       if (ids[1]) {
-        const p2 = perfumes.find(p => p.perfumeSlug === ids[1] || p.id.toString() === ids[1]);
+        const id1 = ids[1].toLowerCase();
+        const p2 = perfumes.find(p => (p.perfumeSlug || "").toLowerCase() === id1 || p.id.toString() === id1);
         if (p2) setPerfume2(p2);
       }
     }
@@ -326,33 +328,30 @@ export default function CompareModal({
     hasReadUrl.current = true;
   }, [isOpen, perfumes]);
 
-  // Deep linking: update URL when selection changes
-  useEffect(() => {
+  const updateUrl = (p1: Perfume | null, p2: Perfume | null) => {
     if (typeof window === "undefined") return;
     const url = new URL(window.location.href);
-    if (isOpen) {
-      if (!hasReadUrl.current) return;
-      if (perfume1 || perfume2) {
-        const p1 = perfume1 ? (perfume1.perfumeSlug || perfume1.id.toString()) : "";
-        const p2 = perfume2 ? (perfume2.perfumeSlug || perfume2.id.toString()) : "";
-        url.searchParams.set("compare", p2 ? `${p1},${p2}` : p1);
-      } else {
-        url.searchParams.set("compare", "true");
-      }
+    if (p1 || p2) {
+      const v1 = p1 ? (p1.perfumeSlug || p1.id.toString()) : "";
+      const v2 = p2 ? (p2.perfumeSlug || p2.id.toString()) : "";
+      url.searchParams.set("compare", v2 ? `${v1},${v2}` : v1);
     } else {
-      url.searchParams.delete("compare");
-      hasReadUrl.current = false;
+      url.searchParams.set("compare", "true");
     }
     window.history.replaceState({}, "", url.toString());
-  }, [perfume1, perfume2, isOpen]);
+  };
 
-  // Update perfume1 when initialPerfume1 changes
+  // Update perfume1 when user selects
   const handleSetPerfume1 = useCallback((p: Perfume) => {
     setPerfume1(p);
-  }, []);
+    updateUrl(p, perfume2);
+  }, [perfume2]);
+  
+  // Update perfume2 when user selects
   const handleSetPerfume2 = useCallback((p: Perfume) => {
     setPerfume2(p);
-  }, []);
+    updateUrl(perfume1, p);
+  }, [perfume1]);
 
   // Compute similarity
   const similarity = useMemo(() => {
