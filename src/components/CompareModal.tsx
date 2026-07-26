@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -300,23 +300,30 @@ export default function CompareModal({
   const [perfume1, setPerfume1] = useState<Perfume | null>(initialPerfume1 ?? null);
   const [perfume2, setPerfume2] = useState<Perfume | null>(null);
 
+  const hasReadUrl = useRef(false);
+
   // Deep linking: read from URL on mount
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (!isOpen) return;
+    if (!isOpen || perfumes.length === 0) return;
+    if (hasReadUrl.current) return;
+
     const params = new URLSearchParams(window.location.search);
     const compareParam = params.get("compare");
-    if (compareParam) {
+    
+    if (compareParam && compareParam !== "true") {
       const ids = compareParam.split(",");
-      if (ids[0] && perfumes.length > 0) {
+      if (ids[0]) {
         const p1 = perfumes.find(p => p.perfumeSlug === ids[0] || p.id.toString() === ids[0]);
         if (p1) setPerfume1(p1);
       }
-      if (ids[1] && perfumes.length > 0) {
+      if (ids[1]) {
         const p2 = perfumes.find(p => p.perfumeSlug === ids[1] || p.id.toString() === ids[1]);
         if (p2) setPerfume2(p2);
       }
     }
+    
+    hasReadUrl.current = true;
   }, [isOpen, perfumes]);
 
   // Deep linking: update URL when selection changes
@@ -324,15 +331,17 @@ export default function CompareModal({
     if (typeof window === "undefined") return;
     const url = new URL(window.location.href);
     if (isOpen) {
+      if (!hasReadUrl.current) return;
       if (perfume1 || perfume2) {
         const p1 = perfume1 ? (perfume1.perfumeSlug || perfume1.id.toString()) : "";
         const p2 = perfume2 ? (perfume2.perfumeSlug || perfume2.id.toString()) : "";
         url.searchParams.set("compare", p2 ? `${p1},${p2}` : p1);
       } else {
-        url.searchParams.set("compare", "");
+        url.searchParams.set("compare", "true");
       }
     } else {
       url.searchParams.delete("compare");
+      hasReadUrl.current = false;
     }
     window.history.replaceState({}, "", url.toString());
   }, [perfume1, perfume2, isOpen]);

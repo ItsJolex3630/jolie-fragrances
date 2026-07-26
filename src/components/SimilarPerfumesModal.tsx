@@ -170,13 +170,17 @@ export default function SimilarPerfumesModal({
     return findSimilarPerfumes(selectedTarget, allPerfumes, 8);
   }, [selectedTarget, allPerfumes]);
 
+  const hasReadUrl = useRef(false);
+
   // Deep linking: read from URL on mount / open
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (!isOpen) return;
+    if (!isOpen || allPerfumes.length === 0) return;
+    if (hasReadUrl.current) return;
+
     const params = new URLSearchParams(window.location.search);
     const similarParam = params.get("similar");
-    if (similarParam && similarParam !== "true" && allPerfumes.length > 0) {
+    if (similarParam && similarParam !== "true") {
       const found = allPerfumes.find(
         (p) => p.perfumeSlug === similarParam || p.id.toString() === similarParam
       );
@@ -185,6 +189,7 @@ export default function SimilarPerfumesModal({
         setSearchQuery(found.name);
       }
     }
+    hasReadUrl.current = true;
   }, [isOpen, allPerfumes]);
 
   // Deep linking: update URL when selectedTarget changes
@@ -192,6 +197,7 @@ export default function SimilarPerfumesModal({
     if (typeof window === "undefined") return;
     const url = new URL(window.location.href);
     if (isOpen) {
+      if (!hasReadUrl.current) return;
       if (selectedTarget) {
         const val = selectedTarget.perfumeSlug || selectedTarget.id.toString();
         url.searchParams.set("similar", val);
@@ -200,6 +206,7 @@ export default function SimilarPerfumesModal({
       }
     } else {
       url.searchParams.delete("similar");
+      hasReadUrl.current = false;
     }
     window.history.replaceState({}, "", url.toString());
   }, [selectedTarget, isOpen]);
