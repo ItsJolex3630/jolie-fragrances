@@ -104,7 +104,7 @@ interface AdminPrediction {
   createdAt: string;
 }
 
-type Tab = "users" | "stats" | "predictions" | "catalog" | "perfumes";
+type Tab = "users" | "stats" | "perfumes";
 
 // ─── Catalog types ──────────────────────────────────────────────────────────
 // Mirrors PerfumeCatalogRow from src/lib/dbClient.ts. Defined here so the
@@ -545,22 +545,10 @@ export default function AdminPage() {
             label="Estadísticas"
           />
           <TabButton
-            active={tab === "predictions"}
-            onClick={() => setTab("predictions")}
-            icon={<Trophy className="w-4 h-4" />}
-            label="Predicciones"
-          />
-          <TabButton
-            active={tab === "catalog"}
-            onClick={() => setTab("catalog")}
-            icon={<Package className="w-4 h-4" />}
-            label="Catálogo"
-          />
-          <TabButton
             active={tab === "perfumes"}
             onClick={() => setTab("perfumes")}
-            icon={<FlaskConical className="w-4 h-4" />}
-            label="Perfumes"
+            icon={<Package className="w-4 h-4" />}
+            label="Catálogo"
           />
         </div>
 
@@ -580,35 +568,9 @@ export default function AdminPage() {
           />
         ) : tab === "stats" ? (
           <StatsTab stats={stats} loading={statsLoading} onRetry={loadStats} />
-        ) : tab === "catalog" ? (
-          <CatalogTab
-            items={catalog}
-            stats={catalogStats}
-            loading={catalogLoading}
-            error={catalogError}
-            search={catalogSearch}
-            onSearch={setCatalogSearch}
-            brand={catalogBrand}
-            onBrand={setCatalogBrand}
-            syncing={catalogSyncing}
-            onSync={handleCatalogSync}
-            onRetry={loadCatalog}
-            onUpdateItem={updateCatalogItem}
-            onBulkUpdate={bulkUpdateCatalog}
-          />
         ) : tab === "perfumes" ? (
           <PerfumesTab />
-        ) : (
-          <PredictionsTab
-            predictions={filteredPredictions}
-            allCount={predictions.length}
-            loading={predictionsLoading}
-            error={predictionsError}
-            search={predSearch}
-            onSearch={setPredSearch}
-            onRetry={loadPredictions}
-          />
-        )}
+        ) : null}
       </main>
     </div>
   );

@@ -220,6 +220,14 @@ export async function POST(req: NextRequest) {
     // ── Pick a new perfumeId ──
     const perfumeId = await nextPerfumeId();
 
+    // ── Validate discounts ──
+    const temporalDiscountPct =
+      typeof body.temporalDiscountPct === "number" ? Math.round(body.temporalDiscountPct) : 0;
+    const temporalDiscountLabel =
+      typeof body.temporalDiscountLabel === "string" && body.temporalDiscountLabel.trim()
+        ? body.temporalDiscountLabel.trim()
+        : null;
+
     // ── Insert ──
     const created = await rawDb.perfumeCatalog.create({
       perfumeId,
@@ -227,8 +235,8 @@ export async function POST(req: NextRequest) {
       brand,
       price,
       available,
-      temporalDiscountPct: 0,
-      temporalDiscountLabel: null,
+      temporalDiscountPct,
+      temporalDiscountLabel,
       notes,
       gender,
       size,

@@ -661,6 +661,78 @@ export default function Home() {
     });
   }, [perfumeDetails, allPerfumes]);
 
+  // ─── URL Deep Linking (Sync state with URL params) ───
+  const updateUrlParams = useCallback((updates: Record<string, string | null>) => {
+    const params = new URLSearchParams(window.location.search);
+    let changed = false;
+    for (const [key, value] of Object.entries(updates)) {
+      if (value === null) {
+        if (params.has(key)) {
+          params.delete(key);
+          changed = true;
+        }
+      } else {
+        if (params.get(key) !== value) {
+          params.set(key, value);
+          changed = true;
+        }
+      }
+    }
+    if (changed) {
+      const newUrl = params.toString() ? `?${params.toString()}` : window.location.pathname;
+      window.history.pushState(null, "", newUrl);
+    }
+  }, []);
+
+  const handleSetSelectedPerfume = useCallback((perfume: Perfume | null) => {
+    setSelectedPerfume(perfume);
+    if (perfume) {
+      const pVal = perfume.perfumeSlug || perfume.id.toString();
+      updateUrlParams({ p: pVal, compare: null, similar: null });
+    } else {
+      updateUrlParams({ p: null });
+    }
+  }, [updateUrlParams]);
+
+  const handleSetShowCompare = useCallback((show: boolean) => {
+    setShowCompare(show);
+    if (!show) {
+      updateUrlParams({ compare: null });
+    }
+  }, [updateUrlParams]);
+
+  const handleSetShowSimilar = useCallback((show: boolean) => {
+    setShowSimilar(show);
+    if (!show) {
+      updateUrlParams({ similar: null });
+    }
+  }, [updateUrlParams]);
+
+  // Sync state from URL on initial load and popstate
+  useEffect(() => {
+    if (allPerfumes.length === 0) return;
+
+    const syncFromUrl = () => {
+      const params = new URLSearchParams(window.location.search);
+      
+      if (params.has('p')) {
+        const pVal = params.get('p') || "";
+        const found = allPerfumes.find((p) => p.perfumeSlug === pVal || p.id.toString() === pVal);
+        if (found) setSelectedPerfume(found);
+        else setSelectedPerfume(null);
+      } else {
+        setSelectedPerfume(null);
+      }
+      
+      setShowCompare(params.has('compare'));
+      setShowSimilar(params.has('similar'));
+    };
+
+    syncFromUrl();
+    window.addEventListener('popstate', syncFromUrl);
+    return () => window.removeEventListener('popstate', syncFromUrl);
+  }, [allPerfumes]);
+
   // Close autocomplete on outside click
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -871,8 +943,8 @@ export default function Home() {
             input?.focus();
           }, 500);
         }}
-        onCompare={() => setShowCompare(true)}
-        onSimilar={() => setShowSimilar(true)}
+        onCompare={() => handleSetShowCompare(true)}
+        onSimilar={() => handleSetShowSimilar(true)}
       />
 
       {/* ─── HERO SECTION ─── */}
@@ -1077,7 +1149,7 @@ export default function Home() {
       {/* ─── FATHER'S DAY SECTION (dynamic - only renders during June) ─── */}
       <FathersDaySection
         allPerfumes={allPerfumes}
-        onPerfumeSelect={(perfume) => setSelectedPerfume(perfume)}
+        onPerfumeSelect={(perfume) => handleSetSelectedPerfume(perfume)}
       />
 
       {/* ─── COMBOS PROMOCIONALES ─── */}
@@ -1132,7 +1204,7 @@ export default function Home() {
                 </button>
               )}
               <button
-                onClick={() => setShowCompare(true)}
+                onClick={() => handleSetShowCompare(true)}
                 className="flex items-center gap-1.5 text-[10px] px-2.5 py-1.5 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/20 text-[#d4af37] hover:bg-[#d4af37]/20 transition-all font-[family-name:var(--font-inter)]"
                 title="Comparar perfumes"
               >
@@ -1538,7 +1610,7 @@ export default function Home() {
                   key={perfume.id}
                   perfume={perfume}
                   index={index}
-                  onSelect={() => setSelectedPerfume(perfume)}
+                  onSelect={() => handleSetSelectedPerfume(perfume)}
                   retailPrice={getPrice(perfume.id)}
                   dbAvailable={isAvailable(perfume.id)}
                   temporalDiscountPct={getTemporalDiscount(perfume.id)}
@@ -1912,19 +1984,19 @@ export default function Home() {
             perfume={selectedPerfume}
             isFavorited={false}
             isLoggedIn={false}
-            onClose={() => { setSelectedPerfume(null); setPerfumeBackStack([]); }}
+            onClose={() => { handleSetSelectedPerfume(null); setPerfumeBackStack([]); }}
             onToggleFavorite={() => {}}
             onNavigateToPerfume={(p) => {
               // Push current perfume to back stack, then navigate to new one
               setPerfumeBackStack(prev => [...prev, selectedPerfume]);
-              setSelectedPerfume(p);
+              handleSetSelectedPerfume(p);
             }}
             returnLabel={perfumeBackStack.length > 0 ? (perfumeBackStack[perfumeBackStack.length - 1].name.length > 22 ? perfumeBackStack[perfumeBackStack.length - 1].name.slice(0, 22) + '…' : perfumeBackStack[perfumeBackStack.length - 1].name) : undefined}
             onReturn={perfumeBackStack.length > 0 ? () => {
               const prev = [...perfumeBackStack];
               const lastPerfume = prev.pop()!;
               setPerfumeBackStack(prev);
-              setSelectedPerfume(lastPerfume);
+              handleSetSelectedPerfume(lastPerfume);
             } : undefined}
           />
         )}
@@ -1965,7 +2037,7 @@ export default function Home() {
       {/* ─── COMPARE MODAL ─── */}
       <CompareModal
         isOpen={showCompare}
-        onClose={() => setShowCompare(false)}
+        onClose={() => handleSetShowCompare(false)}
         perfumes={allPerfumes}
         initialPerfume1={null}
         onViewPerfume={(perfume) => setCompareViewPerfume(perfume)}
@@ -2010,7 +2082,7 @@ export default function Home() {
       <SimilarPerfumesModal
         isOpen={showSimilar}
         onClose={() => {
-          setShowSimilar(false);
+          handleSetShowSimilar(false);
           setSimilarViewPerfume(null);
           setSimilarBackStack([]);
         }}

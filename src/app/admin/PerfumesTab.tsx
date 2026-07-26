@@ -569,7 +569,14 @@ function PerfumeRow({
             {item.price !== null && (
               <>
                 <span className="text-white/20">·</span>
-                <span className="text-emerald-300/80">${item.price}</span>
+                {item.temporalDiscountPct > 0 ? (
+                  <span className="text-amber-400 font-semibold text-[10px]">
+                    ${(item.price * (1 - item.temporalDiscountPct / 100)).toFixed(2)}
+                    <span className="text-white/30 line-through ml-1">${item.price}</span>
+                  </span>
+                ) : (
+                  <span className="text-emerald-300/80">${item.price}</span>
+                )}
               </>
             )}
           </div>
@@ -672,6 +679,10 @@ function PerfumeFormModal({
     initial?.price === null || initial?.price === undefined ? "" : String(initial.price)
   );
   const [available, setAvailable] = useState<boolean>(initial?.available ?? true);
+  const [temporalDiscountPct, setTemporalDiscountPct] = useState<string>(
+    initial?.temporalDiscountPct ? String(initial.temporalDiscountPct) : ""
+  );
+  const [temporalDiscountLabel, setTemporalDiscountLabel] = useState<string>(initial?.temporalDiscountLabel || "");
   const [concentration, setConcentration] = useState<string>(initial?.concentration || "");
   const [notes, setNotes] = useState<string>(initial?.notes || "");
   const [isActive, setIsActive] = useState<boolean>(initial?.isActive ?? true);
@@ -745,6 +756,19 @@ function PerfumeFormModal({
         return;
       }
       body.price = Math.round(n * 100) / 100;
+    }
+
+    if (temporalDiscountPct.trim() === "") {
+      body.temporalDiscountPct = 0;
+      body.temporalDiscountLabel = null;
+    } else {
+      const pct = Number(temporalDiscountPct);
+      if (!Number.isInteger(pct) || pct < 0 || pct > 100) {
+        setFormError("El porcentaje de descuento debe ser un número entero entre 0 y 100.");
+        return;
+      }
+      body.temporalDiscountPct = pct;
+      body.temporalDiscountLabel = temporalDiscountLabel.trim() || null;
     }
     if (isEdit) {
       body.isActive = isActive;
@@ -993,6 +1017,39 @@ function PerfumeFormModal({
                 </button>
               )}
             </div>
+          </div>
+
+          {/* Discounts */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label className="block">
+              <span className="text-[10px] text-white/50 uppercase tracking-wider font-[family-name:var(--font-inter)] font-semibold">
+                Descuento temporal (%)
+              </span>
+              <input
+                type="number"
+                min="0"
+                max="100"
+                value={temporalDiscountPct}
+                onChange={(e) => setTemporalDiscountPct(e.target.value)}
+                placeholder="Ej: 15"
+                className="mt-1 w-full px-3 py-2 bg-[#0a0a0a] border border-[#d4af37]/15 rounded-lg text-white text-sm font-[family-name:var(--font-inter)] focus:border-[#d4af37]/50 focus:ring-1 focus:ring-[#d4af37]/20 outline-none transition-all"
+              />
+              <span className="text-[10px] text-white/40 font-[family-name:var(--font-inter)] mt-1 block">
+                Vacío o 0 para no aplicar descuento.
+              </span>
+            </label>
+            <label className="block">
+              <span className="text-[10px] text-white/50 uppercase tracking-wider font-[family-name:var(--font-inter)] font-semibold">
+                Etiqueta del descuento
+              </span>
+              <input
+                type="text"
+                value={temporalDiscountLabel}
+                onChange={(e) => setTemporalDiscountLabel(e.target.value)}
+                placeholder="Ej: Día de las Madres"
+                className="mt-1 w-full px-3 py-2 bg-[#0a0a0a] border border-[#d4af37]/15 rounded-lg text-white text-sm font-[family-name:var(--font-inter)] focus:border-[#d4af37]/50 focus:ring-1 focus:ring-[#d4af37]/20 outline-none transition-all"
+              />
+            </label>
           </div>
 
           {/* Notes */}

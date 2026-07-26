@@ -9,7 +9,6 @@ import {
   MessageCircle,
   Gift,
   ShoppingCart,
-  Trophy,
   Shield,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -134,15 +133,6 @@ export default function TopBar({ onSearch, onCompare, onSimilar }: TopBarProps) 
             <span className="hidden lg:inline text-[11px] font-[family-name:var(--font-inter)]">Comparar</span>
           </button>
 
-          {/* Predictions */}
-          <a
-            href="/predicciones"
-            className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 lg:w-auto lg:h-auto lg:gap-1.5 lg:px-3 lg:py-1.5 rounded-full bg-gradient-to-r from-[#d4af37]/15 to-[#d4af37]/5 border border-[#d4af37]/25 text-[#d4af37] hover:border-[#d4af37]/50 hover:bg-[#d4af37]/20 transition-all duration-200"
-            title="Predicciones & Descuentos"
-          >
-            <Trophy className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            <span className="hidden lg:inline text-[11px] font-[family-name:var(--font-inter)]">Predicciones</span>
-          </a>
 
           {/* Similar */}
           <button

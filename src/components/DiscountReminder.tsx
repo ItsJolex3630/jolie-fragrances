@@ -129,13 +129,6 @@ export default function DiscountReminder() {
                     qrCode={qrCodes[dc.id]}
                   />
                 ))}
-
-                <a
-                  href="/predicciones"
-                  className="block w-full text-center py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37]/15 to-[#d4af37]/5 border border-[#d4af37]/25 text-[#d4af37] text-xs font-medium hover:bg-[#d4af37]/15 transition-colors"
-                >
-                  Ver más en Predicciones →
-                </a>
               </div>
             </motion.div>
           </motion.div>

@@ -170,6 +170,40 @@ export default function SimilarPerfumesModal({
     return findSimilarPerfumes(selectedTarget, allPerfumes, 8);
   }, [selectedTarget, allPerfumes]);
 
+  // Deep linking: read from URL on mount / open
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!isOpen) return;
+    const params = new URLSearchParams(window.location.search);
+    const similarParam = params.get("similar");
+    if (similarParam && similarParam !== "true" && allPerfumes.length > 0) {
+      const found = allPerfumes.find(
+        (p) => p.perfumeSlug === similarParam || p.id.toString() === similarParam
+      );
+      if (found) {
+        setSelectedTarget(found);
+        setSearchQuery(found.name);
+      }
+    }
+  }, [isOpen, allPerfumes]);
+
+  // Deep linking: update URL when selectedTarget changes
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const url = new URL(window.location.href);
+    if (isOpen) {
+      if (selectedTarget) {
+        const val = selectedTarget.perfumeSlug || selectedTarget.id.toString();
+        url.searchParams.set("similar", val);
+      } else {
+        url.searchParams.set("similar", "true");
+      }
+    } else {
+      url.searchParams.delete("similar");
+    }
+    window.history.replaceState({}, "", url.toString());
+  }, [selectedTarget, isOpen]);
+
   const handleSelectSuggestion = useCallback((perfume: Perfume) => {
     setSelectedTarget(perfume);
     setSearchQuery(perfume.name);
