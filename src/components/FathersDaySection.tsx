@@ -149,7 +149,7 @@ export default function FathersDaySection({ allPerfumes, onPerfumeSelect }: Fath
                       const img = e.target as HTMLImageElement;
                       // Try .jpg fallback
                       if (!img.src.endsWith('.jpg')) {
-                        img.src = `https://fimgs.net/mdimg/perfume/${perfume.fragranticaId}.jpg`;
+                        img.src = `https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.${perfume.fragranticaId}.jpg`;
                       } else {
                         img.style.display = 'none';
                       }

@@ -10,7 +10,7 @@ function getAvifUrl(fragranticaId: number): string {
   return `https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.${fragranticaId}.avif`;
 }
 function getJpgUrl(fragranticaId: number): string {
-  return `https://fimgs.net/mdimg/perfume/${fragranticaId}.jpg`;
+  return `https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.${fragranticaId}.jpg`;
 }
 
 // ─── Category badge config ───
