@@ -125,7 +125,7 @@ export default function FavoritesView({
                           className="w-full h-full object-contain p-1"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
-                            target.src = `https://fimgs.net/mdimg/perfume/${perfume.fragranticaId}.jpg`;
+                            target.src = `https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.${perfume.fragranticaId}.jpg`;
                           }}
                         />
                       </div>
