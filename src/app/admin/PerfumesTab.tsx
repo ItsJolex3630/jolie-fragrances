@@ -266,7 +266,7 @@ export function PerfumesTab() {
     } catch (err) {
       console.error("[admin perfumes] toggle active error:", err);
       alert("Error de red");
-    } fontally {
+    } finally {
       setTogglingId(null);
     }
   };
@@ -836,7 +836,7 @@ function PerfumeCardItem({
             <button
               onClick={onDelete}
               disabled={busy}
-              className="p-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-300 hover:bg-rose-500/20 transition-all"
+              className="p-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-300 hover:bg-rose-500/20"
               title="Eliminar"
             >
               {busy ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Trash2 className="w-3.5 h-3.5" />}
@@ -936,7 +936,7 @@ function PerfumeTableRowItem({
               href={pageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 rounded-lg border border-white/10 bg-white/5 text-white/50 hover:text-white"
+              className="p-1.5 rounded-lg border border-white/10 bg-[#080808] text-white/50 hover:text-white"
             >
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
@@ -1184,7 +1184,7 @@ function PerfumeFormModal({
                   />
                 </div>
                 <div>
-                  <label className="block text-white/70 font-medium mb-1">Tamaño</label>
+                  <label className="block text-white/70 mb-1">Tamaño</label>
                   <input
                     type="text"
                     value={size}
