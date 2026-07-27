@@ -266,7 +266,7 @@ export function PerfumesTab() {
     } catch (err) {
       console.error("[admin perfumes] toggle active error:", err);
       alert("Error de red");
-    } finally {
+    } fontally {
       setTogglingId(null);
     }
   };
