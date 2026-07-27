@@ -3,24 +3,18 @@
 /**
  * src/app/admin/PerfumesTab.tsx
  * ─────────────────────────────────────────────────────────────────────────────
- * Admin "Perfumes" tab — full perfume & brand management.
+ * Redesigned Luxury Admin Catalog & Perfumes Management System for Jolie Fragrances.
  *
- * Lets Joel add, edit, soft-delete, and toggle visibility of perfumes
- * without touching code. New perfumes are stored in the PerfumeCatalog
- * table (id >= 10000) and merged with the static `perfumes.ts` catalog
- * at runtime by /api/prices + the storefront catalog page.
- *
- * API surface:
- *   GET    /api/admin/catalog/perfumes            → list all perfumes
- *   POST   /api/admin/catalog/perfumes            → create a new perfume
- *   PUT    /api/admin/catalog/perfumes/:id        → update a perfume
- *   DELETE /api/admin/catalog/perfumes/:id        → soft-delete (isActive=0)
- *   DELETE /api/admin/catalog/perfumes/:id?hard=1 → hard-delete (permanent)
- *
- * The form modal extracts the fragranticaId from a pasted Fragrantica URL
- * and shows a live image preview so Joel can verify the right perfume was
- * picked before saving.
+ * Implements the Stitch Design System (Onyx #0A0A0A + Metallic Gold #D4AF37):
+ * - Live Perfume Catalog metrics (Total, Active, Out of Stock, Discounted, New).
+ * - Full Search & Multi-filter bar (Brand, Gender, Availability, Discount status).
+ * - Layout View Switcher (Grid Cards vs Compact Table).
+ * - Bulk Discount Manager (apply percentage discounts across brands/genders).
+ * - Inline Discount & Stock controls.
+ * - Add/Edit Perfume Modal with automatic Fragrantica link parser & live preview.
+ * - Optimized image rendering via PerfumeImage component.
  */
+
 import { useState, useEffect, useCallback, useMemo } from "react";
 import {
   Loader2,
@@ -38,12 +32,19 @@ import {
   ExternalLink,
   Eye,
   EyeOff,
-  Save,
+  Percent,
+  Sparkles,
+  LayoutGrid,
+  List,
+  Filter,
+  Gem,
+  ArrowUpRight,
 } from "lucide-react";
+import { PerfumeImage } from "@/components/ui/PerfumeImage";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
-interface PerfumeItem {
+export interface PerfumeItem {
   id: string;
   perfumeId: number;
   name: string;
@@ -70,7 +71,6 @@ const CONCENTRATIONS = ["EDP", "EDT", "Parfum", "Elixir", "EdC", "EdF"];
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
-/** Extract the numeric Fragrantica ID from a perfume URL. */
 function extractFragranticaId(url: string): number | null {
   if (!url) return null;
   const cleaned = url.trim().split(/[?#]/)[0].replace(/\.html?$/i, "");
@@ -80,22 +80,6 @@ function extractFragranticaId(url: string): number | null {
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 
-/**
- * Build the Fragrantica image URL for a given ID. Uses the same
- * `perfume-thumbs/dark-375x500.{id}.avif` format the storefront catalog
- * uses (in src/lib/perfumes.ts → getImageUrl), so what the admin sees in
- * the preview is exactly what customers will see in the catalog.
- */
-function getImageUrl(fragranticaId: number): string {
-  return `https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.${fragranticaId}.avif`;
-}
-
-/** JPEG fallback (some older Fragrantica images don't have .avif). */
-function getImageFallbackUrl(fragranticaId: number): string {
-  return `https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.${fragranticaId}.jpg`;
-}
-
-/** Build the public Fragrantica page URL for a perfume. */
 function getFragranticaPageUrl(perfume: PerfumeItem): string | null {
   if (!perfume.fragranticaId) return null;
   const brandSlug = perfume.brandSlug || perfume.brand;
@@ -115,16 +99,22 @@ function formatDate(iso: string): string {
   }
 }
 
-// ─── Main component ─────────────────────────────────────────────────────────
+// ─── Main Component ─────────────────────────────────────────────────────────
 
 export function PerfumesTab() {
   const [items, setItems] = useState<PerfumeItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
-  const [brand, setBrand] = useState<string>("Todas");
+  const [brandFilter, setBrandFilter] = useState<string>("Todas");
+  const [genderFilter, setGenderFilter] = useState<string>("Todos");
+  const [stockFilter, setStockFilter] = useState<string>("Todos");
+  const [discountFilter, setDiscountFilter] = useState<string>("Todos");
   const [showInactive, setShowInactive] = useState(true);
+  const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
+
   const [showForm, setShowForm] = useState(false);
+  const [showBulkDiscount, setShowBulkDiscount] = useState(false);
   const [editing, setEditing] = useState<PerfumeItem | null>(null);
   const [deleting, setDeleting] = useState<PerfumeItem | null>(null);
   const [togglingId, setTogglingId] = useState<number | null>(null);
@@ -146,7 +136,7 @@ export function PerfumesTab() {
       setItems(data.items || []);
     } catch (err) {
       console.error("[admin perfumes] load error:", err);
-      setError("Error de red al cargar los perfumes");
+      setError("Error de red al cargar el catálogo");
     } finally {
       setLoading(false);
     }
@@ -156,40 +146,47 @@ export function PerfumesTab() {
     load();
   }, [load]);
 
-  // Derived: brand list from items (sorted, with "Todas" first)
+  // Derived: Brand list
   const brandList = useMemo(() => {
     const set = new Set<string>();
     items.forEach((i) => set.add(i.brand));
     return ["Todas", ...Array.from(set).sort((a, b) => a.localeCompare(b))];
   }, [items]);
 
-  // Derived: filtered list (search + brand + active filter)
+  // Derived: Filtered perfume list
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     return items.filter((i) => {
       if (!showInactive && !i.isActive) return false;
-      if (brand !== "Todas" && i.brand !== brand) return false;
+      if (brandFilter !== "Todas" && i.brand !== brandFilter) return false;
+      if (genderFilter !== "Todos" && i.gender !== genderFilter) return false;
+      if (stockFilter === "disponible" && !i.available) return false;
+      if (stockFilter === "agotado" && i.available) return false;
+      if (discountFilter === "descuento" && i.temporalDiscountPct <= 0) return false;
+      if (discountFilter === "sin_descuento" && i.temporalDiscountPct > 0) return false;
+
       if (!q) return true;
       return (
         i.name.toLowerCase().includes(q) ||
         i.brand.toLowerCase().includes(q) ||
-        String(i.perfumeId) === q
+        String(i.perfumeId) === q ||
+        (i.temporalDiscountLabel && i.temporalDiscountLabel.toLowerCase().includes(q))
       );
     });
-  }, [items, search, brand, showInactive]);
+  }, [items, search, brandFilter, genderFilter, stockFilter, discountFilter, showInactive]);
 
-  // Stats
+  // Catalog statistics
   const stats = useMemo(() => {
     const total = items.length;
     const active = items.filter((i) => i.isActive).length;
     const inactive = total - active;
+    const outOfStock = items.filter((i) => !i.available).length;
+    const discounted = items.filter((i) => i.temporalDiscountPct > 0).length;
     const newPerfumes = items.filter((i) => i.perfumeId >= 10000).length;
-    const withPrice = items.filter((i) => i.price !== null).length;
-    return { total, active, inactive, newPerfumes, withPrice };
+    return { total, active, inactive, outOfStock, discounted, newPerfumes };
   }, [items]);
 
-  // ── Handlers ──
-
+  // Handlers
   const handleAdd = () => {
     setEditing(null);
     setShowForm(true);
@@ -203,7 +200,7 @@ export function PerfumesTab() {
   const handleSaved = (item: PerfumeItem) => {
     setItems((prev) => {
       const idx = prev.findIndex((p) => p.perfumeId === item.perfumeId);
-      if (idx === -1) return [...prev, item];
+      if (idx === -1) return [item, ...prev];
       const next = [...prev];
       next[idx] = item;
       return next;
@@ -226,13 +223,12 @@ export function PerfumesTab() {
       const res = await fetch(url, { method: "DELETE" });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        alert(data.error || "Error al eliminar");
+        alert(data.error || "Error al eliminar perfume");
         return;
       }
       if (hard) {
         setItems((prev) => prev.filter((p) => p.perfumeId !== deleting.perfumeId));
       } else {
-        // Soft delete — update isActive locally
         setItems((prev) =>
           prev.map((p) =>
             p.perfumeId === deleting.perfumeId ? { ...p, isActive: false } : p
@@ -242,7 +238,7 @@ export function PerfumesTab() {
       setDeleting(null);
     } catch (err) {
       console.error("[admin perfumes] delete error:", err);
-      alert("Error de red al eliminar");
+      alert("Error de red al eliminar el perfume");
     } finally {
       setTogglingId(null);
     }
@@ -302,153 +298,314 @@ export function PerfumesTab() {
     }
   };
 
-  // ─── Render ──
+  const handleBulkDiscountApply = async (
+    targetBrand: string,
+    targetGender: string,
+    pct: number,
+    label: string
+  ) => {
+    const matches = items.filter((p) => {
+      if (targetBrand !== "Todas" && p.brand !== targetBrand) return false;
+      if (targetGender !== "Todos" && p.gender !== targetGender) return false;
+      return true;
+    });
 
-  if (loading) {
+    if (matches.length === 0) {
+      alert("No hay perfumes que coincidan con la selección para aplicar el descuento.");
+      return;
+    }
+
+    setLoading(true);
+    let successCount = 0;
+    try {
+      for (const p of matches) {
+        const res = await fetch(`/api/admin/catalog/perfumes/${p.perfumeId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            temporalDiscountPct: pct,
+            temporalDiscountLabel: label.trim() || null,
+          }),
+        });
+        if (res.ok) successCount++;
+      }
+      await load();
+      alert(`¡Éxito! Se actualizó el descuento en ${successCount} perfumes.`);
+      setShowBulkDiscount(false);
+    } catch (err) {
+      console.error("[admin perfumes] bulk discount error:", err);
+      alert("Ocurrió un error al aplicar los descuentos masivos.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading && items.length === 0) {
     return (
-      <div className="flex items-center justify-center py-20">
-        <Loader2 className="w-6 h-6 animate-spin text-[#d4af37]" />
-        <span className="ml-3 text-sm text-white/50 font-[family-name:var(--font-inter)]">
-          Cargando perfumes…
+      <div className="flex flex-col items-center justify-center py-24">
+        <Loader2 className="w-8 h-8 animate-spin text-[#d4af37] mb-3" />
+        <span className="text-sm text-[#d4af37]/70 font-medium font-[family-name:var(--font-inter)] tracking-wide">
+          Cargando catálogo de perfumes Jolie...
         </span>
       </div>
     );
   }
 
   return (
-    <div>
-      {/* Stats + Add button row */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 flex-wrap">
-        <div className="flex items-center gap-2 flex-wrap text-xs font-[family-name:var(--font-inter)]">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-300">
-            <Check className="w-3 h-3" />
-            {stats.active} activos
-          </span>
-          {stats.inactive > 0 && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-white/50">
-              <EyeOff className="w-3 h-3" />
-              {stats.inactive} ocultos
-            </span>
-          )}
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/25 text-[#d4af37]">
-            <Plus className="w-3 h-3" />
-            {stats.newPerfumes} agregados
-          </span>
-          <span className="text-white/40">· {stats.total} total</span>
-        </div>
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <button
-            onClick={load}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/[0.03] border border-white/[0.08] text-white/70 text-xs hover:text-white hover:bg-white/[0.06] transition-all font-[family-name:var(--font-inter)]"
-            title="Recargar lista"
-          >
-            <RefreshCw className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Recargar</span>
-          </button>
+    <div className="space-y-6">
+      {/* Catalog Header & Metrics Bar */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <MetricCard label="Total Fragancias" value={stats.total} icon={<Package className="w-4 h-4 text-[#d4af37]" />} />
+        <MetricCard label="Activas en Web" value={stats.active} icon={<Check className="w-4 h-4 text-emerald-400" />} />
+        <MetricCard label="En Oferta / Descuento" value={stats.discounted} highlight icon={<Percent className="w-4 h-4 text-amber-400" />} />
+        <MetricCard label="Agotadas" value={stats.outOfStock} icon={<CircleDot className="w-4 h-4 text-rose-400" />} />
+        <MetricCard label="Nuevas Agregadas" value={stats.newPerfumes} icon={<Plus className="w-4 h-4 text-sky-400" />} />
+        <MetricCard label="Ocultas" value={stats.inactive} icon={<EyeOff className="w-4 h-4 text-white/40" />} />
+      </div>
+
+      {/* Main Action Toolbar */}
+      <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 p-4 rounded-2xl bg-[#111111]/90 border border-[rgba(212,175,55,0.2)] backdrop-blur-md shadow-xl">
+        <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={handleAdd}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-black text-xs font-bold font-[family-name:var(--font-inter)] hover:from-[#e0c04a] hover:to-[#c8a634] transition-all active:scale-95"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#f0d060] to-[#b8962e] text-black text-xs font-bold font-[family-name:var(--font-inter)] shadow-lg shadow-[#d4af37]/20 hover:brightness-110 active:scale-95 transition-all"
           >
-            <Plus className="w-3.5 h-3.5" />
-            Agregar perfume
+            <Plus className="w-4 h-4" />
+            Agregar Fragancia
+          </button>
+          <button
+            onClick={() => setShowBulkDiscount(true)}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#d4af37]/10 border border-[#d4af37]/30 text-[#d4af37] text-xs font-semibold font-[family-name:var(--font-inter)] hover:bg-[#d4af37]/20 transition-all active:scale-95"
+          >
+            <Percent className="w-4 h-4" />
+            Gestor de Ofertas Masivas
+          </button>
+          <button
+            onClick={load}
+            className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.08] transition-all"
+            title="Recargar catálogo"
+          >
+            <RefreshCw className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* View mode toggle */}
+        <div className="flex items-center gap-1 p-1 rounded-xl bg-[#0a0a0a] border border-white/10 self-end lg:self-auto">
+          <button
+            onClick={() => setViewMode("grid")}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+              viewMode === "grid"
+                ? "bg-[#d4af37]/20 text-[#d4af37] border border-[#d4af37]/40 shadow-sm"
+                : "text-white/40 hover:text-white/80"
+            }`}
+          >
+            <LayoutGrid className="w-3.5 h-3.5" />
+            Tarjetas
+          </button>
+          <button
+            onClick={() => setViewMode("table")}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+              viewMode === "table"
+                ? "bg-[#d4af37]/20 text-[#d4af37] border border-[#d4af37]/40 shadow-sm"
+                : "text-white/40 hover:text-white/80"
+            }`}
+          >
+            <List className="w-3.5 h-3.5" />
+            Tabla
           </button>
         </div>
       </div>
 
       {error && (
-        <div className="mb-4 p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
-          <AlertTriangle className="w-4 h-4 flex-shrink-0" />
-          <span>{error}</span>
-          <button onClick={load} className="ml-auto text-rose-200 hover:text-white underline">
+        <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="w-4 h-4 flex-shrink-0" />
+            <span>{error}</span>
+          </div>
+          <button onClick={load} className="px-3 py-1 rounded-lg bg-rose-500/20 text-rose-200 hover:text-white text-xs font-semibold">
             Reintentar
           </button>
         </div>
       )}
 
-      {/* Search + filter row */}
-      <div className="flex flex-col sm:flex-row gap-3 mb-4">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Buscar por nombre, marca o ID…"
-            className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-white/[0.03] border border-white/[0.08] text-white placeholder:text-white/30 text-sm font-[family-name:var(--font-inter)] focus:outline-none focus:border-[#d4af37]/40 focus:bg-white/[0.05] transition-all"
-          />
-        </div>
-        <label className="flex items-center gap-2 px-3 py-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] text-xs text-white/60 font-[family-name:var(--font-inter)] cursor-pointer whitespace-nowrap">
-          <input
-            type="checkbox"
-            checked={showInactive}
-            onChange={(e) => setShowInactive(e.target.checked)}
-            className="w-3.5 h-3.5 accent-[#d4af37] cursor-pointer"
-          />
-          Mostrar ocultos
-        </label>
-        <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] text-xs text-white/60 font-[family-name:var(--font-inter)] flex-shrink-0">
-          <Package className="w-3.5 h-3.5 text-[#d4af37]/60" />
-          {search || brand !== "Todas" || !showInactive
-            ? `${filtered.length} de ${items.length}`
-            : `${items.length} perfumes`}
-        </div>
-      </div>
+      {/* Filter Options Bar */}
+      <div className="p-4 rounded-2xl bg-[#0f0f0f] border border-white/10 space-y-3">
+        <div className="flex flex-col sm:flex-row items-center gap-3">
+          {/* Search box */}
+          <div className="relative flex-1 w-full">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Buscar por perfume, marca, notas, etiqueta de oferta o ID..."
+              className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white placeholder:text-white/30 text-xs font-[family-name:var(--font-inter)] focus:outline-none focus:border-[#d4af37]/50 focus:ring-1 focus:ring-[#d4af37]/30 transition-all"
+            />
+            {search && (
+              <button
+                onClick={() => setSearch("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
 
-      {/* Brand filter pills */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-2 admin-scroll">
-        {brandList.map((b) => (
-          <button
-            key={b}
-            onClick={() => setBrand(b)}
-            className={`px-3 py-1.5 rounded-full text-xs font-medium font-[family-name:var(--font-inter)] border whitespace-nowrap transition-all ${
-              brand === b
-                ? "bg-[#d4af37]/15 text-[#d4af37] border-[#d4af37]/30"
-                : "bg-white/[0.02] text-white/50 border-white/[0.06] hover:text-white/80 hover:border-white/15"
-            }`}
-          >
-            {b}
-          </button>
-        ))}
-      </div>
+          {/* Gender filter */}
+          <div className="flex items-center gap-1.5 w-full sm:w-auto overflow-x-auto">
+            <span className="text-[11px] text-white/40 font-medium px-1 flex items-center gap-1">
+              <Filter className="w-3 h-3 text-[#d4af37]/60" /> Genero:
+            </span>
+            {["Todos", ...GENDERS].map((g) => (
+              <button
+                key={g}
+                onClick={() => setGenderFilter(g)}
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all border whitespace-nowrap ${
+                  genderFilter === g
+                    ? "bg-[#d4af37]/20 text-[#d4af37] border-[#d4af37]/40"
+                    : "bg-white/[0.02] text-white/40 border-white/5 hover:text-white/70"
+                }`}
+              >
+                {g}
+              </button>
+            ))}
+          </div>
+        </div>
 
-      {/* Empty state */}
-      {filtered.length === 0 ? (
-        <div className="py-16 text-center">
-          <Package className="w-10 h-10 text-white/20 mx-auto mb-3" />
-          <p className="text-sm text-white/40 font-[family-name:var(--font-inter)] mb-4">
-            {search || brand !== "Todas"
-              ? "Sin resultados para tu búsqueda."
-              : "Aún no hay perfumes. Pulsa «Agregar perfume» para crear el primero."}
-          </p>
-          {!search && brand === "Todas" && (
+        {/* Second row of quick filters */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-white/5 text-xs text-white/60">
+          <div className="flex flex-wrap items-center gap-3">
+            {/* Stock selector */}
+            <div className="flex items-center gap-1.5">
+              <span className="text-[11px] text-white/40">Stock:</span>
+              <select
+                value={stockFilter}
+                onChange={(e) => setStockFilter(e.target.value)}
+                className="bg-[#050505] border border-white/10 text-white rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-[#d4af37]/40"
+              >
+                <option value="Todos">Todos</option>
+                <option value="disponible">En Stock</option>
+                <option value="agotado">Agotados</option>
+              </select>
+            </div>
+
+            {/* Discount selector */}
+            <div className="flex items-center gap-1.5">
+              <span className="text-[11px] text-white/40">Ofertas:</span>
+              <select
+                value={discountFilter}
+                onChange={(e) => setDiscountFilter(e.target.value)}
+                className="bg-[#050505] border border-white/10 text-white rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-[#d4af37]/40"
+              >
+                <option value="Todos">Todas</option>
+                <option value="descuento">Con Descuento (% OFF)</option>
+                <option value="sin_descuento">Sin Descuento</option>
+              </select>
+            </div>
+
+            {/* Inactive toggle */}
+            <label className="flex items-center gap-2 px-3 py-1 rounded-lg bg-[#050505] border border-white/10 text-xs text-white/70 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={showInactive}
+                onChange={(e) => setShowInactive(e.target.checked)}
+                className="w-3.5 h-3.5 accent-[#d4af37]"
+              />
+              Mostrar ocultos
+            </label>
+          </div>
+
+          <div className="text-[11px] text-[#d4af37]/70 font-semibold font-[family-name:var(--font-inter)]">
+            Mostrando {filtered.length} de {items.length} perfumes
+          </div>
+        </div>
+
+        {/* Brand selection pills */}
+        <div className="flex gap-1.5 overflow-x-auto pt-1 pb-1 admin-scroll">
+          {brandList.map((b) => (
             <button
-              onClick={handleAdd}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-black text-xs font-bold font-[family-name:var(--font-inter)] hover:from-[#e0c04a] hover:to-[#c8a634] transition-all"
+              key={b}
+              onClick={() => setBrandFilter(b)}
+              className={`px-3 py-1 rounded-full text-[11px] font-medium transition-all border whitespace-nowrap ${
+                brandFilter === b
+                  ? "bg-[#d4af37]/20 text-[#d4af37] border-[#d4af37]/40 shadow-sm"
+                  : "bg-white/[0.02] text-white/40 border-white/5 hover:text-white/80"
+              }`}
             >
-              <Plus className="w-3.5 h-3.5" />
-              Agregar perfume
+              {b}
             </button>
-          )}
+          ))}
+        </div>
+      </div>
+
+      {/* Empty State */}
+      {filtered.length === 0 ? (
+        <div className="py-20 text-center rounded-2xl bg-[#0d0d0d] border border-white/10 p-8">
+          <div className="w-16 h-16 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/20 flex items-center justify-center mx-auto mb-4">
+            <Gem className="w-8 h-8 text-[#d4af37]/50" />
+          </div>
+          <h3 className="text-base font-semibold text-white font-[family-name:var(--font-playfair)] mb-1">
+            No se encontraron fragancias
+          </h3>
+          <p className="text-xs text-white/40 max-w-md mx-auto mb-6">
+            Intenta cambiar los filtros de búsqueda o marca, o crea un nuevo perfume para incluirlo en tu catálogo.
+          </p>
+          <button
+            onClick={handleAdd}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-black text-xs font-bold shadow-lg shadow-[#d4af37]/20 hover:brightness-110 transition-all"
+          >
+            <Plus className="w-4 h-4" />
+            Agregar Perfume
+          </button>
+        </div>
+      ) : viewMode === "grid" ? (
+        /* Grid Cards View */
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {filtered.map((item) => (
+            <PerfumeCardItem
+              key={item.perfumeId}
+              item={item}
+              busy={togglingId === item.perfumeId}
+              onEdit={() => handleEdit(item)}
+              onDelete={() => handleDeleteClick(item)}
+              onToggleActive={() => handleToggleActive(item)}
+              onToggleAvailable={() => handleToggleAvailable(item)}
+            />
+          ))}
         </div>
       ) : (
-        <div className="max-h-[calc(100vh-420px)] overflow-y-auto pr-1 -mr-1 admin-scroll">
-          <div className="space-y-2">
-            {filtered.map((item) => (
-              <PerfumeRow
-                key={item.perfumeId}
-                item={item}
-                busy={togglingId === item.perfumeId}
-                onEdit={() => handleEdit(item)}
-                onDelete={() => handleDeleteClick(item)}
-                onToggleActive={() => handleToggleActive(item)}
-                onToggleAvailable={() => handleToggleAvailable(item)}
-              />
-            ))}
+        /* Compact Table View */
+        <div className="rounded-2xl bg-[#0d0d0d] border border-white/10 overflow-hidden shadow-2xl">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs font-[family-name:var(--font-inter)]">
+              <thead className="bg-[#141414] text-white/50 border-b border-white/10 uppercase tracking-wider text-[10px]">
+                <tr>
+                  <th className="py-3 px-4">Fragancia</th>
+                  <th className="py-3 px-4">Género / Tamaño</th>
+                  <th className="py-3 px-4">Precio / Oferta</th>
+                  <th className="py-3 px-4">Estado</th>
+                  <th className="py-3 px-4 text-right">Acciones</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {filtered.map((item) => (
+                  <PerfumeTableRowItem
+                    key={item.perfumeId}
+                    item={item}
+                    busy={togglingId === item.perfumeId}
+                    onEdit={() => handleEdit(item)}
+                    onDelete={() => handleDeleteClick(item)}
+                    onToggleActive={() => handleToggleActive(item)}
+                    onToggleAvailable={() => handleToggleAvailable(item)}
+                  />
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       )}
 
-      {/* Form modal (add/edit) */}
+      {/* Add / Edit Form Modal */}
       {showForm && (
         <PerfumeFormModal
           initial={editing}
@@ -461,7 +618,7 @@ export function PerfumesTab() {
         />
       )}
 
-      {/* Delete confirm dialog */}
+      {/* Delete Confirm Modal */}
       {deleting && (
         <DeleteConfirmDialog
           item={deleting}
@@ -469,13 +626,57 @@ export function PerfumesTab() {
           onConfirm={handleDeleteConfirm}
         />
       )}
+
+      {/* Bulk Discount Modal */}
+      {showBulkDiscount && (
+        <BulkDiscountModal
+          brands={brandList.filter((b) => b !== "Todas")}
+          genders={Array.from(GENDERS)}
+          onClose={() => setShowBulkDiscount(false)}
+          onApply={handleBulkDiscountApply}
+        />
+      )}
     </div>
   );
 }
 
-// ─── PerfumeRow ─────────────────────────────────────────────────────────────
+// ─── Metric Card Helper ──────────────────────────────────────────────────────
 
-interface PerfumeRowProps {
+function MetricCard({
+  label,
+  value,
+  icon,
+  highlight = false,
+}: {
+  label: string;
+  value: number;
+  icon: React.ReactNode;
+  highlight?: boolean;
+}) {
+  return (
+    <div
+      className={`p-3.5 rounded-2xl border transition-all ${
+        highlight
+          ? "bg-gradient-to-b from-[#d4af37]/15 to-[#0a0a0a] border-[#d4af37]/40 shadow-lg shadow-[#d4af37]/10"
+          : "bg-[#0d0d0d] border-white/10 hover:border-white/20"
+      }`}
+    >
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-[11px] text-white/50 font-medium font-[family-name:var(--font-inter)] truncate">
+          {label}
+        </span>
+        <div className="p-1.5 rounded-lg bg-white/5 border border-white/10">{icon}</div>
+      </div>
+      <div className="text-xl font-bold text-white font-[family-name:var(--font-inter)] tracking-tight">
+        {value}
+      </div>
+    </div>
+  );
+}
+
+// ─── Perfume Card View ───────────────────────────────────────────────────────
+
+interface PerfumeCardItemProps {
   item: PerfumeItem;
   busy: boolean;
   onEdit: () => void;
@@ -484,172 +685,283 @@ interface PerfumeRowProps {
   onToggleAvailable: () => void;
 }
 
-function PerfumeRow({
+function PerfumeCardItem({
   item,
   busy,
   onEdit,
   onDelete,
   onToggleActive,
   onToggleAvailable,
-}: PerfumeRowProps) {
+}: PerfumeCardItemProps) {
   const pageUrl = getFragranticaPageUrl(item);
+
+  const discountedPrice = useMemo(() => {
+    if (item.price === null || item.price === undefined) return null;
+    if (item.temporalDiscountPct > 0) {
+      return (item.price * (1 - item.temporalDiscountPct / 100)).toFixed(2);
+    }
+    return item.price.toFixed(2);
+  }, [item.price, item.temporalDiscountPct]);
+
   return (
     <div
-      className={`rounded-xl border transition-all ${
+      className={`group relative rounded-2xl border flex flex-col overflow-hidden transition-all duration-300 ${
         !item.isActive
-          ? "bg-white/[0.01] border-white/[0.04] opacity-60"
+          ? "bg-[#080808]/60 border-white/5 opacity-50"
           : !item.available
-            ? "bg-rose-500/[0.02] border-rose-500/15"
-            : "bg-white/[0.02] border-white/[0.06]"
+          ? "bg-[#110a0a] border-rose-500/20"
+          : "bg-[#111111] border-[rgba(212,175,55,0.15)] hover:border-[#d4af37]/40 hover:shadow-xl hover:shadow-black/50"
       }`}
     >
-      <div className="p-3 sm:p-4 flex items-start gap-3">
-        {/* Image thumbnail (or placeholder) */}
-        <div className="w-12 h-16 rounded-md overflow-hidden bg-[#0a0a0a] border border-white/[0.06] flex-shrink-0 flex items-center justify-center">
-          {item.fragranticaId ? (
-            <img
-              src={getImageUrl(item.fragranticaId)}
-              alt={item.name}
-              className="w-full h-full object-cover"
-              loading="lazy"
-              onError={(e) => {
-                const img = e.currentTarget;
-                const fallback = getImageFallbackUrl(item.fragranticaId!);
-                if (img.src !== fallback) img.src = fallback;
-              }}
-            />
-          ) : (
-            <Package className="w-5 h-5 text-white/20" />
-          )}
+      {/* Image Header with Badges */}
+      <div className="relative aspect-[4/3] bg-[#080808] border-b border-white/5 overflow-hidden">
+        <PerfumeImage
+          fragranticaId={item.fragranticaId}
+          alt={item.name}
+          className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+        />
+
+        {/* Discount Badge */}
+        {item.temporalDiscountPct > 0 && (
+          <div className="absolute top-2.5 left-2.5 bg-gradient-to-r from-amber-500 to-yellow-400 text-black font-extrabold text-[10px] px-2 py-0.5 rounded-md shadow-lg flex items-center gap-1">
+            <Percent className="w-3 h-3" />
+            {item.temporalDiscountPct}% OFF
+          </div>
+        )}
+
+        {/* Offer Label */}
+        {item.temporalDiscountLabel && (
+          <div className="absolute bottom-2 left-2 right-2 bg-black/80 backdrop-blur-sm border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-semibold px-2 py-0.5 rounded text-center truncate">
+            {item.temporalDiscountLabel}
+          </div>
+        )}
+
+        {/* New Tag */}
+        {item.perfumeId >= 10000 && (
+          <div className="absolute top-2.5 right-2.5 bg-[#d4af37] text-black font-bold text-[9px] px-2 py-0.5 rounded uppercase tracking-wider">
+            NUEVO
+          </div>
+        )}
+      </div>
+
+      {/* Content */}
+      <div className="p-4 flex-1 flex flex-col justify-between space-y-3 font-[family-name:var(--font-inter)]">
+        <div>
+          <div className="text-[10px] font-semibold text-[#d4af37]/80 uppercase tracking-widest mb-1 truncate">
+            {item.brand}
+          </div>
+          <h3 className="text-sm font-semibold text-white font-[family-name:var(--font-playfair)] line-clamp-1 group-hover:text-[#d4af37] transition-colors">
+            {item.name}
+          </h3>
+
+          <div className="flex items-center gap-2 mt-1.5 text-[11px] text-white/40 flex-wrap">
+            <span>{item.gender || "Unisex"}</span>
+            {item.size && <span>• {item.size}</span>}
+            {item.concentration && <span>• {item.concentration}</span>}
+          </div>
         </div>
 
-        {/* Info */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="text-sm font-semibold text-white/90 font-[family-name:var(--font-playfair)] truncate">
-              {item.name}
-            </h3>
-            {item.perfumeId >= 10000 && (
-              <span className="inline-flex items-center gap-1 text-[9px] px-1.5 py-0.5 rounded-full bg-[#d4af37]/15 border border-[#d4af37]/30 text-[#d4af37] font-[family-name:var(--font-inter)] font-semibold">
-                <Plus className="w-2.5 h-2.5" />
-                Nuevo
-              </span>
-            )}
-            {!item.isActive && (
-              <span className="inline-flex items-center gap-1 text-[9px] px-1.5 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-white/50 font-[family-name:var(--font-inter)] font-semibold">
-                <EyeOff className="w-2.5 h-2.5" />
-                Oculto
-              </span>
-            )}
-          </div>
-          <div className="flex items-center gap-2 mt-0.5 flex-wrap text-[10px] text-white/40 font-[family-name:var(--font-inter)]">
-            <span className="text-[#d4af37]/80 font-semibold tracking-[0.1em] uppercase">
-              {item.brand}
-            </span>
-            {item.gender && (
-              <>
-                <span className="text-white/20">·</span>
-                <span>{item.gender}</span>
-              </>
-            )}
-            {item.size && (
-              <>
-                <span className="text-white/20">·</span>
-                <span>{item.size}</span>
-              </>
-            )}
-            {item.concentration && (
-              <>
-                <span className="text-white/20">·</span>
-                <span>{item.concentration}</span>
-              </>
-            )}
-            <span className="text-white/20">·</span>
-            <span>ID: {item.perfumeId}</span>
-            {item.price !== null && (
-              <>
-                <span className="text-white/20">·</span>
-                {item.temporalDiscountPct > 0 ? (
-                  <span className="text-amber-400 font-semibold text-[10px]">
-                    ${(item.price * (1 - item.temporalDiscountPct / 100)).toFixed(2)}
-                    <span className="text-white/30 line-through ml-1">${item.price}</span>
+        {/* Price Section */}
+        <div className="pt-2 border-t border-white/5 flex items-center justify-between">
+          <div>
+            <span className="text-[10px] text-white/30 uppercase tracking-wider block">Precio</span>
+            {item.price !== null ? (
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-sm font-bold text-[#d4af37]">
+                  ${discountedPrice}
+                </span>
+                {item.temporalDiscountPct > 0 && (
+                  <span className="text-[11px] text-white/30 line-through">
+                    ${item.price}
                   </span>
-                ) : (
-                  <span className="text-emerald-300/80">${item.price}</span>
                 )}
-              </>
+              </div>
+            ) : (
+              <span className="text-xs text-white/30 italic">Sin precio</span>
             )}
           </div>
-          <div className="flex items-center gap-2 mt-2 flex-wrap">
-            {/* Available toggle */}
+
+          <div className="flex items-center gap-1.5">
             <button
               onClick={onToggleAvailable}
               disabled={busy}
-              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium font-[family-name:var(--font-inter)] border transition-all disabled:opacity-50 ${
+              className={`px-2 py-1 rounded-lg text-[10px] font-semibold border transition-all ${
                 item.available
                   ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-300"
                   : "bg-rose-500/10 border-rose-500/30 text-rose-300"
               }`}
             >
-              <CircleDot className="w-2.5 h-2.5" />
-              {item.available ? "Disponible" : "No disponible"}
+              {item.available ? "En Stock" : "Agotado"}
             </button>
-            {/* Active (visible) toggle */}
+          </div>
+        </div>
+
+        {/* Quick Footer Action Bar */}
+        <div className="pt-2 flex items-center justify-between gap-1 text-[11px]">
+          <div className="flex items-center gap-1">
             <button
               onClick={onToggleActive}
               disabled={busy}
-              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium font-[family-name:var(--font-inter)] border transition-all disabled:opacity-50 ${
+              className={`p-1.5 rounded-lg border transition-all ${
                 item.isActive
-                  ? "bg-[#d4af37]/10 border-[#d4af37]/30 text-[#d4af37]"
-                  : "bg-white/[0.04] border-white/[0.08] text-white/40"
+                  ? "bg-white/5 border-white/10 text-white/70 hover:text-white"
+                  : "bg-white/5 border-white/10 text-white/30"
               }`}
+              title={item.isActive ? "Ocultar de catálogo" : "Hacer visible en catálogo"}
             >
-              {item.isActive ? <Eye className="w-2.5 h-2.5" /> : <EyeOff className="w-2.5 h-2.5" />}
-              {item.isActive ? "Visible" : "Oculto"}
+              {item.isActive ? <Eye className="w-3.5 h-3.5 text-[#d4af37]" /> : <EyeOff className="w-3.5 h-3.5" />}
             </button>
             {pageUrl && (
               <a
                 href={pageUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium font-[family-name:var(--font-inter)] border bg-white/[0.04] border-white/[0.08] text-white/50 hover:text-white/80 transition-all"
+                className="p-1.5 rounded-lg border border-white/10 bg-white/5 text-white/50 hover:text-white transition-all"
                 title="Ver en Fragrantica"
               >
-                <ExternalLink className="w-2.5 h-2.5" />
-                Fragrantica
+                <ExternalLink className="w-3.5 h-3.5" />
               </a>
             )}
-            <span className="text-[10px] text-white/30 font-[family-name:var(--font-inter)] ml-auto">
-              {formatDate(item.updatedAt)}
-            </span>
           </div>
-        </div>
 
-        {/* Actions */}
-        <div className="flex items-center gap-1.5 flex-shrink-0">
-          <button
-            onClick={onEdit}
-            disabled={busy}
-            className="p-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white/70 hover:text-[#d4af37] hover:border-[#d4af37]/30 hover:bg-[#d4af37]/10 transition-all disabled:opacity-50"
-            title="Editar perfume"
-          >
-            <Pencil className="w-3.5 h-3.5" />
-          </button>
-          <button
-            onClick={onDelete}
-            disabled={busy}
-            className="p-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white/70 hover:text-rose-300 hover:border-rose-500/30 hover:bg-rose-500/10 transition-all disabled:opacity-50"
-            title="Eliminar perfume"
-          >
-            {busy ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Trash2 className="w-3.5 h-3.5" />}
-          </button>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={onEdit}
+              disabled={busy}
+              className="px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white/80 hover:text-[#d4af37] hover:border-[#d4af37]/40 text-[11px] font-medium flex items-center gap-1 transition-all"
+            >
+              <Pencil className="w-3 h-3" />
+              Editar
+            </button>
+            <button
+              onClick={onDelete}
+              disabled={busy}
+              className="p-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-300 hover:bg-rose-500/20 transition-all"
+              title="Eliminar"
+            >
+              {busy ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Trash2 className="w-3.5 h-3.5" />}
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-// ─── PerfumeFormModal (add / edit) ──────────────────────────────────────────
+// ─── Perfume Table View Item ─────────────────────────────────────────────────
+
+function PerfumeTableRowItem({
+  item,
+  busy,
+  onEdit,
+  onDelete,
+  onToggleActive,
+  onToggleAvailable,
+}: PerfumeCardItemProps) {
+  const pageUrl = getFragranticaPageUrl(item);
+
+  return (
+    <tr className={`hover:bg-white/[0.02] transition-colors ${!item.isActive ? "opacity-40" : ""}`}>
+      <td className="py-3 px-4">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-11 rounded-lg overflow-hidden bg-[#080808] border border-white/10 flex-shrink-0">
+            <PerfumeImage fragranticaId={item.fragranticaId} alt={item.name} />
+          </div>
+          <div>
+            <div className="font-semibold text-white font-[family-name:var(--font-playfair)]">{item.name}</div>
+            <div className="text-[10px] text-[#d4af37]/80 uppercase tracking-widest font-semibold">{item.brand}</div>
+          </div>
+        </div>
+      </td>
+
+      <td className="py-3 px-4 text-white/70">
+        <div>{item.gender || "Unisex"}</div>
+        <div className="text-[10px] text-white/40">{item.size || "100ml"} {item.concentration ? `• ${item.concentration}` : ""}</div>
+      </td>
+
+      <td className="py-3 px-4">
+        {item.price !== null ? (
+          <div>
+            {item.temporalDiscountPct > 0 ? (
+              <div>
+                <span className="font-bold text-[#d4af37]">
+                  ${(item.price * (1 - item.temporalDiscountPct / 100)).toFixed(2)}
+                </span>
+                <span className="text-[10px] text-white/30 line-through ml-1.5">${item.price}</span>
+                <span className="ml-1.5 text-[9px] bg-amber-500/20 border border-amber-500/40 text-amber-300 px-1.5 py-0.5 rounded">
+                  -{item.temporalDiscountPct}%
+                </span>
+              </div>
+            ) : (
+              <span className="font-semibold text-white">${item.price}</span>
+            )}
+          </div>
+        ) : (
+          <span className="text-white/30 italic">Sin precio</span>
+        )}
+      </td>
+
+      <td className="py-3 px-4">
+        <div className="flex items-center gap-1.5">
+          <button
+            onClick={onToggleAvailable}
+            disabled={busy}
+            className={`px-2 py-0.5 rounded text-[10px] font-semibold border ${
+              item.available
+                ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-300"
+                : "bg-rose-500/10 border-rose-500/30 text-rose-300"
+            }`}
+          >
+            {item.available ? "En Stock" : "Agotado"}
+          </button>
+
+          <button
+            onClick={onToggleActive}
+            disabled={busy}
+            className={`px-2 py-0.5 rounded text-[10px] font-semibold border ${
+              item.isActive
+                ? "bg-white/5 border-white/10 text-white/80"
+                : "bg-white/5 border-white/10 text-white/30"
+            }`}
+          >
+            {item.isActive ? "Visible" : "Oculto"}
+          </button>
+        </div>
+      </td>
+
+      <td className="py-3 px-4 text-right">
+        <div className="flex items-center justify-end gap-1.5">
+          {pageUrl && (
+            <a
+              href={pageUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1.5 rounded-lg border border-white/10 bg-white/5 text-white/50 hover:text-white"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          )}
+          <button
+            onClick={onEdit}
+            disabled={busy}
+            className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-white/80 hover:text-[#d4af37]"
+          >
+            <Pencil className="w-3.5 h-3.5" />
+          </button>
+          <button
+            onClick={onDelete}
+            disabled={busy}
+            className="p-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-300 hover:bg-rose-500/20"
+          >
+            {busy ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Trash2 className="w-3.5 h-3.5" />}
+          </button>
+        </div>
+      </td>
+    </tr>
+  );
+}
+
+// ─── Add / Edit Perfume Form Modal ──────────────────────────────────────────
 
 interface PerfumeFormModalProps {
   initial: PerfumeItem | null;
@@ -683,60 +995,32 @@ function PerfumeFormModal({
     initial?.temporalDiscountPct ? String(initial.temporalDiscountPct) : ""
   );
   const [temporalDiscountLabel, setTemporalDiscountLabel] = useState<string>(initial?.temporalDiscountLabel || "");
-  const [concentration, setConcentration] = useState<string>(initial?.concentration || "");
+  const [concentration, setConcentration] = useState<string>(initial?.concentration || "EDP");
   const [notes, setNotes] = useState<string>(initial?.notes || "");
   const [isActive, setIsActive] = useState<boolean>(initial?.isActive ?? true);
 
   const [saving, setSaving] = useState(false);
   const [formError, setFormError] = useState("");
 
-  // Derived: fragrantica ID from URL (live)
   const fragranticaId = useMemo(() => extractFragranticaId(fragranticaUrl), [fragranticaUrl]);
-
-  // Derived: preview image URL
-  const previewImageUrl = fragranticaId ? getImageUrl(fragranticaId) : null;
-  const [previewError, setPreviewError] = useState(false);
-  useEffect(() => {
-    setPreviewError(false);
-  }, [previewImageUrl]);
-
-  // ESC to close
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
-
-  // Lock body scroll
-  useEffect(() => {
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormError("");
 
-    // Validate
     if (!name.trim()) {
-      setFormError("El nombre es obligatorio.");
+      setFormError("El nombre del perfume es obligatorio.");
       return;
     }
     if (!brand.trim()) {
-      setFormError("La marca es obligatoria.");
+      setFormError("La marca del perfume es obligatoria.");
       return;
     }
     if (!fragranticaUrl.trim() || !fragranticaId) {
-      setFormError("Pega una URL válida de Fragrantica (debe terminar en -<número>.html).");
+      setFormError("Ingresa un enlace válido de Fragrantica que contenga el ID numérico (ej: -34696.html).");
       return;
     }
 
-    // Build body
     const body: Record<string, unknown> = {
       name: name.trim(),
       brand: brand.trim(),
@@ -746,33 +1030,23 @@ function PerfumeFormModal({
       available,
       concentration: concentration.trim() || null,
       notes: notes.trim() || null,
+      isActive,
     };
+
     if (price.trim() === "") {
       body.price = null;
     } else {
-      const n = Number(price.replace(",", "."));
-      if (!Number.isFinite(n) || n < 0) {
-        setFormError("Precio inválido — debe ser un número positivo o vacío.");
+      const p = Number(price);
+      if (!Number.isFinite(p) || p < 0) {
+        setFormError("El precio debe ser un número positivo.");
         return;
       }
-      body.price = Math.round(n * 100) / 100;
+      body.price = p;
     }
 
-    if (temporalDiscountPct.trim() === "") {
-      body.temporalDiscountPct = 0;
-      body.temporalDiscountLabel = null;
-    } else {
-      const pct = Number(temporalDiscountPct);
-      if (!Number.isInteger(pct) || pct < 0 || pct > 100) {
-        setFormError("El porcentaje de descuento debe ser un número entero entre 0 y 100.");
-        return;
-      }
-      body.temporalDiscountPct = pct;
-      body.temporalDiscountLabel = temporalDiscountLabel.trim() || null;
-    }
-    if (isEdit) {
-      body.isActive = isActive;
-    }
+    const discPct = Number(temporalDiscountPct || 0);
+    body.temporalDiscountPct = Number.isFinite(discPct) && discPct >= 0 ? discPct : 0;
+    body.temporalDiscountLabel = temporalDiscountLabel.trim() || null;
 
     setSaving(true);
     try {
@@ -780,6 +1054,7 @@ function PerfumeFormModal({
         ? `/api/admin/catalog/perfumes/${initial!.perfumeId}`
         : "/api/admin/catalog/perfumes";
       const method = isEdit ? "PUT" : "POST";
+
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
@@ -787,319 +1062,244 @@ function PerfumeFormModal({
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setFormError(data.error || "Error al guardar");
+        setFormError(data.error || "Ocurrió un error al guardar el perfume.");
         return;
       }
       onSaved(data.item as PerfumeItem);
     } catch (err) {
-      console.error("[admin perfumes form] save error:", err);
-      setFormError("Error de red al guardar");
+      console.error("[admin perfumes] form submit error:", err);
+      setFormError("Error de red al conectar con el servidor.");
     } finally {
       setSaving(false);
     }
   };
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
-      onClick={onClose}
-    >
-      <div
-        className="bg-[#0d0d0d] border border-[#d4af37]/25 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto admin-scroll"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header */}
-        <div className="sticky top-0 z-10 bg-[#0d0d0d]/95 backdrop-blur border-b border-white/[0.06] px-5 py-3 flex items-center justify-between">
-          <h2 className="text-base font-[family-name:var(--font-playfair)] text-[#d4af37] tracking-wide">
-            {isEdit ? "Editar perfume" : "Agregar perfume"}
-          </h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+      <div className="relative w-full max-w-3xl rounded-2xl bg-[#111111] border border-[rgba(212,175,55,0.3)] shadow-2xl shadow-black overflow-hidden my-8">
+        {/* Modal Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#161616]">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-[#d4af37]/10 border border-[#d4af37]/30 flex items-center justify-center text-[#d4af37]">
+              <Sparkles className="w-4 h-4" />
+            </div>
+            <h2 className="text-lg font-bold text-white font-[family-name:var(--font-playfair)]">
+              {isEdit ? `Editar Fragancia #${initial.perfumeId}` : "Agregar Nueva Fragancia"}
+            </h2>
+          </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-white/50 hover:text-white hover:bg-white/[0.06] transition-all"
-            aria-label="Cerrar"
+            className="p-2 rounded-lg text-white/50 hover:text-white hover:bg-white/5 transition-all"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-5 space-y-4">
-          {/* Image preview + URL */}
-          <div className="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-4">
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-[120px] h-[160px] rounded-lg overflow-hidden bg-[#0a0a0a] border border-white/[0.08] flex items-center justify-center">
-                {previewImageUrl && !previewError ? (
-                  <img
-                    src={previewImageUrl}
-                    alt="Vista previa"
-                    className="w-full h-full object-cover"
-                    onError={() => setPreviewError(true)}
-                  />
-                ) : (
-                  <div className="text-center px-2">
-                    <Package className="w-6 h-6 text-white/20 mx-auto mb-1" />
-                    <p className="text-[9px] text-white/30 font-[family-name:var(--font-inter)]">
-                      {fragranticaUrl
-                        ? previewError
-                          ? "Imagen no disponible"
-                          : "Pegando URL…"
-                        : "Pega una URL"}
-                    </p>
-                  </div>
-                )}
-              </div>
-              {fragranticaId && (
-                <p className="text-[10px] text-emerald-300/80 font-[family-name:var(--font-inter)] text-center">
-                  ID: {fragranticaId}
-                </p>
-              )}
-            </div>
-
-            <div className="space-y-3">
-              <label className="block">
-                <span className="text-[10px] text-white/50 uppercase tracking-wider font-[family-name:var(--font-inter)] font-semibold">
-                  URL de Fragrantica *
-                </span>
-                <input
-                  type="url"
-                  value={fragranticaUrl}
-                  onChange={(e) => setFragranticaUrl(e.target.value)}
-                  placeholder="https://www.fragrantica.com/perfume/..."
-                  className="mt-1 w-full px-3 py-2 bg-[#0a0a0a] border border-[#d4af37]/15 rounded-lg text-white text-sm font-[family-name:var(--font-inter)] focus:border-[#d4af37]/50 focus:ring-1 focus:ring-[#d4af37]/20 outline-none transition-all"
-                />
-                <span className="text-[10px] text-white/40 font-[family-name:var(--font-inter)] mt-1 block">
-                  Pega la URL completa. El ID se extrae automáticamente.
-                </span>
-              </label>
-
-              {fragranticaUrl && !fragranticaId && (
-                <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] font-[family-name:var(--font-inter)] flex items-center gap-1.5">
-                  <AlertTriangle className="w-3 h-3 flex-shrink-0" />
-                  No se pudo extraer el ID. Verifica que la URL termine en
-                  <code className="px-1 py-0.5 bg-amber-500/10 rounded">-&lt;número&gt;.html</code>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Name + Brand */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <label className="block">
-              <span className="text-[10px] text-white/50 uppercase tracking-wider font-[family-name:var(--font-inter)] font-semibold">
-                Nombre *
-              </span>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Ej: Club de Nuit Intense Man"
-                className="mt-1 w-full px-3 py-2 bg-[#0a0a0a] border border-[#d4af37]/15 rounded-lg text-white text-sm font-[family-name:var(--font-inter)] focus:border-[#d4af37]/50 focus:ring-1 focus:ring-[#d4af37]/20 outline-none transition-all"
-              />
-            </label>
-            <label className="block">
-              <span className="text-[10px] text-white/50 uppercase tracking-wider font-[family-name:var(--font-inter)] font-semibold">
-                Marca *
-              </span>
-              <input
-                type="text"
-                value={brand}
-                onChange={(e) => setBrand(e.target.value)}
-                list="perfume-brands"
-                placeholder="Ej: Armaf"
-                className="mt-1 w-full px-3 py-2 bg-[#0a0a0a] border border-[#d4af37]/15 rounded-lg text-white text-sm font-[family-name:var(--font-inter)] focus:border-[#d4af37]/50 focus:ring-1 focus:ring-[#d4af37]/20 outline-none transition-all"
-              />
-              <datalist id="perfume-brands">
-                {existingBrands.map((b) => (
-                  <option key={b} value={b} />
-                ))}
-              </datalist>
-              <span className="text-[10px] text-white/40 font-[family-name:var(--font-inter)] mt-1 block">
-                Elige una marca existente o escribe una nueva.
-              </span>
-            </label>
-          </div>
-
-          {/* Gender + Size + Concentration */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <label className="block">
-              <span className="text-[10px] text-white/50 uppercase tracking-wider font-[family-name:var(--font-inter)] font-semibold">
-                Género *
-              </span>
-              <select
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-                className="mt-1 w-full px-3 py-2 bg-[#0a0a0a] border border-[#d4af37]/15 rounded-lg text-white text-sm font-[family-name:var(--font-inter)] focus:border-[#d4af37]/50 outline-none transition-all"
-              >
-                {GENDERS.map((g) => (
-                  <option key={g} value={g}>
-                    {g}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="block">
-              <span className="text-[10px] text-white/50 uppercase tracking-wider font-[family-name:var(--font-inter)] font-semibold">
-                Tamaño *
-              </span>
-              <input
-                type="text"
-                value={size}
-                onChange={(e) => setSize(e.target.value)}
-                placeholder="Ej: 100ml"
-                className="mt-1 w-full px-3 py-2 bg-[#0a0a0a] border border-[#d4af37]/15 rounded-lg text-white text-sm font-[family-name:var(--font-inter)] focus:border-[#d4af37]/50 focus:ring-1 focus:ring-[#d4af37]/20 outline-none transition-all"
-              />
-            </label>
-            <label className="block">
-              <span className="text-[10px] text-white/50 uppercase tracking-wider font-[family-name:var(--font-inter)] font-semibold">
-                Concentración
-              </span>
-              <select
-                value={concentration}
-                onChange={(e) => setConcentration(e.target.value)}
-                className="mt-1 w-full px-3 py-2 bg-[#0a0a0a] border border-[#d4af37]/15 rounded-lg text-white text-sm font-[family-name:var(--font-inter)] focus:border-[#d4af37]/50 outline-none transition-all"
-              >
-                <option value="">— Sin especificar —</option>
-                {CONCENTRATIONS.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-
-          {/* Price + Available */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <label className="block">
-              <span className="text-[10px] text-white/50 uppercase tracking-wider font-[family-name:var(--font-inter)] font-semibold">
-                Precio USD
-              </span>
-              <input
-                type="number"
-                step="0.01"
-                min="0"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                placeholder="Vacío = Consultar"
-                className="mt-1 w-full px-3 py-2 bg-[#0a0a0a] border border-[#d4af37]/15 rounded-lg text-white text-sm font-[family-name:var(--font-inter)] focus:border-[#d4af37]/50 focus:ring-1 focus:ring-[#d4af37]/20 outline-none transition-all"
-              />
-              <span className="text-[10px] text-white/40 font-[family-name:var(--font-inter)] mt-1 block">
-                Déjalo vacío para mostrar «Consultar».
-              </span>
-            </label>
-            <div className="flex flex-col gap-2">
-              <span className="text-[10px] text-white/50 uppercase tracking-wider font-[family-name:var(--font-inter)] font-semibold">
-                Disponibilidad
-              </span>
-              <button
-                type="button"
-                onClick={() => setAvailable((a) => !a)}
-                className={`px-3 py-2 rounded-lg text-sm font-medium font-[family-name:var(--font-inter)] border transition-all ${
-                  available
-                    ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-300"
-                    : "bg-rose-500/10 border-rose-500/30 text-rose-300"
-                }`}
-              >
-                <CircleDot className="w-3.5 h-3.5 inline mr-1.5" />
-                {available ? "Disponible" : "No disponible"}
-              </button>
-              {isEdit && (
-                <button
-                  type="button"
-                  onClick={() => setIsActive((a) => !a)}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium font-[family-name:var(--font-inter)] border transition-all ${
-                    isActive
-                      ? "bg-[#d4af37]/10 border-[#d4af37]/30 text-[#d4af37]"
-                      : "bg-white/[0.04] border-white/[0.08] text-white/40"
-                  }`}
-                >
-                  {isActive ? <Eye className="w-3.5 h-3.5 inline mr-1.5" /> : <EyeOff className="w-3.5 h-3.5 inline mr-1.5" />}
-                  {isActive ? "Visible en catálogo" : "Oculto del catálogo"}
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* Discounts */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <label className="block">
-              <span className="text-[10px] text-white/50 uppercase tracking-wider font-[family-name:var(--font-inter)] font-semibold">
-                Descuento temporal (%)
-              </span>
-              <input
-                type="number"
-                min="0"
-                max="100"
-                value={temporalDiscountPct}
-                onChange={(e) => setTemporalDiscountPct(e.target.value)}
-                placeholder="Ej: 15"
-                className="mt-1 w-full px-3 py-2 bg-[#0a0a0a] border border-[#d4af37]/15 rounded-lg text-white text-sm font-[family-name:var(--font-inter)] focus:border-[#d4af37]/50 focus:ring-1 focus:ring-[#d4af37]/20 outline-none transition-all"
-              />
-              <span className="text-[10px] text-white/40 font-[family-name:var(--font-inter)] mt-1 block">
-                Vacío o 0 para no aplicar descuento.
-              </span>
-            </label>
-            <label className="block">
-              <span className="text-[10px] text-white/50 uppercase tracking-wider font-[family-name:var(--font-inter)] font-semibold">
-                Etiqueta del descuento
-              </span>
-              <input
-                type="text"
-                value={temporalDiscountLabel}
-                onChange={(e) => setTemporalDiscountLabel(e.target.value)}
-                placeholder="Ej: Día de las Madres"
-                className="mt-1 w-full px-3 py-2 bg-[#0a0a0a] border border-[#d4af37]/15 rounded-lg text-white text-sm font-[family-name:var(--font-inter)] focus:border-[#d4af37]/50 focus:ring-1 focus:ring-[#d4af37]/20 outline-none transition-all"
-              />
-            </label>
-          </div>
-
-          {/* Notes */}
-          <label className="block">
-            <span className="text-[10px] text-white/50 uppercase tracking-wider font-[family-name:var(--font-inter)] font-semibold">
-              Notas internas (opcional)
-            </span>
-            <textarea
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              placeholder="Notas internas sobre este perfume (no se muestran al cliente)…"
-              rows={2}
-              className="mt-1 w-full px-3 py-2 bg-[#0a0a0a] border border-[#d4af37]/15 rounded-lg text-white text-sm font-[family-name:var(--font-inter)] focus:border-[#d4af37]/50 focus:ring-1 focus:ring-[#d4af37]/20 outline-none transition-all resize-y min-h-[60px]"
-            />
-          </label>
-
-          {/* Error message */}
+        {/* Modal Body */}
+        <form onSubmit={handleSubmit} className="p-6 space-y-6">
           {formError && (
-            <div className="p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-[family-name:var(--font-inter)] flex items-center gap-2">
+            <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 flex-shrink-0" />
               <span>{formError}</span>
             </div>
           )}
 
-          {/* Actions */}
-          <div className="flex items-center justify-end gap-2 pt-2 border-t border-white/[0.06]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Form Fields Column */}
+            <div className="md:col-span-2 space-y-4 text-xs font-[family-name:var(--font-inter)]">
+              {/* Name */}
+              <div>
+                <label className="block text-white/70 font-medium mb-1">Nombre del Perfume *</label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="ej: Club de Nuit Intense Man"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-[#d4af37]/50"
+                  required
+                />
+              </div>
+
+              {/* Brand & Gender */}
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-white/70 font-medium mb-1">Marca *</label>
+                  <input
+                    type="text"
+                    list="brand-suggestions"
+                    value={brand}
+                    onChange={(e) => setBrand(e.target.value)}
+                    placeholder="ej: Armaf, Lattafa"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-[#d4af37]/50"
+                    required
+                  />
+                  <datalist id="brand-suggestions">
+                    {existingBrands.map((b) => (
+                      <option key={b} value={b} />
+                    ))}
+                  </datalist>
+                </div>
+
+                <div>
+                  <label className="block text-white/70 font-medium mb-1">Género</label>
+                  <select
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                    className="w-full px-3 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]/50"
+                  >
+                    {GENDERS.map((g) => (
+                      <option key={g} value={g}>{g}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Fragrantica URL */}
+              <div>
+                <label className="block text-white/70 font-medium mb-1">Enlace de Fragrantica *</label>
+                <input
+                  type="url"
+                  value={fragranticaUrl}
+                  onChange={(e) => setFragranticaUrl(e.target.value)}
+                  placeholder="https://www.fragrantica.es/perfume/Armaf/Club-de-Nuit-Intense-Man-34696.html"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-[#d4af37]/50"
+                  required
+                />
+                <p className="text-[10px] text-white/30 mt-1">
+                  Se extraerá automáticamente el ID de la imagen del perfume para renderizado en alta definición.
+                </p>
+              </div>
+
+              {/* Price, Size, Concentration */}
+              <div className="grid grid-cols-3 gap-3">
+                <div>
+                  <label className="block text-white/70 font-medium mb-1">Precio ($USD)</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    placeholder="0.00"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-[#d4af37]/50"
+                  />
+                </div>
+                <div>
+                  <label className="block text-white/70 font-medium mb-1">Tamaño</label>
+                  <input
+                    type="text"
+                    value={size}
+                    onChange={(e) => setSize(e.target.value)}
+                    placeholder="100ml"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]/50"
+                  />
+                </div>
+                <div>
+                  <label className="block text-white/70 font-medium mb-1">Concentración</label>
+                  <select
+                    value={concentration}
+                    onChange={(e) => setConcentration(e.target.value)}
+                    className="w-full px-3 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]/50"
+                  >
+                    {CONCENTRATIONS.map((c) => (
+                      <option key={c} value={c}>{c}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Discounts & Offers */}
+              <div className="p-3.5 rounded-xl bg-[#080808] border border-[#d4af37]/20 space-y-3">
+                <div className="text-xs font-semibold text-[#d4af37] flex items-center gap-1.5">
+                  <Percent className="w-3.5 h-3.5" /> Descuento Temporal / Promoción
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-white/60 text-[11px] mb-1">% de Descuento (OFF)</label>
+                    <input
+                      type="number"
+                      min="0"
+                      max="100"
+                      value={temporalDiscountPct}
+                      onChange={(e) => setTemporalDiscountPct(e.target.value)}
+                      placeholder="ej: 15"
+                      className="w-full px-3 py-2 rounded-lg bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]/50"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-white/60 text-[11px] mb-1">Etiqueta de Promoción</label>
+                    <input
+                      type="text"
+                      value={temporalDiscountLabel}
+                      onChange={(e) => setTemporalDiscountLabel(e.target.value)}
+                      placeholder="ej: OFERTA DE HOY"
+                      className="w-full px-3 py-2 rounded-lg bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]/50"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Switches */}
+              <div className="flex items-center gap-6 pt-2">
+                <label className="flex items-center gap-2 cursor-pointer text-xs text-white/80">
+                  <input
+                    type="checkbox"
+                    checked={available}
+                    onChange={(e) => setAvailable(e.target.checked)}
+                    className="w-4 h-4 accent-[#d4af37]"
+                  />
+                  <span>Disponible en Stock</span>
+                </label>
+
+                <label className="flex items-center gap-2 cursor-pointer text-xs text-white/80">
+                  <input
+                    type="checkbox"
+                    checked={isActive}
+                    onChange={(e) => setIsActive(e.target.checked)}
+                    className="w-4 h-4 accent-[#d4af37]"
+                  />
+                  <span>Visible en la tienda web</span>
+                </label>
+              </div>
+            </div>
+
+            {/* Live Preview Box */}
+            <div className="flex flex-col items-center justify-center p-4 rounded-xl bg-[#080808] border border-white/10 text-center">
+              <span className="text-[11px] text-white/40 uppercase tracking-widest font-semibold mb-3">
+                Previsualización en Vivo
+              </span>
+
+              <div className="w-36 h-48 rounded-xl overflow-hidden bg-[#050505] border border-[#d4af37]/30 shadow-xl mb-3 relative">
+                <PerfumeImage fragranticaId={fragranticaId} alt={name || "Perfume Preview"} />
+              </div>
+
+              {fragranticaId ? (
+                <div className="text-[11px] text-emerald-400 font-medium flex items-center gap-1">
+                  <Check className="w-3.5 h-3.5" /> ID Fragrantica: #{fragranticaId}
+                </div>
+              ) : (
+                <div className="text-[11px] text-white/30 italic">
+                  Pega un enlace para cargar la imagen
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Modal Footer */}
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
             <button
               type="button"
               onClick={onClose}
-              disabled={saving}
-              className="px-4 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white/70 text-sm font-[family-name:var(--font-inter)] hover:bg-white/[0.08] transition-all disabled:opacity-50"
+              className="px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-white text-xs font-semibold"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={saving}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-black text-sm font-bold font-[family-name:var(--font-inter)] hover:from-[#e0c04a] hover:to-[#c8a634] transition-all active:scale-95 disabled:opacity-50"
+              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-black text-xs font-bold shadow-lg shadow-[#d4af37]/20 hover:brightness-110 disabled:opacity-50"
             >
-              {saving ? (
-                <>
-                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                  Guardando…
-                </>
-              ) : (
-                <>
-                  <Save className="w-3.5 h-3.5" />
-                  {isEdit ? "Guardar cambios" : "Crear perfume"}
-                </>
-              )}
+              {saving && <Loader2 className="w-4 h-4 animate-spin" />}
+              {isEdit ? "Guardar Cambios" : "Crear Fragancia"}
             </button>
           </div>
         </form>
@@ -1108,84 +1308,175 @@ function PerfumeFormModal({
   );
 }
 
-// ─── DeleteConfirmDialog ────────────────────────────────────────────────────
+// ─── Delete Confirm Dialog ───────────────────────────────────────────────────
 
-interface DeleteConfirmDialogProps {
+function DeleteConfirmDialog({
+  item,
+  onCancel,
+  onConfirm,
+}: {
   item: PerfumeItem;
   onCancel: () => void;
   onConfirm: (hard: boolean) => void;
-}
-
-function DeleteConfirmDialog({ item, onCancel, onConfirm }: DeleteConfirmDialogProps) {
-  // For admin-added perfumes (id >= 10000), offer hard-delete. For static
-  // perfumes (id < 10000), only soft-delete makes sense — the row is the
-  // admin's runtime override on top of the static catalog, so hiding it
-  // is equivalent to "removing" it from the storefront.
-  const canHardDelete = item.perfumeId >= 10000;
-
+}) {
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
-      onClick={onCancel}
-    >
-      <div
-        className="bg-[#0d0d0d] border border-rose-500/30 rounded-2xl w-full max-w-md p-5"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex items-start gap-3 mb-4">
-          <div className="w-10 h-10 rounded-full bg-rose-500/15 border border-rose-500/30 flex items-center justify-center flex-shrink-0">
-            <Trash2 className="w-5 h-5 text-rose-300" />
-          </div>
-          <div className="min-w-0">
-            <h3 className="text-base font-[family-name:var(--font-playfair)] text-white tracking-wide">
-              ¿Eliminar perfume?
-            </h3>
-            <p className="text-sm text-white/60 font-[family-name:var(--font-inter)] mt-1">
-              Estás a punto de eliminar
-              <span className="text-white font-semibold"> {item.name} </span>
-              de
-              <span className="text-[#d4af37] font-semibold"> {item.brand}</span>.
-            </p>
-          </div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+      <div className="w-full max-w-md p-6 rounded-2xl bg-[#111111] border border-rose-500/30 shadow-2xl space-y-4 text-xs font-[family-name:var(--font-inter)]">
+        <div className="flex items-center gap-3 text-rose-400">
+          <AlertTriangle className="w-6 h-6 flex-shrink-0" />
+          <h3 className="text-base font-bold text-white font-[family-name:var(--font-playfair)]">
+            ¿Eliminar fragancia?
+          </h3>
         </div>
 
-        <div className="space-y-2 mb-4">
+        <p className="text-white/70">
+          Estás a punto de eliminar <strong className="text-white">{item.name}</strong> ({item.brand}). Puedes ocultarlo del catálogo (desactivación suave) o eliminarlo de forma permanente.
+        </p>
+
+        <div className="flex items-center justify-end gap-2 pt-2">
+          <button
+            onClick={onCancel}
+            className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-white"
+          >
+            Cancelar
+          </button>
           <button
             onClick={() => onConfirm(false)}
-            className="w-full px-4 py-2.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-200 text-sm font-medium font-[family-name:var(--font-inter)] hover:bg-amber-500/20 transition-all text-left flex items-center gap-2"
+            className="px-4 py-2 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 font-semibold"
           >
-            <EyeOff className="w-4 h-4 flex-shrink-0" />
-            <div className="min-w-0">
-              <div className="font-semibold">Ocultar del catálogo (recomendado)</div>
-              <div className="text-[10px] text-amber-200/60">
-                El perfume desaparece del catálogo pero se conserva en la base de datos.
-                Podrás reactivarlo cuando quieras.
-              </div>
-            </div>
+            Ocultar (Soft Delete)
           </button>
+          <button
+            onClick={() => onConfirm(true)}
+            className="px-4 py-2 rounded-xl bg-rose-500 border border-rose-600 text-white font-bold hover:bg-rose-600 shadow-lg shadow-rose-500/20"
+          >
+            Eliminar Definitivo
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-          {canHardDelete && (
-            <button
-              onClick={() => onConfirm(true)}
-              className="w-full px-4 py-2.5 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-200 text-sm font-medium font-[family-name:var(--font-inter)] hover:bg-rose-500/20 transition-all text-left flex items-center gap-2"
-            >
-              <Trash2 className="w-4 h-4 flex-shrink-0" />
-              <div className="min-w-0">
-                <div className="font-semibold">Eliminar permanentemente</div>
-                <div className="text-[10px] text-rose-200/60">
-                  Borra el perfume de la base de datos. Esta acción no se puede deshacer.
-                </div>
-              </div>
-            </button>
-          )}
+// ─── Bulk Discount Manager Modal ──────────────────────────────────────────────
+
+function BulkDiscountModal({
+  brands,
+  genders,
+  onClose,
+  onApply,
+}: {
+  brands: string[];
+  genders: string[];
+  onClose: () => void;
+  onApply: (brand: string, gender: string, pct: number, label: string) => void;
+}) {
+  const [selectedBrand, setSelectedBrand] = useState("Todas");
+  const [selectedGender, setSelectedGender] = useState("Todos");
+  const [pct, setPct] = useState("15");
+  const [label, setLabel] = useState("OFERTA ESPECIAL");
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+      <div className="w-full max-w-lg p-6 rounded-2xl bg-[#111111] border border-[rgba(212,175,55,0.4)] shadow-2xl space-y-5 text-xs font-[family-name:var(--font-inter)]">
+        <div className="flex items-center justify-between border-b border-white/10 pb-3">
+          <div className="flex items-center gap-2 text-[#d4af37]">
+            <Percent className="w-5 h-5" />
+            <h3 className="text-base font-bold text-white font-[family-name:var(--font-playfair)]">
+              Gestor de Descuentos Masivos
+            </h3>
+          </div>
+          <button onClick={onClose} className="text-white/40 hover:text-white">
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
-        <button
-          onClick={onCancel}
-          className="w-full px-4 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white/70 text-sm font-[family-name:var(--font-inter)] hover:bg-white/[0.08] transition-all"
-        >
-          Cancelar
-        </button>
+        <p className="text-white/70">
+          Aplica un porcentaje de descuento temporal y etiqueta a múltiples perfumes simultáneamente.
+        </p>
+
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-white/70 mb-1">Filtrar Marca</label>
+              <select
+                value={selectedBrand}
+                onChange={(e) => setSelectedBrand(e.target.value)}
+                className="w-full px-3 py-2 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]"
+              >
+                <option value="Todas">Todas las marcas</option>
+                {brands.map((b) => (
+                  <option key={b} value={b}>{b}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-white/70 mb-1">Filtrar Género</label>
+              <select
+                value={selectedGender}
+                onChange={(e) => setSelectedGender(e.target.value)}
+                className="w-full px-3 py-2 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]"
+              >
+                <option value="Todos">Todos los géneros</option>
+                {genders.map((g) => (
+                  <option key={g} value={g}>{g}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-white/70 mb-1">% Descuento (OFF)</label>
+              <input
+                type="number"
+                min="0"
+                max="100"
+                value={pct}
+                onChange={(e) => setPct(e.target.value)}
+                className="w-full px-3.5 py-2 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]"
+                placeholder="15"
+              />
+            </div>
+
+            <div>
+              <label className="block text-white/70 mb-1">Etiqueta de Oferta</label>
+              <input
+                type="text"
+                value={label}
+                onChange={(e) => setLabel(e.target.value)}
+                className="w-full px-3.5 py-2 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]"
+                placeholder="ej: CYBER WEEK"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between pt-3 border-t border-white/10">
+          <button
+            type="button"
+            onClick={() => onApply(selectedBrand, selectedGender, 0, "")}
+            className="px-3.5 py-2 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 hover:bg-rose-500/20 text-xs font-semibold"
+          >
+            Quitar Descuento Masivo
+          </button>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onClose}
+              className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-white"
+            >
+              Cancelar
+            </button>
+            <button
+              onClick={() => onApply(selectedBrand, selectedGender, Number(pct), label)}
+              className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-black font-bold shadow-lg hover:brightness-110"
+            >
+              Aplicar Descuentos
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
