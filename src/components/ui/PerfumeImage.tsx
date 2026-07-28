@@ -30,7 +30,7 @@ export function PerfumeImage({
   sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
   priority = false,
 }: PerfumeImageProps) {
-  const [imgState, setImgState] = useState<"loading" | "loaded" | "error">("loading");
+  const [imgState, setImgState] = useState<"loading" | "loaded" | "fallback" | "error">("loading");
 
   const hasCustomImage = Boolean(customImageUrl && customImageUrl.trim().length > 0);
   const hasFragranticaId = Boolean(fragranticaId && fragranticaId > 0);
@@ -38,16 +38,18 @@ export function PerfumeImage({
   const src = useMemo(() => {
     if (hasCustomImage) return customImageUrl!;
     if (hasFragranticaId) {
-      // JPG is mostly guaranteed to exist, Next.js Image component will optimize it further.
-      return `https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.${fragranticaId}.jpg`;
+      if (imgState === "fallback") {
+        return `https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.${fragranticaId}.jpg`;
+      }
+      return `https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.${fragranticaId}.avif`;
     }
     return null;
-  }, [hasCustomImage, customImageUrl, hasFragranticaId, fragranticaId]);
+  }, [hasCustomImage, customImageUrl, hasFragranticaId, fragranticaId, imgState]);
 
   return (
     <div className={containerClassName}>
       {/* Loading Skeleton */}
-      {imgState === "loading" && src && (
+      {(imgState === "loading" || imgState === "fallback") && src && (
         <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-[#0d0d0d] to-[#080808] z-0">
           <div className="animate-pulse flex flex-col items-center gap-1.5 opacity-60">
             <Sparkles className="w-6 h-6 text-[#d4af37]/30" />
@@ -77,7 +79,13 @@ export function PerfumeImage({
             imgState === "loaded" ? "opacity-100 relative z-10" : "opacity-0"
           }`}
           onLoad={() => setImgState("loaded")}
-          onError={() => setImgState("error")}
+          onError={() => {
+            if (imgState !== "fallback" && hasFragranticaId && !hasCustomImage) {
+              setImgState("fallback");
+            } else {
+              setImgState("error");
+            }
+          }}
         />
       )}
     </div>
