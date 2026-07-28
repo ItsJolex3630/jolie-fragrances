@@ -60,7 +60,7 @@ export function getDb(): PrismaClient | null {
 
       console.log("[DB] Connecting to Turso:", url.substring(0, 40) + "...");
       const libsql = createClient({ url, authToken });
-      const adapter = new PrismaLibSQL(libsql);
+      const adapter = new PrismaLibSQL(libsql as any);
       _db = new PrismaClient({ adapter } as never);
       console.log("[DB] Connected to Turso successfully");
     } else {

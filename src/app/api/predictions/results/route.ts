@@ -124,9 +124,9 @@ export async function POST(request: NextRequest) {
     });
 
     // ─── Evaluate each prediction ───
-    const winners5 = []; // Got the winner right → 5%
-    const winners10 = []; // Got exact score → 10%
-    const losers = [];
+    const winners5: typeof allPredictions = []; // Got the winner right → 5%
+    const winners10: typeof allPredictions = []; // Got exact score → 10%
+    const losers: typeof allPredictions = [];
 
     for (const pred of allPredictions) {
       const predWinner = getPredictedWinner(pred.homeGoals, pred.awayGoals);
@@ -174,7 +174,7 @@ export async function POST(request: NextRequest) {
     }
 
     // ─── Generate discount codes ───
-    const discountCodes = [];
+    const discountCodes: Array<{ email: string; code: string; discountPct: number; exact: boolean }> = [];
 
     // 10% for exact score
     for (const prediction of winners10) {

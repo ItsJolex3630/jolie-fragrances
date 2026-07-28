@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const discountCode = await getDb().discountCode.findUnique({ where: { code }, include: { user: true } });
+    const discountCode = await getDb()!.discountCode.findUnique({ where: { code }, include: { user: true } });
     if (!discountCode) {
       return NextResponse.json({ valid: false, error: "Código no encontrado en la base de datos" }, { status: 404 });
     }
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    await getDb().discountCode.update({ where: { id: discountCode.id }, data: { verified: true, verifiedAt: new Date() } });
+    await getDb()!.discountCode.update({ where: { id: discountCode.id }, data: { verified: true, verifiedAt: new Date() } });
 
     return NextResponse.json({
       valid: true, alreadyUsed: false,

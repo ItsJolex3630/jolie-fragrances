@@ -94,6 +94,7 @@ export default function GoogleLoginButton() {
   }
 
   // Authenticated — show avatar + dropdown
+  if (!session?.user) return null;
   const user = session.user;
   const initial = (user.name || user.email || "?").charAt(0).toUpperCase();
   const shortEmail =

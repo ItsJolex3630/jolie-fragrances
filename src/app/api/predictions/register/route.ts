@@ -37,6 +37,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    const db = getDb()!;
     const { email, deviceFingerprint } = await request.json();
 
     // ─── STRICT Gmail Validation ───
@@ -56,12 +57,12 @@ export async function POST(request: NextRequest) {
     const fpHash = deviceFingerprint ? hashFingerprint(deviceFingerprint) : null;
 
     // Check if email already registered
-    const existingUser = await getDb().user.findUnique({ where: { email: normalizedEmail } });
+    const existingUser = await db.user.findUnique({ where: { email: normalizedEmail } });
     if (existingUser) {
       // If user exists but not verified, allow re-sending OTP
       if (!existingUser.emailVerified) {
         // Rate limit: max 3 OTP requests per email per hour
-        const recentOtps = await getDb().otpCode.findMany({
+        const recentOtps = await db.otpCode.findMany({
           where: {
             email: normalizedEmail,
             createdAt: { gte: new Date(Date.now() - 60 * 60 * 1000) },
@@ -74,14 +75,14 @@ export async function POST(request: NextRequest) {
           );
         }
 
-        await getDb().otpCode.updateMany({
+        await db.otpCode.updateMany({
           where: { email: normalizedEmail, used: false },
           data: { used: true },
         });
 
         const otp = generateOTP();
         const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
-        await getDb().otpCode.create({ data: { email: normalizedEmail, code: otp, expiresAt } });
+        await db.otpCode.create({ data: { email: normalizedEmail, code: otp, expiresAt } });
 
         const resend = getResend();
         if (resend) {
@@ -113,7 +114,7 @@ export async function POST(request: NextRequest) {
     }
 
     // ─── Anti-multicuenta: Check IP ───
-    const existingIP = await getDb().user.findFirst({
+    const existingIP = await db.user.findFirst({
       where: { ipHash, NOT: { ipHash: "pending" } },
     });
     if (existingIP && ip !== "unknown") {
@@ -125,7 +126,7 @@ export async function POST(request: NextRequest) {
 
     // ─── Anti-multicuenta: Check device fingerprint ───
     if (fpHash) {
-      const existingFP = await getDb().user.findFirst({
+      const existingFP = await db.user.findFirst({
         where: { deviceFingerprint: fpHash },
       });
       if (existingFP) {
@@ -137,7 +138,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Rate limit: max 3 OTP requests per email per hour
-    const recentOtps = await getDb().otpCode.findMany({
+    const recentOtps = await db.otpCode.findMany({
       where: {
         email: normalizedEmail,
         createdAt: { gte: new Date(Date.now() - 60 * 60 * 1000) },
@@ -151,7 +152,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Invalidate old OTPs
-    await getDb().otpCode.updateMany({
+    await db.otpCode.updateMany({
       where: { email: normalizedEmail, used: false },
       data: { used: true },
     });
@@ -159,7 +160,7 @@ export async function POST(request: NextRequest) {
     const otp = generateOTP();
     const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
 
-    await getDb().otpCode.create({ data: { email: normalizedEmail, code: otp, expiresAt } });
+    await db.otpCode.create({ data: { email: normalizedEmail, code: otp, expiresAt } });
 
     const resend = getResend();
     if (resend) {

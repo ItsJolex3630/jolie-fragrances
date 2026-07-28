@@ -172,7 +172,7 @@ export async function POST(request: NextRequest) {
     ];
 
     const allMatches = [...todayMatches, ...tomorrowMatches];
-    const created = [];
+    const created: any[] = [];
 
     for (const matchData of allMatches) {
       const match = await db.match.create({

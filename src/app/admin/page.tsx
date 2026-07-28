@@ -101,7 +101,7 @@ interface AdminPrediction {
   createdAt: string;
 }
 
-type Tab = "users" | "stats" | "perfumes";
+type Tab = "users" | "stats" | "perfumes" | "predictions" | "catalog";
 
 // ─── Catalog types ──────────────────────────────────────────────────────────
 // Mirrors PerfumeCatalogRow from src/lib/dbClient.ts. Defined here so the

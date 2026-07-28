@@ -436,6 +436,7 @@ export interface Perfume {
   notes?: Note[];
   available?: boolean; // defaults to true; false = out of stock / not available
   concentration?: Concentration; // olfactive concentration type
+  customImageUrl?: string;
 }
 
 export const BRANDS: Brand[] = [

@@ -6,7 +6,7 @@ import { Shield, CheckCircle2, XCircle, ScanLine, AlertTriangle } from "lucide-r
 export default function VerifyCodePage() {
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<Record<string, unknown> | null>(null);
+  const [result, setResult] = useState<any | null>(null);
 
   const handleVerify = async () => {
     if (!code.trim()) return;

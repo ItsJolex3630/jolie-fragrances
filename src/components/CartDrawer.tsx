@@ -28,8 +28,8 @@ import { getImageUrl } from "@/lib/perfumes";
 // ─── Animation variants ───
 const drawerVariants = {
   hidden: { x: "100%" },
-  visible: { x: 0, transition: { type: "spring", stiffness: 300, damping: 30 } },
-  exit: { x: "100%", transition: { duration: 0.25, ease: "easeIn" } },
+  visible: { x: 0, transition: { type: "spring" as const, stiffness: 300, damping: 30 } },
+  exit: { x: "100%", transition: { duration: 0.25, ease: "easeIn" as const } },
 };
 
 const overlayVariants = {

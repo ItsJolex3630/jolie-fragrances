@@ -655,19 +655,22 @@ function MetricCard({
 }) {
   return (
     <div
-      className={`p-3.5 rounded-2xl border transition-all ${
+      className={`relative p-4 rounded-3xl border transition-all duration-300 overflow-hidden group ${
         highlight
-          ? "bg-gradient-to-b from-[#d4af37]/15 to-[#0a0a0a] border-[#d4af37]/40 shadow-lg shadow-[#d4af37]/10"
-          : "bg-[#0d0d0d] border-white/10 hover:border-white/20"
+          ? "bg-gradient-to-br from-[#d4af37]/20 to-[#0a0a0a] border-[#d4af37]/50 shadow-2xl shadow-[#d4af37]/20"
+          : "bg-[#0d0d0d] border-white/10 hover:border-[#d4af37]/30 hover:shadow-lg hover:shadow-[#d4af37]/5"
       }`}
     >
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-[11px] text-white/50 font-medium font-[family-name:var(--font-inter)] truncate">
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
+      <div className="relative z-10 flex items-center justify-between mb-3">
+        <span className="text-[11px] text-white/50 font-medium font-[family-name:var(--font-inter)] tracking-wider uppercase truncate">
           {label}
         </span>
-        <div className="p-1.5 rounded-lg bg-white/5 border border-white/10">{icon}</div>
+        <div className={`p-2 rounded-xl border ${highlight ? 'bg-[#d4af37]/20 border-[#d4af37]/50' : 'bg-white/5 border-white/10'}`}>
+          {icon}
+        </div>
       </div>
-      <div className="text-xl font-bold text-white font-[family-name:var(--font-inter)] tracking-tight">
+      <div className="relative z-10 text-2xl sm:text-3xl font-bold text-white font-[family-name:var(--font-playfair)] tracking-tight">
         {value}
       </div>
     </div>
@@ -705,12 +708,18 @@ function PerfumeCardItem({
 
   return (
     <div
-      className={`group relative rounded-2xl border flex flex-col overflow-hidden transition-all duration-300 ${
-        !item.isActive
           ? "bg-[#080808]/60 border-white/5 opacity-50"
           : !item.available
           ? "bg-[#110a0a] border-rose-500/20"
           : "bg-[#111111] border-[rgba(212,175,55,0.15)] hover:border-[#d4af37]/40 hover:shadow-xl hover:shadow-black/50"
+=======
+      className={`group relative rounded-3xl border flex flex-col overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1 ${
+        !item.isActive
+          ? "bg-[#080808]/60 border-white/5 opacity-50 grayscale hover:grayscale-0"
+          : !item.available
+          ? "bg-[#110a0a] border-rose-500/20 shadow-lg shadow-rose-900/10"
+          : "bg-[#0f0f0f] border-[#d4af37]/20 hover:border-[#d4af37]/50 hover:shadow-2xl hover:shadow-[#d4af37]/20 hover:bg-[#141414]"
+>>>>>>> 8b13931 (Fix TypeScript errors, add Radix UI dependencies, clean duplicate keys and verify production build)
       }`}
     >
       {/* Image Header with Badges */}
@@ -836,7 +845,7 @@ function PerfumeCardItem({
             <button
               onClick={onDelete}
               disabled={busy}
-              className="p-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-300 hover:bg-rose-500/20"
+              className="p-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-300 hover:bg-rose-500/20 transition-all"
               title="Eliminar"
             >
               {busy ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Trash2 className="w-3.5 h-3.5" />}
@@ -936,7 +945,7 @@ function PerfumeTableRowItem({
               href={pageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 rounded-lg border border-white/10 bg-[#080808] text-white/50 hover:text-white"
+              className="p-1.5 rounded-lg border border-white/10 bg-white/5 text-white/50 hover:text-white"
             >
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
@@ -1184,7 +1193,7 @@ function PerfumeFormModal({
                   />
                 </div>
                 <div>
-                  <label className="block text-white/70 mb-1">Tamaño</label>
+                  <label className="block text-white/70 font-medium mb-1">Tamaño</label>
                   <input
                     type="text"
                     value={size}
@@ -1285,20 +1294,20 @@ function PerfumeFormModal({
           </div>
 
           {/* Modal Footer */}
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/10 mt-6">
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-white text-xs font-semibold"
+              className="px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-white hover:bg-white/10 text-xs font-semibold transition-all active:scale-95"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={saving}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-black text-xs font-bold shadow-lg shadow-[#d4af37]/20 hover:brightness-110 disabled:opacity-50"
+              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#f0d060] to-[#b8962e] text-black text-xs font-extrabold shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50"
             >
-              {saving && <Loader2 className="w-4 h-4 animate-spin" />}
+              {saving && <Loader2 className="w-4 h-4 animate-spin text-black" />}
               {isEdit ? "Guardar Cambios" : "Crear Fragancia"}
             </button>
           </div>

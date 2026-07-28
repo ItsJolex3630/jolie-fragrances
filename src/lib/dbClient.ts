@@ -1131,6 +1131,8 @@ export const rawDb = {
           authProvider: data.authProvider ?? "otp",
           banned: false,
           bannedReason: null,
+          phone: null,
+          instagram: null,
           createdAt: new Date(now),
         };
       }

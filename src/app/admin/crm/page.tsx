@@ -174,7 +174,7 @@ const DECANT_STATUS_LABELS: Record<string, { label: string; color: string; dot: 
   filled: { label: "Lleno - Disponible", color: "text-[#d4af37] bg-[#d4af37]/10 border-[#d4af37]/30", dot: "bg-[#d4af37]" },
   available: { label: "Disponible", color: "text-[#d4af37] bg-[#d4af37]/10 border-[#d4af37]/30", dot: "bg-[#d4af37]" },
   reserved: { label: "Reservado", color: "text-sky-200 bg-sky-500/10 border-sky-500/30", dot: "bg-sky-400" },
-  sold: { label: "Vendido", color: "text-emerald-200 bg-emerald-500/10 border-emerald-500/30", dot: "bg-emerald-400" },
+  sold: { label: "Vendido", color: "text-purple-200 bg-purple-500/10 border-purple-500/30", dot: "bg-purple-400" },
 };
 
 const DM_STATUS_LABELS: Record<string, { label: string; color: string; dot: string }> = {
@@ -189,7 +189,7 @@ const DM_STATUS_LABELS: Record<string, { label: string; color: string; dot: stri
 const GENERAL_STATUS_LABELS: Record<string, { label: string; color: string; dot: string }> = {
   available: { label: "Disponible", color: "text-emerald-200 bg-emerald-500/10 border-emerald-500/30", dot: "bg-emerald-400" },
   reserved: { label: "Reservado", color: "text-sky-200 bg-sky-500/10 border-sky-500/30", dot: "bg-sky-400" },
-  sold: { label: "Vendido", color: "text-emerald-200 bg-emerald-500/10 border-emerald-500/30", dot: "bg-emerald-400" },
+  sold: { label: "Vendido", color: "text-purple-200 bg-purple-500/10 border-purple-500/30", dot: "bg-purple-400" },
   paid: { label: "Pagado Completo", color: "text-emerald-200 bg-emerald-500/10 border-emerald-500/30", dot: "bg-emerald-400" },
   partial: { label: "Pago Parcial", color: "text-amber-200 bg-amber-500/10 border-amber-500/30", dot: "bg-amber-400" },
   pending: { label: "Pendiente Pago", color: "text-rose-200 bg-rose-500/10 border-rose-500/30", dot: "bg-rose-400" },
@@ -496,11 +496,12 @@ function DashboardTab({
         {kpis.map((kpi, i) => (
           <div
             key={i}
-            className="p-5 rounded-2xl bg-[#111111] border border-[rgba(212,175,55,0.15)] hover:border-[#d4af37]/40 shadow-xl transition-all group"
+            className="relative p-6 rounded-3xl bg-[#111111] border border-[rgba(212,175,55,0.15)] hover:border-[#d4af37]/40 hover:bg-[#141414] shadow-xl hover:shadow-[0_10px_30px_rgba(212,175,55,0.08)] transition-all duration-300 ease-out group overflow-hidden hover:-translate-y-1"
           >
-            <div className="flex items-start justify-between mb-3">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-white/40">{kpi.label}</span>
-              <div className={`p-2 rounded-xl border ${kpi.iconBg} ${kpi.accent} group-hover:scale-110 transition-transform`}>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
+            <div className="relative z-10 flex items-start justify-between mb-4">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-white/40">{kpi.label}</span>
+              <div className={`p-2.5 rounded-xl border ${kpi.iconBg} ${kpi.accent} group-hover:scale-110 transition-transform duration-300 shadow-inner`}>
                 {kpi.icon}
               </div>
             </div>
@@ -736,15 +737,16 @@ function CustomersTab() {
           {filtered.map((c) => (
             <div
               key={c.id}
-              className={`p-5 rounded-2xl border flex flex-col justify-between space-y-4 transition-all ${
+              className={`relative p-6 rounded-3xl border flex flex-col justify-between space-y-4 transition-all duration-300 ease-out hover:-translate-y-1 group overflow-hidden ${
                 c.isBlocked
-                  ? "bg-rose-500/5 border-rose-500/20"
+                  ? "bg-rose-500/5 border-rose-500/20 grayscale hover:grayscale-0"
                   : c.isVip
-                  ? "bg-gradient-to-b from-[#d4af37]/10 to-[#111111] border-[#d4af37]/40 shadow-lg shadow-[#d4af37]/5"
-                  : "bg-[#111111] border-white/10 hover:border-white/20"
+                  ? "bg-gradient-to-br from-[#d4af37]/10 to-[#111111] border-[#d4af37]/40 shadow-lg shadow-[#d4af37]/10"
+                  : "bg-[#111111] border-white/10 hover:border-[#d4af37]/30 hover:bg-[#141414]"
               }`}
             >
-              <div className="space-y-3">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] opacity-50" />
+              <div className="relative z-10 space-y-4">
                 <div className="flex items-start justify-between gap-2">
                   <div>
                     <div className="flex items-center gap-2">

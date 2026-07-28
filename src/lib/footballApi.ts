@@ -450,7 +450,7 @@ function formatMatchForDisplay(m: {
   winner: string | null;
   shortStatus: string | null;
   round: string | null;
-  predictions: Array<{ pick: string }>;
+  predictions?: any[];
 }): MatchDisplayData {
   const now = new Date();
   const matchTime = new Date(m.matchDate);
@@ -482,10 +482,10 @@ function formatMatchForDisplay(m: {
     winner: m.winner,
     shortStatus: m.shortStatus,
     round: m.round,
-    homeVotes: m.predictions.filter((p) => p.pick === "home").length,
-    awayVotes: m.predictions.filter((p) => p.pick === "away").length,
-    drawVotes: m.predictions.filter((p) => p.pick === "draw").length,
-    totalVotes: m.predictions.length,
+    homeVotes: (m.predictions ?? []).filter((p: any) => p.pick === "home").length,
+    awayVotes: (m.predictions ?? []).filter((p: any) => p.pick === "away").length,
+    drawVotes: (m.predictions ?? []).filter((p: any) => p.pick === "draw").length,
+    totalVotes: m.predictions?.length ?? 0,
     canPredict,
     timeVzla,
   };
