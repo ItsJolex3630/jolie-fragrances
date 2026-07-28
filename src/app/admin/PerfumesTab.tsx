@@ -708,18 +708,12 @@ function PerfumeCardItem({
 
   return (
     <div
-          ? "bg-[#080808]/60 border-white/5 opacity-50"
-          : !item.available
-          ? "bg-[#110a0a] border-rose-500/20"
-          : "bg-[#111111] border-[rgba(212,175,55,0.15)] hover:border-[#d4af37]/40 hover:shadow-xl hover:shadow-black/50"
-=======
       className={`group relative rounded-3xl border flex flex-col overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1 ${
         !item.isActive
           ? "bg-[#080808]/60 border-white/5 opacity-50 grayscale hover:grayscale-0"
           : !item.available
           ? "bg-[#110a0a] border-rose-500/20 shadow-lg shadow-rose-900/10"
           : "bg-[#0f0f0f] border-[#d4af37]/20 hover:border-[#d4af37]/50 hover:shadow-2xl hover:shadow-[#d4af37]/20 hover:bg-[#141414]"
->>>>>>> 8b13931 (Fix TypeScript errors, add Radix UI dependencies, clean duplicate keys and verify production build)
       }`}
     >
       {/* Image Header with Badges */}
