@@ -118,7 +118,7 @@ function SkeletonCard({ index }: { index: number }) {
       className="card-fade-in"
       style={{ animationDelay: `${Math.min(index * 0.03, 0.5)}s` }}
     >
-      <div className="rounded-xl border border-[rgba(212,175,55,0.08)] bg-[#111111] overflow-hidden">
+      <div className="rounded-xl border border-white/5 bg-[#0a0a0a] overflow-hidden">
         <div className="aspect-[3/4] bg-gradient-to-b from-[#0d0d0d] to-[#080808] flex items-center justify-center skeleton-pulse">
           <div className="flex flex-col items-center gap-2">
             <Sparkles className="w-8 h-8 text-[#d4af37]/15" />
@@ -196,14 +196,14 @@ function PerfumePriceBlock({
             </span>
             {discountBadge}
           </div>
-          <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent">
+          <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] text-[#d4af37]">
             {discountedFormatted.primary}
           </p>
         </div>
       );
     }
     return (
-      <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent">
+      <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] text-[#d4af37]">
         {originalFormatted.primary}
       </p>
     );
@@ -221,7 +221,7 @@ function PerfumePriceBlock({
           </span>
           {discountBadge}
         </div>
-        <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent">
+        <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] text-[#d4af37]">
           {discountedFormatted.primary}
         </p>
         <p className={`text-[9px] sm:text-[10px] font-[family-name:var(--font-inter)] leading-tight font-semibold ${
@@ -235,7 +235,7 @@ function PerfumePriceBlock({
 
   return (
     <div className="flex flex-col leading-tight">
-      <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent leading-tight">
+      <p className="text-sm sm:text-base font-bold font-[family-name:var(--font-inter)] text-[#d4af37] leading-tight">
         {originalFormatted.primary}
       </p>
       <p className="text-[9px] sm:text-[10px] text-white/60 font-[family-name:var(--font-inter)] leading-tight">
@@ -310,7 +310,7 @@ const PerfumeCard = memo(function PerfumeCard({
       className="perfume-card group relative card-fade-in rounded-xl"
       style={{ animationDelay: `${Math.min(index * 0.03, 0.5)}s` }}
     >
-      <div className={`card-shimmer-border relative overflow-hidden rounded-xl border border-[rgba(212,175,55,0.12)] bg-[#111111] transition-all duration-500 group-hover:border-[rgba(212,175,55,0.35)] gold-glow-hover h-full flex flex-col ${!effectiveAvailable ? 'opacity-75' : ''}`}>
+      <div className={`relative overflow-hidden rounded-xl border border-white/[0.06] bg-[#0a0a0a] transition-all duration-300 ease-out hover:border-[#d4af37]/30 hover:shadow-2xl hover:shadow-black/60 hover:bg-[#0f0f0f] hover:-translate-y-0.5 h-full flex flex-col ${!effectiveAvailable ? 'opacity-75' : ''}`}>
         {/* Image container - dark background for the bottle */}
         <div className="relative aspect-[3/4] overflow-hidden bg-[#0a0a0a] flex items-center justify-center">
           {/* Loading skeleton */}
@@ -399,7 +399,7 @@ const PerfumeCard = memo(function PerfumeCard({
             {retailPrice !== null && effectiveAvailable && (
               <button
                 onClick={(e) => { e.stopPropagation(); onAddToCart(perfume, retailPrice); }}
-                className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#d4af37] text-black text-[10px] font-bold font-[family-name:var(--font-inter)] shadow-lg shadow-[#d4af37]/20 hover:bg-[#e0c04a] transition-all active:scale-95"
+                className="flex items-center gap-1 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white/90 text-[10px] font-semibold font-[family-name:var(--font-inter)] hover:bg-[#d4af37] hover:text-black hover:border-[#d4af37] transition-all active:scale-95 backdrop-blur-md"
                 aria-label={`Agregar ${perfume.name} al carrito`}
               >
                 <ShoppingCart className="w-3 h-3" />
@@ -412,7 +412,7 @@ const PerfumeCard = memo(function PerfumeCard({
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#25D366] text-white text-[10px] font-bold font-[family-name:var(--font-inter)] shadow-lg shadow-[#25D366]/20 hover:bg-[#2ee071] transition-all active:scale-95"
+              className="flex items-center gap-1 px-3 py-2 rounded-lg bg-[#25D366]/90 border border-[#25D366]/20 text-white text-[10px] font-semibold font-[family-name:var(--font-inter)] hover:bg-[#25D366] transition-all active:scale-95 backdrop-blur-md"
               aria-label={`Consultar disponibilidad de ${perfume.name}`}
             >
               <MessageCircle className="w-3 h-3" />
@@ -444,7 +444,7 @@ const PerfumeCard = memo(function PerfumeCard({
             <p className="text-[10px] sm:text-xs text-[#d4af37]/80 font-semibold tracking-[0.12em] uppercase font-[family-name:var(--font-inter)]">
               {perfume.brand}
             </p>
-            <h3 className="text-sm sm:text-[15px] font-semibold text-white/90 leading-snug font-[family-name:var(--font-playfair)] line-clamp-2 min-h-[2.5rem]">
+            <h3 className="text-[13px] sm:text-sm font-semibold text-white/95 leading-snug font-[family-name:var(--font-playfair)] line-clamp-2 min-h-[2.5rem] group-hover:text-[#d4af37] transition-colors">
               {perfume.name}
             </h3>
             {/* Price + Action buttons */}
@@ -1057,7 +1057,7 @@ export default function Home() {
                 initial={{ opacity: 0, scale: 0.8, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1 + i * 0.15, type: "spring", stiffness: 200, damping: 20 }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[rgba(212,175,55,0.15)] bg-[rgba(212,175,55,0.05)]"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-sm"
               >
                 <item.icon className="w-3.5 h-3.5 text-[#d4af37]/70" />
                 <span className="text-xs text-white/50 font-[family-name:var(--font-inter)]">
@@ -1092,7 +1092,7 @@ export default function Home() {
               href="https://www.instagram.com/jolie.fragrances.ve/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-[rgba(212,175,55,0.25)] text-[#d4af37] hover:bg-[#d4af37]/10 transition-all duration-300 text-sm font-[family-name:var(--font-inter)]"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/10 text-white/80 hover:bg-white/5 hover:text-white transition-all duration-300 text-sm font-[family-name:var(--font-inter)]"
             >
               <Instagram className="w-4 h-4" />
               @jolie.fragrances.ve
@@ -1192,7 +1192,7 @@ export default function Home() {
                 setShowAutocomplete(true);
               }}
               onFocus={() => setShowAutocomplete(true)}
-              className="w-full pl-12 pr-24 py-3.5 bg-[#111111] border border-[rgba(212,175,55,0.15)] rounded-xl text-white placeholder:text-[#555] focus:border-[#d4af37]/40 focus:ring-1 focus:ring-[#d4af37]/20 transition-all duration-300 outline-none font-[family-name:var(--font-inter)] text-sm"
+              className="w-full pl-12 pr-24 py-3.5 bg-[#0a0a0a] border border-white/10 rounded-xl text-white placeholder:text-[#555] focus:border-[#d4af37]/40 focus:ring-1 focus:ring-[#d4af37]/20 transition-all duration-300 outline-none font-[family-name:var(--font-inter)] text-sm shadow-inner"
             />
             <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
               {searchQuery && (
@@ -1230,7 +1230,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="absolute top-full left-0 right-0 mt-2 bg-[#111111] border border-[rgba(212,175,55,0.15)] rounded-xl overflow-hidden z-50 shadow-2xl shadow-black/50"
+                className="absolute top-full left-0 right-0 mt-2 bg-[#0d0d0d] border border-white/10 rounded-xl overflow-hidden z-50 shadow-2xl shadow-black"
               >
                 {autocompleteSuggestions.map((perfume) => (
                   <button
@@ -1238,7 +1238,7 @@ export default function Home() {
                     onClick={() => handleSuggestionClick(perfume.name)}
                     className="autocomplete-item w-full px-4 py-3 flex items-center gap-3 text-left transition-colors duration-200"
                   >
-                    <div className="w-10 h-10 rounded-lg overflow-hidden bg-[#0d0d0d] flex-shrink-0 border border-[rgba(212,175,55,0.1)]">
+                    <div className="w-10 h-10 rounded-lg overflow-hidden bg-black flex-shrink-0 border border-white/5">
                       <img
                         src={getImageUrl(perfume.fragranticaId)}
                         alt=""
@@ -1279,7 +1279,7 @@ export default function Home() {
         <div className="mb-4">
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-[rgba(212,175,55,0.15)] bg-[#111111] text-[#d4af37] transition-all duration-300 font-[family-name:var(--font-inter)] text-sm hover:border-[#d4af37]/30 hover:bg-[#111111]/80"
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-white/10 bg-white/5 text-white/80 transition-all duration-300 font-[family-name:var(--font-inter)] text-sm hover:border-[#d4af37]/40 hover:text-[#d4af37] hover:bg-white/10"
           >
             <Filter className="w-4 h-4" />
             {showFilters ? "Ocultar filtros" : "Mostrar filtros"}
