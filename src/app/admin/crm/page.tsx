@@ -1487,6 +1487,24 @@ function DecantFormModal({ decant, isEdit, onClose, onSaved }: { decant?: Decant
 function InventoryTab() {
   const [items, setItems] = useState<InventoryItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<InventoryItem | null>(null);
+
+  const handleDelete = async (id: string) => {
+    if (confirm("¿Seguro que deseas eliminar este item del inventario?")) {
+      try {
+        const res = await fetch(`/api/admin/crm/inventory/${id}`, { method: "DELETE" });
+        if (!res.ok) {
+          const data = await res.json();
+          alert(data.error || "Error al eliminar");
+        } else {
+          load();
+        }
+      } catch {
+        alert("Error de red");
+      }
+    }
+  };
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -1513,6 +1531,15 @@ function InventoryTab() {
         icon={<Package className="w-5 h-5" />}
         title="Stock & Inventario Físico"
         subtitle="Seguimiento de botellas adquiridas, costos y rentabilidad esperada"
+        action={
+          <button
+            onClick={() => setShowForm(true)}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-black text-xs font-bold shadow-lg hover:brightness-110 transition-all active:scale-95"
+          >
+            <Plus className="w-4 h-4" />
+            Registrar Inventario
+          </button>
+        }
       />
 
       {items.length === 0 ? (
@@ -1534,13 +1561,131 @@ function InventoryTab() {
               </div>
 
               <div className="flex items-center justify-between text-xs text-white/70 pt-2 border-t border-white/5">
-                <span>Costo: ${i.cost || 0}</span>
-                <Gold>{USD(i.price)}</Gold>
+                <div className="flex flex-col gap-1">
+                  <span>Costo: ${i.cost || 0}</span>
+                  <span className="text-emerald-400 font-medium">Ganancia Est.: ${((i.price || 0) - (i.cost || 0)).toFixed(2)}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Gold>{USD(i.price)}</Gold>
+                  <button onClick={() => { setSelectedItem(i); setShowForm(true); }} className="text-[#d4af37] hover:text-white p-1 ml-2">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button onClick={() => handleDelete(i.id)} className="text-red-400 hover:text-red-300 p-1">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
       )}
+
+      {showForm && (
+        <InventoryFormModal
+          item={selectedItem || undefined}
+          isEdit={!!selectedItem}
+          onClose={() => { setShowForm(false); setSelectedItem(null); }}
+          onSaved={() => { setShowForm(false); setSelectedItem(null); load(); }}
+        />
+      )}
+    </div>
+  );
+}
+
+function InventoryFormModal({ item, isEdit, onClose, onSaved }: { item?: InventoryItem; isEdit?: boolean; onClose: () => void; onSaved: () => void }) {
+  const [name, setName] = useState(item?.name || "");
+  const [brand, setBrand] = useState(item?.brand || "");
+  const [size, setSize] = useState(item?.size || "");
+  const [cost, setCost] = useState(item?.cost?.toString() || "");
+  const [price, setPrice] = useState(item?.price?.toString() || "");
+  const [status, setStatus] = useState(item?.status || "available");
+  const [saving, setSaving] = useState(false);
+
+  const uniqueBrands = useMemo(() => Array.from(new Set(perfumes.map((p) => p.brand))).sort(), []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !price) return alert("Completa los datos del item");
+    setSaving(true);
+    try {
+      const body = {
+        name: name.trim(), brand: brand.trim() || null, size: size.trim() || null,
+        cost: Number(cost) || 0, price: Number(price) || 0, status
+      };
+      const url = isEdit && item ? `/api/admin/crm/inventory/${item.id}` : "/api/admin/crm/inventory";
+      const method = isEdit ? "PUT" : "POST";
+      const res = await fetch(url, {
+        method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
+      });
+      if (res.ok) onSaved();
+      else alert("Error al guardar item");
+    } catch {
+      alert("Error de red");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+      <div className="w-full max-w-md p-6 rounded-2xl bg-[#111111] border border-[rgba(212,175,55,0.3)] shadow-2xl space-y-4 text-xs font-[family-name:var(--font-inter)]">
+        <div className="flex items-center justify-between border-b border-white/10 pb-3">
+          <h3 className="text-base font-bold text-white font-[family-name:var(--font-playfair)]">
+            {isEdit ? "Editar Item" : "Registrar Inventario"}
+          </h3>
+          <button onClick={onClose} className="text-white/40 hover:text-white"><X className="w-5 h-5" /></button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-white/70 mb-1">Nombre / Perfume *</label>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Ej. Aventus" className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]" required />
+          </div>
+
+          <div>
+            <label className="block text-white/70 mb-1">Marca</label>
+            <select value={brand} onChange={(e) => setBrand(e.target.value)} className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]">
+              <option value="">Selecciona una marca</option>
+              {uniqueBrands.map((b) => (
+                <option key={b} value={b}>{b}</option>
+              ))}
+            </select>
+          </div>
+          
+          <div>
+            <label className="block text-white/70 mb-1">Tamaño (Ej. 100ml, 50ml)</label>
+            <input type="text" value={size} onChange={(e) => setSize(e.target.value)} placeholder="100ml" className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]" />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-white/70 mb-1">Costo de Compra ($)</label>
+              <input type="number" step="0.01" value={cost} onChange={(e) => setCost(e.target.value)} placeholder="120.00" className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]" />
+            </div>
+            <div>
+              <label className="block text-white/70 mb-1">Precio de Venta ($) *</label>
+              <input type="number" step="0.01" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="180.00" className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]" required />
+            </div>
+          </div>
+          
+          <div>
+            <label className="block text-white/70 mb-1">Estado</label>
+            <select value={status} onChange={(e) => setStatus(e.target.value)} className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]">
+              <option value="available">Disponible</option>
+              <option value="sold">Vendido</option>
+              <option value="out_of_stock">Agotado</option>
+              <option value="reserved">Reservado</option>
+            </select>
+          </div>
+
+          <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
+            <button type="button" onClick={onClose} className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-white/70">Cancelar</button>
+            <button type="submit" disabled={saving} className="px-6 py-2 rounded-xl bg-[#d4af37] text-black font-bold">
+              {saving ? "Guardando..." : "Guardar Item"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
