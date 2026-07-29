@@ -144,10 +144,23 @@ export async function PUT(req: NextRequest) {
         existingCustomer = await rawDb.customer.findByEmail(user.email);
       }
 
+      // If still not found, try to match by phone number
+      if (!existingCustomer && phone) {
+        existingCustomer = await rawDb.customer.findByPhone(phone);
+      }
+
       if (existingCustomer) {
+        // Concatenate phone if it's different and not already in the string
+        let newPhone = existingCustomer.phone;
+        if (phone && newPhone && !newPhone.includes(phone)) {
+          newPhone = `${newPhone} / ${phone}`;
+        } else if (phone && !newPhone) {
+          newPhone = phone;
+        }
+
         await rawDb.customer.update(existingCustomer.id, {
           userId: user.id, // Ensure it's linked
-          phone: phone ?? undefined,
+          phone: newPhone ?? undefined,
           instagram: instagram ?? undefined,
           name: updated?.name ?? user.name ?? undefined,
         });

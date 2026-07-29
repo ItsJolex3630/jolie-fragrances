@@ -2253,6 +2253,21 @@ export const rawDb = {
     },
 
     /**
+     * Find a customer by phone (like match since phone numbers can have spaces/plus signs).
+     */
+    async findByPhone(phone: string): Promise<CustomerRow | null> {
+      const client = getRawClient();
+      if (!client) return null;
+      // We use a basic match. If complex searching is needed, we could fetch and filter, but exact match for now.
+      const rs = await client.execute({
+        sql: "SELECT * FROM Customer WHERE phone LIKE ? LIMIT 1",
+        args: [`%${phone}%`],
+      });
+      const row = extractOne(rs.rows as DbRow[]);
+      return row ? mapCustomerRow(row) : null;
+    },
+
+    /**
      * Create a new customer. Generates a UUID id (replaces Prisma's cuid()).
      * Mirrors `db.customer.create({ data })`.
      */
