@@ -137,9 +137,16 @@ export async function PUT(req: NextRequest) {
     // Best-effort: if the sync fails, the User update still stands (the
     // storefront phone-capture flow reads from User, not Customer).
     try {
-      const existingCustomer = await rawDb.customer.findByUserId(user.id);
+      let existingCustomer = await rawDb.customer.findByUserId(user.id);
+      
+      // If not found by userId, try to match an old manually-created CRM record by email
+      if (!existingCustomer && user.email) {
+        existingCustomer = await rawDb.customer.findByEmail(user.email);
+      }
+
       if (existingCustomer) {
         await rawDb.customer.update(existingCustomer.id, {
+          userId: user.id, // Ensure it's linked
           phone: phone ?? undefined,
           instagram: instagram ?? undefined,
           name: updated?.name ?? user.name ?? undefined,

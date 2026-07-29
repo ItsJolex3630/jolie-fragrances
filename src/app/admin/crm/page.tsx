@@ -11,16 +11,10 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import {
-  Users, ShoppingBag, FlaskConical, Package, MessageSquare,
-  Download, BarChart3, Plus, Trash2, Pencil, X, Check, ChevronLeft,
-  Loader2, AlertTriangle, TrendingUp, DollarSign, Target, Crown,
-  Phone, Mail, Instagram, Search, Filter, Star, Ban, RefreshCw,
-  Sparkles, ArrowUpRight, ArrowDownRight, Gem, ExternalLink, Calendar,
-  CreditCard, Truck, CheckCircle2, AlertCircle, Clock, Eye, Send,
-} from "lucide-react";
+import { Trash2, Plus, Edit, X, Package, MessageSquare, Download, FlaskConical, ShoppingBag, Search, Filter, Crown, Check, ChevronLeft, Loader2, AlertTriangle, TrendingUp, DollarSign, Target, Phone, Mail, Instagram, Star, Ban, RefreshCw, Sparkles, ArrowUpRight, ArrowDownRight, Gem, ExternalLink, Calendar, CreditCard, Truck, CheckCircle2, AlertCircle, Clock, Eye, Send, Users, BarChart3, Pencil } from "lucide-react";
 
 import { ADMIN_EMAIL } from "@/lib/adminAuth";
+import { perfumes } from "@/lib/perfumes";
 
 // ─── Tipos ──────────────────────────────────────────────────────────────────
 
@@ -646,13 +640,14 @@ function CustomersTab() {
   }, [customers, search, channelFilter, vipFilter]);
 
   const handleDelete = async (id: string) => {
-    if (!confirm("¿Deseas eliminar este cliente permanentemente?")) return;
-    try {
-      const res = await fetch(`/api/admin/crm/customers?id=${id}`, { method: "DELETE" });
-      if (!res.ok) alert("Error al eliminar");
-      else load();
-    } catch {
-      alert("Error de red");
+    if (confirm("¿Seguro que deseas eliminar este cliente?")) {
+      try {
+        const res = await fetch(`/api/admin/crm/customers/${id}`, { method: "DELETE" });
+        if (!res.ok) alert("Error al eliminar");
+        else load();
+      } catch {
+        alert("Error de red");
+      }
     }
   };
 
@@ -878,7 +873,7 @@ function CustomerFormModal({
         notes: notes.trim() || null, tags: tags.trim() || null, isVip, isBlocked,
         blockReason: blockReason.trim() || null,
       };
-      const url = isEdit ? `/api/admin/crm/customers?id=${customer!.id}` : "/api/admin/crm/customers";
+      const url = isEdit ? `/api/admin/crm/customers/${customer!.id}` : "/api/admin/crm/customers";
       const method = isEdit ? "PUT" : "POST";
       const res = await fetch(url, {
         method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
@@ -1024,6 +1019,19 @@ function SalesTab() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const [selectedSale, setSelectedSale] = useState<Sale | null>(null);
+
+  const handleDelete = async (id: string) => {
+    if (confirm("¿Seguro que deseas eliminar esta venta?")) {
+      try {
+        const res = await fetch(`/api/admin/crm/sales/${id}`, { method: "DELETE" });
+        if (!res.ok) alert("Error al eliminar");
+        else load();
+      } catch {
+        alert("Error de red");
+      }
+    }
+  };
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -1081,6 +1089,7 @@ function SalesTab() {
                   <th className="py-3 px-4">Monto Total</th>
                   <th className="py-3 px-4">Cobrado vs Pendiente</th>
                   <th className="py-3 px-4">Estado Pago</th>
+                  <th className="py-3 px-4 text-right">Acciones</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
@@ -1102,6 +1111,16 @@ function SalesTab() {
                     <td className="py-3 px-4">
                       <StatusBadge status={s.paymentStatus} />
                     </td>
+                    <td className="py-3 px-4 text-right">
+                      <div className="flex items-center justify-end gap-2">
+                        <button onClick={() => { setSelectedSale(s); setShowForm(true); }} className="text-[#d4af37] hover:text-white p-1">
+                          <Edit className="w-4 h-4" />
+                        </button>
+                        <button onClick={() => handleDelete(s.id)} className="text-red-400 hover:text-red-300 p-1">
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -1111,7 +1130,12 @@ function SalesTab() {
       )}
 
       {showForm && (
-        <SaleFormModal onClose={() => setShowForm(false)} onSaved={() => { setShowForm(false); load(); }} />
+        <SaleFormModal
+          sale={selectedSale || undefined}
+          isEdit={!!selectedSale}
+          onClose={() => { setShowForm(false); setSelectedSale(null); }}
+          onSaved={() => { setShowForm(false); setSelectedSale(null); load(); }}
+        />
       )}
     </div>
   );
@@ -1119,14 +1143,14 @@ function SalesTab() {
 
 // ─── Sale Form Modal ─────────────────────────────────────────────────────────
 
-function SaleFormModal({ onClose, onSaved }: { onClose: () => void; onSaved: () => void }) {
+function SaleFormModal({ sale, isEdit, onClose, onSaved }: { sale?: Sale; isEdit?: boolean; onClose: () => void; onSaved: () => void }) {
   const [customers, setCustomers] = useState<Customer[]>([]);
-  const [customerId, setCustomerId] = useState("");
-  const [itemName, setItemName] = useState("");
-  const [quantity, setQuantity] = useState("1");
-  const [unitPrice, setUnitPrice] = useState("");
-  const [paid, setPaid] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("zelle");
+  const [customerId, setCustomerId] = useState(sale?.customerId || "");
+  const [itemName, setItemName] = useState(sale?.itemName || "");
+  const [quantity, setQuantity] = useState(sale?.quantity?.toString() || "1");
+  const [unitPrice, setUnitPrice] = useState(sale?.unitPrice?.toString() || "");
+  const [paid, setPaid] = useState(sale?.paid?.toString() || "");
+  const [paymentMethod, setPaymentMethod] = useState(sale?.paymentMethod || "zelle");
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -1148,8 +1172,12 @@ function SaleFormModal({ onClose, onSaved }: { onClose: () => void; onSaved: () 
         quantity: q, unitPrice: u, totalPrice: total, paid: p, paymentMethod,
         paymentStatus: p >= total ? "paid" : p > 0 ? "partial" : "pending",
       };
-      const res = await fetch("/api/admin/crm/sales", {
-        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
+      
+      const url = isEdit && sale ? `/api/admin/crm/sales/${sale.id}` : "/api/admin/crm/sales";
+      const method = isEdit ? "PUT" : "POST";
+      
+      const res = await fetch(url, {
+        method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
       });
       if (res.ok) onSaved();
       else alert("Error al registrar venta");
@@ -1164,7 +1192,9 @@ function SaleFormModal({ onClose, onSaved }: { onClose: () => void; onSaved: () 
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
       <div className="w-full max-w-lg p-6 rounded-2xl bg-[#111111] border border-[rgba(212,175,55,0.3)] shadow-2xl space-y-4 text-xs font-[family-name:var(--font-inter)]">
         <div className="flex items-center justify-between border-b border-white/10 pb-3">
-          <h3 className="text-base font-bold text-white font-[family-name:var(--font-playfair)]">Registrar Nueva Venta</h3>
+          <h3 className="text-base font-bold text-white font-[family-name:var(--font-playfair)]">
+            {isEdit ? "Editar Venta" : "Registrar Nueva Venta"}
+          </h3>
           <button onClick={onClose} className="text-white/40 hover:text-white"><X className="w-5 h-5" /></button>
         </div>
 
@@ -1251,6 +1281,19 @@ function DecantsTab() {
   const [decants, setDecants] = useState<Decant[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
+  const [selectedDecant, setSelectedDecant] = useState<Decant | null>(null);
+
+  const handleDelete = async (id: string) => {
+    if (confirm("¿Seguro que deseas eliminar este decant?")) {
+      try {
+        const res = await fetch(`/api/admin/crm/decants/${id}`, { method: "DELETE" });
+        if (!res.ok) alert("Error al eliminar");
+        else load();
+      } catch {
+        alert("Error de red");
+      }
+    }
+  };
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -1308,7 +1351,15 @@ function DecantsTab() {
 
               <div className="flex items-center justify-between text-xs text-white/70 pt-2 border-t border-white/5">
                 <span>Tamaño: <strong className="text-white">{d.sizeMl}ml</strong></span>
-                <Gold>{USD(d.price)}</Gold>
+                <div className="flex items-center gap-2">
+                  <Gold>{USD(d.price)}</Gold>
+                  <button onClick={() => { setSelectedDecant(d); setShowForm(true); }} className="text-[#d4af37] hover:text-white p-1 ml-2">
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button onClick={() => handleDelete(d.id)} className="text-red-400 hover:text-red-300 p-1">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
           ))}
@@ -1316,18 +1367,25 @@ function DecantsTab() {
       )}
 
       {showForm && (
-        <DecantFormModal onClose={() => setShowForm(false)} onSaved={() => { setShowForm(false); load(); }} />
+        <DecantFormModal
+          decant={selectedDecant || undefined}
+          isEdit={!!selectedDecant}
+          onClose={() => { setShowForm(false); setSelectedDecant(null); }}
+          onSaved={() => { setShowForm(false); setSelectedDecant(null); load(); }}
+        />
       )}
     </div>
   );
 }
 
-function DecantFormModal({ onClose, onSaved }: { onClose: () => void; onSaved: () => void }) {
-  const [sourcePerfume, setSourcePerfume] = useState("");
-  const [sourceBrand, setSourceBrand] = useState("");
-  const [sizeMl, setSizeMl] = useState("5");
-  const [price, setPrice] = useState("");
+function DecantFormModal({ decant, isEdit, onClose, onSaved }: { decant?: Decant; isEdit?: boolean; onClose: () => void; onSaved: () => void }) {
+  const [sourcePerfume, setSourcePerfume] = useState(decant?.sourcePerfume || "");
+  const [sourceBrand, setSourceBrand] = useState(decant?.sourceBrand || "");
+  const [sizeMl, setSizeMl] = useState(decant?.sizeMl?.toString() || "5");
+  const [price, setPrice] = useState(decant?.price?.toString() || "");
   const [saving, setSaving] = useState(false);
+
+  const uniqueBrands = useMemo(() => Array.from(new Set(perfumes.map((p) => p.brand))).sort(), []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -1336,10 +1394,12 @@ function DecantFormModal({ onClose, onSaved }: { onClose: () => void; onSaved: (
     try {
       const body = {
         sourcePerfume: sourcePerfume.trim(), sourceBrand: sourceBrand.trim() || null,
-        sizeMl: Number(sizeMl) || 5, price: Number(price) || 0, status: "filled",
+        sizeMl: Number(sizeMl) || 5, price: Number(price) || 0, status: decant?.status || "filled",
       };
-      const res = await fetch("/api/admin/crm/decants", {
-        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
+      const url = isEdit && decant ? `/api/admin/crm/decants/${decant.id}` : "/api/admin/crm/decants";
+      const method = isEdit ? "PUT" : "POST";
+      const res = await fetch(url, {
+        method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
       });
       if (res.ok) onSaved();
     } catch {
@@ -1353,7 +1413,9 @@ function DecantFormModal({ onClose, onSaved }: { onClose: () => void; onSaved: (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
       <div className="w-full max-w-md p-6 rounded-2xl bg-[#111111] border border-[rgba(212,175,55,0.3)] shadow-2xl space-y-4 text-xs font-[family-name:var(--font-inter)]">
         <div className="flex items-center justify-between border-b border-white/10 pb-3">
-          <h3 className="text-base font-bold text-white font-[family-name:var(--font-playfair)]">Registrar Decant</h3>
+          <h3 className="text-base font-bold text-white font-[family-name:var(--font-playfair)]">
+            {isEdit ? "Editar Decant" : "Registrar Decant"}
+          </h3>
           <button onClick={onClose} className="text-white/40 hover:text-white"><X className="w-5 h-5" /></button>
         </div>
 
@@ -1368,6 +1430,20 @@ function DecantFormModal({ onClose, onSaved }: { onClose: () => void; onSaved: (
               className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]"
               required
             />
+          </div>
+
+          <div>
+            <label className="block text-white/70 mb-1">Marca Origen</label>
+            <select
+              value={sourceBrand}
+              onChange={(e) => setSourceBrand(e.target.value)}
+              className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]"
+            >
+              <option value="">Selecciona una marca (opcional)</option>
+              {uniqueBrands.map((brand) => (
+                <option key={brand} value={brand}>{brand}</option>
+              ))}
+            </select>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
@@ -1418,7 +1494,7 @@ function InventoryTab() {
       const res = await fetch("/api/admin/crm/inventory", { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
-        setItems(data.inventory || []);
+        setItems(data.items || []);
       }
     } catch {
       console.error("Error al cargar inventario");
@@ -1474,6 +1550,20 @@ function InventoryTab() {
 function DmsTab() {
   const [dms, setDms] = useState<Dm[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
+  const [selectedDm, setSelectedDm] = useState<Dm | null>(null);
+
+  const handleDelete = async (id: string) => {
+    if (confirm("¿Seguro que deseas eliminar este registro de DM?")) {
+      try {
+        const res = await fetch(`/api/admin/crm/dms/${id}`, { method: "DELETE" });
+        if (!res.ok) alert("Error al eliminar");
+        else load();
+      } catch {
+        alert("Error de red");
+      }
+    }
+  };
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -1500,6 +1590,15 @@ function DmsTab() {
         icon={<MessageSquare className="w-5 h-5" />}
         title="Embudo de Ventas DM & Mensajería"
         subtitle="Seguimiento de conversaciones en Instagram, WhatsApp y conversiones de leads"
+        action={
+          <button
+            onClick={() => setShowForm(true)}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#b8962e] text-black text-xs font-bold shadow-lg hover:brightness-110 transition-all active:scale-95"
+          >
+            <Plus className="w-4 h-4" />
+            Registrar DM
+          </button>
+        }
       />
 
       {dms.length === 0 ? (
@@ -1527,10 +1626,125 @@ function DmsTab() {
                   Interés: {d.fragranceInterest}
                 </div>
               )}
+              
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-white/5">
+                <button onClick={() => { setSelectedDm(d); setShowForm(true); }} className="text-[#d4af37] hover:text-white p-1">
+                  <Edit className="w-4 h-4" />
+                </button>
+                <button onClick={() => handleDelete(d.id)} className="text-red-400 hover:text-red-300 p-1">
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           ))}
         </div>
       )}
+
+      {showForm && (
+        <DmFormModal
+          dm={selectedDm || undefined}
+          isEdit={!!selectedDm}
+          onClose={() => { setShowForm(false); setSelectedDm(null); }}
+          onSaved={() => { setShowForm(false); setSelectedDm(null); load(); }}
+        />
+      )}
+    </div>
+  );
+}
+
+function DmFormModal({ dm, isEdit, onClose, onSaved }: { dm?: Dm; isEdit?: boolean; onClose: () => void; onSaved: () => void }) {
+  const [platform, setPlatform] = useState(dm?.platform || "instagram");
+  const [username, setUsername] = useState(dm?.username || "");
+  const [fragranceInterest, setFragranceInterest] = useState(dm?.fragranceInterest || "");
+  const [inquiryType, setInquiryType] = useState(dm?.inquiryType || "compra");
+  const [status, setStatus] = useState(dm?.status || "new");
+  const [saving, setSaving] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+    try {
+      const body = {
+        platform, username: username.trim() || null, fragranceInterest: fragranceInterest.trim() || null,
+        inquiryType, status
+      };
+      const url = isEdit && dm ? `/api/admin/crm/dms/${dm.id}` : "/api/admin/crm/dms";
+      const method = isEdit ? "PUT" : "POST";
+      const res = await fetch(url, {
+        method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
+      });
+      if (res.ok) onSaved();
+      else alert("Error al guardar DM");
+    } catch {
+      alert("Error de red");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+      <div className="w-full max-w-md p-6 rounded-2xl bg-[#111111] border border-[rgba(212,175,55,0.3)] shadow-2xl space-y-4 text-xs font-[family-name:var(--font-inter)]">
+        <div className="flex items-center justify-between border-b border-white/10 pb-3">
+          <h3 className="text-base font-bold text-white font-[family-name:var(--font-playfair)]">
+            {isEdit ? "Editar DM" : "Registrar Nuevo DM"}
+          </h3>
+          <button onClick={onClose} className="text-white/40 hover:text-white"><X className="w-5 h-5" /></button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-white/70 mb-1">Plataforma</label>
+              <select value={platform} onChange={(e) => setPlatform(e.target.value)} className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]">
+                <option value="instagram">Instagram</option>
+                <option value="whatsapp">WhatsApp</option>
+                <option value="web">Web</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-white/70 mb-1">Tipo de Consulta</label>
+              <select value={inquiryType} onChange={(e) => setInquiryType(e.target.value)} className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]">
+                <option value="compra">Compra</option>
+                <option value="recomendacion">Recomendación</option>
+                <option value="precio">Precio</option>
+                <option value="stock">Disponibilidad (Stock)</option>
+                <option value="asesoramiento">Asesoramiento</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-white/70 mb-1">Usuario (@handle / nombre)</label>
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="@cliente123" className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]" />
+          </div>
+
+          <div>
+            <label className="block text-white/70 mb-1">Perfume de Interés</label>
+            <input type="text" value={fragranceInterest} onChange={(e) => setFragranceInterest(e.target.value)} placeholder="Club de Nuit Intense" className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]" />
+          </div>
+
+          <div>
+            <label className="block text-white/70 mb-1">Estado</label>
+            <select value={status} onChange={(e) => setStatus(e.target.value)} className="w-full px-3.5 py-2.5 rounded-xl bg-[#050505] border border-white/10 text-white focus:outline-none focus:border-[#d4af37]">
+              <option value="new">Nuevo (No leído)</option>
+              <option value="in_conversation">En Conversación</option>
+              <option value="pending">Pendiente de Cierre</option>
+              <option value="closed_sold">Cerrado (Venta Exitosa)</option>
+              <option value="closed_no_sale">Cerrado (Sin Venta)</option>
+              <option value="no_reply">Ghosting (No respondió)</option>
+            </select>
+          </div>
+
+          <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
+            <button type="button" onClick={onClose} className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-white/70">Cancelar</button>
+            <button type="submit" disabled={saving} className="px-6 py-2 rounded-xl bg-[#d4af37] text-black font-bold">
+              {saving ? "Guardando..." : "Guardar DM"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
