@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
   Heart,
@@ -14,6 +14,8 @@ import {
   Instagram,
   Clock,
   ShoppingCart,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import {
@@ -26,7 +28,7 @@ const SimilarPerfumes = dynamic(() => import("./SimilarPerfumes"), { ssr: false 
 import { NOTE_PYRAMIDS } from '@/lib/notePyramids';
 import { PERFUME_ACCORDS } from '@/lib/perfumeAccords';
 import { usePrices } from '@/hooks/usePrices';
-import { formatPrice } from '@/lib/priceMapping';
+import { formatPrice, applyDiscount } from '@/lib/priceMapping';
 
 // ─── Gender badge styles ───
 const genderStyles: Record<string, string> = {
@@ -224,14 +226,23 @@ export default function PerfumeDetail({
   onReturn,
 }: PerfumeDetailProps) {
   // ─── Price integration ───
-  const { getPrice: getPriceFromHook } = usePrices();
+  const { getPrice: getPriceFromHook, getTemporalDiscount } = usePrices();
   const retailPrice = getPriceFromHook(perfume.id);
-  const { addPerfume, openCart } = useCart();
+  const { addPerfume, openCart, highestAvailableDiscountPct } = useCart();
+
+  const temporalPct = getTemporalDiscount(perfume.id) || 0;
+  const predictionPct = highestAvailableDiscountPct > 0 ? highestAvailableDiscountPct : 0;
+  const effectiveDiscountPct = temporalPct > predictionPct ? temporalPct : predictionPct;
+  const hasDiscount = effectiveDiscountPct > 0;
+  const discountedPrice = hasDiscount && retailPrice !== null 
+    ? applyDiscount(retailPrice, effectiveDiscountPct) 
+    : retailPrice;
 
   const [imgTriedJpg, setImgTriedJpg] = useState(false);
   const [imgError, setImgError] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
   const [favoriteLoading, setFavoriteLoading] = useState(false);
+  const [showSimilar, setShowSimilar] = useState(false);
 
   const imgSrc = imgTriedJpg
     ? `https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.${perfume.fragranticaId}.jpg`
@@ -597,29 +608,65 @@ export default function PerfumeDetail({
               </div>
             )}
 
-            {/* ─── Similar Perfumes ─── */}
-            <SimilarPerfumes
-              targetPerfume={perfume}
-              allPerfumes={allPerfumesData}
-              onSelectPerfume={(p) => {
-                // Navigate to the selected perfume's detail
-                if (onNavigateToPerfume) {
-                  onNavigateToPerfume(p);
-                } else {
-                  onClose();
-                }
-              }}
-            />
+            {/* ─── Similar Perfumes Toggle ─── */}
+            <div className="mt-4 pt-4 border-t border-white/5">
+              <button
+                onClick={() => setShowSimilar(!showSimilar)}
+                className="w-full flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
+              >
+                <span className="text-sm font-semibold text-white/90">Perfumes Similares</span>
+                {showSimilar ? (
+                  <ChevronUp className="w-5 h-5 text-white/50" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-white/50" />
+                )}
+              </button>
+
+              <AnimatePresence>
+                {showSimilar && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden mt-4"
+                  >
+                    <SimilarPerfumes
+                      targetPerfume={perfume}
+                      allPerfumes={allPerfumesData}
+                      onSelectPerfume={(p) => {
+                        if (onNavigateToPerfume) {
+                          onNavigateToPerfume(p);
+                        } else {
+                          onClose();
+                        }
+                      }}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             {/* Spacer */}
             <div className="flex-1" />
 
             {/* ─── Price Display ─── */}
             {retailPrice !== null && (
-              <div className="mt-3 pt-3 border-t border-white/5">
+              <div className="flex flex-col gap-1 mt-3 pt-3 border-t border-white/5">
+                {hasDiscount && (
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-white/40 line-through">
+                      {formatPrice(retailPrice)} USD
+                    </span>
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded-md font-bold text-black ${
+                      temporalPct > predictionPct ? "bg-gradient-to-r from-amber-400 to-orange-500" : "bg-gradient-to-r from-emerald-400 to-emerald-500"
+                    }`}>
+                      -{effectiveDiscountPct}%
+                    </span>
+                  </div>
+                )}
                 <div className="flex items-baseline gap-2">
                   <span className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-inter)] bg-gradient-to-r from-[#d4af37] to-[#f0d060] bg-clip-text text-transparent">
-                    {formatPrice(retailPrice)}
+                    {formatPrice(discountedPrice!)}
                   </span>
                   <span className="text-xs text-white/40 font-[family-name:var(--font-inter)]">USD</span>
                 </div>
