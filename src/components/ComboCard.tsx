@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { motion } from "framer-motion";
-import { Check, ShoppingBag, Tag, Gem } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Check, ShoppingBag, Tag, Gem, ChevronDown } from "lucide-react";
 import type { Combo } from "@/lib/combosData";
+import Image from "next/image";
 
 // ─── Fragrantica image URL builder ───
 function getAvifUrl(fragranticaId: number): string {
@@ -77,15 +78,16 @@ function PerfumeBottleImage({
   }
 
   return (
-    <img
-      src={src}
-      alt={alt}
-      className={`object-contain ${className}`}
-      onError={handleError}
-      loading="lazy"
-      decoding="async"
-      style={{ color: "transparent" }}
-    />
+    <div className="relative w-full h-full">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(max-width: 768px) 33vw, 20vw"
+        className={`object-contain ${className}`}
+        onError={handleError}
+      />
+    </div>
   );
 }
 
@@ -95,6 +97,7 @@ interface ComboCardProps {
 }
 
 export default function ComboCard({ combo, onAddToCart }: ComboCardProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
   const catStyle = categoryStyles[combo.category] ?? {
     bg: "bg-white/10",
     border: "border-white/20",
@@ -353,10 +356,19 @@ export default function ComboCard({ combo, onAddToCart }: ComboCardProps) {
           {combo.name}
         </h3>
 
-        {/* Description */}
-        <p className="text-xs sm:text-sm text-white/45 font-[family-name:var(--font-inter)] leading-relaxed mb-4 line-clamp-3">
-          {combo.description}
-        </p>
+        {/* Description with Read More */}
+        <div className="mb-4">
+          <p className={`text-xs sm:text-sm text-white/45 font-[family-name:var(--font-inter)] leading-relaxed ${isExpanded ? '' : 'line-clamp-3 min-h-[3.375rem] sm:min-h-[3.9375rem]'}`}>
+            {combo.description}
+          </p>
+          <button 
+            onClick={(e) => { e.stopPropagation(); setIsExpanded(!isExpanded); }}
+            className="text-[10px] sm:text-xs text-[#d4af37]/80 hover:text-[#d4af37] font-semibold mt-1 flex items-center gap-1 transition-colors"
+          >
+            {isExpanded ? 'Leer menos' : 'Leer más'}
+            <ChevronDown className={`w-3 h-3 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+          </button>
+        </div>
 
         {/* Gold divider */}
         <div className="w-full h-px bg-gradient-to-r from-[#d4af37]/40 via-[#d4af37]/15 to-transparent mb-4" />

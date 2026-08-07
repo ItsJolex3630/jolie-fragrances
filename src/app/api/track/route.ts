@@ -16,7 +16,8 @@ export async function POST(req: Request) {
 
     const client = getRawDbClient();
     if (!client) {
-      return NextResponse.json({ error: "No DB connection" }, { status: 500 });
+      // Silently fail tracking if DB is not configured yet to avoid console errors
+      return NextResponse.json({ success: false, reason: "No DB connection" }, { status: 200 });
     }
 
     // Hashear la IP para privacidad

@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useRef, useEffect, useCallback, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 // ─── Scroll Reveal Hook (lightweight IntersectionObserver) ───
 function useScrollReveal() {
@@ -331,17 +332,17 @@ const PerfumeCard = memo(function PerfumeCard({
               </span>
             </div>
           ) : (
-            <img
+            <Image
               src={imgSrc}
               alt={`${perfume.name} - ${perfume.brand}`}
-              className={`w-full h-full object-contain p-2 transition-all duration-700 group-hover:scale-105 ${
+              fill
+              sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+              className={`object-contain p-2 transition-all duration-700 group-hover:scale-105 ${
                 imgLoaded ? "opacity-100" : "opacity-0"
               }`}
               onLoad={() => setImgLoaded(true)}
               onError={handleImgError}
-              loading="lazy"
-              decoding="async"
-              style={{ color: 'transparent' }}
+              unoptimized={hasCustomImage}
             />
           )}
 
@@ -1184,6 +1185,8 @@ export default function Home() {
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#d4af37]/50" />
             <input
+              id="search-input"
+              name="search"
               type="text"
               placeholder="Buscar perfume o marca..."
               value={searchQuery}
@@ -1305,7 +1308,7 @@ export default function Home() {
             <h3 className="text-[10px] text-[#555] tracking-[0.2em] uppercase mb-3 font-[family-name:var(--font-inter)]">
               Marca
             </h3>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex overflow-x-auto gap-2 pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               <BrandCard
                 brand="Todas"
                 count={brandCounts.Todas}
@@ -1329,7 +1332,7 @@ export default function Home() {
             <h3 className="text-[10px] text-[#555] tracking-[0.2em] uppercase mb-3 font-[family-name:var(--font-inter)]">
               Género
             </h3>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex overflow-x-auto gap-2 pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               <BrandCard
                 brand="Todos"
                 count={genderCounts.Todos}

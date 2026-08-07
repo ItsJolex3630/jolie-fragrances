@@ -49,20 +49,22 @@ function toFinite(n: unknown, fallback: number): number {
  * Fire-and-forget background refresh. Catches its own errors so it can never
  * crash the caller. Uses a throttle to avoid spawning duplicate refreshes.
  */
-function triggerBackgroundRefresh(): void {
+function triggerBackgroundRefresh(req?: Request): void {
   const now = Date.now();
   if (now - lastBackgroundRefreshAt < BACKGROUND_REFRESH_THROTTLE_MS) {
     return; // a refresh was triggered recently — skip
   }
   lastBackgroundRefreshAt = now;
 
-  // fire-and-forget — do NOT await. We can't use Vercel's `waitUntil` from a
-  // plain route handler without the runtime flag, so we rely on the event
-  // loop draining the promise before the instance is frozen.
+  // fire-and-forget — do NOT await.
   void (async () => {
     try {
+      const protocol = req?.headers.get("x-forwarded-proto") || "https";
+      const host = req?.headers.get("host") || "localhost:3000";
+      const baseUrl = process.env.NEXT_PUBLIC_URL || `${protocol}://${host}`;
+      
       await fetch(
-        `${process.env.NEXT_PUBLIC_URL ?? ""}/api/exchange-rates/auto-update`,
+        `${baseUrl}/api/exchange-rates/auto-update`,
         { method: "GET" }
       );
     } catch (err) {
@@ -73,13 +75,13 @@ function triggerBackgroundRefresh(): void {
 
 // ─── GET (public, with stale-while-revalidate) ───────────────────────────────
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
     const row = await rawDb.exchangeRate.get();
     if (!row) {
       // No row yet (DB available but never seeded) → seed it now in the
       // background and return fallbacks immediately.
-      triggerBackgroundRefresh();
+      triggerBackgroundRefresh(req);
       return NextResponse.json({
         usdtRate: FALLBACK_USDT_RATE,
         bcvRate: FALLBACK_BCV_RATE,
@@ -100,7 +102,7 @@ export async function GET() {
     if (isStale) {
       // Non-blocking refresh — current response returns the stale value,
       // next request (within ~10s) will see the freshly fetched one.
-      triggerBackgroundRefresh();
+      triggerBackgroundRefresh(req);
     }
 
     return NextResponse.json({
