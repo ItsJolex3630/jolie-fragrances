@@ -7,6 +7,8 @@ import CartDrawer from "@/components/CartDrawer";
 import AuthProvider from "@/components/AuthProvider";
 import ProfileModal from "@/components/ProfileModal";
 import { CurrencyProvider } from "@/hooks/useCurrency";
+import Footer from "@/components/Footer";
+import CookieConsent from "@/components/CookieConsent";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -61,7 +63,7 @@ export default function RootLayout({
   return (
     <html lang="es" className="dark" suppressHydrationWarning>
       <body
-        className={`${playfair.variable} ${inter.variable} antialiased bg-[#0a0a0a] text-white`}
+        className={`${playfair.variable} ${inter.variable} antialiased bg-[#0a0a0a] text-white min-h-screen flex flex-col`}
       >
         <AuthProvider>
           <CurrencyProvider>
@@ -73,6 +75,8 @@ export default function RootLayout({
             </CartProvider>
           </CurrencyProvider>
         </AuthProvider>
+        <Footer />
+        <CookieConsent />
         <Toaster />
       </body>
     </html>
