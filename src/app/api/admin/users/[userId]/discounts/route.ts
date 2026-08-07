@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac } from "crypto";
 import { rawDb, isRawDbAvailable } from "@/lib/dbClient";
 import { requireAdmin } from "@/lib/adminAuth";
+import { generateDiscountPayload } from "@/lib/predictionSecurity";
 
 /**
  * /api/admin/users/[userId]/discounts
@@ -23,30 +23,8 @@ import { requireAdmin } from "@/lib/adminAuth";
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-const QR_HMAC_SECRET = process.env.QR_HMAC_SECRET || "jolie-qr-hmac-secret-2026";
-
 /** Default lifetime of an admin-issued discount code: 90 days. */
 const DEFAULT_DISCOUNT_TTL_MS = 90 * 24 * 60 * 60 * 1000;
-
-/**
- * Generate a cryptographically-signed discount payload.
- * Same algorithm as `predictionSecurity.ts::generateDiscountPayload`, but
- * uses the secret documented in the task spec ("jolie-qr-hmac-secret-2026")
- * so admin-created codes verify correctly with the existing scanner.
- */
-function generateDiscountPayload(
-  email: string,
-  predictionId: string,
-  discountPct: number
-): string {
-  const timestamp = Date.now();
-  const rawPayload = `${email}:${predictionId}:${timestamp}:${discountPct}`;
-  const signature = createHmac("sha256", QR_HMAC_SECRET)
-    .update(rawPayload)
-    .digest("hex")
-    .substring(0, 16);
-  return `${rawPayload}:${signature}`;
-}
 
 // ─── GET: list all discounts for the user ────────────────────────────────────
 

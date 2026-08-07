@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { generateDiscountPayload } from "@/lib/predictionSecurity";
+import { rawDb, isRawDbAvailable } from "@/lib/dbClient";
 
 /**
  * POST /api/predictions/generate-code
@@ -23,7 +24,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { email, predictionId, discountPct } = await request.json();
+    const { email, predictionId } = await request.json();
 
     // The caller can only generate a code for their OWN email
     if (
@@ -33,11 +34,37 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    if (!predictionId || typeof discountPct !== "number") {
-      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+    if (!predictionId) {
+      return NextResponse.json({ error: "Missing predictionId" }, { status: 400 });
     }
 
-    const code = generateDiscountPayload(email.trim().toLowerCase(), predictionId, discountPct);
+    if (!isRawDbAvailable()) {
+      return NextResponse.json({ error: "Database unavailable" }, { status: 503 });
+    }
+
+    const prediction = await rawDb.prediction.findById(predictionId);
+    if (!prediction) {
+      return NextResponse.json({ error: "Prediction not found" }, { status: 404 });
+    }
+
+    const sessionEmail = email.trim().toLowerCase();
+    const user = await rawDb.user.findUniqueByEmail(sessionEmail);
+    if (!user || prediction.userId !== user.id) {
+       return NextResponse.json({ error: "Forbidden: Not your prediction" }, { status: 403 });
+    }
+
+    let actualDiscountPct = 0;
+    if (prediction.exactScore) {
+      actualDiscountPct = 10;
+    } else if (prediction.correct) {
+      actualDiscountPct = 5;
+    }
+
+    if (actualDiscountPct === 0) {
+      return NextResponse.json({ error: "No discount won for this prediction" }, { status: 400 });
+    }
+
+    const code = generateDiscountPayload(sessionEmail, predictionId, actualDiscountPct);
     return NextResponse.json({ code });
   } catch (err) {
     console.error("[generate-code] Error:", err);

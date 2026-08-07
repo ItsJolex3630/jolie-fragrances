@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { rawDb, isRawDbAvailable } from "@/lib/dbClient";
 
 /**
@@ -10,15 +12,16 @@ import { rawDb, isRawDbAvailable } from "@/lib/dbClient";
  * Body: { userId, predictions: [{ matchId, homeGoals, awayGoals, extraTimeHome, extraTimeAway, penaltiesHome, penaltiesAway, matchDate, matchInfo }] }
  */
 export async function POST(request: NextRequest) {
-  const body = await request.json();
-  const { userId, predictions } = body;
-
-  if (!userId || !Array.isArray(predictions) || predictions.length === 0) {
-    return NextResponse.json({ error: "userId y predictions son requeridos" }, { status: 400 });
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.email) {
+    return NextResponse.json({ error: "No autenticado" }, { status: 401 });
   }
 
-  if (String(userId).startsWith("demo_")) {
-    return NextResponse.json({ synced: 0, message: "Usuarios demo no pueden sincronizar", demo: true });
+  const body = await request.json();
+  const { predictions } = body;
+
+  if (!Array.isArray(predictions) || predictions.length === 0) {
+    return NextResponse.json({ error: "predictions es requerido y no debe estar vacío" }, { status: 400 });
   }
 
   if (!isRawDbAvailable()) {
@@ -26,10 +29,17 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    // Verify user exists
-    const user = await rawDb.user.findById(userId);
+    const sessionEmail = session.user.email.trim().toLowerCase();
+    const user = await rawDb.user.findUniqueByEmail(sessionEmail);
+    
     if (!user) {
       return NextResponse.json({ synced: 0, message: "Usuario no encontrado en BD", demo: true, demoReason: "user_not_found" });
+    }
+
+    const userId = user.id;
+
+    if (String(userId).startsWith("demo_")) {
+      return NextResponse.json({ synced: 0, message: "Usuarios demo no pueden sincronizar", demo: true });
     }
 
     let synced = 0;
